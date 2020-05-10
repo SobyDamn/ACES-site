@@ -1,15 +1,25 @@
-function checkAuth() {
-    //check user authentication
-    firebase.auth().onAuthStateChanged(function(user) {
-        if (user) {
-          // User logged in already or has just logged in.
-          console.log(user.uid);
-        } else {
-          // User not logged in or has just logged out.
-          console.log("Not logged in")
-        }
-      });
-}
+var currUser;
+//check user authentication
+firebase.auth().onAuthStateChanged(function(user) {
+    var nameElement = document.getElementById("userName");
+    if (user) {
+      // User logged in already or has just logged in.
+      currUser = user
+      if (user.displayName != null) {
+          nameElement.style.display = "inline";
+          nameElement.innerText = "Hi! "+ user.displayName;
+      }
+      else {
+        nameElement.style.display = "inline";
+        nameElement.innerHTML = `<a href="../profile">Complete Your Profile</a>`
+      }
+    } else {
+      // User not logged in or has just logged out.
+      currUser = null;
+      nameElement.style.display = "none";
+      console.log("Not logged in")
+    }
+  });
 function login() {
     //Login user
     var email = document.getElementById("login_email").value;
@@ -18,7 +28,7 @@ function login() {
         .then((user)=> {
             if (user) {
                 console.log("logged in Success");
-                console.log(user.user.uid);
+                closeLoginPop();
             }
         })
         .catch(function(error) {
@@ -34,7 +44,8 @@ function registerUser() {
     if (password == cPassword) {
         //register
         firebase.auth().createUserWithEmailAndPassword(email, password).then((user)=> {
-            console.log(user);
+            //save user's profile
+            window.location = "../profile"
           }).catch((err)=>{
               console.log("Error \n"+err)
           })

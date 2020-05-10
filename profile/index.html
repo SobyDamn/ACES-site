@@ -6,13 +6,20 @@
         <script src="https://www.gstatic.com/firebasejs/7.14.3/firebase-analytics.js"></script>
         <script src="https://www.gstatic.com/firebasejs/7.14.3/firebase-auth.js"></script>
         <script src="https://www.gstatic.com/firebasejs/7.14.3/firebase-firestore.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.14.3/firebase-storage.js"></script>
         <script src="../scripts/firebase-auth.js"></script>
-        <script src="../scripts/user-auth.js"></script>
+        <script src="script.js"></script>
+        <link rel="stylesheet" href="../style/style.css"/>
     </head>
-    <body onload="checkAuth()">
+    <body>
         <h1 style="text-align: center;font-size:50px;">ACES<br><span style="font-size:7px;">ASSOCIATION OF COMPUTER ENGINEERING STUDENTS</span></h1>
         <div>
             <h3 style="text-align: center;">Add Profile Details!</h3>
+            <center>
+                <img onclick="selectFile()" src="../resource/img/profile_default.png" id="showImage" style="border-radius: 50%; width: 100px; height: 100px; border: 2px solid white;"/>
+                <p id="selectImageStatus"><button onclick="selectFile()" class="transparentBTN" style="color: blue;"><b>Select Image</b></button></p>
+            </center>
+            <input style="display: none;" onchange="loadSelectedImage(event)" id="user_selected_file" accept="image/*" type="file"/>
             <p><label>Name:</label><input id="user_name"/></p>
             <p><label>Phone No.:</label><input id="user_phone" type="number"/></p>
             <p><label>Batch:</label><input id="user_batch"/></p>
@@ -22,7 +29,7 @@
             <p><label>Website:</label><input id="user_site"/></p>
             <p><label>Linkedin Profile:</label><input id="user_linkedin"/></p>
         </div>
-        <button id="save_userProfleBTN" onclick="saveProfile()">Update Profile</button>
+        <button id="save_userProfleBTN" onclick="saveProfileData()">Update Profile</button>
         <p><a href="../index.html">home</a></p>
     </body>
 </html>
