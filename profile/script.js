@@ -88,12 +88,7 @@ function saveProfileDetails(uid) {
         displayName: name
     }).then(()=>{
         //add profile in database
-        if (selectedImage != null) {
-            userProfile.update({
-                profileImage: selectedImage.name
-            })
-        }
-        userProfile.update({
+        userProfile.set({
             Name: name,
             Email: email,
             Branch: branch,
@@ -104,6 +99,11 @@ function saveProfileDetails(uid) {
             Linkedin: linkedin,
             Batch: batch
         }).then(()=>{
+            if (selectedImage != null) {
+                userProfile.update({
+                    profileImage: selectedImage.name
+                })
+            }
             //success in saving
             console.log("Saved")
             window.location = "../index.html"
@@ -129,13 +129,15 @@ function selectFile() {
     selectFileElement.click();
 }
 function fetchImage(fileName,uid) {
-    console.log(fileName)
-    var storageRef = firebase.storage().ref();
-    var currentProfileImage = document.getElementById("showImage")
-    storageRef.child("users/"+uid+"/"+fileName).getDownloadURL().then((url)=> {
-        currentProfileImage.src = url;
-      }).catch((err)=> {
-        // Handle any errors
-        console.log(err)
-      });
+    if (fileName != undefined) {
+        //profile picture exists show to user
+        var storageRef = firebase.storage().ref();
+        var currentProfileImage = document.getElementById("showImage")
+        storageRef.child("users/"+uid+"/"+fileName).getDownloadURL().then((url)=> {
+            currentProfileImage.src = url;
+        }).catch((err)=> {
+            // Handle any errors
+            console.log(err)
+        });
+    }
 }

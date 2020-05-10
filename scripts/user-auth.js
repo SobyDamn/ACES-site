@@ -80,3 +80,12 @@ function showLoginForm() {
 function closeLoginPop() {
     document.getElementById("loginPOP").style.display = "none";
 }
+function showRegisterForm() {
+    closeLoginPop();
+    var modal = document.getElementById("registerPOP");
+    modal.style.display = "block";
+}
+function closeRegisterPOP() {
+    var modal = document.getElementById("registerPOP");
+    modal.style.display = "none";
+}

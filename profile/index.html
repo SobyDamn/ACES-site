@@ -10,13 +10,14 @@
         <script src="../scripts/firebase-auth.js"></script>
         <script src="script.js"></script>
         <link rel="stylesheet" href="../style/style.css"/>
+        <link rel="stylesheet" href="style.css"/>
     </head>
     <body>
         <h1 style="text-align: center;font-size:50px;">ACES<br><span style="font-size:7px;">ASSOCIATION OF COMPUTER ENGINEERING STUDENTS</span></h1>
         <div>
             <h3 style="text-align: center;">Add Profile Details!</h3>
             <center>
-                <img onclick="selectFile()" src="../resource/img/profile_default.png" id="showImage" style="border-radius: 50%; width: 100px; height: 100px; border: 2px solid white;"/>
+                <img onclick="selectFile()" src="../resource/img/profile_default.png" id="showImage" style="border-radius: 50%; width: 100px; height: 100px; border: 2px solid white; z-index: -1;"/>
                 <p id="selectImageStatus"><button onclick="selectFile()" class="transparentBTN" style="color: blue;"><b>Select Image</b></button></p>
             </center>
             <input style="display: none;" onchange="loadSelectedImage(event)" id="user_selected_file" accept="image/*" type="file"/>
