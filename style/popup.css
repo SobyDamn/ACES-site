@@ -67,11 +67,11 @@
     }
     @font-face {
       font-family: openSans-Bold;
-      src: url(opensans_bold.ttf);
+      src: url(../resource/fonts/opensans_bold.ttf);
     }
     @font-face {
       font-family: openSans-SemiBold;
-      src: url(opensans_semibold.ttf);
+      src: url(../resource/fonts/opensans_semibold.ttf);
     }
   .popHeader {
       min-height: 30px;
