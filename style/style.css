@@ -3,3 +3,42 @@
     border: none;
     outline: none;
 }
+#header , #navContainer,#activityContainer {
+    border: 2px solid black;
+    margin-top: 5px;
+}
+
+#navContainer {
+    min-height: 35px;
+    display: flex;
+    justify-content: space-between;
+    max-width: 100%;
+    align-self: auto;
+    margin: auto;
+    margin-top: 5px;
+}
+.navLinkContainer {
+    border: 1px solid black;
+    margin: 3px;
+    display: inline-block;
+    min-height: 35px;
+    width: 20%;
+    text-align: center;
+}
+
+#activityContainer {
+    padding: 4px;
+}
+div#scrollbox {
+    border: 1px solid black;
+    margin: 3px;
+    overflow: auto;
+    white-space: nowrap;
+}
+.activityBox {
+    border: 1px solid black;
+    margin: 2px;
+    display: inline-block;
+    min-height: 100px;
+    min-width: 100%;
+}

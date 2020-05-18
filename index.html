@@ -14,12 +14,49 @@
         <link rel="stylesheet" href="style/style.css">
     </head>
     <body>
-        <h1 style="text-align: center;font-size:50px;">ACES<br><span style="font-size:7px;">ASSOCIATION OF COMPUTER ENGINEERING STUDENTS</span></h1>
+        <div id="header">
+            <h1 style="text-align: center;font-size:50px;">ACES<br><span style="font-size:7px;">ASSOCIATION OF COMPUTER ENGINEERING STUDENTS</span></h1>
+        </div>
+        <div id="navContainer">
+            <div class="navLinkContainer">
+                <p>Link1</p>
+            </div>
+            <div class="navLinkContainer">
+                <p>Link2</p>
+                
+            </div>
+            <div class="navLinkContainer">
+                <p>Link3</p>
+            </div>
+            <div class="navLinkContainer">
+                <p>Link4</p>
+            </div>
+            <div class="navLinkContainer">
+                <p>Link5</p>
+            </div>
+        </div>
+        <div id="activityContainer">
+            <div id="activityTitle">
+                <h4>ACTIVITIES</h4>
+            </div>
+            <div id="scrollbox">
+                <div class="activityBox" id="#activity1">
+                    activity1
+                </div>
+                <div class="activityBox" id="activity2">
+                    activity2
+                </div>
+                <div class="activityBox">
+                    activity3
+                </div>
+            </div>
+        </div>
         <h5 id="userName" style="display:none;"></h5>
         <p><a href="profile">Edit Profile</a></p>
         <p><a onclick = "showRegisterForm()">Register</a></p>
         <button onclick="showLoginForm()">Login</button>
         <button onclick="logout()">LogOut</button>
+        <a href="#activity2">Hell</a>
         <!-- The Modal -->
         <div id="loginPOP" class="modal">
             <!-- Modal content -->

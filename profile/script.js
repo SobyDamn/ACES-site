@@ -82,38 +82,73 @@ function saveProfileDetails(uid) {
     var site = document.getElementById("user_site").value;
     var linkedin = document.getElementById("user_linkedin").value;
     var userProfile = firebase.firestore().collection("users").doc(uid);
-    var x =
-    currUser.updateProfile({
-        //update profile name in auth
-        displayName: name
-    }).then(()=>{
-        //add profile in database
-        userProfile.set({
-            Name: name,
-            Email: email,
-            Branch: branch,
-            Contact: phone,
-            Company: company,
-            Location: location,
-            Site: site,
-            Linkedin: linkedin,
-            Batch: batch
-        }).then(()=>{
-            if (selectedImage != null) {
+    var profileImage;
+    userProfile.get().then((doc)=>{
+        if (doc.exists) {
+            //document exists then update the profile
+            currUser.updateProfile({
+                //update profile name in auth
+                displayName: name
+            }).then(()=>{
                 userProfile.update({
-                    profileImage: selectedImage.name
+                    Name: name,
+                    Email: email,
+                    Branch: branch,
+                    Contact: phone,
+                    Company: company,
+                    Location: location,
+                    Site: site,
+                    Linkedin: linkedin,
+                    Batch: batch
+                }).then(()=>{
+                    currUser.updateProfile({
+                        //update profile name in auth
+                        displayName: name
+                    })
+                    if (selectedImage != null) {
+                        userProfile.update({
+                            profileImage: selectedImage.name
+                        })
+                    }
+                    window.location = "../index.html"
+                }).catch((err)=>{
+                    //error in saving
+                    console.log(err)
                 })
-            }
-            //success in saving
-            console.log("Saved")
-            window.location = "../index.html"
-        }).catch((err)=>{
-            //error in saving
-            console.log(err)
-        })
-    }).catch((err)=>{
-        console.log(err)
-    })
+            })
+        } else {
+            //if it does't exists then create the profile
+            currUser.updateProfile({
+                //update profile name in auth
+                displayName: name
+            }).then(()=>{
+                userProfile.set({
+                    Name: name,
+                    Email: email,
+                    Branch: branch,
+                    Contact: phone,
+                    Company: company,
+                    Location: location,
+                    Site: site,
+                    Linkedin: linkedin,
+                    Batch: batch,
+                }).then(()=>{
+                    if (selectedImage != null) {
+                        userProfile.update({
+                            //guessing profile pic is not compulsory
+                            profileImage: selectedImage.name
+                        })
+                    }
+                    window.location = "../index.html"
+                }).catch((err)=>{
+                    //error in saving
+                    console.log(err)
+                })
+            })
+        }
+    }).catch(function(error) {
+        console.log(error);
+    });
     
 }
 
