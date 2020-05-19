@@ -32,13 +32,74 @@
 div#scrollbox {
     border: 1px solid black;
     margin: 3px;
-    overflow: auto;
-    white-space: nowrap;
+    max-width: 400px;
+    min-height: 105px;
+    position: relative;
+    overflow: hidden;
+    /*overflow: auto;
+    white-space: nowrap;*/
 }
 .activityBox {
     border: 1px solid black;
-    margin: 2px;
-    display: inline-block;
+    margin: 3px;
+    display: none;
     min-height: 100px;
-    min-width: 100%;
+    width: 100%;
+    text-align: center;
+    position: absolute;
+    /*animation: showFromRight 2s;*/
+}
+/*#activity1 {
+    display: block;
+}*/
+.boxNav {
+    margin: 3px;
+    border: 1px solid black;
+    display: flex;
+    justify-content: space-between;
+}
+.boxNavBTN {
+    display: inline;
+    margin: 5px;
+}
+
+@keyframes showFromLeft {
+    0% {
+        left:-100%;
+        opacity:0;
+    } 
+    100% {
+        left:0;
+        opacity:1;
+    }
+}
+@keyframes showFromRight {
+    0% {
+        right:-100%;
+        opacity:0;
+    } 
+    100% {
+        right:-9px;
+        opacity:1;
+    }
+}
+@keyframes hideToLeft {
+    0% {
+        left:0;
+        opacity:1;
+    } 
+    100% {
+        left:-100%;
+        opacity:0;
+    }
+}
+@keyframes hideToRight {
+    0% {
+        right:0;
+        opacity:1;
+    } 
+    100% {
+        right:-100%;
+        opacity:0;
+    }
 }

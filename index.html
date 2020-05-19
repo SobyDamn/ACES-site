@@ -8,12 +8,13 @@
         <script src="https://www.gstatic.com/firebasejs/7.14.3/firebase-auth.js"></script>
         <script src="scripts/firebase-auth.js"></script>
         <script src="scripts/user-auth.js"></script>
+        <script src="scripts/script.js"></script>
         <!---Stylsheets-->
         <link rel="stylesheet" href="style/popup.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
         <link rel="stylesheet" href="style/style.css">
     </head>
-    <body>
+    <body onload="loadElements()">
         <div id="header">
             <h1 style="text-align: center;font-size:50px;">ACES<br><span style="font-size:7px;">ASSOCIATION OF COMPUTER ENGINEERING STUDENTS</span></h1>
         </div>
@@ -39,16 +40,22 @@
             <div id="activityTitle">
                 <h4>ACTIVITIES</h4>
             </div>
-            <div id="scrollbox">
-                <div class="activityBox" id="#activity1">
-                    activity1
+            <center>
+                <div id="scrollbox">
+                    <div class="activityBox" id="activity0">
+                        activity1
+                    </div>
+                    <div class="activityBox" id="activity1">
+                        activity2
+                    </div>
+                    <div class="activityBox" id="activity2">
+                        activity3
+                    </div>
                 </div>
-                <div class="activityBox" id="activity2">
-                    activity2
-                </div>
-                <div class="activityBox">
-                    activity3
-                </div>
+            </center>
+            <div class="boxNav">
+                <button id="goLeftBTN" class="boxNavBTN" onclick="swipeLeft()">Left</button>
+                <button id="goRightBTN" class="boxNavBTN" onclick="swipeRight()">Right</button>
             </div>
         </div>
         <h5 id="userName" style="display:none;"></h5>
