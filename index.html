@@ -6,6 +6,7 @@
         <script src="https://www.gstatic.com/firebasejs/7.14.3/firebase-app.js"></script>
         <script src="https://www.gstatic.com/firebasejs/7.14.3/firebase-analytics.js"></script>
         <script src="https://www.gstatic.com/firebasejs/7.14.3/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.14.3/firebase-storage.js"></script>
         <script src="scripts/firebase-auth.js"></script>
         <script src="scripts/user-auth.js"></script>
         <script src="scripts/script.js"></script>
@@ -21,10 +22,17 @@
             </div>
             <div id="userAuthBox" class="headerBox">
                 <div id="userImageHolder">
-                    <img src="../resource/img/profile_default.png" id="showImage" style="border-radius: 50%; width: 50px; height: 50px; border: 0px solid white; z-index: -1;"/>
+                    <img src="../resource/img/profile_default.png" id="showImage" style="border-radius: 50%; width: 70px; height: 70px; border: 0px solid white; z-index: -1;"/>
                 </div>
                 <div id="buttonHolder">
-                    <button id="login_regBTN" onclick="showLoginForm()" class="transparentBTN">Login or Register</button>
+                    <div id="userSignedIN" style="display: none;">
+                        <span id="userName"></span><br>
+                        <button onclick="showLoginForm()" class="userAuthBTN">View Profile!</button><br>
+                        <button onclick="logout()" class="userAuthBTN">Logout</button>
+                    </div>
+                    <div id="userSignedOut">
+                        <button onclick="showLoginForm()" class="userAuthBTN">Login or Register</button><br>
+                    </div>
                 </div>
             </div>
         </div>

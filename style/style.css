@@ -50,10 +50,15 @@ body {
 }
 #userAuthBox #buttonHolder {
     padding-top: 5px;
+    text-align: center;
 }
-#userAuthBox #buttonHolder #login_regBTN {
+#userAuthBox #buttonHolder .userAuthBTN {
     color: #d3e3f0;
     font-family: openSans-Bold;
+    background: none;
+    border: none;
+    outline: none;
+    margin-top: 3px;
 }
 .multiBoxContainer {
     width: 100%;

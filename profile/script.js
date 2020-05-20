@@ -101,13 +101,13 @@ function saveProfileDetails(uid) {
                     Linkedin: linkedin,
                     Batch: batch
                 }).then(()=>{
-                    currUser.updateProfile({
-                        //update profile name in auth
-                        displayName: name
-                    })
                     if (selectedImage != null) {
                         userProfile.update({
                             profileImage: selectedImage.name
+                        })
+                        currUser.updateProfile({
+                            //update profile image in auth
+                            photoURL: selectedImage.name
                         })
                     }
                     window.location = "../index.html"
@@ -137,6 +137,10 @@ function saveProfileDetails(uid) {
                         userProfile.update({
                             //guessing profile pic is not compulsory
                             profileImage: selectedImage.name
+                        })
+                        currUser.updateProfile({
+                            //update profile image in auth
+                            photoURL: selectedImage.name
                         })
                     }
                     window.location = "../index.html"

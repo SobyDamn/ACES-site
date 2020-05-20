@@ -8,7 +8,6 @@ function loadElements() {
 }
 
 function loadActivityBoxes() {
-    console.log("next req and req status "+activityBoxRequested)
     var activityBox = document.getElementsByClassName("activityBox")
     if (!activityBoxRequested && !userInterruptActivity) {
         //make request for next box
@@ -18,7 +17,6 @@ function loadActivityBoxes() {
                 if (!userInterruptActivity) {
                     showNextActivityBox(activeActivityBoxId);
                     activeActivityBoxId = 0;
-                    console.log("next shown act box requested status "+activityBoxRequested)
                     loadActivityBoxes()
                 }
             },6000)
@@ -28,7 +26,6 @@ function loadActivityBoxes() {
                 if (!userInterruptActivity) {
                     showNextActivityBox(activeActivityBoxId);
                     activeActivityBoxId +=1;
-                    console.log("next shown act box requested status "+activityBoxRequested)
                     loadActivityBoxes()
                 }
             },6000)
@@ -36,7 +33,6 @@ function loadActivityBoxes() {
     }
 }
 function showNextActivityBox(currID) {
-    console.log("curr id given to frwrd is "+currID)
     var activityBox = document.getElementsByClassName("activityBox")
     var totalBox = activityBox.length
     var activeActivityElement = document.getElementById(`activity${currID}`)
@@ -62,7 +58,6 @@ function showNextActivityBox(currID) {
     }
 }
 function showPreviousActivityBox(currID) {
-    console.log("curr id given to prvs is "+currID)
     var activityBox = document.getElementsByClassName("activityBox")
     var totalBox = activityBox.length
     //process activity

@@ -4,7 +4,13 @@ firebase.auth().onAuthStateChanged(function(user) {
     var nameElement = document.getElementById("userName");
     if (user) {
       // User logged in already or has just logged in.
-      currUser = user
+        document.getElementById("userSignedIN").style.display = "block";
+        document.getElementById("userSignedOut").style.display = "none";
+        if (user.photoURL) {
+            //display photo if exists
+            fetchImage(user.photoURL,user.uid)
+        }
+        currUser = user
       if (user.displayName != null) {
           nameElement.style.display = "inline";
           nameElement.innerText = "Hi! "+ user.displayName;
@@ -13,8 +19,13 @@ firebase.auth().onAuthStateChanged(function(user) {
         nameElement.style.display = "inline";
         nameElement.innerHTML = `<a href="../profile">Complete Your Profile</a>`
       }
-    } else {
+    } 
+    else {
       // User not logged in or has just logged out.
+      document.getElementById("userSignedIN").style.display = "none";
+      document.getElementById("userSignedOut").style.display = "block";
+      var currentProfileImage = document.getElementById("showImage")
+      currentProfileImage.src = "../resource/img/profile_default.png";
       currUser = null;
       nameElement.style.display = "none";
       console.log("Not logged in")
@@ -88,4 +99,18 @@ function showRegisterForm() {
 function closeRegisterPOP() {
     var modal = document.getElementById("registerPOP");
     modal.style.display = "none";
+}
+
+function fetchImage(fileName,uid) {
+    if (fileName != undefined) {
+        //profile picture exists show to user
+        var storageRef = firebase.storage().ref();
+        var currentProfileImage = document.getElementById("showImage")
+        storageRef.child("users/"+uid+"/"+fileName).getDownloadURL().then((url)=> {
+            currentProfileImage.src = url;
+        }).catch((err)=> {
+            // Handle any errors
+            console.log(err)
+        });
+    }
 }
