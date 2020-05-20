@@ -16,24 +16,39 @@
     </head>
     <body onload="loadElements()">
         <div id="header">
-            <h1 style="text-align: center;font-size:50px;">ACES<br><span style="font-size:7px;">ASSOCIATION OF COMPUTER ENGINEERING STUDENTS</span></h1>
+            <div id="logoContainer" class="headerBox">
+                <h1 id="logo">ACES<br><span id="logo-slogan"> <xmp style="display: inline; font-size: medium;"></CODE></xmp> CONNECT<sub><i class="material-icons" style="font-size: small;">wifi</i></sub> CREATE<sub><i class="material-icons" style="font-size: small;">developer_mode</i></sub></span></h1>
+            </div>
+            <div id="userAuthBox" class="headerBox">
+                <div id="userImageHolder">
+                    <img src="../resource/img/profile_default.png" id="showImage" style="border-radius: 50%; width: 50px; height: 50px; border: 0px solid white; z-index: -1;"/>
+                </div>
+                <div id="buttonHolder">
+                    <button id="login_regBTN" onclick="showLoginForm()" class="transparentBTN">Login or Register</button>
+                </div>
+            </div>
         </div>
-        <div id="navContainer">
-            <div class="navLinkContainer">
-                <p>Link1</p>
+        <div class="multiBoxContainer">
+            <div id="navContainer" class="headerContainerBox">
+                <div style="display: block;"class="navLinkContainer">
+                    <p>HOME</p>
+                </div>
+                <div class="navLinkContainer">
+                    <p>ACTIVITY</p>
+                    
+                </div>
+                <div class="navLinkContainer">
+                    <p>BLOGS</p>
+                </div>
+                <div class="navLinkContainer">
+                    <p>NEWSLETTER</p>
+                </div>
+                <div class="navLinkContainer">
+                    <p>CONTACTS</p>
+                </div>
             </div>
-            <div class="navLinkContainer">
-                <p>Link2</p>
-                
-            </div>
-            <div class="navLinkContainer">
-                <p>Link3</p>
-            </div>
-            <div class="navLinkContainer">
-                <p>Link4</p>
-            </div>
-            <div class="navLinkContainer">
-                <p>Link5</p>
+            <div id="searchBarConainer" class="headerContainerBox">
+                <p><sup><input id="searchBar" type="search"/></sup><button id="searchBTN" class="transparentBTN"><i class="material-icons" style="font-size: 25px; font-weight: bolder; color: #d3e3f0a4; padding-left: 5px;">search</i></button></p>
             </div>
         </div>
         <div id="activityContainer">
@@ -54,8 +69,8 @@
                 </div>
             </center>
             <div class="boxNav">
-                <button id="goLeftBTN" class="boxNavBTN" onclick="swipeLeft()">Left</button>
-                <button id="goRightBTN" class="boxNavBTN" onclick="swipeRight()">Right</button>
+                <button id="goLeftBTN" class="boxNavBTN" onclick="swipeLeft()"><i class="material-icons">chevron_left</i></button>
+                <button id="goRightBTN" class="boxNavBTN" onclick="swipeRight()"><i class="material-icons">chevron_right</i></button>
             </div>
         </div>
         <h5 id="userName" style="display:none;"></h5>

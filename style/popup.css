@@ -2,6 +2,14 @@
     font-family: openSans;
     src: url(../resource/fonts/OpenSans-Regular.ttf);
   }
+@font-face {
+  font-family: openSans-Bold;
+  src: url(../resource/fonts/opensans_bold.ttf);
+}
+@font-face {
+  font-family: openSans-SemiBold;
+  src: url(../resource/fonts/opensans_semibold.ttf);
+}
   
   .modal{
     font-family: openSans;
@@ -65,14 +73,7 @@
       text-decoration: none;
       cursor: pointer;
     }
-    @font-face {
-      font-family: openSans-Bold;
-      src: url(../resource/fonts/opensans_bold.ttf);
-    }
-    @font-face {
-      font-family: openSans-SemiBold;
-      src: url(../resource/fonts/opensans_semibold.ttf);
-    }
+    
   .popHeader {
       min-height: 30px;
       font-size: 20px;
