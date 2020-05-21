@@ -1,5 +1,4 @@
 <html>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ACES</title>
     <head>
         <!--Scripts-->
@@ -11,26 +10,34 @@
         <script src="scripts/user-auth.js"></script>
         <script src="scripts/script.js"></script>
         <!---Stylsheets-->
-        <link rel="stylesheet" href="style/popup.css">
+        <link rel="stylesheet" href="style/popup_form.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-        <link rel="stylesheet" href="style/style.css">
+        <link rel="stylesheet" href="style/general_style.css">
+        <link rel="stylesheet" href="style/header_style.css">
+        <link rel="stylesheet" href="style/activities_style.css">
+        <link rel="stylesheet" href="style/general_style.css">
+        <link rel="stylesheet" href="style/loader.css">
     </head>
     <body onload="loadElements()">
         <div id="header">
             <div id="logoContainer" class="headerBox">
-                <h1 id="logo">ACES<br><span id="logo-slogan"> <xmp style="display: inline; font-size: medium;"></CODE></xmp> CONNECT<sub><i class="material-icons" style="font-size: small;">wifi</i></sub> CREATE<sub><i class="material-icons" style="font-size: small;">developer_mode</i></sub></span></h1>
+                <h1 id="logo">ACES<br><span id="logo-slogan"> <b><xmp style="display: inline; font-size: small;"></CODE></xmp></b> CONNECT<sub><i class="material-icons" style="font-size: small;">wifi</i></sub> CREATE<sub><i class="material-icons" style="font-size: small;">developer_mode</i></sub></span></h1>
             </div>
             <div id="userAuthBox" class="headerBox">
-                <div id="userImageHolder">
-                    <img src="../resource/img/profile_default.png" id="showImage" style="border-radius: 50%; width: 70px; height: 70px; border: 0px solid white; z-index: -1;"/>
-                </div>
                 <div id="buttonHolder">
+                    <div id="spin_loader"><div class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div></div>
                     <div id="userSignedIN" style="display: none;">
+                        <div id="userImageHolder">
+                            <img src="../resource/img/profile_default.png" id="showImage" style="border-radius: 50%; width: 70px; height: 70px; border: 0px solid white; z-index: -1;"/>
+                        </div>
                         <span id="userName"></span><br>
                         <button onclick="showLoginForm()" class="userAuthBTN">View Profile!</button><br>
                         <button onclick="logout()" class="userAuthBTN">Logout</button>
                     </div>
-                    <div id="userSignedOut">
+                    <div id="userSignedOut" style="display: none;">
+                        <div id="userImageHolder">
+                            <img src="resource/img/profile_default.png" id="showImage" style="border-radius: 50%; width: 70px; height: 70px; border: 0px solid white; z-index: -1;"/>
+                        </div>
                         <button onclick="showLoginForm()" class="userAuthBTN">Login or Register</button><br>
                     </div>
                 </div>
@@ -56,7 +63,7 @@
                 </div>
             </div>
             <div id="searchBarConainer" class="headerContainerBox">
-                <p><sup><input id="searchBar" type="search"/></sup><button id="searchBTN" class="transparentBTN"><i class="material-icons" style="font-size: 25px; font-weight: bolder; color: #d3e3f0a4; padding-left: 5px;">search</i></button></p>
+                <p><sup><input autocomplete="off" placeholder="Search..." id="searchBar"/></sup><button id="searchBTN" class="transparentBTN"><i class="material-icons" style="font-size: 25px; font-weight: bolder; color: #d3e3f0a4; padding-left: 5px;">search</i></button></p>
             </div>
         </div>
         <div id="activityContainer">
@@ -88,51 +95,56 @@
         <button onclick="logout()">LogOut</button>
         <a href="#activity2">Hell</a>
         <!-- The Modal -->
-        <div id="loginPOP" class="modal">
+        <div id="loginPOP" class="modal_form">
             <!-- Modal content -->
             <div class="modal-content">
+                <button onclick="closeLoginPop()" class="transparentBTN" style="position:absolute;top:0;right:0;margin-top: 15px;margin-right: 15px;"><i class="material-icons" style="color:rgba(255, 255, 255, 0.527);margin-top: auto;margin-bottom: auto;">close</i></button>
                 <div class="popHeader">
                     <div style="font-weight: 800;" id="popHeading">
-                        Login
+                        <i class="material-icons" style="color:white;margin-top: auto;margin-bottom: auto;padding: 5px; font-size: 400%;">account_circle</i><br>
+                        LOG IN
                     </div>
+                    <span id="loginErrorHolder"><sub><i class="material-icons"  style="font-size:160%;padding: 5px;">error</i></sub><span id="loginErrorText">Error!</span></span>
                 </div>
-                <div id="popContent">
-                    <div>
-                        <p><label>Email: </label><br><input type="email" id="login_email"/></p>
-                        <p><label>Password: </label><br><input type="password" id="login_password"/></p>
+                <div class="popContent">
+                    <p class="formInputHolder"><i class="material-icons" style="color:white;margin-top: auto;margin-bottom: auto;padding: 5px;">email</i><input placeholder="Email" type="email" id="login_email"/></p>
+                    <p class="formInputHolder"><i class="material-icons" style="color:white;margin-top: auto;margin-bottom: auto;padding: 5px;">lock</i><input placeholder="Password" type="password" id="login_password"/></p>
+                    <div style="text-align: right; margin-top: -10px;">
+                        <a style="color:white;" href="user/register.html">Forgot Password?</a>
                     </div>
-                    <div>
-                        <a href="user/register.html">Forgot Password!</a><br>
-                        <a onclick="showRegisterForm()">New Here? Register!</a>
+                    <div class="popFormBTN">
+                        <div id="authLoader" style="display:none;">
+                            <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+                        </div>
+                        <button class="popBTN" id="loginBTN" onclick="login()">Login</button><br>
+                        <button class="transparentBTN" id="registerFormPOPBTN" onclick = "showRegisterForm()">New Here? Register!</button>
                     </div>
-                </div>
-                <div id = "popFooter">
-                    <button class="popBTN" id="loginBTN" onclick="login()">Login</button>
-                    <button class="popBTN" id="closePOP" onclick="closeLoginPop()">Close</button>
                 </div>
             </div>
         </div>
-        <div id="registerPOP" class="modal">
+        <div id="registerPOP" class="modal_form">
             <!-- Modal content -->
             <div class="modal-content">
+                <button onclick="closeRegisterPOP()" class="transparentBTN" style="position:absolute;top:0;right:0;margin-top: 15px;margin-right: 15px;"><i class="material-icons" style="color:rgba(255, 255, 255, 0.527);margin-top: auto;margin-bottom: auto;">close</i></button>
                 <div class="popHeader">
                     <div style="font-weight: 800;" id="popHeading">
-                        Register
+                        <i class="material-icons" style="color:white;margin-top: auto;margin-bottom: auto;padding: 5px; font-size: 400%;">account_circle</i><br>
+                        REGISTER
                     </div>
+                    <span id="regErrorHolder"><sub><i class="material-icons"  style="font-size:160%;padding: 5px;">error</i></sub><span id="regErrorText">Error!</span></span>
                 </div>
-                <div id="popContent">
-                    <div>
-                        <p><label>Email: </label><br><input type="email" id="register_email"/></p>
-                        <p><label>Password: </label><br><input type="password" id="register_password"/></p>
-                        <p><label>Confirm Password: </label><br><input type="password" id="register_cPassword"/></p>
+                <div class="popContent">
+                    <p class="formInputHolder"><i class="material-icons" style="color:white;margin-top: auto;margin-bottom: auto;padding: 5px;">email</i><input autocomplete="off" placeholder="Email" type="email" id="register_email"/></p>
+                    <p class="formInputHolder"><i class="material-icons" style="color:white;margin-top: auto;margin-bottom: auto;padding: 5px;">lock</i><input autocomplete="off" placeholder="Passsword" type="password" id="register_password"/></p>
+                    <p class="formInputHolder"><i class="material-icons" style="color:white;margin-top: auto;margin-bottom: auto;padding: 5px;">lock</i><input autocomplete="off" placeholder="Confirm Password" type="password" id="register_cPassword"/></p>
+                </div>
+                <div class="popFormBTN">
+                    <div id="authLoader" style="display:none;">
+                        <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
                     </div>
-                </div>
-                <div id = "popFooter">
-                    <button class="popBTN" id="registerBTN" onclick="registerUser()">Register</button>
-                    <button class="popBTN" id="closeRegisterPOPBTN" onclick="closeRegisterPOP()">Close</button>
+                    <button style="margin-bottom: 30px;" class="popBTN" id="registerBTN" onclick="registerUser()">Register</button><br>
                 </div>
             </div>
         </div>
-        <button onclick="test()">test</button>
     </body>
 </html>

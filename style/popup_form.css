@@ -1,0 +1,137 @@
+@font-face {
+    font-family: openSans;
+    src: url(../resource/fonts/OpenSans-Regular.ttf);
+  }
+@font-face {
+  font-family: openSans-Bold;
+  src: url(../resource/fonts/opensans_bold.ttf);
+}
+@font-face {
+  font-family: openSans-SemiBold;
+  src: url(../resource/fonts/opensans_semibold.ttf);
+}
+  
+  .modal_form{
+    font-family: openSans;
+  }
+  /* The Modal (background) */
+  .modal_form {
+      display: none; /* Hidden by default */
+      position: fixed; /* Stay in place */
+      z-index: 1; /* Sit on top */
+      padding-top: 100px; /* Location of the box */
+      padding-bottom: 50px; /* Location of the box */
+      left: 0;
+      top: 0;
+      width: 100%; /* Full width */
+      height: 100%; /* Full height */
+      overflow: auto; /* Enable scroll if needed */
+      background-color: rgb(0,0,0); /* Fallback color */
+      background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    }
+    
+    /* Modal Content */
+    .modal_form .modal-content {
+      position: relative;
+      background-color: #dddddd;
+      background-image: linear-gradient(to top right, #4e4376 , #2b5876);
+      color:white;
+      margin: auto;
+      padding: 0;
+      width: 75%;
+      max-width: 400px;
+      box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+      min-height: 400px;
+      border-radius: 3px;
+      -webkit-animation-name: animatetop;
+      -webkit-animation-duration: 0.4s;
+      animation-name: animatetop;
+      animation-duration: 0.4s;
+    }
+    
+    /* Add Animation */
+    @-webkit-keyframes animatetop {
+      from {top:-300px; opacity:0} 
+      to {top:0; opacity:1}
+    }
+    
+    @keyframes animatetop {
+      from {top:-300px; opacity:0}
+      to {top:0; opacity:1}
+    }
+    
+    .modal_form .modal-content .popHeader {
+      min-height: 30px;
+      font-size: 20px;
+      padding-top: 15px;
+      padding-left: 10px;
+      margin-left: 10px;
+      font-weight: 900;
+      font-family: openSans-Bold;
+  }
+  .modal_form .modal-content .popHeader #popHeading {
+    margin: 20px;
+    text-align: center;
+  }
+  .modal_form .modal-content .popContent {
+    margin-top: 10px;
+    padding-left: 10px;
+    padding-right: 30px;
+    margin-left: 30px;
+    color: rgba(51, 47, 47, 0.918)
+  }
+  .modal_form .modal-content .popContent input {
+      background-color: transparent;
+      border: none;
+      border-bottom: 2px solid white;
+      min-height: 35px;
+      margin-bottom: 15px;
+      outline: none;
+      color: azure;
+      font-size: 15px;
+      width: 100%;
+  }
+.formInputHolder {
+    width: 100%;
+    display: flex;
+}
+.popFormBTN {
+    text-align: center;
+}
+.popFormBTN .popBTN {
+    display: inline-block;
+    margin-top: 30px;
+    margin-bottom: 10px;
+    min-height: 40px;
+    min-width: 50%;
+    border-radius: 25px;
+    border: none;
+    font-size: 100%;
+    background-color:  #4286f4;
+    background-image: linear-gradient(to top right, #265cff , #4286f4);
+    color: white;
+    font-family: openSans-SemiBold;
+    outline: none;
+}
+#registerFormPOPBTN {
+    color: white;
+    font-family: openSans-SemiBold;
+    margin-bottom: 20px;
+    min-height: 20px;
+    min-width: 50%;
+}
+.popFormBTN .popBTN:hover {
+    background-image: linear-gradient(to bottom right, #265cff , #4286f4);
+}
+ ::placeholder {
+      color: rgba(255, 255, 255, 0.459);
+  }
+
+#loginErrorHolder,#regErrorHolder {
+    font-size: 70%;
+    font-weight: 900;
+    font-family: openSans;
+    position: relative;
+    display: none;
+    color: rgb(238, 173, 173);
+}
