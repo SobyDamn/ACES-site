@@ -1,0 +1,113 @@
+@font-face {
+    font-family: openSans;
+    src: url(../resource/fonts/OpenSans-Regular.ttf);
+  }
+@font-face {
+  font-family: openSans-Bold;
+  src: url(../resource/fonts/opensans_bold.ttf);
+}
+@font-face {
+  font-family: openSans-SemiBold;
+  src: url(../resource/fonts/opensans_semibold.ttf);
+}
+#profileForm {
+    font-family: openSans-Bold;
+    border-radius: 5px;
+    width: 60%;
+    margin: 25px;
+    padding: 25px;
+    min-height: 500px;
+    background-image: linear-gradient(to top right, #4e4376 , #2b5876);
+    color: rgba(255, 255, 255, 0.836);
+}
+#profileForm p {
+    font-family: openSans;
+    display: flex;
+    justify-content: space-between;
+    width: 60%;
+    color:white;
+    margin:15px;
+}
+#profileForm p span {
+    display: inline-block;
+    padding: 20px;
+    font-size: 100%;
+}
+#profileForm p span.label {
+    min-width:20%;
+    font-family: openSans-Bold;
+}
+#profileForm p span#currUserStatus {
+    min-width:20%;
+    margin-top: auto;
+    margin-bottom: auto;
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+.radioBTN {
+    display: flex;
+    justify-content: space-between;
+}
+.radioBTN span {
+    display: inline;
+}
+.radioBTN span input {
+    border: 2px solid black;
+    padding: 0px;
+    
+}
+#profileForm p span.input {
+    width: 80%;
+}
+input,select {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    color: azure;
+    font-size: 15px;
+    border-bottom: 2px white solid;
+    width: 100%;
+}
+select option {
+    color: rgba(255, 255, 255, 0.836);
+    background-color:#2b5876;
+    margin: 10px;
+    
+}
+::placeholder {
+    color: rgba(255, 255, 255, 0.459);
+}
+#selectImageStatus {
+    display: block;
+}
+span button {
+    color: rgb(206, 206, 214);
+    font-family: openSans-Bold;
+    font-size: 100%;
+    margin: 10px;
+}
+#imageHolder {
+    margin: 30px;
+}
+#profileFormFields {
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+#save_userProfleBTN {
+    display: inline-block;
+    margin-top: 30px;
+    margin-bottom: 10px;
+    min-height: 40px;
+    min-width: 50%;
+    border-radius: 25px;
+    border: none;
+    font-size: 100%;
+    background-color:  #4286f4;
+    background-image: linear-gradient(to top right, #265cff , #4286f4);
+    color: white;
+    font-family: openSans-SemiBold;
+    outline: none;
+}
+#save_userProfleBTN:hover {
+    background-image: linear-gradient(to bottom right, #265cff , #4286f4);
+}

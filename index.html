@@ -9,6 +9,7 @@
         <script src="scripts/firebase-auth.js"></script>
         <script src="scripts/user-auth.js"></script>
         <script src="scripts/script.js"></script>
+        <script src ="scripts/header-manager.js"></script>
         <!---Stylsheets-->
         <link rel="stylesheet" href="style/popup_form.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -28,7 +29,7 @@
                     <div id="spin_loader"><div class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div></div>
                     <div id="userSignedIN" style="display: none;">
                         <div id="userImageHolder">
-                            <img src="../resource/img/profile_default.png" id="showImage" style="border-radius: 50%; width: 70px; height: 70px; border: 0px solid white; z-index: -1;"/>
+                            <img src="resource/img/profile_default.png" id="showImageInHeader" style="border-radius: 50%; width: 70px; height: 70px; border: 0px solid white; z-index: -1;"/>
                         </div>
                         <span id="userName"></span><br>
                         <button onclick="showLoginForm()" class="userAuthBTN">View Profile!</button><br>
@@ -36,7 +37,8 @@
                     </div>
                     <div id="userSignedOut" style="display: none;">
                         <div id="userImageHolder">
-                            <img src="resource/img/profile_default.png" id="showImage" style="border-radius: 50%; width: 70px; height: 70px; border: 0px solid white; z-index: -1;"/>
+                            <i id="showImageInNoImage" class="material-icons" style="color:white;margin-top: auto;margin-bottom: auto; font-size: 450%;">account_circle</i>
+                            <img style="display: none;" id="showImageInHeader" style="border-radius: 50%; width: 70px; height: 70px; border: 0px solid white; z-index: -1;"/>
                         </div>
                         <button onclick="showLoginForm()" class="userAuthBTN">Login or Register</button><br>
                     </div>
@@ -89,11 +91,10 @@
             </div>
         </div>
         <h5 id="userName" style="display:none;"></h5>
-        <p><a href="profile">Edit Profile</a></p>
+        <p><a href="edit-profile">Edit Profile</a></p>
         <p><a onclick = "showRegisterForm()">Register</a></p>
         <button onclick="showLoginForm()">Login</button>
         <button onclick="logout()">LogOut</button>
-        <a href="#activity2">Hell</a>
         <!-- The Modal -->
         <div id="loginPOP" class="modal_form">
             <!-- Modal content -->
@@ -107,13 +108,13 @@
                     <span id="loginErrorHolder"><sub><i class="material-icons"  style="font-size:160%;padding: 5px;">error</i></sub><span id="loginErrorText">Error!</span></span>
                 </div>
                 <div class="popContent">
-                    <p class="formInputHolder"><i class="material-icons" style="color:white;margin-top: auto;margin-bottom: auto;padding: 5px;">email</i><input placeholder="Email" type="email" id="login_email"/></p>
+                    <p class="formInputHolder"><i class="material-icons" style="color:white;margin-top: auto;margin-bottom: auto;padding: 5px;">email</i><input placeholder="Email" type="email" id="login_email" required/></p>
                     <p class="formInputHolder"><i class="material-icons" style="color:white;margin-top: auto;margin-bottom: auto;padding: 5px;">lock</i><input placeholder="Password" type="password" id="login_password"/></p>
                     <div style="text-align: right; margin-top: -10px;">
                         <a style="color:white;" href="user/register.html">Forgot Password?</a>
                     </div>
                     <div class="popFormBTN">
-                        <div id="authLoader" style="display:none;">
+                        <div id="loginAuthLoader" style="display:none;">
                             <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
                         </div>
                         <button class="popBTN" id="loginBTN" onclick="login()">Login</button><br>
@@ -139,7 +140,7 @@
                     <p class="formInputHolder"><i class="material-icons" style="color:white;margin-top: auto;margin-bottom: auto;padding: 5px;">lock</i><input autocomplete="off" placeholder="Confirm Password" type="password" id="register_cPassword"/></p>
                 </div>
                 <div class="popFormBTN">
-                    <div id="authLoader" style="display:none;">
+                    <div id="regAuthLoader" style="display:none;">
                         <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
                     </div>
                     <button style="margin-bottom: 30px;" class="popBTN" id="registerBTN" onclick="registerUser()">Register</button><br>
