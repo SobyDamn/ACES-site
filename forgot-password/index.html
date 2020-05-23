@@ -1,23 +1,21 @@
 <html>
-    <title>Edit Profile</title>
+    <title>Reset Password</title>
     <head>
         <!--Scripts-->
         <script src="https://www.gstatic.com/firebasejs/7.14.3/firebase-app.js"></script>
         <script src="https://www.gstatic.com/firebasejs/7.14.3/firebase-analytics.js"></script>
         <script src="https://www.gstatic.com/firebasejs/7.14.3/firebase-auth.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/7.14.3/firebase-firestore.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/7.14.3/firebase-storage.js"></script>
         <script src="../scripts/firebase-auth.js"></script>
         <script src ="../scripts/header-manager.js"></script>
+        <script src="../scripts/user-auth.js"></script>
         <script src="script.js"></script>
         <!---Stylsheets-->
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
         <link rel="stylesheet" href="../style/loader.css"/>
         <link rel="stylesheet" href="../style/header_style.css"/>
         <link rel="stylesheet" href="../style/general_style.css">
+        <link rel="stylesheet" href="../style/popup_form.css">
         <link rel="stylesheet" href="style.css"/>
-        <link rel="stylesheet" href="../style/loader.css"/>
-        <link rel="stylesheet" href="../style/popup.css"/>
     </head>
     <body>
         <div id="header">
@@ -38,7 +36,8 @@
                     </div>
                     <div id="userSignedOut" style="display: none;">
                         <div id="userImageHolder">
-                            <img src="../resource/img/profile_default.png" id="showImageInHeader" style="border-radius: 50%; width: 70px; height: 70px; border: 0px solid white; z-index: -1;"/>
+                            <i id="showImageInNoImage" class="material-icons" style="color:white;margin-top: auto;margin-bottom: auto; font-size: 450%;">account_circle</i>
+                            <img src="../resource/img/profile_default.png" id="showImageInHeader" style="border-radius: 50%; width: 70px; height: 70px; border: 0px solid white; z-index: -1;display: none;"/>
                         </div>
                         <button onclick="showLoginForm()" class="userAuthBTN">Login or Register</button><br>
                     </div>
@@ -69,65 +68,77 @@
             </div>
         </div>
         <center>
-            <div id="profileForm">
-                <h1 style="text-align: center;">Add Profile Details!</h1>
-                <div id="profileFormFields">
+            <div id="forgotPasswordForm">
+                <h1 style="text-align: center;">Reset Password</h1>
+                <div id="forgotPasswordFormFields">
                     <center id="imageHolder">
-                        <img onclick="selectFile()" src="../resource/img/profile_default.png" id="showImage" style="border-radius: 50%; width: 100px; height: 100px; border: 2px solid white; z-index: -1;"/>
-                        <span id="selectImageStatus"><button onclick="selectFile()" class="transparentBTN"><b>Select Image</b></button></span>
+                        <i class="material-icons" style="color:white;margin-top: auto;margin-bottom: auto; font-size: 450%;">lock</i>
                     </center>
+                    <span id="successReset">
+                        <sub><i class="material-icons"  style="font-size:160%;padding: 5px;">email</i></sub>Password reset link has been sent to 
+                        "<i><span id="successResetEmail">email@email.com</span></i>"
+                    </span>
+                    <span id="passResetErrorHolder"><sub><i class="material-icons"  style="font-size:160%;padding: 5px;">error</i></sub><span id="passResetErrorText">Error!</span></span>
                     <form>
-                        <input style="display: none;" onchange="loadSelectedImage(event)" id="user_selected_file" accept="image/*" type="file"/>
-                        <p><span class="label">Name: *</span><span class="input"><input placeholder="Full Name" id="user_name" required/></span></p>
-                        <p><span class="label">Phone No.:</span><span class="input"><input id="user_phone" placeholder="Phone Number(Include Country code)" type="number"/></span></p>
-                        <p><span class="label">Batch: *</span><span class="input"><input id="user_batch" placeholder="eg:-2019" min="1950" max="2100" type="number" required/></span></p>
-                        <p><span class="label">Branch: *</span><span class="input">
-                                <select id="user_branch" name="cars" id="cars">
-                                    <option value="Computer Science And Engineering" selected>Computer Science And Engineering</option>
-                                    <option value="Civil Engineering">Civil Engineering</option>
-                                    <option value="Electrical And Electronics Engineering">Electrical And Electronics Engineering</option>
-                                    <option value="Safety And Fire Engineering">Safety And Fire Engineering</option>
-                                  </select>
-                            </span>
-                        </p>
-                        <p>
-                            <span id="currUserStatus" class="label">Still in College? : *</span>
-                            <span class="radioBTN">
-                                <span>
-                                    <input class= "userStatus" type="radio" name="userType" value="student">
-                                    <label class= "userStatusLabel">Yes</label>
-                                </span>
-                                <span>
-                                    <input class= "userStatus" type="radio" name="userType" value="other" checked>
-                                    <label class= "userStatusLabel">No</label>
-                                </span>
-                            </span>
-                        </p>
-                        <p><span class="label">Company: </span><span class="input"><input id="user_company" placeholder="Your Company Name"/></span></p>
-                        <p><span class="label">Location: </span><span class="input"><input id="user_location" placeholder="Your Current Location" required/></span></p>
-                        <p><span class="label">Website: </span><span class="input"><input id="user_site" placeholder="www.example.com"/></span></p>
-                        <p><span class="label">Linkedin: </span><span class="input"><input id="user_linkedin" placeholder="Linkedin Profile"></span></p>
-                        <div id="saveProfileLoader" style="display:none;">
+                        <p><input id="reset_email" placeholder="Your Registered Email"></p>
+                        <div id="forgotPassLoader" style="display:none;">
                             <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
                         </div>
-                        <button type="button"  id="save_userProfleBTN" onclick="saveProfileData()">Save Profile</button>
+                        <button type="button"  id="forgot_passwordBTN" onclick="resetPassword()">Reset Password</button>
                     </form>
                 </div>
             </div>
         </center>
-        <div id="errorNotice" class="modal">
-            <!-- Modal content -->
+        <!-- The Login Modal -->
+        <div id="loginPOP" class="modal_form">
+            <!-- Login Modal content -->
             <div class="modal-content">
+                <button onclick="closeLoginPop()" class="transparentBTN" style="position:absolute;top:0;right:0;margin-top: 15px;margin-right: 15px;"><i class="material-icons" style="color:rgba(255, 255, 255, 0.527);margin-top: auto;margin-bottom: auto;">close</i></button>
                 <div class="popHeader">
-                    <div style="font-weight: 800;" id="errorNoticeHeading">
-                        Error
+                    <div style="font-weight: 800;" id="popHeading">
+                        <i class="material-icons" style="color:white;margin-top: auto;margin-bottom: auto;padding: 5px; font-size: 400%;">account_circle</i><br>
+                        LOG IN
+                    </div>
+                    <span id="loginErrorHolder"><sub><i class="material-icons"  style="font-size:160%;padding: 5px;">error</i></sub><span id="loginErrorText">Error!</span></span>
+                </div>
+                <div class="popContent">
+                    <p class="formInputHolder"><i class="material-icons" style="color:white;margin-top: auto;margin-bottom: auto;padding: 5px;">email</i><input placeholder="Email" type="email" id="login_email" required/></p>
+                    <p class="formInputHolder"><i class="material-icons" style="color:white;margin-top: auto;margin-bottom: auto;padding: 5px;">lock</i><input placeholder="Password" type="password" id="login_password"/></p>
+                    <div style="text-align: right; margin-top: -10px;">
+                        <a style="color:white;" href="forgot-password/">Forgot Password?</a>
+                    </div>
+                    <div class="popFormBTN">
+                        <div id="loginAuthLoader" style="display:none;">
+                            <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+                        </div>
+                        <button class="popBTN" id="loginBTN" onclick="login()">Login</button><br>
+                        <button class="transparentBTN" id="registerFormPOPBTN" onclick = "showRegisterForm()">New Here? Register!</button>
                     </div>
                 </div>
-                <div id="popContent">
-                    <p id="errorNoticeMsg">
-                        Some error message
-                    </p>
-                    <button style="position:absolute;bottom:0;right:0;margin-bottom: 15px;margin-right: 15px;" class="popBTN" id="closePOP" onclick="closeErrorNotice()">Close</button>
+            </div>
+        </div>
+        <!--Reg Modal-->
+        <div id="registerPOP" class="modal_form">
+            <!--Reg Modal content -->
+            <div class="modal-content">
+                <button onclick="closeRegisterPOP()" class="transparentBTN" style="position:absolute;top:0;right:0;margin-top: 15px;margin-right: 15px;"><i class="material-icons" style="color:rgba(255, 255, 255, 0.527);margin-top: auto;margin-bottom: auto;">close</i></button>
+                <div class="popHeader">
+                    <div style="font-weight: 800;" id="popHeading">
+                        <i class="material-icons" style="color:white;margin-top: auto;margin-bottom: auto;padding: 5px; font-size: 400%;">account_circle</i><br>
+                        REGISTER
+                    </div>
+                    <span id="regErrorHolder"><sub><i class="material-icons"  style="font-size:160%;padding: 5px;">error</i></sub><span id="regErrorText">Error!</span></span>
+                </div>
+                <div class="popContent">
+                    <p class="formInputHolder"><i class="material-icons" style="color:white;margin-top: auto;margin-bottom: auto;padding: 5px;">email</i><input autocomplete="off" placeholder="Email" type="email" id="register_email"/></p>
+                    <p class="formInputHolder"><i class="material-icons" style="color:white;margin-top: auto;margin-bottom: auto;padding: 5px;">lock</i><input autocomplete="off" placeholder="Passsword" type="password" id="register_password"/></p>
+                    <p class="formInputHolder"><i class="material-icons" style="color:white;margin-top: auto;margin-bottom: auto;padding: 5px;">lock</i><input autocomplete="off" placeholder="Confirm Password" type="password" id="register_cPassword"/></p>
+                </div>
+                <div class="popFormBTN">
+                    <div id="regAuthLoader" style="display:none;">
+                        <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+                    </div>
+                    <button style="margin-bottom: 30px;" class="popBTN" id="registerBTN" onclick="registerUser()">Register</button><br>
                 </div>
             </div>
         </div>

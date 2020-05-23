@@ -37,7 +37,7 @@
     min-width:20%;
     font-family: openSans-Bold;
 }
-#profileForm p span#currUserStatus {
+#profileForm p span.label {
     min-width:20%;
     margin-top: auto;
     margin-bottom: auto;
@@ -52,7 +52,6 @@
     display: inline;
 }
 .radioBTN span input {
-    border: 2px solid black;
     padding: 0px;
     
 }

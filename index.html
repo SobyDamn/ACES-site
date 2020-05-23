@@ -95,9 +95,9 @@
         <p><a onclick = "showRegisterForm()">Register</a></p>
         <button onclick="showLoginForm()">Login</button>
         <button onclick="logout()">LogOut</button>
-        <!-- The Modal -->
+        <!-- The Login Modal -->
         <div id="loginPOP" class="modal_form">
-            <!-- Modal content -->
+            <!-- Login Modal content -->
             <div class="modal-content">
                 <button onclick="closeLoginPop()" class="transparentBTN" style="position:absolute;top:0;right:0;margin-top: 15px;margin-right: 15px;"><i class="material-icons" style="color:rgba(255, 255, 255, 0.527);margin-top: auto;margin-bottom: auto;">close</i></button>
                 <div class="popHeader">
@@ -111,7 +111,7 @@
                     <p class="formInputHolder"><i class="material-icons" style="color:white;margin-top: auto;margin-bottom: auto;padding: 5px;">email</i><input placeholder="Email" type="email" id="login_email" required/></p>
                     <p class="formInputHolder"><i class="material-icons" style="color:white;margin-top: auto;margin-bottom: auto;padding: 5px;">lock</i><input placeholder="Password" type="password" id="login_password"/></p>
                     <div style="text-align: right; margin-top: -10px;">
-                        <a style="color:white;" href="user/register.html">Forgot Password?</a>
+                        <a style="color:white;" href="forgot-password/">Forgot Password?</a>
                     </div>
                     <div class="popFormBTN">
                         <div id="loginAuthLoader" style="display:none;">
@@ -123,8 +123,9 @@
                 </div>
             </div>
         </div>
+        <!--Reg Modal-->
         <div id="registerPOP" class="modal_form">
-            <!-- Modal content -->
+            <!--Reg Modal content -->
             <div class="modal-content">
                 <button onclick="closeRegisterPOP()" class="transparentBTN" style="position:absolute;top:0;right:0;margin-top: 15px;margin-right: 15px;"><i class="material-icons" style="color:rgba(255, 255, 255, 0.527);margin-top: auto;margin-bottom: auto;">close</i></button>
                 <div class="popHeader">

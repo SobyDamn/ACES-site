@@ -16,7 +16,6 @@
         <link rel="stylesheet" href="../style/header_style.css"/>
         <link rel="stylesheet" href="../style/general_style.css">
         <link rel="stylesheet" href="style.css"/>
-        <link rel="stylesheet" href="../style/loader.css"/>
         <link rel="stylesheet" href="../style/popup.css"/>
     </head>
     <body>
@@ -38,7 +37,8 @@
                     </div>
                     <div id="userSignedOut" style="display: none;">
                         <div id="userImageHolder">
-                            <img src="../resource/img/profile_default.png" id="showImageInHeader" style="border-radius: 50%; width: 70px; height: 70px; border: 0px solid white; z-index: -1;"/>
+                            <i id="showImageInNoImage" class="material-icons" style="color:white;margin-top: auto;margin-bottom: auto; font-size: 450%;">account_circle</i>
+                            <img src="../resource/img/profile_default.png" id="showImageInHeader" style="border-radius: 50%; width: 70px; height: 70px; border: 0px solid white; z-index: -1;display: none;"/>
                         </div>
                         <button onclick="showLoginForm()" class="userAuthBTN">Login or Register</button><br>
                     </div>
@@ -91,15 +91,15 @@
                             </span>
                         </p>
                         <p>
-                            <span id="currUserStatus" class="label">Still in College? : *</span>
+                            <span class="label">Still in College? : *</span>
                             <span class="radioBTN">
                                 <span>
-                                    <input class= "userStatus" type="radio" name="userType" value="student">
-                                    <label class= "userStatusLabel">Yes</label>
+                                    <input class= "userType" type="radio" name="userType" value="student">
+                                    <label class= "userTypeLabel">Yes</label>
                                 </span>
                                 <span>
-                                    <input class= "userStatus" type="radio" name="userType" value="other" checked>
-                                    <label class= "userStatusLabel">No</label>
+                                    <input class= "userType" type="radio" name="userType" value="other" checked>
+                                    <label class= "userTypeLabel">No</label>
                                 </span>
                             </span>
                         </p>
