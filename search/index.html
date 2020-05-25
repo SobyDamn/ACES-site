@@ -5,6 +5,7 @@
         <script src="https://www.gstatic.com/firebasejs/7.14.3/firebase-app.js"></script>
         <script src="https://www.gstatic.com/firebasejs/7.14.3/firebase-analytics.js"></script>
         <script src="https://www.gstatic.com/firebasejs/7.14.3/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.14.3/firebase-storage.js"></script>
         <script src="../scripts/firebase-auth.js"></script>
         <script src ="../scripts/header-manager.js"></script>
         <script src="../scripts/user-auth.js"></script>
@@ -17,7 +18,7 @@
         <link rel="stylesheet" href="../style/popup_form.css">
         <link rel="stylesheet" href="style.css"/>
     </head>
-    <body>
+    <body onload="searchResult()">
         <div id="header">
             <div id="logoContainer" class="headerBox">
                 <h1 id="logo">ACES<br><span id="logo-slogan"> <b><xmp style="display: inline; font-size: small;"></CODE></xmp></b> CONNECT<sub><i class="material-icons" style="font-size: small;">wifi</i></sub> CREATE<sub><i class="material-icons" style="font-size: small;">developer_mode</i></sub></span></h1>
@@ -67,6 +68,7 @@
                 <p><sup><input autocomplete="off" placeholder="Search..." id="searchBar"/></sup><button id="searchBTN" class="transparentBTN"><i class="material-icons" style="font-size: 25px; font-weight: bolder; color: #d3e3f0a4; padding-left: 5px;">search</i></button></p>
             </div>
         </div>
+        <span>Showing result for <i><span id="searchValue"></span></i></span>
         <p><a href="../index.html">Home</a></p>
     </body>
 </html>

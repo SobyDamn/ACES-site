@@ -85,3 +85,7 @@ function logout(){
         })
     },500)
 }
+function search() {
+    const searchString = document.getElementById("searchBar").value;
+    window.location = "../search/?q="+searchString;
+}
