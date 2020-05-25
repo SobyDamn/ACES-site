@@ -1,0 +1,128 @@
+@font-face {
+    font-family: openSans;
+    src: url(../resource/fonts/OpenSans-Regular.ttf);
+  }
+@font-face {
+  font-family: openSans-Bold;
+  src: url(../resource/fonts/opensans_bold.ttf);
+}
+@font-face {
+  font-family: openSans-SemiBold;
+  src: url(../resource/fonts/opensans_semibold.ttf);
+}
+@font-face {
+    font-family: Bitter;
+    src: url(../resource/fonts/Bitter-Regular.ttf);
+}
+@font-face {
+    font-family: Bitter-Bold;
+    src: url(../resource/fonts/Bitter-Bold.ttf);
+}
+#profileBox {
+    min-height: 500px;
+    display: flex;
+}
+.profileBoxDiv {
+    display: inline-block;
+}
+#smallProfileCardHolder {
+    width: 30%;
+}
+#mainProfileHolder {
+    width: 70%;
+    padding-left: 5px;
+}
+#smallProfileCard {
+    margin: 5px;
+    height: 450px;
+    width: 98%;
+    box-shadow: 1px 1px 5px 3px rgb(158, 158, 158);
+    border: 2px 5px solid black;
+}
+#smallProfileCard:hover {
+    box-shadow: 2px 2px 5px rgb(158, 158, 158);
+}
+div#smallProfileCardImageHolder {
+    height: 45%;
+}
+div#smallProfileCardDetails {
+    height: 40%;
+}
+#smallProfileCardDetails {
+    text-align: center;
+}
+#smallProfileCardName {
+    margin-top: -100px;
+    font-size: 110%;
+    font-family: openSans-Bold;
+    color: rgb(39, 37, 37);
+}
+#smallProfileCardBranch,#smallProfileCardBatch {
+    margin-top: -10px;
+    font-family: openSans;
+    font-size: 14px;
+    color: rgb(112, 101, 101);
+}
+#smallProfileCardContactBox {
+    font-family: openSans;
+    height: 40px;
+    margin: 2px;
+    display: flex;
+    justify-content: space-evenly;
+    background-color: rgb(223, 207, 207,0.4);
+    color:rgb(87, 87, 87);
+    font-size: 70%;
+}
+div.profileDetailsContacts:hover {
+    color:rgb(19, 18, 18);
+}
+div.profileDetailsContacts {
+    display: inline-block;
+    min-width: 20%;
+    margin-top: auto;
+    margin-bottom: auto;
+    font-family: Bitter-Bold;
+}
+/*Fix-ME!*/
+#profileCardImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+/*Main Profile*/
+#profileNameHeadingBox {
+    border-bottom: 2px solid rgb(221, 218, 218);
+}
+#profileName {
+    padding-left: 20px;
+    font-size: 150%;
+    font-family: openSans-Bold;
+    color: rgb(32, 32, 32);
+}
+h1.mainProfileInfoBoxHeading {
+    padding-top: 20px;
+    font-family: Bitter-Bold;
+    font-size: 120%;
+    background-color: rgb(223, 219, 219);
+    margin-top: auto;
+    margin-bottom: auto;
+    padding: 10px;
+    padding-left: 20px;
+    color: rgb(95, 92, 92);
+    margin-top: 3px;
+    margin-bottom: 3px;
+}
+.profileUserDetailContaner {
+    font-family: openSans-SemiBold;
+    font-size: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 25px;
+    border-bottom: 0.5px solid #d1c7c7;
+    color: rgb(63, 57, 57);
+}
+.profileUserDetailContaner:hover {
+    color: rgb(22, 22, 22);
+    box-shadow: 1px 1px 10px 2px rgb(196, 196, 196);
+    font-size: 105%;
+}

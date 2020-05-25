@@ -111,3 +111,10 @@ body {
 #searchBTN {
     min-height: 30px;
 }
+#site-logo {
+    height: 90px;
+    width: 50%;
+}
+#logoContainer {
+    width: 50%;
+}

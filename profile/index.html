@@ -11,6 +11,7 @@
         <script src="../scripts/user-auth.js"></script>
         <script src="script.js"></script>
         <!---Stylsheets-->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
         <link rel="stylesheet" href="../style/loader.css"/>
         <link rel="stylesheet" href="../style/header_style.css"/>
@@ -21,7 +22,7 @@
     <body>
         <div id="header">
             <div id="logoContainer" class="headerBox">
-                <h1 id="logo">ACES<br><span id="logo-slogan"> <b><xmp style="display: inline; font-size: small;"></CODE></xmp></b> CONNECT<sub><i class="material-icons" style="font-size: small;">wifi</i></sub> CREATE<sub><i class="material-icons" style="font-size: small;">developer_mode</i></sub></span></h1>
+                <img id="site-logo" src="../resource/img/aces-white.png"/>
             </div>
             <div id="userAuthBox" class="headerBox">
                 <div id="buttonHolder">
@@ -66,6 +67,99 @@
             </div>
             <div id="searchBarConainer" class="headerContainerBox">
                 <p><sup><input autocomplete="off" placeholder="Search..." id="searchBar"/></sup><button onclick="search()" id="searchBTN" class="transparentBTN"><i class="material-icons" style="font-size: 25px; font-weight: bolder; color: #d3e3f0a4; padding-left: 5px;">search</i></button></p>
+            </div>
+        </div>
+        <div id="profileBox">
+            <div id="smallProfileCardHolder" class="profileBoxDiv">
+                <div id="smallProfileCard">
+                    <div id="smallProfileCardImageHolder">
+                        <img id="profileCardImage" src="../resource/img/profile_default.png"/>
+                    </div>
+                    <div id="smallProfileCardDetails">
+                        <h2><span id="smallProfileCardName">Sritabh Priyadarshi</span></h2>
+                        <p id="smallProfileCardBranch">
+                            Computer Science And Engineering
+                        </p>
+                        <p id="smallProfileCardBatch">
+                            2019
+                        </p>
+                    </div>
+                    <div id="smallProfileCardContactBox">
+                        <div class="profileDetailsContacts">
+                            <i class="material-icons" style="vertical-align:middle;font-size:20px;">mail</i>
+                            <span id="profileCardEmail">
+                                example@example.com
+                            </span>
+                        </div>
+                        <div class="profileDetailsContacts">
+                            <span style="vertical-align: middle;">
+                                <i class="fa fa-linkedin" style="font-size:20px"></i>
+                                <span id="profileCardEmail" style="vertical-align:top;">
+                                    /visit
+                                </span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="mainProfileHolder" class="profileBoxDiv">
+                <div id="profileNameHeadingBox">
+                    <h1><span id="profileName">Sritabh Priyadarshi</span></h1>
+                </div>
+                <div id="profileUserDetailsBox">
+                    <h1 class="mainProfileInfoBoxHeading">DETAILS</h1>
+                    <div class="profileUserDetailContaner">
+                        <div class="profileUserDetailFor">
+                            Branch :
+                        </div>
+                        <div id="mainProfileUserBranch">
+                            Computer Science And Engineering
+                        </div>
+                    </div>
+                    <div class="profileUserDetailContaner">
+                        <div class="profileUserDetailFor">
+                            Batch :
+                        </div>
+                        <div id="mainProfileUserBatch">
+                            2019
+                        </div>
+                    </div>
+                    <div class="profileUserDetailContaner">
+                        <div class="profileUserDetailFor">
+                            Company :
+                        </div>
+                        <div id="mainProfileUserBatch">
+                            Name of Company Pvt Ltd
+                        </div>
+                    </div>
+                </div>
+                <div id="profileUserContactDetailsBox">
+                    <h1 class="mainProfileInfoBoxHeading">CONTACTS</h1>
+                    <div class="profileUserDetailContaner">
+                        <div class="profileUserDetailFor">
+                            Linkedin :
+                        </div>
+                        <div id="mainProfileUserLinkedIn">
+                            View LinkedIn
+                        </div>
+                    </div>
+                    <div class="profileUserDetailContaner">
+                        <div class="profileUserDetailFor">
+                            Email :
+                        </div>
+                        <div id="mainProfileUserEmail">
+                            sobydanny@gmail.com
+                        </div>
+                    </div>
+                    <div class="profileUserDetailContaner">
+                        <div class="profileUserDetailFor">
+                            Contact No. :
+                        </div>
+                        <div id="mainProfileUserPhone">
+                            +91-9102811825
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         <p><a href="../index.html">Home</a></p>
