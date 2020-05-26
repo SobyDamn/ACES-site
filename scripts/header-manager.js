@@ -39,7 +39,6 @@ function fetchImage(fileName,uid) {
             currentProfileImage.style.display = "inline-block";
             currentProfileImage.src = url;
             document.getElementById("showImageInNoImage").style.display = "none";
-
         }).catch((err)=> {
             // Handle any errors
             console.log(err)
@@ -78,6 +77,7 @@ function logout(){
         firebase.auth().signOut().then(()=>{
             //logged out
             document.getElementById("spin_loader").style.display = "none";
+            window.location = "../index.html"
         }).catch((err)=>{
             //errr in logging out
             document.getElementById("spin_loader").style.display = "none";

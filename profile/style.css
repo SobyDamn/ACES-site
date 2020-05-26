@@ -44,6 +44,7 @@
 }
 div#smallProfileCardImageHolder {
     height: 45%;
+    background-color: #d1c7c7;
 }
 div#smallProfileCardDetails {
     height: 40%;
@@ -90,19 +91,16 @@ div.profileDetailsContacts {
     object-fit: cover;
 }
 /*Main Profile*/
-#profileNameHeadingBox {
-    border-bottom: 2px solid rgb(221, 218, 218);
-}
 #profileName {
     padding-left: 20px;
-    font-size: 150%;
+    font-size: 115%;
     font-family: openSans-Bold;
     color: rgb(32, 32, 32);
 }
 h1.mainProfileInfoBoxHeading {
     padding-top: 20px;
     font-family: Bitter-Bold;
-    font-size: 120%;
+    font-size: 110%;
     background-color: rgb(223, 219, 219);
     margin-top: auto;
     margin-bottom: auto;
@@ -125,4 +123,26 @@ h1.mainProfileInfoBoxHeading {
     color: rgb(22, 22, 22);
     box-shadow: 1px 1px 10px 2px rgb(196, 196, 196);
     font-size: 105%;
+}
+/*edit profile button*/
+#editProfileBTNHolder {
+    padding-top: 20px;
+    text-align: center;
+    display: none;
+}
+#editProfileBTN {
+    outline: none;
+    font-family: openSans-Bold;
+    min-height: 28px;
+    min-width: 70px;
+    color: rgb(240, 236, 236);
+    background-color: rgb(108, 99, 196);
+    border: none;
+    border-radius: 5px;
+    font-size: 70%;
+    padding: 8px;
+}
+#editProfileBTN:hover {
+    background-color: rgb(64, 55, 128);
+    font-size: 72%;
 }

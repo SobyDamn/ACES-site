@@ -1,16 +1,18 @@
 <html>
-    <title>Profile</title>
+    <title id="profilePageTitle">Profile</title>
     <head>
         <!--Scripts-->
         <script src="https://www.gstatic.com/firebasejs/7.14.3/firebase-app.js"></script>
         <script src="https://www.gstatic.com/firebasejs/7.14.3/firebase-analytics.js"></script>
         <script src="https://www.gstatic.com/firebasejs/7.14.3/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.14.3/firebase-firestore.js"></script>
         <script src="https://www.gstatic.com/firebasejs/7.14.3/firebase-storage.js"></script>
         <script src="../scripts/firebase-auth.js"></script>
         <script src ="../scripts/header-manager.js"></script>
         <script src="../scripts/user-auth.js"></script>
         <script src="script.js"></script>
         <!---Stylsheets-->
+        <link rel="stylesheet" href="../style/popup_form.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
         <link rel="stylesheet" href="../style/loader.css"/>
@@ -69,96 +71,193 @@
                 <p><sup><input autocomplete="off" placeholder="Search..." id="searchBar"/></sup><button onclick="search()" id="searchBTN" class="transparentBTN"><i class="material-icons" style="font-size: 25px; font-weight: bolder; color: #d3e3f0a4; padding-left: 5px;">search</i></button></p>
             </div>
         </div>
-        <div id="profileBox">
-            <div id="smallProfileCardHolder" class="profileBoxDiv">
-                <div id="smallProfileCard">
-                    <div id="smallProfileCardImageHolder">
-                        <img id="profileCardImage" src="../resource/img/profile_default.png"/>
-                    </div>
-                    <div id="smallProfileCardDetails">
-                        <h2><span id="smallProfileCardName">Sritabh Priyadarshi</span></h2>
-                        <p id="smallProfileCardBranch">
-                            Computer Science And Engineering
-                        </p>
-                        <p id="smallProfileCardBatch">
-                            2019
-                        </p>
-                    </div>
-                    <div id="smallProfileCardContactBox">
-                        <div class="profileDetailsContacts">
-                            <i class="material-icons" style="vertical-align:middle;font-size:20px;">mail</i>
-                            <span id="profileCardEmail">
-                                example@example.com
-                            </span>
+        <div id="authUnavailableStatus" style="display:none">
+            <center>
+                <h1>Unauthorised!</h1>
+                <h3>
+                    Login Required!<br>
+                    Please <u>Login</u> to view your profile
+                </h3>
+            </center>
+        </div>
+        <div style="display:none" id="profileNotAvailable">
+            <center>
+                <h1>Not Found!</h1>
+                <h3>
+                    Requested Profile is not available
+                </h3>
+            </center>
+        </div>
+        <div id="profileLoader" style="height: 50%;text-align: center; padding-top: 15%;">
+            <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+        </div>
+        <div id="displayProfileDetail" style="display: none;">
+            <div id="profileBox">
+                <div id="smallProfileCardHolder" class="profileBoxDiv">
+                    <div id="smallProfileCard">
+                        <div id="smallProfileCardImageHolder">
+                            <img style="display: none;" id="profileCardImage" src="../resource/img/profile_default.png"/>
+                            <div id="smallProfileCardImageLoader" style="text-align: center;vertical-align: bottom;padding-top: 15%;">
+                                <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+                            </div>
                         </div>
-                        <div class="profileDetailsContacts">
-                            <span style="vertical-align: middle;">
-                                <i class="fa fa-linkedin" style="font-size:20px"></i>
-                                <span id="profileCardEmail" style="vertical-align:top;">
-                                    /visit
+                        <div id="smallProfileCardDetails">
+                            <h2><span id="smallProfileCardName">Unavailabe</span></h2>
+                            <p id="smallProfileCardBranch">
+                                Computer Science And Engineering
+                            </p>
+                            <p id="smallProfileCardBatch">
+                                2019
+                            </p>
+                        </div>
+                        <div id="smallProfileCardContactBox">
+                            <div class="profileDetailsContacts">
+                                <i class="material-icons" style="vertical-align:middle;font-size:20px;">mail</i>
+                                <span id="profileCardEmail">
+                                    Unavailabe
                                 </span>
-                            </span>
+                            </div>
+                            <div class="profileDetailsContacts">
+                                <span style="vertical-align: middle;">
+                                    <i class="fa fa-linkedin" style="font-size:20px"></i> 
+                                    <span id="profileCardLinkedin" style="vertical-align:top;">
+                                        Unavailabe
+                                    </span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="editProfileBTNHolder">
+                        <button id="editProfileBTN" onclick="editmyProfile()"><i class="material-icons" style="vertical-align:middle; font-size: 15px;">edit</i> Edit Profile</button>
+                    </div>
+                </div>
+                <div id="mainProfileHolder" class="profileBoxDiv">
+                    <div id="profileNameHeadingBox">
+                        <h1><span id="profileName">Unavailabe</span></h1>
+                    </div>
+                    <div id="profileUserDetailsBox">
+                        <h1 class="mainProfileInfoBoxHeading">DETAILS</h1>
+                        <div class="profileUserDetailContaner">
+                            <div class="profileUserDetailFor">
+                                Branch :
+                            </div>
+                            <div id="mainProfileUserBranch">
+                                Unavailabe
+                            </div>
+                        </div>
+                        <div class="profileUserDetailContaner">
+                            <div class="profileUserDetailFor">
+                                Batch :
+                            </div>
+                            <div id="mainProfileUserBatch">
+                                Unavailabe
+                            </div>
+                        </div>
+                        <div class="profileUserDetailContaner">
+                            <div class="profileUserDetailFor">
+                                Company :
+                            </div>
+                            <div id="mainProfileUserCompany">
+                                Unavailabe
+                            </div>
+                        </div>
+                        <div class="profileUserDetailContaner">
+                            <div class="profileUserDetailFor">
+                                Website :
+                            </div>
+                            <div id="mainProfileUserWebsite">
+                                Unavailabe
+                            </div>
+                        </div>
+                    </div>
+                    <div id="profileUserContactDetailsBox">
+                        <h1 class="mainProfileInfoBoxHeading">CONTACTS</h1>
+                        <div class="profileUserDetailContaner">
+                            <div class="profileUserDetailFor">
+                                Linkedin :
+                            </div>
+                            <div id="mainProfileUserLinkedIn">
+                                Unavailabe
+                            </div>
+                        </div>
+                        <div class="profileUserDetailContaner">
+                            <div class="profileUserDetailFor">
+                                Email :
+                            </div>
+                            <div id="mainProfileUserEmail">
+                                Unavailabe
+                            </div>
+                        </div>
+                        <div class="profileUserDetailContaner">
+                            <div class="profileUserDetailFor">
+                                Contact No. :
+                            </div>
+                            <div id="mainProfileUserPhone">
+                                Unavailabe
+                            </div>
+                        </div>
+                        <div class="profileUserDetailContaner">
+                            <div class="profileUserDetailFor">
+                                Location :
+                            </div>
+                            <div id="mainProfileUserLocation">
+                                Unavailabe
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div id="mainProfileHolder" class="profileBoxDiv">
-                <div id="profileNameHeadingBox">
-                    <h1><span id="profileName">Sritabh Priyadarshi</span></h1>
+        </div>
+        <!-- The Login Modal -->
+        <div id="loginPOP" class="modal_form">
+            <!-- Login Modal content -->
+            <div class="modal-content">
+                <button onclick="closeLoginPop()" class="transparentBTN" style="position:absolute;top:0;right:0;margin-top: 15px;margin-right: 15px;"><i class="material-icons" style="color:rgba(255, 255, 255, 0.527);margin-top: auto;margin-bottom: auto;">close</i></button>
+                <div class="popHeader">
+                    <div style="font-weight: 800;" id="popHeading">
+                        <i class="material-icons" style="color:white;margin-top: auto;margin-bottom: auto;padding: 5px; font-size: 400%;">account_circle</i><br>
+                        LOG IN
+                    </div>
+                    <span id="loginErrorHolder"><sub><i class="material-icons"  style="font-size:160%;padding: 5px;">error</i></sub><span id="loginErrorText">Error!</span></span>
                 </div>
-                <div id="profileUserDetailsBox">
-                    <h1 class="mainProfileInfoBoxHeading">DETAILS</h1>
-                    <div class="profileUserDetailContaner">
-                        <div class="profileUserDetailFor">
-                            Branch :
-                        </div>
-                        <div id="mainProfileUserBranch">
-                            Computer Science And Engineering
-                        </div>
+                <div class="popContent">
+                    <p class="formInputHolder"><i class="material-icons" style="color:white;margin-top: auto;margin-bottom: auto;padding: 5px;">email</i><input placeholder="Email" type="email" id="login_email" required/></p>
+                    <p class="formInputHolder"><i class="material-icons" style="color:white;margin-top: auto;margin-bottom: auto;padding: 5px;">lock</i><input placeholder="Password" type="password" id="login_password"/></p>
+                    <div style="text-align: right; margin-top: -10px;">
+                        <a style="color:white;" href="forgot-password/">Forgot Password?</a>
                     </div>
-                    <div class="profileUserDetailContaner">
-                        <div class="profileUserDetailFor">
-                            Batch :
+                    <div class="popFormBTN">
+                        <div id="loginAuthLoader" style="display:none;">
+                            <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
                         </div>
-                        <div id="mainProfileUserBatch">
-                            2019
-                        </div>
-                    </div>
-                    <div class="profileUserDetailContaner">
-                        <div class="profileUserDetailFor">
-                            Company :
-                        </div>
-                        <div id="mainProfileUserBatch">
-                            Name of Company Pvt Ltd
-                        </div>
+                        <button class="popBTN" id="loginBTN" onclick="login()">Login</button><br>
+                        <button class="transparentBTN" id="registerFormPOPBTN" onclick = "showRegisterForm()">New Here? Register!</button>
                     </div>
                 </div>
-                <div id="profileUserContactDetailsBox">
-                    <h1 class="mainProfileInfoBoxHeading">CONTACTS</h1>
-                    <div class="profileUserDetailContaner">
-                        <div class="profileUserDetailFor">
-                            Linkedin :
-                        </div>
-                        <div id="mainProfileUserLinkedIn">
-                            View LinkedIn
-                        </div>
+            </div>
+        </div>
+        <!--Reg Modal-->
+        <div id="registerPOP" class="modal_form">
+            <!--Reg Modal content -->
+            <div class="modal-content">
+                <button onclick="closeRegisterPOP()" class="transparentBTN" style="position:absolute;top:0;right:0;margin-top: 15px;margin-right: 15px;"><i class="material-icons" style="color:rgba(255, 255, 255, 0.527);margin-top: auto;margin-bottom: auto;">close</i></button>
+                <div class="popHeader">
+                    <div style="font-weight: 800;" id="popHeading">
+                        <i class="material-icons" style="color:white;margin-top: auto;margin-bottom: auto;padding: 5px; font-size: 400%;">account_circle</i><br>
+                        REGISTER
                     </div>
-                    <div class="profileUserDetailContaner">
-                        <div class="profileUserDetailFor">
-                            Email :
-                        </div>
-                        <div id="mainProfileUserEmail">
-                            sobydanny@gmail.com
-                        </div>
+                    <span id="regErrorHolder"><sub><i class="material-icons"  style="font-size:160%;padding: 5px;">error</i></sub><span id="regErrorText">Error!</span></span>
+                </div>
+                <div class="popContent">
+                    <p class="formInputHolder"><i class="material-icons" style="color:white;margin-top: auto;margin-bottom: auto;padding: 5px;">email</i><input autocomplete="off" placeholder="Email" type="email" id="register_email"/></p>
+                    <p class="formInputHolder"><i class="material-icons" style="color:white;margin-top: auto;margin-bottom: auto;padding: 5px;">lock</i><input autocomplete="off" placeholder="Passsword" type="password" id="register_password"/></p>
+                    <p class="formInputHolder"><i class="material-icons" style="color:white;margin-top: auto;margin-bottom: auto;padding: 5px;">lock</i><input autocomplete="off" placeholder="Confirm Password" type="password" id="register_cPassword"/></p>
+                </div>
+                <div class="popFormBTN">
+                    <div id="regAuthLoader" style="display:none;">
+                        <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
                     </div>
-                    <div class="profileUserDetailContaner">
-                        <div class="profileUserDetailFor">
-                            Contact No. :
-                        </div>
-                        <div id="mainProfileUserPhone">
-                            +91-9102811825
-                        </div>
-                    </div>
+                    <button style="margin-bottom: 30px;" class="popBTN" id="registerBTN" onclick="registerUser()">Register</button><br>
                 </div>
             </div>
         </div>

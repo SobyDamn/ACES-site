@@ -139,6 +139,7 @@ function saveProfileDetails(uid) {
                         Site: site,
                         Linkedin: linkedin,
                         Batch: batch,
+                        Email: currUser.email,
                         UserType: userTypeVal
                     }).then(()=>{
                         if (selectedImage != null) {
@@ -176,6 +177,7 @@ function saveProfileDetails(uid) {
                         Site: site,
                         Linkedin: linkedin,
                         Batch: batch,
+                        Email: currUser.email,
                         UserType: userTypeVal
                     }).then(()=>{
                         if (selectedImage != null) {
