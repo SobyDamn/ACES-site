@@ -24,11 +24,19 @@ firebase.auth().onAuthStateChanged(function(user) {
 
 function showProfile() {
     if (qUid != null) {
-        if (qUid == currentUser.uid) {
-            //querying self profile show
-            document.getElementById("editProfileBTNHolder").style.display = "block";
-            document.getElementById("profilePageTitle").innerText = "View Profile";
-            showRequestedProfile(currentUser.uid);
+        if (currentUser !=null) {
+            if (qUid == currentUser.uid) {
+                //querying self profile show
+                document.getElementById("editProfileBTNHolder").style.display = "block";
+                document.getElementById("profilePageTitle").innerText = "View Profile";
+                showRequestedProfile(currentUser.uid);
+            }
+            else {
+                //querying user
+                document.getElementById("editProfileBTNHolder").style.display = "none";
+                document.getElementById("profilePageTitle").innerText = "Profile - "+userName;
+                showRequestedProfile(qUid);
+            }
         }
         else {
             //querying user
@@ -46,7 +54,6 @@ function showProfile() {
 
 }
 function showRequestedProfile(uid) {
-    console.log(uid)
     const smallProfileCardNameElement = document.getElementById("smallProfileCardName");
     const smallProfileCardBranchElement = document.getElementById("smallProfileCardBranch");
     const smallProfileCardBatchElement = document.getElementById("smallProfileCardBatch");
