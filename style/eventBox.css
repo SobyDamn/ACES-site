@@ -1,0 +1,124 @@
+@font-face {
+    font-family: openSans;
+    src: url(../resource/fonts/OpenSans-Regular.ttf);
+  }
+@font-face {
+  font-family: openSans-Bold;
+  src: url(../resource/fonts/opensans_bold.ttf);
+}
+@font-face {
+  font-family: openSans-SemiBold;
+  src: url(../resource/fonts/opensans_semibold.ttf);
+}
+
+#eventBoxArea {
+    text-align: center;
+    background-color: rgb(228, 222, 222);
+    padding: 50px;
+}
+#eventBoxContainer {
+    width: 75%;
+    min-height: 250px;
+    opacity: 1;
+}
+div.eventBox {
+    display: none;
+    width: 100%;
+    height: 250px;
+    box-shadow: 1px 1px 5px 2px rgb(141, 133, 133);
+}
+.eventBox:hover {
+    box-shadow: 2px 2px 10px 2px rgb(141, 133, 133);
+}
+.eventBox div.eventImageBox {
+    width: 45%;
+}
+.eventImageBox {
+    height: 100%;
+    background-color: rgb(172, 214, 221);
+}
+.eventImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.aboutEventBox {
+    width: 55%;
+    text-align: left;
+    padding: 10px;
+    background-color: rgb(143, 84, 84);
+}
+.eventTitle {
+    font-size: 190%;
+    margin-top: -2px;
+    font-family: openSans-Bold;
+    color: rgb(231, 212, 212);
+}
+.eventDetails {
+    font-family: openSans-SemiBold;
+    color: rgb(238, 238, 238);
+    word-wrap: break-word;
+    overflow: auto;
+    height: 70%;
+    padding-bottom: 5px;
+    overflow-y:auto;
+    
+}
+.eventDetails::-webkit-scrollbar {
+    width: 2px;
+  }
+  
+  /* Track */
+.eventDetails::-webkit-scrollbar-track {
+    background: transparent; 
+  }
+.eventDetails::-webkit-scrollbar-thumb {
+    background: #888; 
+  }
+.eventNavBTNContainer {
+    padding-top: 10px;
+}
+.eventNavBTN {
+    border: none;
+    height: 35px;
+    width:35px;
+    background-color: rgb(119, 119, 252);
+    border-radius: 50%;
+    font-family: openSans-Bold;
+    color: rgb(238, 234, 234);
+    vertical-align: middle;
+    outline: none;
+}
+.eventNavBTN:hover {
+    background-color: rgb(48, 48, 201);
+    box-shadow: 1px 1px 5px 1px rgb(141, 133, 133);
+}
+.eventCountDetail {
+    vertical-align: middle;
+    font-family: openSans-Bold;
+    color: rgb(82, 75, 75);
+}
+/*Test Purpose*/
+#eventBox1 .aboutEventBox {
+    background-color: rgb(153, 125, 231);
+}
+#eventBox2 .aboutEventBox {
+    background-color: rgb(81, 151, 81);
+}
+/*Animations*/
+@keyframes fadeIn {
+    0% {
+        opacity:0.2;
+    } 
+    100% {
+        opacity:1;
+    }
+}
+@keyframes fadeOut {
+    0% {
+        opacity:1;
+    } 
+    100% {
+        opacity:0.2;
+    }
+}

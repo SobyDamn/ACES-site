@@ -10,6 +10,7 @@
         <script src="scripts/user-auth.js"></script>
         <script src="scripts/script.js"></script>
         <script src ="scripts/header-manager.js"></script>
+        <script src ="scripts/eventBox.js"></script>
         <!---Stylsheets-->
         <link rel="stylesheet" href="style/popup_form.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -17,9 +18,10 @@
         <link rel="stylesheet" href="style/header_style.css">
         <link rel="stylesheet" href="style/activities_style.css">
         <link rel="stylesheet" href="style/general_style.css">
+        <link rel="stylesheet" href="style/eventBox.css">
         <link rel="stylesheet" href="style/loader.css">
     </head>
-    <body onload="loadElements()">
+    <body onload="loadElements(),loadEventBoxes()">
         <div id="header">
             <div id="logoContainer" class="headerBox">
                 <img id="site-logo" src="resource/img/aces-white.png"/>
@@ -67,6 +69,69 @@
             <div id="searchBarConainer" class="headerContainerBox">
                 <p><sup><input autocomplete="off" placeholder="Search..." id="searchBar"/></sup><button onclick="search()" id="searchBTN" class="transparentBTN"><i class="material-icons" style="font-size: 25px; font-weight: bolder; color: #d3e3f0a4; padding-left: 5px;">search</i></button></p>
             </div>
+        </div>
+        <div id="eventBoxArea">
+            <center>
+                <div onmouseover="pauseEventBoxesCycle()" onmouseout="resumeEventBoxesCycle()" id="eventBoxContainer">
+                    <div id="eventBox0" class = "eventBox">
+                        <div class="eventImageBox">
+                            <img src="resource/img/1200px-Aristotle_Altemps_Inv8575.jpg" class="eventImage"/>
+                        </div>
+                        <div class="aboutEventBox">
+                            <h2 class="eventTitle">About</h2>
+                            <p class="eventDetails">
+                                Aristotle (c. 384 B.C. to 322 B.C.) was an Ancient Greek philosopher and scientist who is still considered one of the greatest thinkers in politics, psychology and ethics. ... In 335, Aristotle founded his own school, the Lyceum, in Athens, where he spent most of the rest of his life studying, teaching and writing
+                            </p>
+                        </div>
+                    </div>
+                    <div id="eventBox1" class = "eventBox">
+                        <div class="eventImageBox">
+                            <img src="resource/img/pdp.jpg" class="eventImage"/>
+                        </div>
+                        <div class="aboutEventBox">
+                            <h2 class="eventTitle">PewDiePie</h2>
+                            <p class="eventDetails">
+                                Felix Arvid Ulf Kjellberg, better known as PewDiePie, is a Swedish YouTuber, comedian, and philanthropist, known primarily for his Let's Play videos and comedic formatted shows. After registering his eponymous YouTube channel in 2010, Kjellberg primarily posted Let's Play videos of horror and action video games
+                            </p>
+                        </div>
+                    </div>
+                    <div id="eventBox2" class = "eventBox">
+                        <div class="eventImageBox">
+                            <img src="resource/img/ricknmorty.jpg" class="eventImage"/>
+                        </div>
+                        <div class="aboutEventBox">
+                            <h2 class="eventTitle">Rick And Morty</h2>
+                            <p class="eventDetails">
+                                After having been missing for nearly 20 years, Rick Sanchez suddenly arrives at daughter Beth's doorstep to move in with her and her family. Although Beth welcomes Rick into her home, her husband, Jerry, isn't as happy about the family reunion. Jerry is concerned about Rick, a sociopathic scientist, using the garage as his personal laboratory. In the lab, Rick works on a number of sci-fi gadgets, some of which could be considered dangerous. But that's not all Rick does that concerns Jerry. He also goes on adventures across the universe that often involve his grandchildren, Morty and Summer.
+                            </p>
+                        </div>
+                    </div>
+                    <div id="eventBox3" class = "eventBox">
+                        <div class="eventImageBox">
+                            <img src="resource/img/StephenHawking.jpg" class="eventImage"/>
+                        </div>
+                        <div class="aboutEventBox">
+                            <h2 class="eventTitle">Stephen Hawking</h2>
+                            <p class="eventDetails">
+                                Stephen William Hawking CH CBE FRS FRSA was an English theoretical physicist, cosmologist, and author who was director of research at the Centre for Theoretical Cosmology at the University of Cambridge at the time of his death
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="eventNavBTNContainer">
+                    <button onclick="previousEventBox()" class="eventNavBTN"><i class="material-icons">chevron_left</i></button>
+                    <span class="eventCountDetail">
+                        <span id="currentNumStatusEvent">
+                            1
+                        </span>
+                        /
+                        <span id="totalEventBoxesNum">
+                            3
+                        </span>
+                    </span>
+                    <button onclick="nextEventBox()" class="eventNavBTN"><i class="material-icons">chevron_right</i></button>
+                </div>
+            </center>
         </div>
         <div id="activityContainer">
             <div id="activityTitle">
@@ -148,5 +213,6 @@
                 </div>
             </div>
         </div>
+        <button onclick="test()">test</button>
     </body>
 </html>

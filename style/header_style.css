@@ -44,6 +44,9 @@ body {
 #userImageHolder {
     text-align: center;
 }
+#showImageInHeader {
+    object-fit: cover;
+}
 #userAuthBox {
     margin: 20px;
     margin-top: 30px;
@@ -118,3 +121,8 @@ body {
 #logoContainer {
     width: 50%;
 }
+.stickyHeader {
+    position: fixed;
+    top: 0;
+    width: 100%;
+  }

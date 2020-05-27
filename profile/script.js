@@ -136,10 +136,10 @@ function editmyProfile() {
 }
 
 function fetchImageForSmallProfileCard(fileName,uid) {
+    var profileCardImageElement = document.getElementById("profileCardImage")
     if (fileName != undefined) {
         //profile picture exists show to user
         var storageRef = firebase.storage().ref();
-        var profileCardImageElement = document.getElementById("profileCardImage")
         storageRef.child("users/"+uid+"/"+fileName).getDownloadURL().then((url)=> {
             profileCardImageElement.src = url;
             document.getElementById("smallProfileCardImageLoader").style.display = "none";
@@ -151,5 +151,6 @@ function fetchImageForSmallProfileCard(fileName,uid) {
     }
     else {
         document.getElementById("smallProfileCardImageLoader").style.display = "none";
+        profileCardImageElement.style.display = "block";
     }
 }

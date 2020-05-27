@@ -89,3 +89,13 @@ function search() {
     const searchString = document.getElementById("searchBar").value;
     window.location = "../search/?q="+searchString;
 }
+//window.onscroll = function() {stickHeaderOptions()};
+function stickHeaderOptions() {
+    var header = document.getElementsByClassName("multiBoxContainer")[0];
+    var sticky = header.offsetTop;
+    if (window.pageYOffset > sticky) {
+        header.classList.add("stickyHeader");
+      } else {
+        header.classList.remove("stickyHeader");
+    }
+}
