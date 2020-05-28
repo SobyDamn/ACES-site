@@ -13,12 +13,12 @@
 
 #eventBoxArea {
     text-align: center;
-    background-color: rgb(228, 222, 222);
+    background-color: rgba(227, 228, 220);
     padding: 50px;
 }
 #eventBoxContainer {
     width: 75%;
-    min-height: 250px;
+    height: 250px;
     opacity: 1;
 }
 div.eventBox {
@@ -28,7 +28,7 @@ div.eventBox {
     box-shadow: 1px 1px 5px 2px rgb(141, 133, 133);
 }
 .eventBox:hover {
-    box-shadow: 2px 2px 10px 2px rgb(141, 133, 133);
+    box-shadow: 4px 4px 10px 5px rgb(141, 133, 133);
 }
 .eventBox div.eventImageBox {
     width: 45%;

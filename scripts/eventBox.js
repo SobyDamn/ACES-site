@@ -1,11 +1,12 @@
 var userViewedEventBox = false //In case user interacted with box make a pause allow him to read through for a while
 var eventBoxIdNum = 0;
-var eventBoxTimeOnScreen = 4000;
+var eventBoxTimeOnScreen = 5000;
 var userInterruptEventBox = false; //user viewing event by navigation buttons
-var eventBoxInterruptionTime = 2000; //extra time when interrupted before continuing to next box
+var eventBoxInterruptionTime = 3000; //extra time when interrupted before continuing to next box
 var resumeEventBoxCycle;
 var eventBoxCycleInterval;
 function loadEventBoxes() {
+    document.getElementById("currentNumStatusEvent").innerText = 1;
     document.getElementById(`eventBox${eventBoxIdNum}`).style.display = "flex"
     var totalEventBoxes = document.getElementsByClassName("eventBox").length
     document.getElementById("totalEventBoxesNum").innerText = totalEventBoxes

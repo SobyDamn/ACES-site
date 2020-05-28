@@ -14,14 +14,16 @@
         <!---Stylsheets-->
         <link rel="stylesheet" href="style/popup_form.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="style/general_style.css">
         <link rel="stylesheet" href="style/header_style.css">
-        <link rel="stylesheet" href="style/activities_style.css">
+        <link rel="stylesheet" href="style/activityBox.css">
+        <link rel="stylesheet" href="style/blogBox.css">
         <link rel="stylesheet" href="style/general_style.css">
         <link rel="stylesheet" href="style/eventBox.css">
         <link rel="stylesheet" href="style/loader.css">
     </head>
-    <body onload="loadElements(),loadEventBoxes()">
+    <body onload="loadEventBoxes()">
         <div id="header">
             <div id="logoContainer" class="headerBox">
                 <img id="site-logo" src="resource/img/aces-white.png"/>
@@ -126,40 +128,61 @@
                         </span>
                         /
                         <span id="totalEventBoxesNum">
-                            3
+                            x
                         </span>
                     </span>
                     <button onclick="nextEventBox()" class="eventNavBTN"><i class="material-icons">chevron_right</i></button>
                 </div>
             </center>
         </div>
-        <div id="activityContainer">
-            <div id="activityTitle">
-                <h4>ACTIVITIES</h4>
-            </div>
-            <center>
-                <div id="scrollbox">
-                    <div class="activityBox" id="activity0">
-                        activity1
+        <div id="blogBoxArea">
+            <h1 id="blogBoxAreaTitle">BLOGS</h1>
+            <div id="blogBoxContainer">
+                <div id="blogBox1" class="blogBox">
+                    <div class="blogBoxImgContainer">
+                        <img class="blogBoxImg" src="resource/img/StephenHawking.jpg"/>
                     </div>
-                    <div class="activityBox" id="activity1">
-                        activity2
+                    <div class="blogBoxDetails">
+                        <h3 class="blogBoxTitle">
+                            A Brief History Of Time
+                        </h3>
+                        <span class="blogBoxAbout">
+                            Early in 1983, Hawking first approached Simon Mitton, the editor in charge of astronomy books at Cambridge.
+                        </span>
                     </div>
-                    <div class="activityBox" id="activity2">
-                        activity3
-                    </div>
+                    <a class="blogBoxVisitLink" href="#">Read More</a>
                 </div>
-            </center>
-            <div class="boxNav">
-                <button id="goLeftBTN" class="boxNavBTN" onclick="swipeLeft()"><i class="material-icons">chevron_left</i></button>
-                <button id="goRightBTN" class="boxNavBTN" onclick="swipeRight()"><i class="material-icons">chevron_right</i></button>
+                <div id="blogBox2" class="blogBox">
+                    <div class="blogBoxImgContainer">
+                        <img class="blogBoxImg" src="resource/img/ricknmorty.jpg"/>
+                    </div>
+                    <div class="blogBoxDetails">
+                        <h3 class="blogBoxTitle">
+                            Rick and Morty
+                        </h3>
+                        <span class="blogBoxAbout">
+                            After having been missing for nearly 20 years, Rick Sanchez suddenly arrives at daughter Beth's doorstep to move...
+                        </span>
+                    </div>
+                    <a class="blogBoxVisitLink" href="#">Read More</a>
+                </div>
+                <div id="blogBox3" class="blogBox">
+                    <div class="blogBoxImgContainer">
+                        <img class="blogBoxImg" src="resource/img/1200px-Aristotle_Altemps_Inv8575.jpg"/>
+                    </div>
+                    <div class="blogBoxDetails">
+                        <h3 class="blogBoxTitle">
+                            Aristotle | A Great Philosopher
+                        </h3>
+                        <span class="blogBoxAbout">
+                            Aristotle (c. 384 B.C. to 322 B.C.) was an Ancient Greek philosopher and scientist who is still considered one of the greatest...
+                        </span>
+                    </div>
+                    <a class="blogBoxVisitLink" href="#">Read More</a>
+                </div>
             </div>
+            <a id="blogViewMorePageLink" href="#">VIEW MORE</a>
         </div>
-        <h5 id="userName" style="display:none;"></h5>
-        <p><a href="edit-profile">Edit Profile</a></p>
-        <p><a onclick = "showRegisterForm()">Register</a></p>
-        <button onclick="showLoginForm()">Login</button>
-        <button onclick="logout()">LogOut</button>
         <!-- The Login Modal -->
         <div id="loginPOP" class="modal_form">
             <!-- Login Modal content -->
@@ -213,6 +236,5 @@
                 </div>
             </div>
         </div>
-        <button onclick="test()">test</button>
     </body>
 </html>
