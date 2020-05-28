@@ -13,4 +13,96 @@
 @font-face {
     font-family: Merriweather-regular;
     src: url(../resource/fonts/Merriweather-Regular.ttf);
-  }
+}
+#blogBoxArea {
+    margin-bottom: 50px;
+    min-height: 200px;
+    display: block;
+}
+#blogBoxContainer {
+    display: flex;
+    flex-wrap: wrap;
+    min-height: 200px;
+    margin-bottom: 25px;
+}
+#blogBoxAreaTitle {
+    font-family: Merriweather-regular;
+    margin: 25px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #d3cccc;
+    color: #726868;
+}
+.blogBox {
+    width: 365px;
+    height: 240px;
+    margin: 25px;
+    border-radius: 5px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    transition: width 0.5s,height 0.5s;
+}
+.blogBox:hover {
+    width: 375px;
+    height: 250px;
+    box-shadow: 2px 2px 5px 2px rgb(173, 168, 168);
+}
+.blogBoxImgContainer {
+    height: 45%;
+}
+.blogBoxImg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.blogBoxDetails {
+    height: 55%;
+    background: rgb(35, 35, 121);
+    color: #f8f0f0;
+    padding: 5px;
+}
+.blogBoxTitle {
+    font-family: openSans-Bold;
+    margin-top: -2px;
+    margin-bottom: 2px;
+    font-size: 20px;
+}
+.blogBoxAbout {
+    font-family: openSans;
+    font-size: 15px;
+    padding-bottom: 20px;
+}
+.blogBoxVisitLink {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin-bottom: 15px;
+    margin-right: 15px;
+    text-decoration: none;
+    font-size: 18px;
+    color: white;
+    font-family: openSans-SemiBold;
+}
+.blogBoxVisitLink:hover {
+    text-decoration: underline;
+}
+#blogBox2 .blogBoxDetails {
+    background-color: rgb(24, 189, 24);
+}
+#blogBox3 .blogBoxDetails {
+    background-color: rgb(148, 47, 47);
+}
+#blogViewMorePageLink {
+    padding: 10px;
+    text-decoration: none;
+    font-family: openSans-Bold;
+    margin: 25px;
+    font-size: 17px;
+    border-radius: 5px;
+    color: rgb(113, 113, 216);
+}
+#blogViewMorePageLink:hover {
+    background-color: #e7d5d5;
+    color: rgb(24, 24, 153);
+}
