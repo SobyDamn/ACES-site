@@ -61,7 +61,6 @@ div.eventBox {
     overflow: auto;
     height: 70%;
     padding-bottom: 5px;
-    overflow-y:auto;
     
 }
 .eventDetails::-webkit-scrollbar {
