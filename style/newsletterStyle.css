@@ -1,0 +1,108 @@
+@font-face {
+    font-family: openSans;
+    src: url(../resource/fonts/OpenSans-Regular.ttf);
+  }
+@font-face {
+  font-family: openSans-Bold;
+  src: url(../resource/fonts/opensans_bold.ttf);
+}
+@font-face {
+  font-family: openSans-SemiBold;
+  src: url(../resource/fonts/opensans_semibold.ttf);
+}
+@font-face {
+    font-family: Merriweather-regular;
+    src: url(../resource/fonts/Merriweather-Regular.ttf);
+}
+
+#newsletter {
+    min-height: 500;
+    margin-bottom: 50px;
+}
+#newsletterTitle {
+    font-family: Merriweather-regular;
+    margin: 25px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #d3cccc;
+    color: #726868;
+}
+.newsletterBoxTitle {
+    font-family: Merriweather-regular;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #d3cccc;
+    color: #3b3434;
+}
+#newsletterContainer {
+    display: flex;
+    min-height: 500px;
+    max-height: 600px;
+    margin: 25px;
+    border-radius: 5px;
+    background-color: rgb(238, 231, 231);
+}
+#newsBoxContainer {
+    border-right: 1px solid rgb(184, 180, 180);
+    display: inline-block;
+    width: 50%;
+    padding: 10px;
+}
+#oppurtunityBoxContainer {
+    display: inline-block;
+    width: 50%;
+}
+#newsStripsContainer {
+    overflow: auto;
+    min-height: 200;
+    max-height: 400px;
+}
+#newsStripsContainer::-webkit-scrollbar {
+    width: 2px;
+  }
+  
+  /* Track */
+  #newsStripsContainer::-webkit-scrollbar-track {
+    background: transparent; 
+  }
+  #newsStripsContainer::-webkit-scrollbar-thumb {
+    background: rgb(194, 181, 181); 
+  }
+.newsBox {
+    border-left: 12px solid rgb(11, 207, 4);
+    height: 80px;
+    overflow: hidden;
+    border-radius: 5px;
+    background-color: white;
+    padding-right: 15px;
+    padding-left: 10px;
+    box-shadow: 0.1px 0.1px 4px 0.1px rgb(187, 172, 172);
+    text-align: left;
+    transition: box-shadow 0.2s;
+    margin-bottom: 20px;
+}
+.newsBox:hover {
+    box-shadow: 2px 2px 4px 2px rgb(187, 172, 172);
+}
+.newsTextContainer {
+    display: table-cell;
+    vertical-align: middle;
+    height: 80px;
+    position: relative;
+}
+.newsText {
+    font-family: openSans-Bold;
+}
+.newsPostDate {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    font-family: openSans-SemiBold;
+    margin-bottom: 8px;
+    color: #6b6161;
+    text-shadow: .5px 0.5px 2px #c2bbbb;
+}
+#newsBox2 {
+    border-left: 12px solid rgb(77, 24, 199);
+}
+#newsBox3 {
+    border-left: 12px solid rgb(139, 23, 23);
+}
