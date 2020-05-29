@@ -39,6 +39,7 @@
     font-family: openSans-SemiBold;
     color: rgb(99, 87, 87);
     font-size: 18px;
+    max-height: 300px;
 }
 #contact h1 {
     text-align: left;
