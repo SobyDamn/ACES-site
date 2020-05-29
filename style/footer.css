@@ -1,0 +1,38 @@
+@font-face {
+    font-family: openSans;
+    src: url(../resource/fonts/OpenSans-Regular.ttf);
+  }
+@font-face {
+  font-family: openSans-Bold;
+  src: url(../resource/fonts/opensans_bold.ttf);
+}
+@font-face {
+  font-family: openSans-SemiBold;
+  src: url(../resource/fonts/opensans_semibold.ttf);
+}
+@font-face {
+    font-family: Merriweather-regular;
+    src: url(../resource/fonts/Merriweather-Regular.ttf);
+}
+#footer {
+    min-height: 40px;
+    background-color: rgb(52, 54, 49);
+}
+#footer h3{
+    padding: 15px;
+    color: #dddddd;
+    font-family: openSans-SemiBold;
+}
+#footer span {
+    font-family: openSans-SemiBold;
+    color:white;
+    display: block;
+    padding: 5px;
+}
+#footer h3 a {
+    text-decoration: none;
+    color: #dddddd;
+}
+#footer h3 a:hover {
+    text-decoration: underline;
+}

@@ -8,9 +8,9 @@
         <script src="https://www.gstatic.com/firebasejs/7.14.3/firebase-storage.js"></script>
         <script src="scripts/firebase-auth.js"></script>
         <script src="scripts/user-auth.js"></script>
-        <script src="scripts/script.js"></script>
         <script src ="scripts/header-manager.js"></script>
         <script src ="scripts/eventBox.js"></script>
+        <script src ="scripts/activityBox.js"></script>
         <!---Stylsheets-->
         <link rel="stylesheet" href="style/popup_form.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -22,6 +22,8 @@
         <link rel="stylesheet" href="style/general_style.css">
         <link rel="stylesheet" href="style/eventBox.css">
         <link rel="stylesheet" href="style/loader.css">
+        <link rel="stylesheet" href="style/about.css">
+        <link rel="stylesheet" href="style/footer.css">
     </head>
     <body onload="loadEventBoxes()">
         <div id="header">
@@ -52,20 +54,19 @@
         <div class="multiBoxContainer">
             <div id="navContainer" class="headerContainerBox">
                 <div style="display: block;"class="navLinkContainer">
-                    <p>HOME</p>
+                    <a href="#" class="headerNavLinks"><p>HOME</p></a>
                 </div>
                 <div class="navLinkContainer">
-                    <p>ACTIVITY</p>
-                    
+                    <a href="#activityBoxArea" class="headerNavLinks"><p>ACTIVITY</p></a>
                 </div>
                 <div class="navLinkContainer">
-                    <p>BLOGS</p>
+                    <a href="#blogBoxArea" class="headerNavLinks"><p>BLOGS</p></a>
                 </div>
                 <div class="navLinkContainer">
-                    <p>NEWSLETTER</p>
+                    <a href="#" class="headerNavLinks"><p>NEWSLETTER</p></a>
                 </div>
                 <div class="navLinkContainer">
-                    <p>CONTACTS</p>
+                    <a href="#" class="headerNavLinks"><p>CONTACT</p></a>
                 </div>
             </div>
             <div id="searchBarConainer" class="headerContainerBox">
@@ -138,7 +139,7 @@
         <div id="activityBoxArea">
             <h1 id="activityBoxAreaTitle">ACTIVITY</h1>
             <div id="activityBoxContainer">
-                <div id="activityBoxType3" class="activityBox">
+                <div id="activityBoxType3" onclick="openActivity('#openActivity')" class="activityBox">
                     <div class="activityBoxImageContainer">
                         <img class="activityBoxImage" src="resource/img/maxresdefault.jpg"/>
                     </div>
@@ -151,7 +152,7 @@
                         </span>
                     </div>
                 </div>
-                <div id="activityBoxType2" class="activityBox">
+                <div id="activityBoxType2" onclick="openActivity('#openActivity')" class="activityBox">
                     <div class="activityBoxImageContainer">
                         <img class="activityBoxImage" src="resource/img/2019-Hackathon-Photo-by-Randy-and-Jackie-Smith.jpg"/>
                     </div>
@@ -164,7 +165,7 @@
                         </span>
                     </div>
                 </div>
-                <div id="activityBoxType3" class="activityBox">
+                <div id="activityBoxType3" onclick="openActivity('#openActivity')" class="activityBox">
                     <img class="activityBoxImage" src="resource/img/preview (1).jpg"/>
                 </div>
             </div>
@@ -216,6 +217,38 @@
                 </div>
             </div>
             <a id="blogViewMorePageLink" href="#">VIEW MORE</a>
+        </div>
+        <div id="aboutBoxContainer">
+            <h1>About Us</h1>
+            <center>
+                <div id="aboutBoxLogoImageContainer">
+                    <img src="resource/img/aces.png" id="aboutBoxImageLogo"/>
+                </div>
+                <div id="aboutBoxDetail">
+                    <span>
+                        ACES refers to the Association of Computer Engineering Students from the prestigious School of Engineering, Cochin University of Science and technology (CUSAT). 
+                        <br><br>Association of Computer Engineering Students, School of Engineering, CUSAT was found with a vision to across the boundaries of textbooks and explore a whole new world of technologies thus evolving as a complete engineer. It has strength of over 400 young aspirants. ACES organizes various programs such as seminars, webinars, alumni meet, online projects, CUSAT site maintenance, placement training with tech fest being one of its most successful endeavors.
+                    </span>
+                </div>
+            </center>
+            <div id="contact">
+                <h1>Contact</h1>
+                <center>
+                    <div id="socialLinkContainer">
+                        <a href="#" class="socialLinks"><i class="fa fa-instagram"></i></a>
+                        <a href="#" class="socialLinks"><i class="fa fa-linkedin-square"></i></a>
+                        <a href="#" class="socialLinks"><i class="fa fa-facebook-square"></i></a>
+                    </div>
+                </center>
+                <p class="contactDetails">Cochin University Road<br>
+                    Ernakulam, Kerala 682022, IN</p>
+            </div>
+            <div id="footer">
+                <center>
+                    <h3><a href="/admin">Admin Login</a></h3>
+                    <span>ACES ©2020</span>
+                </center>
+            </div>
         </div>
         <!-- The Login Modal -->
         <div id="loginPOP" class="modal_form">

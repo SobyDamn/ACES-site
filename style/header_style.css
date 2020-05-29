@@ -115,3 +115,10 @@ body {
     top: 0;
     width: 100%;
   }
+.headerNavLinks {
+    text-decoration: none;
+    color: #d3e3f0;
+}
+.headerNavLinks:hover {
+    text-decoration: underline;
+}
