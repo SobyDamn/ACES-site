@@ -22,12 +22,14 @@
     padding: 15px;
     color: #dddddd;
     font-family: openSans-SemiBold;
+    font-size: 17px;
 }
 #footer span {
     font-family: openSans-SemiBold;
     color:white;
     display: block;
     padding: 5px;
+    font-size: 15px;
 }
 #footer h3 a {
     text-decoration: none;
