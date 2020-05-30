@@ -7,26 +7,25 @@
         <script src="https://www.gstatic.com/firebasejs/7.14.3/firebase-auth.js"></script>
         <script src="https://www.gstatic.com/firebasejs/7.14.3/firebase-firestore.js"></script>
         <script src="https://www.gstatic.com/firebasejs/7.14.3/firebase-storage.js"></script>
-        <script src="../scripts/firebase-auth.js"></script>
-        <script src ="../scripts/header-manager.js"></script>
-        <script src="../scripts/user-auth.js"></script>
+        <script src="../../scripts/firebase-auth.js"></script>
+        <script src ="../../scripts/header-manager.js"></script>
+        <script src="../../scripts/user-auth.js"></script>
         <script src="script.js"></script>
         <!---Stylsheets-->
-        <link rel="stylesheet" href="../style/popup_form.css">
+        <link rel="stylesheet" href="../../style/popup_form.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-        <link rel="stylesheet" href="../style/loader.css"/>
-        <link rel="stylesheet" href="../style/header_style.css"/>
-        <link rel="stylesheet" href="../style/general_style.css">
-        <link rel="stylesheet" href="../style/popup_form.css">
-        <link rel="stylesheet" href="../style/footer.css">
-        <link rel="stylesheet" href="style.css"/>
-        <link rel="stylesheet" href="../style/activityBox.css">
+        <link rel="stylesheet" href="../../style/loader.css"/>
+        <link rel="stylesheet" href="../../style/header_style.css"/>
+        <link rel="stylesheet" href="../../style/general_style.css">
+        <link rel="stylesheet" href="../../style/footer.css">
+        <link rel="stylesheet" href="../style.css"/>
+        <link rel="stylesheet" href="../../style/activityBox.css">
     </head>
     <body>
         <div id="header">
             <div id="logoContainer" class="headerBox">
-                <img id="site-logo" src="../resource/img/aces-white.png"/>
+                <img id="site-logo" src="../../resource/img/aces-white.png"/>
             </div>
             <div id="userAuthBox" class="headerBox">
                 <div id="buttonHolder">
@@ -76,14 +75,49 @@
             <div class="adminContentOption">
                 <h2 class="adminManagerTite">Manage</h2>
                 <div class="adminContentOptionLinkContainer">
-                    <a href="ManageActivity/" class="adminContentOptionLink">Activity Card</a>
-                    <a href="ManageBlogs/" class="adminContentOptionLink">Blog Card</a>
+                    <a href="../ManageActivity" class="adminContentOptionLink">Activity Card</a>
+                    <a href="../ManageBlogs" id="adminInteractedLinkOn" class="adminContentOptionLink">Blog Card</a>
                     <a href="#" class="adminContentOptionLink">NEWSLETTER</a>
                     <a href="#" class="adminContentOptionLink">Users</a>
                 </div>
             </div>
             <div class="adminManageContent">
-                <h2 class="adminContentTite">Welcome Admin</h2>
+                <h2 class="adminContentTite">Manage Blogs</h2>
+                <div class="adminManageContentOptionContainer">
+                    <a href="#" id="adminManageContentOption" class="adminManageContentOption">Activities</a>
+                    <a href="#" class="adminManageContentOption">Add/Edit Activity</a>
+                    <a href="#" class="adminManageContentOption">Settings</a>
+                </div>
+                <div class="adminManageAvailableContentContainer">
+                    <div class="adminManageAvailableContent">
+                        <span class="adminManageAvailableContentTitle">Aristotle | The Great Philosopher</span><br>
+                        <button class="adminManageAvailableContentOptionBTN">Edit</button>
+                        <button class="adminManageAvailableContentOptionBTN">Delete</button>
+                        <button class="adminManageAvailableContentOptionBTN">About</button>
+                    </div>
+                    <div class="adminManageAvailableContent">
+                        <span class="adminManageAvailableContentTitle">Stephen Hawking</span><br>
+                        <button class="adminManageAvailableContentOptionBTN">Edit</button>
+                        <button class="adminManageAvailableContentOptionBTN">Delete</button>
+                        <button class="adminManageAvailableContentOptionBTN">About</button>
+                    </div>
+                    <div class="adminManageAvailableContent">
+                        <span class="adminManageAvailableContentTitle">PewDiePie</span><br>
+                        <button class="adminManageAvailableContentOptionBTN">Edit</button>
+                        <button class="adminManageAvailableContentOptionBTN">Delete</button>
+                        <button class="adminManageAvailableContentOptionBTN">About</button>
+                    </div>
+                </div>
+                <div class="adminManageContentEditAddContainer">
+                    <div class="adminManageContentPreviewBox">
+                        <center>
+                        </center>
+                        <p class="noteForAdmin">Note :- HTML & CSS codes can be used in the text field and RGB/HEX/Gradient color can be used in color field.</p>
+                    </div>
+                    <div class="adminManageContentEditFieldContainer">
+                        
+                    </div>
+                </div>
             </div>
         </div>
         <div id="footer">

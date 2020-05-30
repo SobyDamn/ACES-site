@@ -19,6 +19,7 @@
         <link rel="stylesheet" href="../style/header_style.css"/>
         <link rel="stylesheet" href="../style/general_style.css">
         <link rel="stylesheet" href="../style/popup_form.css">
+        <link rel="stylesheet" href="../style/footer.css">
         <link rel="stylesheet" href="style.css"/>
     </head>
     <body>
@@ -35,7 +36,7 @@
                             <img id="showImageInHeader" style="border-radius: 50%; width: 70px; height: 70px; border: 0px solid white; z-index: -1; display: none;"/>
                         </div>
                         <span id="userName"></span><br>
-                        <button onclick="showLoginForm()" class="userAuthBTN">View Profile!</button><br>
+                        <a href="../profile" id="headerViewProfileLink" class="userAuthBTN">View Profile!</a><br>
                         <button onclick="logout()" class="userAuthBTN">Logout</button>
                     </div>
                     <div id="userSignedOut" style="display: none;">
@@ -51,20 +52,19 @@
         <div class="multiBoxContainer">
             <div id="navContainer" class="headerContainerBox">
                 <div style="display: block;"class="navLinkContainer">
-                    <p>HOME</p>
+                    <a href="../index.html" class="headerNavLinks"><p>HOME</p></a>
                 </div>
                 <div class="navLinkContainer">
-                    <p>ACTIVITY</p>
-                    
+                    <a href="../index.html#activity" class="headerNavLinks"><p>ACTIVITY</p></a>
                 </div>
                 <div class="navLinkContainer">
-                    <p>BLOGS</p>
+                    <a href="../index.html#blogs" class="headerNavLinks"><p>BLOGS</p></a>
                 </div>
                 <div class="navLinkContainer">
-                    <p>NEWSLETTER</p>
+                    <a href="../index.html#newsletter" class="headerNavLinks"><p>NEWSLETTER</p></a>
                 </div>
                 <div class="navLinkContainer">
-                    <p>CONTACT</p>
+                    <a href="../index.html#contact" class="headerNavLinks"><p>CONTACT</p></a>
                 </div>
             </div>
             <div id="searchBarConainer" class="headerContainerBox">
@@ -208,6 +208,12 @@
                 </div>
             </div>
         </div>
+        <div id="footer">
+            <center>
+                <h3><a href="../admin">Admin Login</a></h3>
+                <span>ACES ©2020</span>
+            </center>
+        </div>
         <!-- The Login Modal -->
         <div id="loginPOP" class="modal_form">
             <!-- Login Modal content -->
@@ -261,6 +267,5 @@
                 </div>
             </div>
         </div>
-        <p><a href="../index.html">Home</a></p>
     </body>
 </html>

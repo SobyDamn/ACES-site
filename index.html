@@ -39,7 +39,7 @@
                             <img src="resource/img/profile_default.png" id="showImageInHeader" style="border-radius: 50%; width: 70px; height: 70px; border: 0px solid white; z-index: -1;"/>
                         </div>
                         <span id="userName"></span><br>
-                        <a href="profile" class="userAuthBTN">View Profile!</a><br>
+                        <a href="profile" id="headerViewProfileLink" class="userAuthBTN">View Profile!</a><br>
                         <button onclick="logout()" class="userAuthBTN">Logout</button>
                     </div>
                     <div id="userSignedOut" style="display: none;">
@@ -58,16 +58,16 @@
                     <a href="#" class="headerNavLinks"><p>HOME</p></a>
                 </div>
                 <div class="navLinkContainer">
-                    <a href="#activityBoxArea" class="headerNavLinks"><p>ACTIVITY</p></a>
+                    <a href="#activity" class="headerNavLinks"><p>ACTIVITY</p></a>
                 </div>
                 <div class="navLinkContainer">
-                    <a href="#blogBoxArea" class="headerNavLinks"><p>BLOGS</p></a>
+                    <a href="#blogs" class="headerNavLinks"><p>BLOGS</p></a>
                 </div>
                 <div class="navLinkContainer">
-                    <a href="#" class="headerNavLinks"><p>NEWSLETTER</p></a>
+                    <a href="#newsletter" class="headerNavLinks"><p>NEWSLETTER</p></a>
                 </div>
                 <div class="navLinkContainer">
-                    <a href="#" class="headerNavLinks"><p>CONTACT</p></a>
+                    <a href="#contact" class="headerNavLinks"><p>CONTACT</p></a>
                 </div>
             </div>
             <div id="searchBarConainer" class="headerContainerBox">
@@ -137,7 +137,7 @@
                 </div>
             </center>
         </div>
-        <div id="activityBoxArea">
+        <div id="activity">
             <h1 id="activityBoxAreaTitle">ACTIVITY</h1>
             <div id="activityBoxContainer">
                 <div id="activityBoxType3" onclick="openActivity('#openActivity')" class="activityBox">
@@ -171,7 +171,7 @@
                 </div>
             </div>
         </div>
-        <div id="blogBoxArea">
+        <div id="blogs">
             <h1 id="blogBoxAreaTitle">BLOGS</h1>
             <div id="blogBoxContainer">
                 <div id="blogBox1" class="blogBox">
@@ -238,7 +238,7 @@
                         <div id="newsBox2" class="newsBox">
                             <div class="newsTextContainer">
                                 <span class="newsText">
-                                    Felix Arvid Ulf Kjellberg, better known as PewDiePie, is a Swedish YouTuber, comedian, and philanthropist, known primarily for his Let's Play videos and comedic formatted shows.
+                                    Felix Arvid Ulf Kjellberg, better known as PewDiePie, is a Swedish YouTuber.
                                 </span>
                                 <span class="newsPostDate">
                                     19 May,2020
@@ -289,12 +289,12 @@
                 <p class="contactDetails">Cochin University Road<br>
                     Ernakulam, Kerala 682022, IN</p>
             </div>
-            <div id="footer">
-                <center>
-                    <h3><a href="/admin">Admin Login</a></h3>
-                    <span>ACES ©2020</span>
-                </center>
-            </div>
+        </div>
+        <div id="footer">
+            <center>
+                <h3><a href="/admin">Admin Login</a></h3>
+                <span>ACES ©2020</span>
+            </center>
         </div>
         <!-- The Login Modal -->
         <div id="loginPOP" class="modal_form">

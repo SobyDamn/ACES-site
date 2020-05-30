@@ -12,3 +12,6 @@ input:-webkit-autofill:active  {
 input:-webkit-autofill {
     -webkit-text-fill-color: white !important;
 }
+body {
+    min-height: 100%;
+}

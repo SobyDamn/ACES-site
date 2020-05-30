@@ -1,0 +1,191 @@
+@font-face {
+    font-family: openSans;
+    src: url(../resource/fonts/OpenSans-Regular.ttf);
+  }
+  @font-face {
+  font-family: openSans-Bold;
+  src: url(../resource/fonts/opensans_bold.ttf);
+  }
+  @font-face {
+  font-family: openSans-SemiBold;
+  src: url(../resource/fonts/opensans_semibold.ttf);
+}
+@font-face {
+    font-family: Merriweather-regular;
+    src: url(../resource/fonts/Merriweather-Regular.ttf);
+}
+.adminContentManager {
+    min-height: 500px;
+    display: flex;
+}
+.adminContentOption {
+    width: 20%;
+    display: inline-block;
+    background-image: linear-gradient(45deg,#283048,#281b49);
+}
+.adminManageContent {
+    width: 80%;
+    display: inline-block;
+    padding: 25px;
+}
+.adminContentOptionLinkContainer {
+    border-top: 0.5px solid rgb(223, 220, 220);
+}
+.adminContentOptionLink {
+    border-bottom: 0.2px solid rgb(223, 220, 220,0.2);
+    display: block;
+    padding: 15px;
+    font-family: openSans-Bold;
+    text-decoration: none;
+    color: rgb(210, 220, 228);
+    padding-left: 20px;
+    transition: background-color 0.1s;
+}
+.adminContentOptionLink:hover {
+    background-color: rgb(204, 91, 91);
+}
+.adminManagerTite {
+    font-family: Merriweather-regular;
+    text-align: center;
+    color: rgb(219, 213, 213);
+}
+.adminContentTite {
+    font-family: Merriweather-regular;
+    color: rgb(105, 88, 88);
+    border-bottom: 1px solid;
+    padding-bottom: 25px;
+}
+#adminInteractedLinkOn {
+    background-color: rgb(204, 91, 91);
+}
+.adminManageContentOptionContainer {
+    background-color: rgb(255, 236, 236);
+    border-radius: 5px;
+}
+.adminManageContentOption {
+    padding: 12px;
+    display: inline-block;
+    text-decoration: none;
+    font-family: openSans-Bold;
+    color: rgb(46, 44, 44);
+    border: none;
+    font-size: 15px;
+    outline: none;
+}
+.adminManageContentOption:hover {
+    border-bottom: 2px solid rgb(25, 12, 204);
+    color: rgb(25, 12, 204);
+}
+#adminManageContentOption {
+    border-bottom: 2px solid rgb(25, 12, 204);
+    color: rgb(25, 12, 204);
+}
+.adminManageAvailableContentContainer {
+    margin-top: 20px;
+    font-family: openSans-SemiBold;
+}
+.adminManageAvailableContent {
+    border-bottom: 1px solid rgb(182, 165, 165);
+    padding-left: 20px;
+    padding-top: 10px;
+}
+.adminManageAvailableContentTitle {
+    color: #212024;
+}
+.adminManageAvailableContentOptionBTN {
+    margin: 5px;
+    background: none;
+    border: none;
+    font-family: openSans-SemiBold;
+    color: #281b49;
+}
+.adminManageAvailableContentOptionBTN:hover {
+    text-decoration: underline;
+}
+.adminManageContentPreviewBox h3.previewBoxTitle {
+    color: rgb(114, 97, 97);
+    font-family: openSans-SemiBold;
+    text-align: center;
+}
+.adminManageContentPreviewBox {
+    margin:0px auto;
+    width: 420px;
+}
+.noteForAdmin {
+    color: rgb(121, 77, 77);
+    font-family: openSans-Bold;
+    background-color: #f3f3f5;
+    border-radius: 5px;
+    padding: 10px;
+}
+.adminManageContentEditAddContainer {
+    display: none;
+}
+.adminManageContentEditFieldContainer {
+    background-color: rgb(245, 240, 240);
+    padding: 10px;
+    border-radius: 5px;
+}
+.CenterBTNContainer {
+    text-align: center;
+}
+.adminManageContentField {
+    font-size: 19px;
+    font-family: openSans-SemiBold;
+    color: #38393b;
+    padding: 20px;
+}
+.adminManageContentInputField {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    color: rgb(0, 0, 0);
+    font-size: 15px;
+    border: 2px rgb(161, 143, 143) solid;
+    width: 300px;
+    font-family: openSans-SemiBold;
+    border-radius: 5px;
+    margin: 20px;
+    padding: 5px;
+    width: 80%;
+    display: inline-block;
+    box-sizing: border-box;
+}
+::placeholder {
+    color: #a1a0a3;
+}
+.adminManageContentSaveBTN {
+    border: none;
+    padding: 10px;
+    font-family: openSans-Bold;
+    background-color: #2459bb;
+    color: #e1dee7;
+    border-radius: 5px;
+    width: 150px;
+    font-size: 17px;
+    transition: background-color 0.2s;
+}
+.adminManageContentSaveBTN:hover {
+    background-color: #061430;
+}
+.adminManageContentSelectImageBTN {
+    border: none;
+    padding: 10px;
+    font-family: openSans-Bold;
+    background-color: #c2730c;
+    color: #e1dee7;
+    border-radius: 5px;
+    width: 150px;
+    font-size: 17px;
+}
+.adminManageContentSelectImageBTN:hover {
+    background-color: #a5620a;
+}
+.adminManageContentSetting {
+    min-height: 400px;
+    display: none;
+}
+.adminManageContentSetting {
+    font-family: openSans-SemiBold;
+    color: rgb(116, 110, 110);
+}

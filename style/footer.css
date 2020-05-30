@@ -17,6 +17,7 @@
 #footer {
     min-height: 40px;
     background-color: rgb(52, 54, 49);
+    overflow: hidden;
 }
 #footer h3{
     padding: 15px;

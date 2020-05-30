@@ -16,12 +16,13 @@
         <link rel="stylesheet" href="../style/header_style.css"/>
         <link rel="stylesheet" href="../style/general_style.css">
         <link rel="stylesheet" href="../style/popup_form.css">
+        <link rel="stylesheet" href="../style/footer.css">
         <link rel="stylesheet" href="style.css"/>
     </head>
     <body onload="searchResult()">
         <div id="header">
             <div id="logoContainer" class="headerBox">
-                <h1 id="logo">ACES<br><span id="logo-slogan"> <b><xmp style="display: inline; font-size: small;"></CODE></xmp></b> CONNECT<sub><i class="material-icons" style="font-size: small;">wifi</i></sub> CREATE<sub><i class="material-icons" style="font-size: small;">developer_mode</i></sub></span></h1>
+                <img id="site-logo" src="../resource/img/aces-white.png"/>
             </div>
             <div id="userAuthBox" class="headerBox">
                 <div id="buttonHolder">
@@ -32,7 +33,7 @@
                             <img id="showImageInHeader" style="border-radius: 50%; width: 70px; height: 70px; border: 0px solid white; z-index: -1; display: none;"/>
                         </div>
                         <span id="userName"></span><br>
-                        <button onclick="showLoginForm()" class="userAuthBTN">View Profile!</button><br>
+                        <a href="../profile" id="headerViewProfileLink" class="userAuthBTN">View Profile!</a><br>
                         <button onclick="logout()" class="userAuthBTN">Logout</button>
                     </div>
                     <div id="userSignedOut" style="display: none;">
@@ -48,20 +49,19 @@
         <div class="multiBoxContainer">
             <div id="navContainer" class="headerContainerBox">
                 <div style="display: block;"class="navLinkContainer">
-                    <p>HOME</p>
+                    <a href="../index.html" class="headerNavLinks"><p>HOME</p></a>
                 </div>
                 <div class="navLinkContainer">
-                    <p>ACTIVITY</p>
-                    
+                    <a href="../index.html#activity" class="headerNavLinks"><p>ACTIVITY</p></a>
                 </div>
                 <div class="navLinkContainer">
-                    <p>BLOGS</p>
+                    <a href="../index.html#blogs" class="headerNavLinks"><p>BLOGS</p></a>
                 </div>
                 <div class="navLinkContainer">
-                    <p>NEWSLETTER</p>
+                    <a href="../index.html#newsletter" class="headerNavLinks"><p>NEWSLETTER</p></a>
                 </div>
                 <div class="navLinkContainer">
-                    <p>CONTACT</p>
+                    <a href="../index.html#contact" class="headerNavLinks"><p>CONTACT</p></a>
                 </div>
             </div>
             <div id="searchBarConainer" class="headerContainerBox">
@@ -69,6 +69,11 @@
             </div>
         </div>
         <span>Showing result for <i><span id="searchValue"></span></i></span>
-        <p><a href="../index.html">Home</a></p>
+        <div id="footer">
+            <center>
+                <h3><a href="../admin">Admin Login</a></h3>
+                <span>ACES ©2020</span>
+            </center>
+        </div>
     </body>
 </html>
