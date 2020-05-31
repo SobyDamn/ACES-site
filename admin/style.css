@@ -15,7 +15,7 @@
     src: url(../resource/fonts/Merriweather-Regular.ttf);
 }
 .adminContentManager {
-    min-height: 500px;
+    min-height: 100%;
     display: flex;
 }
 .adminContentOption {
@@ -189,4 +189,40 @@
 .adminManageContentSetting {
     font-family: openSans-SemiBold;
     color: rgb(116, 110, 110);
+}
+button {
+    outline: none;
+}
+#contentSubmitErrorHolder {
+    font-size: 70%;
+    font-weight: 900;
+    font-family: openSans;
+    position: relative;
+    display:none;
+    color: rgb(206, 67, 67);
+}
+#contentUploadStatus {
+    font-family: openSans-Bold;
+    margin: 25px;
+    text-align: center;
+    font-size: 18px;
+    color: #3a3836;
+    display: none;
+}
+/*Animations*/
+@keyframes fadeIn {
+    0% {
+        opacity:0.2;
+    } 
+    100% {
+        opacity:1;
+    }
+}
+@keyframes fadeOut {
+    0% {
+        opacity:1;
+    } 
+    100% {
+        opacity:0.2;
+    }
 }

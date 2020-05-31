@@ -13,6 +13,7 @@
         <script src="script.js"></script>
         <!---Stylsheets-->
         <link rel="stylesheet" href="../../style/popup_form.css">
+        <link rel="stylesheet" href="../../style/popup.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
         <link rel="stylesheet" href="../../style/loader.css"/>
@@ -22,7 +23,7 @@
         <link rel="stylesheet" href="../style.css"/>
         <link rel="stylesheet" href="../../style/activityBox.css">
     </head>
-    <body>
+    <body onload="loadAvailableActivities()">
         <div id="header">
             <div id="logoContainer" class="headerBox">
                 <img id="site-logo" src="../../resource/img/aces-white.png"/>
@@ -89,66 +90,88 @@
                     <button onclick="viewSelectedContentOption('adminManageContentSetting','adminManageContentEditAddContainer','adminManageAvailableContentContainer',2,0,1)" class="adminManageContentOption">Settings</button>
                 </div>
                 <div id="adminManageAvailableContentContainer" class="adminManageAvailableContentContainer">
-                    <div class="adminManageAvailableContent">
-                        <span class="adminManageAvailableContentTitle">Aristotle | The Great Philosopher</span><br>
-                        <button class="adminManageAvailableContentOptionBTN">Edit</button>
-                        <button class="adminManageAvailableContentOptionBTN">Delete</button>
-                        <button class="adminManageAvailableContentOptionBTN">About</button>
-                    </div>
-                    <div class="adminManageAvailableContent">
-                        <span class="adminManageAvailableContentTitle">Stephen Hawking</span><br>
-                        <button class="adminManageAvailableContentOptionBTN">Edit</button>
-                        <button class="adminManageAvailableContentOptionBTN">Delete</button>
-                        <button class="adminManageAvailableContentOptionBTN">About</button>
-                    </div>
-                    <div class="adminManageAvailableContent">
-                        <span class="adminManageAvailableContentTitle">PewDiePie</span><br>
-                        <button class="adminManageAvailableContentOptionBTN">Edit</button>
-                        <button class="adminManageAvailableContentOptionBTN">Delete</button>
-                        <button class="adminManageAvailableContentOptionBTN">About</button>
-                    </div>
+                    <!---
+                        <div class="adminManageAvailableContent">
+                            <span class="adminManageAvailableContentTitle">Aristotle | The Great Philosopher</span><br>
+                            <button class="adminManageAvailableContentOptionBTN">Edit</button>
+                            <button class="adminManageAvailableContentOptionBTN">Delete</button>
+                            <button class="adminManageAvailableContentOptionBTN">About</button>
+                        </div>
+                    -->
+                </div>
+                <div id="availableActivityLoader" style="text-align: center; display: block;">
+                    <div class="lds-ellipsis"><div style="background: rgb(94, 117, 223);"></div><div style="background: rgb(94, 117, 223);"></div><div style="background: rgb(94, 117, 223);"></div><div style="background: rgb(94, 117, 223);"></div></div>
                 </div>
                 <div id="adminManageContentEditAddContainer" class="adminManageContentEditAddContainer">
                     <div class="adminManageContentPreviewBox">
                         <h3 class='previewBoxTitle'>Preview</h3>
-                        <div id="activityBoxType3" onclick="openActivity('#openActivity')" class="activityBox">
+                        <div id="activityBoxType1" onclick="openActivity('#openActivity')" class="activityBox">
                             <div class="activityBoxImageContainer">
-                                <img class="activityBoxImage" src="../../resource/img/maxresdefault.jpg"/>
+                                <img class="activityBoxImage" src="../../resource/img/aces-blue-bg-portrait.jpg"/>
                             </div>
-                            <div class="activityBoxDetails">
+                            <div style="background: rgb(6, 110, 93);" class="activityBoxDetails">
                                 <h3 class="activityBoxTitle">
-                                    Dhishna 2019
+                                    ACES
                                 </h3>
-                                <span class="activityBoxAbout">
-                                    Dhishna, the technical festival of School Of Engineering, CUSAT is a technical extravaganza which plays host to students from all over india. A myriad of events,exciting prizes and above all, an adventure that shouldn't be missed!
+                                <span" class="activityBoxAbout">
+                                    ACES refers to the Association of Computer Engineering Students from the prestigious School of Engineering, Cochin University of Science and technology (CUSAT).
                                 </span>
                             </div>
+                        </div>
+                        <div id="activityBoxType2" style="display: none;" onclick="openActivity('#openActivity')" class="activityBox">
+                            <div class="activityBoxImageContainer">
+                                <img class="activityBoxImage" src="../../resource/img/aces-blue-bg-landscape.jpg"/>
+                            </div>
+                            <div style="background: rgb(6, 110, 93);" class="activityBoxDetails">
+                                <h3 class="activityBoxTitle">
+                                    ACES
+                                </h3>
+                                <span class="activityBoxAbout">
+                                    ACES refers to the Association of Computer Engineering Students from the prestigious School of Engineering, Cochin University of Science and technology (CUSAT).
+                                </span>
+                            </div>
+                        </div>
+                        <div id="activityBoxType3" style="display: none;" onclick="openActivity('#openActivity')" class="activityBox">
+                            <img class="activityBoxImage" src="../../resource/img/preview (1).jpg"/>
                         </div>
                     </div>
                     <p class="noteForAdmin">Note :- HTML & CSS codes can be used in the text field and RGB/HEX/Gradient color can be used in color field.</p>
                     <div class="adminManageContentEditFieldContainer">
                         <p class="CenterBTNContainer">
-                            <button class="adminManageContentSelectImageBTN">
+                            <input style="display: none;" onchange="loadSelectedImage(event)" id="selectContentImage" accept="image/*" type="file"/>
+                            <button onclick="selectImage()" class="adminManageContentSelectImageBTN">
                                 Select Image
                             </button>
                         </p>
                         <label class="adminManageContentField">Type : </label><br>
-                        <select class="adminManageContentInputField" name="activityCardTyoe">
-                            <option value="type1" selected>Type 1</option>
-                            <option value="type2">Type 2</option>
-                            <option value="image">Image</option>
+                        <select id="contentBoxType" onchange="changeActivityBoxType(this.value)" class="adminManageContentInputField" name="activityCardTyoe">
+                            <option value="activityBoxType1" selected>Type 1</option>
+                            <option value="activityBoxType2">Type 2</option>
+                            <option value="activityBoxType3">Image</option>
                           </select>
                         <br>
                         <label class="adminManageContentField">Title : </label><br>
-                        <input class="adminManageContentInputField" value="Activity Title" placeholder="Activity Title"/>
+                        <input id="contentTitle" onchange="changeContentTitle(this.value)" class="adminManageContentInputField" value="ACES" placeholder="Activity Title"/>
+                        <span id="nonImageContentData">
+                            <br>
+                            <label class="adminManageContentField">Description : </label><br>
+                            <textarea id="contentDescription" onchange="changeContentDescription(this.value)" class="adminManageContentInputField"rows="4" cols="30">ACES refers to the Association of Computer Engineering Students from the prestigious School of Engineering, Cochin University of Science and technology (CUSAT).</textarea>
+                            <br>
+                            <label class="adminManageContentField">Background Color : </label><br>
+                            <input id="contentBGColor" onchange="changeContentColor(this.value)" class="adminManageContentInputField" placeholder="color in rgb/hex/gradient" value="rgb(6, 110, 93)"/>
+                        </span>
                         <br>
-                        <label class="adminManageContentField">Description : </label><br>
-                        <textarea class="adminManageContentInputField" id="w3review" name="w3review" rows="4" cols="30">Description about the activity in brief.</textarea>
+                        <label class="adminManageContentField">Link : </label><br>
+                        <input id="contentLink" class="adminManageContentInputField" placeholder="Link to the activity" value="#"/>
                         <br>
-                        <label class="adminManageContentField">Background Color : </label><br>
-                        <input class="adminManageContentInputField" placeholder="color in rgb" value="rgb(21, 110, 43)"/>
+                        <br>
+                        <span id="contentSubmitErrorHolder"><sub><i class="material-icons"  style="font-size:160%;padding: 5px;">error</i></sub><span id="contentSubmitErrorText">Error!</span></span>
+                        <p id="contentUploadStatus">Upload status</p>
+                        <div id="submitContentLoader" style="text-align: center; display: none;">
+                            <div class="lds-ellipsis"><div style="background: rgb(94, 117, 223);"></div><div style="background: rgb(94, 117, 223);"></div><div style="background: rgb(94, 117, 223);"></div><div style="background: rgb(94, 117, 223);"></div></div>
+                        </div>
                         <p class="CenterBTNContainer">
-                            <button class="adminManageContentSaveBTN">
+                            <button onclick="submitContent()" id="submitContentBTN" class="adminManageContentSaveBTN">
                                 Add/Save
                             </button>
                         </p>
@@ -208,6 +231,26 @@
                         <button class="popBTN" id="loginBTN" onclick="login()">Login</button><br>
                         <button class="transparentBTN" id="registerFormPOPBTN" onclick = "showRegisterForm()">New Here? Register!</button>
                     </div>
+                </div>
+            </div>
+        </div>
+        <div id="noticePOP" class="modal">
+            <!-- Modal content -->
+            <div class="modal-content">
+                <div class="popHeader">
+                    <div style="font-weight: 800;word-wrap: break-word;" id="popHeading">
+                        Delete
+                    </div>
+                </div>
+                <div id="popContent">
+                    Some error message
+                </div>
+                <div id="confirmPopLoader" style="text-align: center; display: none;">
+                    <div class="lds-ellipsis"><div style="background: rgb(94, 117, 223);"></div><div style="background: rgb(94, 117, 223);"></div><div style="background: rgb(94, 117, 223);"></div><div style="background: rgb(94, 117, 223);"></div></div>
+                </div>
+                <div id = "popFooter">
+                    <button style="background-color: rgb(230, 26, 26); border-radius: 3px; padding: 8px; color: rgb(250, 250, 250);" class="popBTN" id="confirmPOP">Confirm</button>
+                    <button class="popBTN" id="closePOP" onclick="closeErrorPop()">Close</button>
                 </div>
             </div>
         </div>

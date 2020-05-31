@@ -88,7 +88,7 @@ function saveProfileData() {
                 document.getElementById("selectImageStatus").innerHTML = "Uploaded!"
                 saveProfileDetails(uid);
             }
-          });
+        });
 
     }
     else {
