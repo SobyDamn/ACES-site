@@ -67,7 +67,7 @@
   }
 .newsBox {
     border-left: 12px solid rgb(11, 207, 4);
-    height: 80px;
+    min-height: 70px;
     overflow: hidden;
     border-radius: 5px;
     background-color: white;
@@ -77,6 +77,9 @@
     text-align: left;
     transition: box-shadow 0.2s;
     margin-bottom: 20px;
+    position: relative;
+    padding-bottom: 5px;
+    padding-top: 5px;
 }
 .newsBox:hover {
     box-shadow: 2px 2px 4px 2px rgb(187, 172, 172);
@@ -84,8 +87,7 @@
 .newsTextContainer {
     display: table-cell;
     vertical-align: middle;
-    height: 80px;
-    position: relative;
+    height: 70px;
 }
 .newsText {
     font-family: openSans-Bold;
@@ -96,6 +98,7 @@
     right: 0;
     font-family: openSans-SemiBold;
     margin-bottom: 8px;
+    margin-right: 15px;
     color: #6b6161;
     text-shadow: .5px 0.5px 2px #f3ecec;
 }
