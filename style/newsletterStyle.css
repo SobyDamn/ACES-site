@@ -42,12 +42,12 @@
 #newsBoxContainer {
     border-right: 1px solid rgb(184, 180, 180);
     display: inline-block;
-    width: 50%;
+    width: 55%;
     padding: 10px;
 }
 #oppurtunityBoxContainer {
     display: inline-block;
-    width: 50%;
+    width: 45%;
 }
 #newsStripsContainer {
     overflow: auto;
