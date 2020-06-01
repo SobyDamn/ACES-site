@@ -103,6 +103,7 @@
                     <div class="lds-ellipsis"><div style="background: rgb(94, 117, 223);"></div><div style="background: rgb(94, 117, 223);"></div><div style="background: rgb(94, 117, 223);"></div><div style="background: rgb(94, 117, 223);"></div></div>
                 </div>
                 <div id="adminManageContentEditAddContainer" class="adminManageContentEditAddContainer">
+                    <button id="addNewActivityBTN" style="display: none;" onclick="resetContentForm()" class="addNewContentBTN">+ ADD NEW</button>
                     <div class="adminManageContentPreviewBox">
                         <h3 class='previewBoxTitle'>Preview</h3>
                         <div id="activityBoxType1" onclick="openActivity('#openActivity')" class="activityBox">
@@ -172,7 +173,11 @@
                         </div>
                         <p class="CenterBTNContainer">
                             <button onclick="submitContent()" id="submitContentBTN" class="adminManageContentSaveBTN">
-                                Add/Save
+                                Add
+                            </button>
+                            <br>
+                            <button style="display: none;" id="submitEditContentBTN" class="adminManageContentSaveBTN">
+                                Save Edit
                             </button>
                         </p>
                     </div>
@@ -229,7 +234,6 @@
                             <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
                         </div>
                         <button class="popBTN" id="loginBTN" onclick="login()">Login</button><br>
-                        <button class="transparentBTN" id="registerFormPOPBTN" onclick = "showRegisterForm()">New Here? Register!</button>
                     </div>
                 </div>
             </div>
@@ -238,18 +242,18 @@
             <!-- Modal content -->
             <div class="modal-content">
                 <div class="popHeader">
-                    <div style="font-weight: 800;word-wrap: break-word;" id="popHeading">
-                        Delete
+                    <div id="adminNoticePOPHeading" style="font-weight: 800;word-wrap: break-word;" class="popHeading">
+                        Error
                     </div>
                 </div>
-                <div id="popContent">
+                <div id="adminNoticePOPMsg" class="popContent">
                     Some error message
                 </div>
                 <div id="confirmPopLoader" style="text-align: center; display: none;">
                     <div class="lds-ellipsis"><div style="background: rgb(94, 117, 223);"></div><div style="background: rgb(94, 117, 223);"></div><div style="background: rgb(94, 117, 223);"></div><div style="background: rgb(94, 117, 223);"></div></div>
                 </div>
                 <div id = "popFooter">
-                    <button style="background-color: rgb(230, 26, 26); border-radius: 3px; padding: 8px; color: rgb(250, 250, 250);" class="popBTN" id="confirmPOP">Confirm</button>
+                    <button style="background-color: rgb(230, 26, 26); border-radius: 3px; padding: 8px; color: rgb(250, 250, 250);display: none;" class="popBTN" id="confirmPOP">Confirm</button>
                     <button class="popBTN" id="closePOP" onclick="closeErrorPop()">Close</button>
                 </div>
             </div>

@@ -5,6 +5,7 @@
         <script src="https://www.gstatic.com/firebasejs/7.14.3/firebase-app.js"></script>
         <script src="https://www.gstatic.com/firebasejs/7.14.3/firebase-analytics.js"></script>
         <script src="https://www.gstatic.com/firebasejs/7.14.3/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.14.3/firebase-firestore.js"></script>
         <script src="https://www.gstatic.com/firebasejs/7.14.3/firebase-storage.js"></script>
         <script src="scripts/firebase-auth.js"></script>
         <script src="scripts/user-auth.js"></script>
@@ -26,7 +27,7 @@
         <link rel="stylesheet" href="style/about.css">
         <link rel="stylesheet" href="style/footer.css">
     </head>
-    <body onload="loadEventBoxes()">
+    <body onload="loadEventBoxes(),loadActivities()">
         <div id="header">
             <div id="logoContainer" class="headerBox">
                 <img id="site-logo" src="resource/img/aces-white.png"/>

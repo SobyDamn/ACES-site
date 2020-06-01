@@ -209,6 +209,19 @@ button {
     color: #3a3836;
     display: none;
 }
+.addNewContentBTN {
+    margin-top: 25px;
+    padding: 10px;
+    font-family: openSans-Bold;
+    border: none;
+    color: #2459bb;
+    background-color: #f0f2f5;
+    border-radius: 5px;
+    font-size: 15px;
+}
+.addNewContentBTN:hover {
+    background-color: #d5d8db;
+}
 /*Animations*/
 @keyframes fadeIn {
     0% {

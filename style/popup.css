@@ -83,15 +83,16 @@ src: url(../resource/fonts/opensans_semibold.ttf);
     font-weight: 900;
     font-family: openSans-Bold;
 }
-#popHeading {
+.popHeading {
     text-align: start;
 }
-#popContent {
+.popContent {
   margin-top: 10px;
   padding-left: 10px;
   padding-right: 10px;
   margin-left: 10px;
   min-height: 100px;
+  word-wrap: break-word;
   color: rgba(51, 47, 47, 0.918)
 }
 #popFooter {

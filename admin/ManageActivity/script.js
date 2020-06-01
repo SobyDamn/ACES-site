@@ -52,7 +52,7 @@ function changeContentTitle(value) {
 }
 function changeContentDescription(value) {
     //change description
-    console.log(value)
+
     const activityBoxDescriptionElements = document.getElementsByClassName("activityBoxAbout")
     for (var i= 0;i < activityBoxDescriptionElements.length;i++) {
         activityBoxDescriptionElements[i].innerHTML = value;
@@ -111,7 +111,7 @@ function submitContent() {
             link: contentLink,
             type: contentBoxType,
             image: contentImageURL,
-            addedOn: currDate.toDateString(),
+            timestamp:firebase.firestore.FieldValue.serverTimestamp(),
         }).then((activityRef)=>{
             uploadActivityImage(activityRef.id)
         }).catch((error)=>{
@@ -121,17 +121,52 @@ function submitContent() {
         })
     }
 }
-function submitInProgress(value) {
-    //show loader if submission is in process or hide if not
-    var button = document.getElementById("submitContentBTN");
-    var loader = document.getElementById("submitContentLoader");
-    if (value) {
-        button.style.display = "none";
-        loader.style.display = "block";
+
+function saveEditActivity(id) {
+    document.getElementById("contentSubmitErrorHolder").style.display = "none";
+    var contentTitle = document.getElementById("contentTitle").value;
+    var contentDescription = document.getElementById("contentDescription").value;
+    var contentDetailBGColor = document.getElementById("contentBGColor").value;
+    var contentLink = document.getElementById("contentLink").value;
+    var contentBoxType = document.getElementById("contentBoxType").value;
+    var activity = firebase.firestore().collection("activity").doc(id);
+    var currDate = new Date()
+    submitInProgress(true)
+    if (selectedImage == null) {
+        activity.update({
+            title: contentTitle,
+            description: contentDescription,
+            background: contentDetailBGColor,
+            link: contentLink,
+            type: contentBoxType,
+        }).then(()=>{
+            submitInProgress(false);
+            document.getElementsByClassName("adminManageContentOption")[0].click();
+            loadAvailableActivities();
+            resetContentForm();
+        }).catch((error)=>{
+            submitInProgress(false)
+            document.getElementById("contentSubmitErrorHolder").style.display = "block";
+            document.getElementById("contentSubmitErrorText").innerText = error;
+        })
     }
     else {
-        button.style.display = "inline";
-        loader.style.display = "none";
+        var contentImageURL = selectedImage.name
+        //submit
+        activity.update({
+            title: contentTitle,
+            description: contentDescription,
+            background: contentDetailBGColor,
+            link: contentLink,
+            type: contentBoxType,
+            image: contentImageURL,
+        }).then(()=>{
+            uploadActivityImage(id)
+        }).catch((error)=>{
+            submitInProgress(false)
+            document.getElementById("contentSubmitErrorHolder").style.display = "block";
+            document.getElementById("contentSubmitErrorText").innerText = error;
+        })
     }
 }
 
@@ -144,9 +179,14 @@ function uploadActivityImage(id) {
         if (Math.floor((snapshot.bytesTransferred/snapshot.totalBytes)*100) >= 100) {
             //uploading completed
             document.getElementById("contentUploadStatus").innerHTML = "Added Successfully!"
+            selectedImage =null;
             setTimeout(()=>{
                 submitInProgress(false);
-                window.location = ""
+                document.getElementsByClassName("adminManageContentOption")[0].click();
+                document.getElementById("contentUploadStatus").style.display = "none";
+                loadAvailableActivities();
+                resetContentForm();
+                //window.location = ""
             },1000)
         }
     })
@@ -154,7 +194,7 @@ function uploadActivityImage(id) {
 function loadAvailableActivities() {
     document.getElementById("adminManageAvailableContentContainer").innerHTML = " "
     document.getElementById("availableActivityLoader").style.display = "block";
-    var activityDB = firebase.firestore().collection("activity");
+    var activityDB = firebase.firestore().collection("activity").orderBy("timestamp", "desc");
     activityDB.get().then(function(querySnapshot) {
         document.getElementById("availableActivityLoader").style.display = "none";
         querySnapshot.forEach(function(doc) {
@@ -171,9 +211,10 @@ function loadAvailableActivities() {
         });
     });
 }
+
 function deleteActivity(id,title,imageURL) {
     //delete element
-    var popMsgElement = document.getElementById("popContent")
+    var popMsgElement = document.getElementById("adminNoticePOPMsg")
     var activityDB = firebase.firestore().collection("activity");
     var imageRef = firebase.storage().ref().child("activity/"+id+"/"+imageURL);
     var heading = "Delete"
@@ -192,15 +233,13 @@ function deleteActivity(id,title,imageURL) {
                 closeErrorPop()
               }).catch(function(error) {
                 // Uh-oh, an error occurred!
-                console.log("err in del",error)
                 closeErrorPop()
                 var msg = error.message;
                 var title = "Error";
                 showPopUp(title,msg)
               });
         }).catch(function(error) {
-            console.error("Error removing document: ", error);
-            closeErrorPop()
+            closeErrorPop();
             var msg = "Error<br>"+error.message;
             var title = "Error";
             showPopUp(title,msg)
@@ -211,7 +250,6 @@ function deleteActivity(id,title,imageURL) {
 }
 function editActivity(id,title,description,link,bgColor,activityType,image) {
     //edit
-    console.log(unescape(description))
     document.getElementById("contentTitle").value = unescape(title);
     document.getElementById("contentDescription").value = unescape(description);
     document.getElementById("contentBGColor").value = bgColor;
@@ -222,7 +260,28 @@ function editActivity(id,title,description,link,bgColor,activityType,image) {
     changeContentTitle(unescape(title));
     changeContentColor(bgColor);
     fetchPreviewImage(id,image);
+    var saveEditBTN = document.getElementById("submitEditContentBTN")
+    saveEditBTN.onclick = function(){
+        saveEditActivity(id);
+    }
+    saveEditBTN.style.display = "inline";
+    document.getElementById("addNewActivityBTN").style.display = "inline";
+    document.getElementById("submitContentBTN").style.display = "none";
     document.getElementsByClassName("adminManageContentOption")[1].click();
+}
+function fetchPreviewImage(id,fileName) {
+    var storageRef = firebase.storage().ref();
+    var activityBoxImageElement = document.getElementsByClassName("activityBoxImage")
+    storageRef.child("activity/"+id+"/"+fileName).getDownloadURL().then((url)=> {
+        for (var i=0;i<activityBoxImageElement.length ; i++) {
+            activityBoxImageElement[i].src = url;
+        }
+    }).catch((error)=> {
+        // Handle any errors
+        var msg = "Error<br>"+error.message;
+        var title = "Error";
+        showPopUp(title,msg)
+    });
 }
 function closeErrorPop() {
     var modal = document.getElementById("noticePOP");
@@ -233,8 +292,8 @@ function closeErrorPop() {
 function showPopUp(type,message) {
     document.getElementById("confirmPopLoader").style.display = "none";
     document.getElementById("popFooter").style.display = "block"
-    document.getElementById("popHeading").innerHTML = type;
-    document.getElementById("popContent").innerHTML = message;
+    document.getElementById("adminNoticePOPHeading").innerHTML = type;
+    document.getElementById("adminNoticePOPMsg").innerHTML = message;
     var modal = document.getElementById("noticePOP");
     modal.style.display = "block";
     /*window.onclick = function(event) {
@@ -244,15 +303,44 @@ function showPopUp(type,message) {
       }
     }*/
 }
-function fetchPreviewImage(id,fileName) {
-    var storageRef = firebase.storage().ref();
-    var activityBoxImageElement = document.getElementsByClassName("activityBoxImage")
-    storageRef.child("activity/"+id+"/"+fileName).getDownloadURL().then((url)=> {
-        for (var i=0;i<activityBoxImageElement.length ; i++) {
-            activityBoxImageElement[i].src = url;
-        }
-    }).catch((err)=> {
-        // Handle any errors
-        console.log(err)
-    });
+function submitInProgress(isProcessing) {
+    //show loader if submission is in process or hide if not
+    var addButton = document.getElementById("submitContentBTN");
+    var loader = document.getElementById("submitContentLoader");
+    var editButton = document.getElementById("submitEditContentBTN");
+    if (isProcessing) {
+        addButton.style.display = "none";
+        editButton.style.display = "none";
+        loader.style.display = "block";
+    }
+    else {
+        addButton.style.display = "inline";
+        loader.style.display = "none";
+    }
+}
+
+
+//reset form back to normal
+function resetContentForm() {
+    document.getElementById("addNewActivityBTN").style.display = "none";
+    document.getElementById("submitEditContentBTN").style.display = "none";
+    document.getElementById("submitContentBTN").style.display = "inline";
+    var defaultDesc = `ACES refers to the Association of Computer Engineering Students from the prestigious School of Engineering, Cochin University of Science and technology (CUSAT).`
+    var defaultTitle = `ACES`;
+    var defaultBoxType = `activityBoxType1`;
+    var defaultBGColor = `rgb(6, 110, 93)`;
+    changeContentDescription(defaultDesc);
+    changeActivityBoxType(defaultBoxType);
+    changeContentTitle(defaultTitle);
+    changeContentColor(defaultBGColor);
+    changeActivityBoxType("activityBoxType1");
+    document.getElementById("contentTitle").value = defaultTitle;
+    document.getElementById("contentDescription").value = defaultDesc;
+    document.getElementById("contentBGColor").value = defaultBGColor;
+    document.getElementById("contentLink").value = "#";
+    document.getElementById("contentBoxType").value = "activityBoxType1";
+    var activityBoxImageElement = document.getElementsByClassName("activityBoxImage");
+    activityBoxImageElement[0].src = "../../resource/img/aces-blue-bg-portrait.jpg";
+    activityBoxImageElement[1].src = "../../resource/img/aces-blue-bg-landscape.jpg";
+    activityBoxImageElement[2].src = "../../resource/img/preview (1).jpg";
 }
