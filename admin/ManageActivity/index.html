@@ -23,7 +23,7 @@
         <link rel="stylesheet" href="../style.css"/>
         <link rel="stylesheet" href="../../style/activityBox.css">
     </head>
-    <body onload="loadAvailableActivities()">
+    <body onload="loadAvailableContentWithSettings()">
         <div id="header">
             <div id="logoContainer" class="headerBox">
                 <img id="site-logo" src="../../resource/img/aces-white.png"/>
@@ -85,22 +85,27 @@
             <div class="adminManageContent">
                 <h2 class="adminContentTite">Manage Activity</h2>
                 <div class="adminManageContentOptionContainer">
-                    <button onclick="viewSelectedContentOption('adminManageAvailableContentContainer','adminManageContentEditAddContainer','adminManageContentSetting',0,1,2)" id="adminManageContentOption" class="adminManageContentOption">Activities</button>
-                    <button onclick="viewSelectedContentOption('adminManageContentEditAddContainer','adminManageAvailableContentContainer','adminManageContentSetting',1,0,2)" class="adminManageContentOption">Add/Edit Activity</button>
-                    <button onclick="viewSelectedContentOption('adminManageContentSetting','adminManageContentEditAddContainer','adminManageAvailableContentContainer',2,0,1)" class="adminManageContentOption">Settings</button>
+                    <button onclick="viewSelectedContentOption('adminManagerAvailableContentArea','adminManageContentEditAddContainer','adminManageContentSetting',0,1,2)" id="adminManageContentOption" class="adminManageContentOption">Activities</button>
+                    <button onclick="viewSelectedContentOption('adminManageContentEditAddContainer','adminManagerAvailableContentArea','adminManageContentSetting',1,0,2)" class="adminManageContentOption">Add/Edit Activity</button>
+                    <button onclick="viewSelectedContentOption('adminManageContentSetting','adminManageContentEditAddContainer','adminManagerAvailableContentArea',2,0,1)" class="adminManageContentOption">Settings</button>
                 </div>
-                <div id="adminManageAvailableContentContainer" class="adminManageAvailableContentContainer">
-                    <!---
-                        <div class="adminManageAvailableContent">
-                            <span class="adminManageAvailableContentTitle">Aristotle | The Great Philosopher</span><br>
-                            <button class="adminManageAvailableContentOptionBTN">Edit</button>
-                            <button class="adminManageAvailableContentOptionBTN">Delete</button>
-                            <button class="adminManageAvailableContentOptionBTN">About</button>
-                        </div>
-                    -->
-                </div>
-                <div id="availableActivityLoader" style="text-align: center; display: block;">
-                    <div class="lds-ellipsis"><div style="background: rgb(94, 117, 223);"></div><div style="background: rgb(94, 117, 223);"></div><div style="background: rgb(94, 117, 223);"></div><div style="background: rgb(94, 117, 223);"></div></div>
+                <div id="adminManagerAvailableContentArea">
+                    <div id="adminManageAvailableContentContainer" class="adminManageAvailableContentContainer">
+                        <!---
+                            <div class="adminManageAvailableContent">
+                                <span class="adminManageAvailableContentTitle">Aristotle | The Great Philosopher</span><br>
+                                <button class="adminManageAvailableContentOptionBTN">Edit</button>
+                                <button class="adminManageAvailableContentOptionBTN">Delete</button>
+                                <button class="adminManageAvailableContentOptionBTN">About</button>
+                            </div>
+                        -->
+                    </div>
+                    <div id="availableActivityLoader" style="text-align: center; display: block;">
+                        <div class="lds-ellipsis"><div style="background: rgb(94, 117, 223);"></div><div style="background: rgb(94, 117, 223);"></div><div style="background: rgb(94, 117, 223);"></div><div style="background: rgb(94, 117, 223);"></div></div>
+                    </div>
+                    <button onclick="loadMoreAvailableContent()" class="loadMoreBTN">
+                        Load More
+                    </button>
                 </div>
                 <div id="adminManageContentEditAddContainer" class="adminManageContentEditAddContainer">
                     <button id="addNewActivityBTN" style="display: none;" onclick="resetContentForm()" class="addNewContentBTN">+ ADD NEW</button>
@@ -188,7 +193,7 @@
                     <label>
                         No. Of Activity Card :
                     </label>
-                    <select class="adminManageContentInputField" name="activityCardTyoe">
+                    <select id="adminManageContentSettingValue" class="adminManageContentInputField" name="activityCardType">
                         <option value="3" selected>3</option>
                         <option value="4">4</option>
                         <option value="5">5</option>
@@ -198,10 +203,13 @@
                         <option value="9">9</option>
                       </select>
                     <p class="CenterBTNContainer">
-                        <button class="adminManageContentSaveBTN">
+                        <button id="saveSettingBTN" onclick="saveContentSetting(this,'activitySettings')" class="adminManageContentSaveBTN">
                             Save Setting
                         </button>
                     </p>
+                    <div id="saveSettingLoader" style="text-align: center; display: none;">
+                        <div class="lds-ellipsis"><div style="background: rgb(94, 117, 223);"></div><div style="background: rgb(94, 117, 223);"></div><div style="background: rgb(94, 117, 223);"></div><div style="background: rgb(94, 117, 223);"></div></div>
+                    </div>
                 </div>
             </div>
         </div>

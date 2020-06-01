@@ -1,6 +1,19 @@
-function loadActivities() {
-    document.getElementById("activityBoxContainer").innerHTML = "";
-    var activityDB = firebase.firestore().collection("activity").orderBy("timestamp", "desc");
+function loadActivitiesWithSettings() {
+    var activitySettingsRef = firebase.firestore().collection("settings").doc("activitySettings");
+    activitySettingsRef.get().then(function(activitySetting) {
+        if (activitySetting.exists) {
+            var settings = activitySetting.data();
+            loadActivities(settings.maxValue)
+        } else {
+            // doc.data() will be undefined in this case
+            console.log("No Setting document! Running with default value");
+            loadActivities(3)
+        }
+    })
+}
+function loadActivities(maxLimit) {
+    document.getElementById("activityBoxContainer").innerHTML = ``;
+    var activityDB = firebase.firestore().collection("activity").orderBy("timestamp", "desc").limit(maxLimit);
     var i = 0;
     activityDB.get().then(function(querySnapshot) {
         querySnapshot.forEach(function(doc) {

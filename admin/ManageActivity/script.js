@@ -1,5 +1,5 @@
 var selectedImage = null;
-
+var maxValue = 1; //setting for max car allowed on screen 
 
 /**
  * First arg to show and next two argument to hide
@@ -130,7 +130,6 @@ function saveEditActivity(id) {
     var contentLink = document.getElementById("contentLink").value;
     var contentBoxType = document.getElementById("contentBoxType").value;
     var activity = firebase.firestore().collection("activity").doc(id);
-    var currDate = new Date()
     submitInProgress(true)
     if (selectedImage == null) {
         activity.update({
@@ -142,7 +141,7 @@ function saveEditActivity(id) {
         }).then(()=>{
             submitInProgress(false);
             document.getElementsByClassName("adminManageContentOption")[0].click();
-            loadAvailableActivities();
+            loadAvailableContentWithSettings();
             resetContentForm();
         }).catch((error)=>{
             submitInProgress(false)
@@ -184,17 +183,17 @@ function uploadActivityImage(id) {
                 submitInProgress(false);
                 document.getElementsByClassName("adminManageContentOption")[0].click();
                 document.getElementById("contentUploadStatus").style.display = "none";
-                loadAvailableActivities();
+                loadAvailableContentWithSettings();
                 resetContentForm();
                 //window.location = ""
             },1000)
         }
     })
 }
-function loadAvailableActivities() {
+function loadAvailableActivities(maxLimit) {
     document.getElementById("adminManageAvailableContentContainer").innerHTML = " "
     document.getElementById("availableActivityLoader").style.display = "block";
-    var activityDB = firebase.firestore().collection("activity").orderBy("timestamp", "desc");
+    var activityDB = firebase.firestore().collection("activity").orderBy("timestamp", "desc").limit(maxLimit);
     activityDB.get().then(function(querySnapshot) {
         document.getElementById("availableActivityLoader").style.display = "none";
         querySnapshot.forEach(function(doc) {
@@ -229,7 +228,7 @@ function deleteActivity(id,title,imageURL) {
             popMsgElement.innerHTML +="<br><b><i>Deleting Files..</i></b>";
             imageRef.delete().then(function() {
                 // File deleted successfully
-                loadAvailableActivities()
+                loadAvailableContentWithSettings()
                 closeErrorPop()
               }).catch(function(error) {
                 // Uh-oh, an error occurred!
@@ -343,4 +342,43 @@ function resetContentForm() {
     activityBoxImageElement[0].src = "../../resource/img/aces-blue-bg-portrait.jpg";
     activityBoxImageElement[1].src = "../../resource/img/aces-blue-bg-landscape.jpg";
     activityBoxImageElement[2].src = "../../resource/img/preview (1).jpg";
+}
+function loadAvailableContentWithSettings() {
+    var activitySettingsRef = firebase.firestore().collection("settings").doc("activitySettings");
+    activitySettingsRef.get().then(function(activitySetting) {
+        if (activitySetting.exists) {
+            var settings = activitySetting.data();
+            
+            maxValue = settings.maxValue;
+            document.getElementById("adminManageContentSettingValue").value = maxValue; //show current max value in settings
+            loadAvailableActivities(maxValue)
+        } else {
+            // doc.data() will be undefined in this case
+            console.log("No such document! Running with default value");
+            loadAvailableActivities(3)
+        }
+    })
+}
+function loadMoreAvailableContent() {
+    maxValue += 5;
+    loadAvailableActivities(maxValue);
+}
+function saveContentSetting(button,type) {
+    var loader = document.getElementById("saveSettingLoader")
+    button.style.display = "none";
+    loader.style.display = "block"
+    var settingMaxValue = document.getElementById("adminManageContentSettingValue").value
+    var settingRef = firebase.firestore().collection("settings").doc(type);
+    settingRef.update({
+        maxValue: parseInt(settingMaxValue),
+    }).then(()=>{
+        button.style.display = "inline";
+        loader.style.display = "none";
+        document.getElementsByClassName("adminManageContentOption")[0].click();
+        loadAvailableContentWithSettings();
+    }).catch((error)=>{
+        button.style.display = "inline";
+        loader.style.display = "none"
+        showPopUp("Error",error.message)
+    })
 }

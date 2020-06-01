@@ -27,6 +27,7 @@
     width: 80%;
     display: inline-block;
     padding: 25px;
+    position: relative;
 }
 .adminContentOptionLinkContainer {
     border-top: 0.5px solid rgb(223, 220, 220);
@@ -221,6 +222,25 @@ button {
 }
 .addNewContentBTN:hover {
     background-color: #d5d8db;
+}
+.loadMoreBTN {
+    position: absolute;
+    padding: 8px;
+    text-align: center;
+    bottom:0;
+    right: 50%;
+    margin-top: 55px;
+    margin-bottom: 25px;
+    font-family: openSans-Bold;
+    border: none;
+    color: #e3e5e9;
+    background-color: #111499;
+    border-radius: 5px;
+    font-size: 13px;
+
+}
+.loadMoreBTN:hover {
+    background-color: #090a4d;
 }
 /*Animations*/
 @keyframes fadeIn {
