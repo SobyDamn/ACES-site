@@ -45,7 +45,7 @@
     width: 55%;
     padding: 10px;
 }
-#oppurtunityBoxContainer {
+#oppurtunityBoxContainerArea {
     display: inline-block;
     width: 45%;
 }
@@ -89,7 +89,7 @@
     vertical-align: middle;
     height: 70px;
 }
-.newsText {
+.newsText,.oppurtunityText {
     font-family: openSans-Bold;
 }
 .newsPostDate {
@@ -102,10 +102,79 @@
     color: #6b6161;
     text-shadow: .5px 0.5px 2px #f3ecec;
 }
-#newsBox2 {
-    border-left: 12px solid;
-    border-color: rgb(77, 24, 199);
+
+/*Oppurtunity box styling*/
+#oppurtunityBoxContainer {
+    min-height: 400px;
 }
-#newsBox3 {
-    border-left: 12px solid rgb(139, 23, 23);
+.oppurtunityBox {
+    min-height: 80px;
+    border-radius: 5px;
+    margin: 10px;
+    margin-bottom: 15px;
+    display: flex;
+    background-color: white;
+    overflow: hidden;
+    box-shadow: 0.1px 0.1px 4px 0.1px rgb(187, 172, 172);
+    transition: box-shadow 0.2s;
+}
+.oppurtunityBox:hover {
+    box-shadow: 2px 2px 4px 2px rgb(187, 172, 172);
+}
+.oppurtunityDeadlineContainer {
+    width: 15%;
+    min-width: 85px;
+    display: inline-block;
+    background-color: rgb(4, 128, 212);
+    overflow: hidden;
+    vertical-align: bottom;
+}
+.oppurtunityText {
+    width: 85%;
+    display: inline-block;
+}
+.oppurtunityLastDateHeading {
+    font-family: openSans-Bold;
+    text-align: center;
+    font-size: 11px;
+    margin-top: 0px;
+    font-family: openSans-SemiBold;
+    margin-bottom: 0px;
+    color: rgb(240, 240, 240);
+}
+.oppurtunityLastDateDay,.oppurtunityLastDateMonth,.oppurtunityLastDateYear {
+    text-align: center;
+    color: rgb(252, 245, 245);
+}
+.oppurtunityLastDateDay {
+    font-size: 35px;
+    font-family: openSans-Bold;
+    margin-top: -10px;
+}
+.oppurtunityLastDateMonth {
+    font-family: openSans-SemiBold;
+    margin-top: -10px;
+    font-size: 15px;
+}
+.oppurtunityLastDateYear {
+    font-family: openSans;
+    font-size: 12px;
+}
+.oppurtunityTextContainer {
+    display: table-cell;
+    vertical-align: middle;
+    min-height: 80px;
+    position: relative;
+    padding-bottom: 5px;
+    padding-top: 5px;
+    padding-left: 5px;
+}
+.oppurtunityText {
+    vertical-align: bottom;
+}
+.oppurtunityDeadlineDateContainer {
+    vertical-align: middle;
+}
+.oppurtunityDeadlineDateContainer p {
+    margin: auto;
 }
