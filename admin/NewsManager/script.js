@@ -1,9 +1,14 @@
 var maxValue = 3; //setting for max car allowed on screen 
 
 
-function loadCurrentDateOnStrip() {
-    var x = new Date();
-    document.getElementsByClassName("newsPostDate")[0].innerHTML = nerdDate(x);
+function loadDateOnStrip(value) {
+    if (value == null) {
+        var x = new Date();
+        document.getElementsByClassName("newsPostDate")[0].innerHTML = nerdDate(x);
+    }
+    else {
+        document.getElementsByClassName("newsPostDate")[0].innerHTML = nerdDate(value);
+    }
 }
 /**
  * First arg to show and next two argument to hide
@@ -117,7 +122,7 @@ function loadAvailableNews(maxLimit) {
             }
             var newsElement = `<div class="adminManageAvailableContent">
                                         <span class="adminManageAvailableContentTitle">${contentTitle}</span><br>
-                                        <button onclick="editNews('${doc.id}','${text}','${news.color}','${news.link}')" class="adminManageAvailableContentOptionBTN">Edit</button>
+                                        <button onclick="editNews('${doc.id}','${text}','${news.color}','${news.link}','${news.date}')" class="adminManageAvailableContentOptionBTN">Edit</button>
                                         <button onclick="deleteNews('${doc.id}','${contentTitle}')" class="adminManageAvailableContentOptionBTN">Delete</button>
                                         <button class="adminManageAvailableContentOptionBTN">About</button>
                                     </div>`
@@ -151,8 +156,9 @@ function deleteNews(id,title) {
     showPopUp(heading,msg);
     
 }
-function editNews(id,text,color,link) {
+function editNews(id,text,color,link,date) {
     //edit
+    loadDateOnStrip(date)
     document.getElementById("contentTitle").value = unescape(text);
     document.getElementById("contentBGColor").value = color;
     document.getElementById("contentLink").value = link;
