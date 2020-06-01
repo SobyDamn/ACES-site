@@ -104,7 +104,7 @@
 .adminManageAvailableContentOptionBTN:hover {
     text-decoration: underline;
 }
-.adminManageContentPreviewBox h3.previewBoxTitle {
+h3.previewBoxTitle {
     color: rgb(114, 97, 97);
     font-family: openSans-SemiBold;
     text-align: center;
@@ -112,6 +112,9 @@
 .adminManageContentPreviewBox {
     margin:0px auto;
     width: 420px;
+}
+.adminManageContentNewsPreviewBox {
+    width: 80%;
 }
 .noteForAdmin {
     color: rgb(121, 77, 77);

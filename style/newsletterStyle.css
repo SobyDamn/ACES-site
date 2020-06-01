@@ -103,7 +103,8 @@
     text-shadow: .5px 0.5px 2px #f3ecec;
 }
 #newsBox2 {
-    border-left: 12px solid rgb(77, 24, 199);
+    border-left: 12px solid;
+    border-color: rgb(77, 24, 199);
 }
 #newsBox3 {
     border-left: 12px solid rgb(139, 23, 23);

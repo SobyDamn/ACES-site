@@ -157,7 +157,7 @@ function uploadBlogImage(id) {
         }
     })
 }
-function loadAvailableActivities(maxLimit) {
+function loadAvailableBlogs(maxLimit) {
     document.getElementById("adminManageAvailableContentContainer").innerHTML = " "
     document.getElementById("availableBlogLoader").style.display = "block";
     var blogDB = firebase.firestore().collection("blog").orderBy("timestamp", "desc").limit(maxLimit);
@@ -310,17 +310,17 @@ function loadAvailableContentWithSettings() {
             
             maxValue = settings.maxValue;
             document.getElementById("adminManageContentSettingValue").value = maxValue; //show current max value in settings
-            loadAvailableActivities(maxValue)
+            loadAvailableBlogs(maxValue)
         } else {
             // doc.data() will be undefined in this case
             console.log("No such document! Running with default value");
-            loadAvailableActivities(3)
+            loadAvailableBlogs(3)
         }
     })
 }
 function loadMoreAvailableContent() {
     maxValue += 5;
-    loadAvailableActivities(maxValue);
+    loadAvailableBlogs(maxValue);
 }
 function saveContentSetting(button,type) {
     var loader = document.getElementById("saveSettingLoader")

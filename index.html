@@ -13,6 +13,7 @@
         <script src ="scripts/eventBox.js"></script>
         <script src ="scripts/activityBox.js"></script>
         <script src ="scripts/blogBox.js"></script>
+        <script src ="scripts/newsletter.js"></script>
         <!---Stylsheets-->
         <link rel="stylesheet" href="style/popup_form.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -28,7 +29,7 @@
         <link rel="stylesheet" href="style/about.css">
         <link rel="stylesheet" href="style/footer.css">
     </head>
-    <body onload="loadEventBoxes(),loadActivitiesWithSettings(),loadBlogsWithSettings() ">
+    <body onload="loadEventBoxes(),loadActivitiesWithSettings(),loadBlogsWithSettings(),loadNewsletterWithSettings()">
         <div id="header">
             <div id="logoContainer" class="headerBox">
                 <img id="site-logo" src="resource/img/aces-white.png"/>
@@ -158,36 +159,7 @@
                 <div id="newsBoxContainer">
                     <h2 class="newsletterBoxTitle">News</h2>
                     <div id="newsStripsContainer">
-                        <div class="newsBox">
-                            <div class="newsTextContainer">
-                                <span class="newsText">
-                                    Aristotle (c. 384 B.C. to 322 B.C.) was an Ancient Greek philosopher and scientist who is still considered one of the greatest...
-                                </span>
-                            </div>
-                            <span class="newsPostDate">
-                                12 Mar,2020
-                            </span>
-                        </div>
-                        <div id="newsBox2" class="newsBox">
-                            <div class="newsTextContainer">
-                                <span class="newsText">
-                                    Felix Arvid Ulf Kjellberg, better known as PewDiePie, is a Swedish YouTuber, comedian, and philanthropist, known primarily for his Let's Play videos and comedic formatted shows.
-                                </span>
-                            </div>
-                            <span class="newsPostDate">
-                                19 May,2020
-                            </span>
-                        </div>
-                        <div id="newsBox3" class="newsBox">
-                            <div class="newsTextContainer">
-                                <span class="newsText">
-                                    After having been missing for nearly 20 years, Rick Sanchez suddenly arrives at daughter Beth's doorstep to move...
-                                </span>
-                            </div>
-                            <span class="newsPostDate">
-                                26 May,2020
-                            </span>
-                        </div>
+                        <!--News strip will appear here-->
                     </div>
                 </div>
                 <div id="oppurtunityBoxContainer">

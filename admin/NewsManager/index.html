@@ -21,9 +21,9 @@
         <link rel="stylesheet" href="../../style/general_style.css">
         <link rel="stylesheet" href="../../style/footer.css">
         <link rel="stylesheet" href="../style.css"/>
-        <link rel="stylesheet" href="../../style/activityBox.css">
+        <link rel="stylesheet" href="../../style/newsletterStyle.css">
     </head>
-    <body onload="loadAvailableContentWithSettings()">
+    <body onload="loadAvailableContentWithSettings(),loadCurrentDateOnStrip()">
         <div id="header">
             <div id="logoContainer" class="headerBox">
                 <img id="site-logo" src="../../resource/img/aces-white.png"/>
@@ -76,17 +76,17 @@
             <div class="adminContentOption">
                 <h2 class="adminManagerTite">Manage</h2>
                 <div class="adminContentOptionLinkContainer">
-                    <a href="../ManageActivity/" id="adminInteractedLinkOn" class="adminContentOptionLink">Activity Card</a>
+                    <a href="../ManageActivity/" class="adminContentOptionLink">Activity Card</a>
                     <a href="../ManageBlogs/" class="adminContentOptionLink">Blog Card</a>
-                    <a href="../NewsManager/" class="adminContentOptionLink">NEWS</a>
-                    <a href="../UserManager" class="adminContentOptionLink">Users</a>
+                    <a href="../NewsManager/" id="adminInteractedLinkOn" class="adminContentOptionLink">NEWS</a>
+                    <a href="#" class="adminContentOptionLink">Users</a>
                 </div>
             </div>
             <div class="adminManageContent">
-                <h2 class="adminContentTite">Manage Activity</h2>
+                <h2 class="adminContentTite">Manage News</h2>
                 <div class="adminManageContentOptionContainer">
                     <button onclick="viewSelectedContentOption('adminManagerAvailableContentArea','adminManageContentEditAddContainer','adminManageContentSetting',0,1,2)" id="adminManageContentOption" class="adminManageContentOption">Activities</button>
-                    <button onclick="viewSelectedContentOption('adminManageContentEditAddContainer','adminManagerAvailableContentArea','adminManageContentSetting',1,0,2)" class="adminManageContentOption">Add/Edit Activity</button>
+                    <button onclick="viewSelectedContentOption('adminManageContentEditAddContainer','adminManagerAvailableContentArea','adminManageContentSetting',1,0,2)" class="adminManageContentOption">Add/Edit News</button>
                     <button onclick="viewSelectedContentOption('adminManageContentSetting','adminManageContentEditAddContainer','adminManagerAvailableContentArea',2,0,1)" class="adminManageContentOption">Settings</button>
                 </div>
                 <div id="adminManagerAvailableContentArea">
@@ -100,7 +100,7 @@
                             </div>
                         -->
                     </div>
-                    <div id="availableActivityLoader" style="text-align: center; display: block;">
+                    <div id="availableNewsLoader" style="text-align: center; display: block;">
                         <div class="lds-ellipsis"><div style="background: rgb(94, 117, 223);"></div><div style="background: rgb(94, 117, 223);"></div><div style="background: rgb(94, 117, 223);"></div><div style="background: rgb(94, 117, 223);"></div></div>
                     </div>
                     <button onclick="loadMoreAvailableContent()" class="loadMoreBTN">
@@ -108,67 +108,30 @@
                     </button>
                 </div>
                 <div id="adminManageContentEditAddContainer" class="adminManageContentEditAddContainer">
-                    <button id="addNewActivityBTN" style="display: none;" onclick="resetContentForm()" class="addNewContentBTN">+ ADD NEW</button>
-                    <div class="adminManageContentPreviewBox">
+                    <button id="addNewNewsBTN" style="display: none;" onclick="resetContentForm()" class="addNewContentBTN">+ ADD NEW</button>
+                    <div class="adminManageContentNewsPreviewBox">
                         <h3 class='previewBoxTitle'>Preview</h3>
-                        <div id="activityBoxType1" onclick="openActivity('#openActivity')" class="activityBox">
-                            <div class="activityBoxImageContainer">
-                                <img class="activityBoxImage" src="../../resource/img/aces-blue-bg-portrait.jpg"/>
-                            </div>
-                            <div style="background: rgb(6, 110, 93);" class="activityBoxDetails">
-                                <h3 class="activityBoxTitle">
-                                    ACES
-                                </h3>
-                                <span" class="activityBoxAbout">
+                        <div style="border-color: rgb(11, 207, 4);" class="newsBox">
+                            <div class="newsTextContainer">
+                                <span class="newsText">
                                     ACES refers to the Association of Computer Engineering Students from the prestigious School of Engineering, Cochin University of Science and technology (CUSAT).
                                 </span>
                             </div>
-                        </div>
-                        <div id="activityBoxType2" style="display: none;" onclick="openActivity('#openActivity')" class="activityBox">
-                            <div class="activityBoxImageContainer">
-                                <img class="activityBoxImage" src="../../resource/img/aces-blue-bg-landscape.jpg"/>
-                            </div>
-                            <div style="background: rgb(6, 110, 93);" class="activityBoxDetails">
-                                <h3 class="activityBoxTitle">
-                                    ACES
-                                </h3>
-                                <span class="activityBoxAbout">
-                                    ACES refers to the Association of Computer Engineering Students from the prestigious School of Engineering, Cochin University of Science and technology (CUSAT).
-                                </span>
-                            </div>
-                        </div>
-                        <div id="activityBoxType3" style="display: none;" onclick="openActivity('#openActivity')" class="activityBox">
-                            <img class="activityBoxImage" src="../../resource/img/preview (1).jpg"/>
+                            <span class="newsPostDate">
+                                12 Mar,2020
+                            </span>
                         </div>
                     </div>
-                    <p class="noteForAdmin">Note :- HTML & CSS codes can be used in the text field and RGB/HEX/Gradient color can be used in color field.</p>
+                    <p class="noteForAdmin">Note :- HTML & CSS codes can be used in the text field.</p>
                     <div class="adminManageContentEditFieldContainer">
-                        <p class="CenterBTNContainer">
-                            <input style="display: none;" onchange="loadSelectedImage(event)" id="selectContentImage" accept="image/*" type="file"/>
-                            <button onclick="selectImage()" class="adminManageContentSelectImageBTN">
-                                Select Image
-                            </button>
-                        </p>
-                        <label class="adminManageContentField">Type : </label><br>
-                        <select id="contentBoxType" onchange="changeActivityBoxType(this.value)" class="adminManageContentInputField" name="activityCardTyoe">
-                            <option value="activityBoxType1" selected>Type 1</option>
-                            <option value="activityBoxType2">Type 2</option>
-                            <option value="activityBoxType3">Image</option>
-                          </select>
+                        <label class="adminManageContentField">News Title : </label><br>
+                        <textarea id="contentTitle" onchange="changeContentTitle(this.value)" class="adminManageContentInputField"rows="4" cols="30">ACES refers to the Association of Computer Engineering Students from the prestigious School of Engineering, Cochin University of Science and technology (CUSAT).</textarea>
                         <br>
-                        <label class="adminManageContentField">Title : </label><br>
-                        <input id="contentTitle" onchange="changeContentTitle(this.value)" class="adminManageContentInputField" value="ACES" placeholder="Activity Title"/>
-                        <span id="nonImageContentData">
-                            <br>
-                            <label class="adminManageContentField">Description : </label><br>
-                            <textarea id="contentDescription" onchange="changeContentDescription(this.value)" class="adminManageContentInputField"rows="4" cols="30">ACES refers to the Association of Computer Engineering Students from the prestigious School of Engineering, Cochin University of Science and technology (CUSAT).</textarea>
-                            <br>
-                            <label class="adminManageContentField">Background Color : </label><br>
-                            <input id="contentBGColor" onchange="changeContentColor(this.value)" class="adminManageContentInputField" placeholder="color in rgb/hex/gradient" value="rgb(6, 110, 93)"/>
-                        </span>
+                        <label class="adminManageContentField">Color : </label><br>
+                        <input id="contentBGColor" onchange="changeContentColor(this.value)" class="adminManageContentInputField" placeholder="color in rgb/hex/gradient" value="rgb(11, 207, 4)"/>
                         <br>
                         <label class="adminManageContentField">Link : </label><br>
-                        <input id="contentLink" class="adminManageContentInputField" placeholder="Link to the activity" value="#"/>
+                        <input id="contentLink" class="adminManageContentInputField" placeholder="Link to the details" value="#"/>
                         <br>
                         <br>
                         <span id="contentSubmitErrorHolder"><sub><i class="material-icons"  style="font-size:160%;padding: 5px;">error</i></sub><span id="contentSubmitErrorText">Error!</span></span>
@@ -189,11 +152,11 @@
                 </div>
                 <div id="adminManageContentSetting" class="adminManageContentSetting">
                     <h2>Setting</h2>
-                    <p class="noteForAdmin">Note :- This will show the selected Number of Activity Card on screen(Top x last added)</p>
+                    <p class="noteForAdmin">Note :- This will show the selected Number of News Strips on screen(Top x last added)</p>
                     <label>
-                        No. Of Activity Card :
+                        No. Of News Strip :
                     </label>
-                    <select id="adminManageContentSettingValue" class="adminManageContentInputField" name="activityCardType">
+                    <select id="adminManageContentSettingValue" class="adminManageContentInputField">
                         <option value="3" selected>3</option>
                         <option value="4">4</option>
                         <option value="5">5</option>
@@ -203,7 +166,7 @@
                         <option value="9">9</option>
                       </select>
                     <p class="CenterBTNContainer">
-                        <button id="saveSettingBTN" onclick="saveContentSetting(this,'activitySettings')" class="adminManageContentSaveBTN">
+                        <button id="saveSettingBTN" onclick="saveContentSetting(this,'newsSettings')" class="adminManageContentSaveBTN">
                             Save Setting
                         </button>
                     </p>
