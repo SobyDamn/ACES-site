@@ -32,7 +32,7 @@ function activityBoxGenerator(id,elementId,type,title,description,link,backgroun
     if (type == "activityBoxType1") {
         var activityBoxType1 = `<div id="activityBoxType1" onclick="openActivity('${link}')" class="activityBox">
                             <div class="activityBoxImageContainer">
-                                <img class="activityBoxImage"/>
+                                <img class="activityBoxImage" src="resource/img/aces-default-image-preview-portrait.jpg"/>
                             </div>
                             <div style="background: ${background}" class="activityBoxDetails">
                                 <h3 class="activityBoxTitle">
@@ -48,7 +48,7 @@ function activityBoxGenerator(id,elementId,type,title,description,link,backgroun
     else if(type == "activityBoxType2") {
         var activityBoxType2 = `<div id="activityBoxType2" onclick="openActivity('${link}')" class="activityBox">
                             <div class="activityBoxImageContainer">
-                                <img class="activityBoxImage"/>
+                                <img class="activityBoxImage" src="resource/img/aces-default-image-preview-landscape.jpg"/>
                             </div>
                             <div style="background: ${background}" class="activityBoxDetails">
                                 <h3 class="activityBoxTitle">
@@ -63,7 +63,7 @@ function activityBoxGenerator(id,elementId,type,title,description,link,backgroun
     }
     else if(type == "activityBoxType3") {
         var activityBoxImage = `<div id="activityBoxType3" onclick="openActivity('${link}')" class="activityBox">
-                                <img class="activityBoxImage"/>
+                                <img class="activityBoxImage" src="resource/img/aces-default-image-preview-portrait.jpg"/>
                             </div>`
         return activityBoxImage;
     }

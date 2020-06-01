@@ -30,71 +30,42 @@ function selectImage() {
 
 function loadSelectedImage(event) {
     selectedImage = event.target.files[0];
-    var activityBoxImageElement = document.getElementsByClassName("activityBoxImage")
-    for (var i=0;i<activityBoxImageElement.length ; i++) {
-        activityBoxImageElement[i].src = URL.createObjectURL(event.target.files[0]);
+    var blogBoxImageElement = document.getElementsByClassName("blogBoxImg")
+    for (var i=0;i<blogBoxImageElement.length ; i++) {
+        blogBoxImageElement[i].src = URL.createObjectURL(event.target.files[0]);
     }
 }
-
 //change stuffs in preview
 function changeContentColor(value) {
-    const activityBoxDetailsElements = document.getElementsByClassName("activityBoxDetails")
-    for (var i= 0;i < activityBoxDetailsElements.length;i++) {
-        activityBoxDetailsElements[i].style.background = value;
+    //change color
+    const blogBoxDetailsElements = document.getElementsByClassName("blogBoxDetails")
+    for (var i= 0;i < blogBoxDetailsElements.length;i++) {
+        blogBoxDetailsElements[i].style.background = value;
     }
 }
 function changeContentTitle(value) {
     //change title
-    const activityBoxTitleElements = document.getElementsByClassName("activityBoxTitle")
-    for (var i= 0;i < activityBoxTitleElements.length;i++) {
-        activityBoxTitleElements[i].innerHTML = value;
+    const blogBoxTitleElements = document.getElementsByClassName("blogBoxTitle")
+    for (var i= 0;i < blogBoxTitleElements.length;i++) {
+        blogBoxTitleElements[i].innerHTML = value;
     }
 }
 function changeContentDescription(value) {
     //change description
 
-    const activityBoxDescriptionElements = document.getElementsByClassName("activityBoxAbout")
-    for (var i= 0;i < activityBoxDescriptionElements.length;i++) {
-        activityBoxDescriptionElements[i].innerHTML = value;
+    const blogBoxDescriptionElements = document.getElementsByClassName("blogBoxAbout")
+    for (var i= 0;i < blogBoxDescriptionElements.length;i++) {
+        blogBoxDescriptionElements[i].innerHTML = value;
     }
 }
-function changeActivityBoxType(value) {
-    //show the requested box
-    switch(value) {
-        case "activityBoxType1":
-            document.getElementById("activityBoxType2").style.display = "none";
-            document.getElementById("activityBoxType3").style.display = "none";
-            document.getElementById("activityBoxType1").style.display = "flex";
-            document.getElementById("activityBoxType1").style.animation = "fadeIn 0.2s"
-            document.getElementById("nonImageContentData").style.display = "block";
-            document.getElementById("nonImageContentData").style.animation = "fadeIn 0.4s"
-            break;
-        case "activityBoxType2":
-            document.getElementById("activityBoxType1").style.display = "none";
-            document.getElementById("activityBoxType3").style.display = "none";
-            document.getElementById("activityBoxType2").style.display = "flex";
-            document.getElementById("activityBoxType2").style.animation = "fadeIn 0.2s"
-            document.getElementById("nonImageContentData").style.display = "block";
-            document.getElementById("nonImageContentData").style.animation = "fadeIn 0.4s"
-            break;
-        case "activityBoxType3":
-            document.getElementById("activityBoxType2").style.display = "none";
-            document.getElementById("activityBoxType1").style.display = "none";
-            document.getElementById("activityBoxType3").style.display = "flex";
-            document.getElementById("activityBoxType3").style.animation = "fadeIn 0.2s"
-            document.getElementById("nonImageContentData").style.display = "none";
-            break;
-    }
-}
+
 function submitContent() {
     document.getElementById("contentSubmitErrorHolder").style.display = "none";
     var contentTitle = document.getElementById("contentTitle").value;
     var contentDescription = document.getElementById("contentDescription").value;
     var contentDetailBGColor = document.getElementById("contentBGColor").value;
     var contentLink = document.getElementById("contentLink").value;
-    var contentBoxType = document.getElementById("contentBoxType").value;
-    var activityDB = firebase.firestore().collection("activity");
-    var currDate = new Date()
+    var blogDB = firebase.firestore().collection("blog");
     submitInProgress(true)
     if (selectedImage == null) {
         document.getElementById("contentSubmitErrorHolder").style.display = "block";
@@ -104,16 +75,15 @@ function submitContent() {
     else {
         var contentImageURL = selectedImage.name
         //submit
-        activityDB.add({
+        blogDB.add({
             title: contentTitle,
             description: contentDescription,
             background: contentDetailBGColor,
             link: contentLink,
-            type: contentBoxType,
             image: contentImageURL,
             timestamp:firebase.firestore.FieldValue.serverTimestamp(),
-        }).then((activityRef)=>{
-            uploadActivityImage(activityRef.id)
+        }).then((blogRef)=>{
+            uploadBlogImage(blogRef.id)
         }).catch((error)=>{
             submitInProgress(false)
             document.getElementById("contentSubmitErrorHolder").style.display = "block";
@@ -122,22 +92,20 @@ function submitContent() {
     }
 }
 
-function saveEditActivity(id) {
+function saveEditBlog(id) {
     document.getElementById("contentSubmitErrorHolder").style.display = "none";
     var contentTitle = document.getElementById("contentTitle").value;
     var contentDescription = document.getElementById("contentDescription").value;
     var contentDetailBGColor = document.getElementById("contentBGColor").value;
     var contentLink = document.getElementById("contentLink").value;
-    var contentBoxType = document.getElementById("contentBoxType").value;
-    var activity = firebase.firestore().collection("activity").doc(id);
+    var blog = firebase.firestore().collection("blog").doc(id);
     submitInProgress(true)
     if (selectedImage == null) {
-        activity.update({
+        blog.update({
             title: contentTitle,
             description: contentDescription,
             background: contentDetailBGColor,
             link: contentLink,
-            type: contentBoxType,
         }).then(()=>{
             submitInProgress(false);
             document.getElementsByClassName("adminManageContentOption")[0].click();
@@ -152,15 +120,14 @@ function saveEditActivity(id) {
     else {
         var contentImageURL = selectedImage.name
         //submit
-        activity.update({
+        blog.update({
             title: contentTitle,
             description: contentDescription,
             background: contentDetailBGColor,
             link: contentLink,
-            type: contentBoxType,
             image: contentImageURL,
         }).then(()=>{
-            uploadActivityImage(id)
+            uploadBlogImage(id)
         }).catch((error)=>{
             submitInProgress(false)
             document.getElementById("contentSubmitErrorHolder").style.display = "block";
@@ -169,8 +136,8 @@ function saveEditActivity(id) {
     }
 }
 
-function uploadActivityImage(id) {
-    var storageRef = firebase.storage().ref("activity/"+id+"/"+selectedImage.name);
+function uploadBlogImage(id) {
+    var storageRef = firebase.storage().ref("blog/"+id+"/"+selectedImage.name);
     var uploadImage = storageRef.put(selectedImage);
     uploadImage.on('state_changed',(snapshot) => {
         document.getElementById("contentUploadStatus").style.display = "block";
@@ -192,39 +159,39 @@ function uploadActivityImage(id) {
 }
 function loadAvailableActivities(maxLimit) {
     document.getElementById("adminManageAvailableContentContainer").innerHTML = " "
-    document.getElementById("availableActivityLoader").style.display = "block";
-    var activityDB = firebase.firestore().collection("activity").orderBy("timestamp", "desc").limit(maxLimit);
-    activityDB.get().then(function(querySnapshot) {
-        document.getElementById("availableActivityLoader").style.display = "none";
+    document.getElementById("availableBlogLoader").style.display = "block";
+    var blogDB = firebase.firestore().collection("blog").orderBy("timestamp", "desc").limit(maxLimit);
+    blogDB.get().then(function(querySnapshot) {
+        document.getElementById("availableBlogLoader").style.display = "none";
         querySnapshot.forEach(function(doc) {
-            var activity = doc.data()
-            var description = escape(activity['description'])
-            var title = escape(activity['title'])
-            var activityElement = `<div class="adminManageAvailableContent">
-                                        <span class="adminManageAvailableContentTitle">${activity.title}</span><br>
-                                        <button onclick="editActivity('${doc.id}','${title}','${description}','${activity.link}','${activity.background}','${activity.type}','${activity.image}')" class="adminManageAvailableContentOptionBTN">Edit</button>
-                                        <button onclick="deleteActivity('${doc.id}','${title}','${activity.image}')" class="adminManageAvailableContentOptionBTN">Delete</button>
+            var blog = doc.data()
+            var description = escape(blog['description'])
+            var title = escape(blog['title'])
+            var blogElement = `<div class="adminManageAvailableContent">
+                                        <span class="adminManageAvailableContentTitle">${blog.title}</span><br>
+                                        <button onclick="editBlog('${doc.id}','${title}','${description}','${blog.link}','${blog.background}','${blog.image}')" class="adminManageAvailableContentOptionBTN">Edit</button>
+                                        <button onclick="deleteBlog('${doc.id}','${title}','${blog.image}')" class="adminManageAvailableContentOptionBTN">Delete</button>
                                         <button class="adminManageAvailableContentOptionBTN">About</button>
                                     </div>`
-            document.getElementById("adminManageAvailableContentContainer").innerHTML += activityElement
+            document.getElementById("adminManageAvailableContentContainer").innerHTML += blogElement
         });
     });
 }
 
-function deleteActivity(id,title,imageURL) {
+function deleteBlog(id,title,imageURL) {
     //delete element
     var popMsgElement = document.getElementById("adminNoticePOPMsg")
-    var activityDB = firebase.firestore().collection("activity");
-    var imageRef = firebase.storage().ref().child("activity/"+id+"/"+imageURL);
+    var blogDB = firebase.firestore().collection("blog");
+    var imageRef = firebase.storage().ref().child("blog/"+id+"/"+imageURL);
     var heading = "Delete"
-    var msg = "Delete Activity<br>'"+unescape(title)+"' ?"
+    var msg = "Delete Blog<br>'"+unescape(title)+"' ?"
     document.getElementById("confirmPOP").style.display = "inline"
     var confirmBTN = document.getElementById("confirmPOP");
     confirmBTN.onclick = function(){
         document.getElementById("confirmPopLoader").style.display = "block";
         document.getElementById("popFooter").style.display = "none"
         //Delete document and then stored image
-        activityDB.doc(id).delete().then(function() {
+        blogDB.doc(id).delete().then(function() {
             popMsgElement.innerHTML +="<br><b><i>Deleting Files..</i></b>";
             imageRef.delete().then(function() {
                 // File deleted successfully
@@ -247,33 +214,31 @@ function deleteActivity(id,title,imageURL) {
     showPopUp(heading,msg);
     
 }
-function editActivity(id,title,description,link,bgColor,activityType,image) {
+function editBlog(id,title,description,link,bgColor,image) {
     //edit
     document.getElementById("contentTitle").value = unescape(title);
     document.getElementById("contentDescription").value = unescape(description);
     document.getElementById("contentBGColor").value = bgColor;
     document.getElementById("contentLink").value = link;
-    document.getElementById("contentBoxType").value = activityType;
-    changeActivityBoxType(activityType);
     changeContentDescription(unescape(description));
     changeContentTitle(unescape(title));
     changeContentColor(bgColor);
     fetchPreviewImage(id,image);
     var saveEditBTN = document.getElementById("submitEditContentBTN")
     saveEditBTN.onclick = function(){
-        saveEditActivity(id);
+        saveEditBlog(id);
     }
     saveEditBTN.style.display = "inline";
-    document.getElementById("addNewActivityBTN").style.display = "inline";
+    document.getElementById("addNewBlogBTN").style.display = "inline";
     document.getElementById("submitContentBTN").style.display = "none";
     document.getElementsByClassName("adminManageContentOption")[1].click();
 }
 function fetchPreviewImage(id,fileName) {
     var storageRef = firebase.storage().ref();
-    var activityBoxImageElement = document.getElementsByClassName("activityBoxImage")
-    storageRef.child("activity/"+id+"/"+fileName).getDownloadURL().then((url)=> {
-        for (var i=0;i<activityBoxImageElement.length ; i++) {
-            activityBoxImageElement[i].src = url;
+    var blogBoxImageElement = document.getElementsByClassName("blogBoxImg")
+    storageRef.child("blog/"+id+"/"+fileName).getDownloadURL().then((url)=> {
+        for (var i=0;i<blogBoxImageElement.length ; i++) {
+            blogBoxImageElement[i].src = url;
         }
     }).catch((error)=> {
         // Handle any errors
@@ -321,33 +286,27 @@ function submitInProgress(isProcessing) {
 
 //reset form back to normal
 function resetContentForm() {
-    document.getElementById("addNewActivityBTN").style.display = "none";
+    document.getElementById("addNewBlogBTN").style.display = "none";
     document.getElementById("submitEditContentBTN").style.display = "none";
     document.getElementById("submitContentBTN").style.display = "inline";
     var defaultDesc = `ACES refers to the Association of Computer Engineering Students from the prestigious School of Engineering, Cochin University of Science and technology (CUSAT).`
     var defaultTitle = `ACES`;
-    var defaultBoxType = `activityBoxType1`;
     var defaultBGColor = `rgb(6, 110, 93)`;
     changeContentDescription(defaultDesc);
-    changeActivityBoxType(defaultBoxType);
     changeContentTitle(defaultTitle);
     changeContentColor(defaultBGColor);
-    changeActivityBoxType("activityBoxType1");
     document.getElementById("contentTitle").value = defaultTitle;
     document.getElementById("contentDescription").value = defaultDesc;
     document.getElementById("contentBGColor").value = defaultBGColor;
     document.getElementById("contentLink").value = "#";
-    document.getElementById("contentBoxType").value = "activityBoxType1";
-    var activityBoxImageElement = document.getElementsByClassName("activityBoxImage");
-    activityBoxImageElement[0].src = "../../resource/img/aces-blue-bg-portrait.jpg";
-    activityBoxImageElement[1].src = "../../resource/img/aces-blue-bg-landscape.jpg";
-    activityBoxImageElement[2].src = "../../resource/img/preview (1).jpg";
+    var blogBoxImageElement = document.getElementsByClassName("blogBoxImg");
+    blogBoxImageElement[0].src = "../../resource/img/aces-blue-bg-landscape.jpg";
 }
 function loadAvailableContentWithSettings() {
-    var activitySettingsRef = firebase.firestore().collection("settings").doc("activitySettings");
-    activitySettingsRef.get().then(function(activitySetting) {
-        if (activitySetting.exists) {
-            var settings = activitySetting.data();
+    var blogSettingsRef = firebase.firestore().collection("settings").doc("blogSettings");
+    blogSettingsRef.get().then(function(blogSetting) {
+        if (blogSetting.exists) {
+            var settings = blogSetting.data();
             
             maxValue = settings.maxValue;
             document.getElementById("adminManageContentSettingValue").value = maxValue; //show current max value in settings

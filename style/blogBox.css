@@ -89,12 +89,6 @@
 .blogBoxVisitLink:hover {
     text-decoration: underline;
 }
-#blogBox2 .blogBoxDetails {
-    background-color: rgb(24, 189, 24);
-}
-#blogBox3 .blogBoxDetails {
-    background-color: rgb(148, 47, 47);
-}
 #blogViewMorePageLink {
     padding: 10px;
     text-decoration: none;

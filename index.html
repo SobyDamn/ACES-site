@@ -12,6 +12,7 @@
         <script src ="scripts/header-manager.js"></script>
         <script src ="scripts/eventBox.js"></script>
         <script src ="scripts/activityBox.js"></script>
+        <script src ="scripts/blogBox.js"></script>
         <!---Stylsheets-->
         <link rel="stylesheet" href="style/popup_form.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -27,7 +28,7 @@
         <link rel="stylesheet" href="style/about.css">
         <link rel="stylesheet" href="style/footer.css">
     </head>
-    <body onload="loadEventBoxes(),loadActivitiesWithSettings()">
+    <body onload="loadEventBoxes(),loadActivitiesWithSettings(),loadBlogsWithSettings() ">
         <div id="header">
             <div id="logoContainer" class="headerBox">
                 <img id="site-logo" src="resource/img/aces-white.png"/>
@@ -141,54 +142,13 @@
         <div id="activity">
             <h1 id="activityBoxAreaTitle">ACTIVITY</h1>
             <div id="activityBoxContainer">
-                <!---Activity Box will be printed here-->
+                <!---Activity Box will appear here-->
             </div>
         </div>
         <div id="blogs">
             <h1 id="blogBoxAreaTitle">BLOGS</h1>
             <div id="blogBoxContainer">
-                <div id="blogBox1" class="blogBox">
-                    <div class="blogBoxImgContainer">
-                        <img class="blogBoxImg" src="resource/img/StephenHawking.jpg"/>
-                    </div>
-                    <div class="blogBoxDetails">
-                        <h3 class="blogBoxTitle">
-                            A Brief History Of Time
-                        </h3>
-                        <span class="blogBoxAbout">
-                            Early in 1983, Hawking first approached Simon Mitton, the editor in charge of astronomy books at Cambridge...
-                        </span>
-                    </div>
-                    <a class="blogBoxVisitLink" href="#">Read More</a>
-                </div>
-                <div id="blogBox2" class="blogBox">
-                    <div class="blogBoxImgContainer">
-                        <img class="blogBoxImg" src="resource/img/ricknmorty.jpg"/>
-                    </div>
-                    <div class="blogBoxDetails">
-                        <h3 class="blogBoxTitle">
-                            Rick and Morty
-                        </h3>
-                        <span class="blogBoxAbout">
-                            After having been missing for nearly 20 years, Rick Sanchez suddenly arrives at daughter Beth's doorstep to move...
-                        </span>
-                    </div>
-                    <a class="blogBoxVisitLink" href="#">Read More</a>
-                </div>
-                <div id="blogBox3" class="blogBox">
-                    <div class="blogBoxImgContainer">
-                        <img class="blogBoxImg" src="resource/img/1200px-Aristotle_Altemps_Inv8575.jpg"/>
-                    </div>
-                    <div class="blogBoxDetails">
-                        <h3 class="blogBoxTitle">
-                            Aristotle | A Great Philosopher
-                        </h3>
-                        <span class="blogBoxAbout">
-                            Aristotle (c. 384 B.C. to 322 B.C.) was an Ancient Greek philosopher and scientist who is still considered one of the greatest...
-                        </span>
-                    </div>
-                    <a class="blogBoxVisitLink" href="#">Read More</a>
-                </div>
+                <!---Blog Box will appear here-->
             </div>
             <a id="blogViewMorePageLink" href="#">VIEW MORE</a>
         </div>

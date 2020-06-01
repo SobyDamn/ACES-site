@@ -13,6 +13,7 @@
         <script src="script.js"></script>
         <!---Stylsheets-->
         <link rel="stylesheet" href="../../style/popup_form.css">
+        <link rel="stylesheet" href="../../style/popup.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
         <link rel="stylesheet" href="../../style/loader.css"/>
@@ -20,9 +21,9 @@
         <link rel="stylesheet" href="../../style/general_style.css">
         <link rel="stylesheet" href="../../style/footer.css">
         <link rel="stylesheet" href="../style.css"/>
-        <link rel="stylesheet" href="../../style/activityBox.css">
+        <link rel="stylesheet" href="../../style/blogBox.css">
     </head>
-    <body>
+    <body onload="loadAvailableContentWithSettings()">
         <div id="header">
             <div id="logoContainer" class="headerBox">
                 <img id="site-logo" src="../../resource/img/aces-white.png"/>
@@ -52,19 +53,19 @@
         <div class="multiBoxContainer">
             <div id="navContainer" class="headerContainerBox">
                 <div style="display: block;"class="navLinkContainer">
-                    <a href="../index.html" class="headerNavLinks"><p>HOME</p></a>
+                    <a href="../../index.html" class="headerNavLinks"><p>HOME</p></a>
                 </div>
                 <div class="navLinkContainer">
-                    <a href="../index.html#activity" class="headerNavLinks"><p>ACTIVITY</p></a>
+                    <a href="../../index.html#activity" class="headerNavLinks"><p>ACTIVITY</p></a>
                 </div>
                 <div class="navLinkContainer">
-                    <a href="../index.html#blogs" class="headerNavLinks"><p>BLOGS</p></a>
+                    <a href="../../index.html#blogs" class="headerNavLinks"><p>BLOGS</p></a>
                 </div>
                 <div class="navLinkContainer">
-                    <a href="../index.html#newsletter" class="headerNavLinks"><p>NEWSLETTER</p></a>
+                    <a href="../../index.html#newsletter" class="headerNavLinks"><p>NEWSLETTER</p></a>
                 </div>
                 <div class="navLinkContainer">
-                    <a href="../index.html#contact" class="headerNavLinks"><p>CONTACT</p></a>
+                    <a href="../../index.html#contact" class="headerNavLinks"><p>CONTACT</p></a>
                 </div>
             </div>
             <div id="searchBarConainer" class="headerContainerBox">
@@ -75,47 +76,117 @@
             <div class="adminContentOption">
                 <h2 class="adminManagerTite">Manage</h2>
                 <div class="adminContentOptionLinkContainer">
-                    <a href="../ManageActivity" class="adminContentOptionLink">Activity Card</a>
-                    <a href="../ManageBlogs" id="adminInteractedLinkOn" class="adminContentOptionLink">Blog Card</a>
-                    <a href="#" class="adminContentOptionLink">NEWSLETTER</a>
+                    <a href="../ManageActivity/" class="adminContentOptionLink">Activity Card</a>
+                    <a href="../ManageBlogs/" id="adminInteractedLinkOn" class="adminContentOptionLink">Blog Card</a>
+                    <a href="#" class="adminContentOptionLink">NEWS</a>
                     <a href="#" class="adminContentOptionLink">Users</a>
                 </div>
             </div>
             <div class="adminManageContent">
                 <h2 class="adminContentTite">Manage Blogs</h2>
                 <div class="adminManageContentOptionContainer">
-                    <a href="#" id="adminManageContentOption" class="adminManageContentOption">Activities</a>
-                    <a href="#" class="adminManageContentOption">Add/Edit Activity</a>
-                    <a href="#" class="adminManageContentOption">Settings</a>
+                    <button onclick="viewSelectedContentOption('adminManagerAvailableContentArea','adminManageContentEditAddContainer','adminManageContentSetting',0,1,2)" id="adminManageContentOption" class="adminManageContentOption">Activities</button>
+                    <button onclick="viewSelectedContentOption('adminManageContentEditAddContainer','adminManagerAvailableContentArea','adminManageContentSetting',1,0,2)" class="adminManageContentOption">Add/Edit Blog</button>
+                    <button onclick="viewSelectedContentOption('adminManageContentSetting','adminManageContentEditAddContainer','adminManagerAvailableContentArea',2,0,1)" class="adminManageContentOption">Settings</button>
                 </div>
-                <div class="adminManageAvailableContentContainer">
-                    <div class="adminManageAvailableContent">
-                        <span class="adminManageAvailableContentTitle">Aristotle | The Great Philosopher</span><br>
-                        <button class="adminManageAvailableContentOptionBTN">Edit</button>
-                        <button class="adminManageAvailableContentOptionBTN">Delete</button>
-                        <button class="adminManageAvailableContentOptionBTN">About</button>
+                <div id="adminManagerAvailableContentArea">
+                    <div id="adminManageAvailableContentContainer" class="adminManageAvailableContentContainer">
+                        <!---
+                            <div class="adminManageAvailableContent">
+                                <span class="adminManageAvailableContentTitle">Aristotle | The Great Philosopher</span><br>
+                                <button class="adminManageAvailableContentOptionBTN">Edit</button>
+                                <button class="adminManageAvailableContentOptionBTN">Delete</button>
+                                <button class="adminManageAvailableContentOptionBTN">About</button>
+                            </div>
+                        -->
                     </div>
-                    <div class="adminManageAvailableContent">
-                        <span class="adminManageAvailableContentTitle">Stephen Hawking</span><br>
-                        <button class="adminManageAvailableContentOptionBTN">Edit</button>
-                        <button class="adminManageAvailableContentOptionBTN">Delete</button>
-                        <button class="adminManageAvailableContentOptionBTN">About</button>
+                    <div id="availableBlogLoader" style="text-align: center; display: block;">
+                        <div class="lds-ellipsis"><div style="background: rgb(94, 117, 223);"></div><div style="background: rgb(94, 117, 223);"></div><div style="background: rgb(94, 117, 223);"></div><div style="background: rgb(94, 117, 223);"></div></div>
                     </div>
-                    <div class="adminManageAvailableContent">
-                        <span class="adminManageAvailableContentTitle">PewDiePie</span><br>
-                        <button class="adminManageAvailableContentOptionBTN">Edit</button>
-                        <button class="adminManageAvailableContentOptionBTN">Delete</button>
-                        <button class="adminManageAvailableContentOptionBTN">About</button>
-                    </div>
+                    <button onclick="loadMoreAvailableContent()" class="loadMoreBTN">
+                        Load More
+                    </button>
                 </div>
-                <div class="adminManageContentEditAddContainer">
+                <div id="adminManageContentEditAddContainer" class="adminManageContentEditAddContainer">
+                    <button id="addNewBlogBTN" style="display: none;" onclick="resetContentForm()" class="addNewContentBTN">+ ADD NEW</button>
                     <div class="adminManageContentPreviewBox">
-                        <center>
-                        </center>
-                        <p class="noteForAdmin">Note :- HTML & CSS codes can be used in the text field and RGB/HEX/Gradient color can be used in color field.</p>
+                        <h3 class='previewBoxTitle'>Preview</h3>
+                        <div id="blogBox1" class="blogBox">
+                            <div class="blogBoxImgContainer">
+                                <img class="blogBoxImg" src="../../resource/img/aces-blue-bg-landscape.jpg"/>
+                            </div>
+                            <div style="background-color: rgb(6, 110, 93);" class="blogBoxDetails">
+                                <h3 class="blogBoxTitle">
+                                    ACES
+                                </h3>
+                                <span class="blogBoxAbout">
+                                    ACES refers to the Association of Computer Engineering Students from the prestigious School of Engineering, Cochin University of Science and technology...
+                                </span>
+                            </div>
+                            <a class="blogBoxVisitLink" href="#">Read More</a>
+                        </div>
                     </div>
+                    <p class="noteForAdmin">Note :- HTML & CSS codes can be used in the text field and RGB/HEX/Gradient color can be used in color field.</p>
                     <div class="adminManageContentEditFieldContainer">
-                        
+                        <p class="CenterBTNContainer">
+                            <input style="display: none;" onchange="loadSelectedImage(event)" id="selectContentImage" accept="image/*" type="file"/>
+                            <button onclick="selectImage()" class="adminManageContentSelectImageBTN">
+                                Select Image
+                            </button>
+                        </p>
+                        <label class="adminManageContentField">Title : </label><br>
+                        <input id="contentTitle" onchange="changeContentTitle(this.value)" class="adminManageContentInputField" value="ACES" placeholder="Blog Title"/>
+                        <span id="nonImageContentData">
+                            <br>
+                            <label class="adminManageContentField">Description : </label><br>
+                            <textarea id="contentDescription" onchange="changeContentDescription(this.value)" class="adminManageContentInputField"rows="4" cols="30">ACES refers to the Association of Computer Engineering Students from the prestigious School of Engineering, Cochin University of Science and technology (CUSAT).</textarea>
+                            <br>
+                            <label class="adminManageContentField">Background Color : </label><br>
+                            <input id="contentBGColor" onchange="changeContentColor(this.value)" class="adminManageContentInputField" placeholder="color in rgb/hex/gradient" value="rgb(6, 110, 93)"/>
+                        </span>
+                        <br>
+                        <label class="adminManageContentField">Link : </label><br>
+                        <input id="contentLink" class="adminManageContentInputField" placeholder="Link to the blog" value="#"/>
+                        <br>
+                        <br>
+                        <span id="contentSubmitErrorHolder"><sub><i class="material-icons"  style="font-size:160%;padding: 5px;">error</i></sub><span id="contentSubmitErrorText">Error!</span></span>
+                        <p id="contentUploadStatus">Upload status</p>
+                        <div id="submitContentLoader" style="text-align: center; display: none;">
+                            <div class="lds-ellipsis"><div style="background: rgb(94, 117, 223);"></div><div style="background: rgb(94, 117, 223);"></div><div style="background: rgb(94, 117, 223);"></div><div style="background: rgb(94, 117, 223);"></div></div>
+                        </div>
+                        <p class="CenterBTNContainer">
+                            <button onclick="submitContent()" id="submitContentBTN" class="adminManageContentSaveBTN">
+                                Add
+                            </button>
+                            <br>
+                            <button style="display: none;" id="submitEditContentBTN" class="adminManageContentSaveBTN">
+                                Save Edit
+                            </button>
+                        </p>
+                    </div>
+                </div>
+                <div id="adminManageContentSetting" class="adminManageContentSetting">
+                    <h2>Setting</h2>
+                    <p class="noteForAdmin">Note :- This will show the selected Number of Blog Card on screen(Top x last added)</p>
+                    <label>
+                        No. Of Blog Card :
+                    </label>
+                    <select id="adminManageContentSettingValue" class="adminManageContentInputField">
+                        <option value="3" selected>3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                      </select>
+                    <p class="CenterBTNContainer">
+                        <button id="saveSettingBTN" onclick="saveContentSetting(this,'blogSettings')" class="adminManageContentSaveBTN">
+                            Save Setting
+                        </button>
+                    </p>
+                    <div id="saveSettingLoader" style="text-align: center; display: none;">
+                        <div class="lds-ellipsis"><div style="background: rgb(94, 117, 223);"></div><div style="background: rgb(94, 117, 223);"></div><div style="background: rgb(94, 117, 223);"></div><div style="background: rgb(94, 117, 223);"></div></div>
                     </div>
                 </div>
             </div>
@@ -149,8 +220,27 @@
                             <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
                         </div>
                         <button class="popBTN" id="loginBTN" onclick="login()">Login</button><br>
-                        <button class="transparentBTN" id="registerFormPOPBTN" onclick = "showRegisterForm()">New Here? Register!</button>
                     </div>
+                </div>
+            </div>
+        </div>
+        <div id="noticePOP" class="modal">
+            <!-- Modal content -->
+            <div class="modal-content">
+                <div class="popHeader">
+                    <div id="adminNoticePOPHeading" style="font-weight: 800;word-wrap: break-word;" class="popHeading">
+                        Error
+                    </div>
+                </div>
+                <div id="adminNoticePOPMsg" class="popContent">
+                    Some error message
+                </div>
+                <div id="confirmPopLoader" style="text-align: center; display: none;">
+                    <div class="lds-ellipsis"><div style="background: rgb(94, 117, 223);"></div><div style="background: rgb(94, 117, 223);"></div><div style="background: rgb(94, 117, 223);"></div><div style="background: rgb(94, 117, 223);"></div></div>
+                </div>
+                <div id = "popFooter">
+                    <button style="background-color: rgb(230, 26, 26); border-radius: 3px; padding: 8px; color: rgb(250, 250, 250);display: none;" class="popBTN" id="confirmPOP">Confirm</button>
+                    <button class="popBTN" id="closePOP" onclick="closeErrorPop()">Close</button>
                 </div>
             </div>
         </div>
