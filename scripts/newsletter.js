@@ -37,7 +37,7 @@ function loadNews(maxLimit) {
 }
 
 function newsStripGenerator(text,color,date,link) {
-    var newsBox = `<div onclick="openNews('${link}')" style="border-color:${color}" class="newsBox">
+    var newsBox = `<div onclick="openNewsletter('${link}')" style="border-color:${color}" class="newsBox">
                         <div class="newsTextContainer">
                             <span class="newsText">
                                 ${text}
@@ -62,7 +62,7 @@ function loadOppurtunity(maxLimit) {
     });
 }
 function oppurtunityBoxGenerator(text,lastDate,link) {
-    var oppurtunityBox = `<div class="oppurtunityBox">
+    var oppurtunityBox = `<div onclick="openNewsletter('${link}')" class="oppurtunityBox">
                             <div class="oppurtunityDeadlineContainer">
                                 <div class="oppurtunityDeadlineDateContainer">
                                     <span>
@@ -102,6 +102,6 @@ function nerdDate(x) {
     return dateValues;
 }
 
-function openNews(url) {
+function openNewsletter(url) {
     window.open(url);
 }
