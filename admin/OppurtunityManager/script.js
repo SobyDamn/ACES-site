@@ -1,13 +1,12 @@
-var maxValue = 3; //setting for max car allowed on screen 
-
+var maxValue = 3; //setting for max card allowed on screen will come from db this is default
 
 function loadDateOnStrip(value) {
     if (value == null) {
         var x = new Date();
-        document.getElementsByClassName("newsPostDate")[0].innerHTML = nerdDate(x);
+        changeContentDate(x)
     }
     else {
-        document.getElementsByClassName("newsPostDate")[0].innerHTML = nerdDate(value);
+        changeContentDate(value)
     }
 }
 /**
@@ -29,26 +28,20 @@ function viewSelectedContentOption(view,hide1,hide2,selectedELement,nonSelectedE
     document.getElementsByClassName("adminManageContentOption")[selectedELement].style.color = "rgb(25, 12, 204)";
     document.getElementsByClassName("adminManageContentOption")[selectedELement].style["border-bottom"] = "2px solid rgb(25, 12, 204)";
 }
-//change stuffs in preview
-function changeContentColor(value) {
-    //change color
-    const newsBoxElements = document.getElementsByClassName("newsBox")
-    for (var i= 0;i < newsBoxElements.length;i++) {
-        newsBoxElements[i].style['border-color'] = value;
-    }
-}
-function colorPickerChange(value) {
-    changeContentColor(value);
-    document.getElementById("contentBGColor").value = value;
-}
-function changeContentTitle(value) {
-    //change title
-    const newsTextElements = document.getElementsByClassName("newsText")
-    for (var i= 0;i < newsTextElements.length;i++) {
-        newsTextElements[i].innerHTML = value;
-    }
+
+function changeContentDate(value) {
+    document.getElementsByClassName("oppurtunityLastDateDay")[0].innerHTML = nerdDate(value)[0];
+    document.getElementsByClassName("oppurtunityLastDateMonth")[0].innerHTML = nerdDate(value)[1];
+    document.getElementsByClassName("oppurtunityLastDateYear")[0].innerHTML = nerdDate(value)[2];
 }
 
+function changeContentTitle(value) {
+    //change title
+    const oppurtunityTextElements = document.getElementsByClassName("oppurtunityText")
+    for (var i= 0;i < oppurtunityTextElements.length;i++) {
+        oppurtunityTextElements[i].innerHTML = value;
+    }
+}
 function nerdDate(x) {
     var date = new Date(x)
     var monthsArray = new Array('Jan', 'Feb', 'Mar', 'April', 'May', 'June', 'July', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec')
@@ -56,24 +49,30 @@ function nerdDate(x) {
     var month = date.getMonth()
     var year = date.getFullYear()
     var outPutDate = `${day} ${monthsArray[month]},${year}`
-    return outPutDate;
-
+    var nerdDay;
+    if (day < 10 ) {
+        nerdDay = `0${day}`;
+    }
+    else {
+        nerdDay = day;
+    }
+    var dateValues = new Array(nerdDay,monthsArray[month],year)
+    return dateValues;
 }
+
 function submitContent() {
     document.getElementById("contentSubmitErrorHolder").style.display = "none";
     var contentTitle = document.getElementById("contentTitle").value;
-    var contentColor = document.getElementById("contentBGColor").value;
+    var lastDate = document.getElementById("contentDateField").value;
     var contentLink = document.getElementById("contentLink").value;
-    var currDate = new Date();
-    var newsDB = firebase.firestore().collection("news");
+    var oppurtunityDB = firebase.firestore().collection("oppurtunity");
     submitInProgress(true)
-    newsDB.add({
+    oppurtunityDB.add({
         text: contentTitle,
-        color: contentColor,
+        lastDate: lastDate,
         link: contentLink,
-        date: nerdDate(currDate),
         timestamp:firebase.firestore.FieldValue.serverTimestamp(),
-    }).then((newsRef)=>{
+    }).then(()=>{
         submitInProgress(false);
         document.getElementsByClassName("adminManageContentOption")[0].click();
         loadAvailableContentWithSettings();
@@ -85,16 +84,16 @@ function submitContent() {
     })
 }
 
-function saveEditNews(id) {
+function saveEditOppurtunity(id) {
     document.getElementById("contentSubmitErrorHolder").style.display = "none";
     var contentTitle = document.getElementById("contentTitle").value;
-    var contentColor = document.getElementById("contentBGColor").value;
+    var lastDate = document.getElementById("contentDateField").value;
     var contentLink = document.getElementById("contentLink").value;
-    var news = firebase.firestore().collection("news").doc(id);
+    var oppurtunity = firebase.firestore().collection("oppurtunity").doc(id);
     submitInProgress(true)
-    news.update({
+    oppurtunity.update({
         text: contentTitle,
-        color: contentColor,
+        lastDate: lastDate,
         link: contentLink,
     }).then(()=>{
         submitInProgress(false);
@@ -108,45 +107,45 @@ function saveEditNews(id) {
     })
 }
 
-function loadAvailableNews(maxLimit) {
+function loadAvailableOppurtunity(maxLimit) {
     document.getElementById("adminManageAvailableContentContainer").innerHTML = " "
-    document.getElementById("availableNewsLoader").style.display = "block";
-    var newsDB = firebase.firestore().collection("news").orderBy("timestamp", "desc").limit(maxLimit);
-    newsDB.get().then(function(querySnapshot) {
-        document.getElementById("availableNewsLoader").style.display = "none";
+    document.getElementById("availableOppurtunityLoader").style.display = "block";
+    var oppurtunityDB = firebase.firestore().collection("oppurtunity").orderBy("timestamp", "desc").limit(maxLimit);
+    oppurtunityDB.get().then(function(querySnapshot) {
+        document.getElementById("availableOppurtunityLoader").style.display = "none";
         querySnapshot.forEach(function(doc) {
-            var news = doc.data()
-            var text = escape(news['text'])
+            var oppurtunity = doc.data()
+            var text = escape(oppurtunity['text'])
             var contentTitle = "title";
-            if (news.text.length > 60) {
-                contentTitle = news.text.slice(0,100) + "...";
+            if (oppurtunity.text.length > 100) {
+                contentTitle = oppurtunity.text.slice(0,60) + "...";
             }
             else {
-                contentTitle = news.text;
+                contentTitle = oppurtunity.text;
             }
-            var newsElement = `<div class="adminManageAvailableContent">
+            var oppurtunityElement = `<div class="adminManageAvailableContent">
                                         <span class="adminManageAvailableContentTitle">${contentTitle}</span><br>
-                                        <button onclick="editNews('${doc.id}','${text}','${news.color}','${news.link}','${news.date}')" class="adminManageAvailableContentOptionBTN">Edit</button>
-                                        <button onclick="deleteNews('${doc.id}','${escape(contentTitle)}')" class="adminManageAvailableContentOptionBTN">Delete</button>
+                                        <button onclick="editOppurtunity('${doc.id}','${text}','${oppurtunity.lastDate}','${oppurtunity.link}')" class="adminManageAvailableContentOptionBTN">Edit</button>
+                                        <button onclick="deleteOppurtunity('${doc.id}','${escape(contentTitle)}')" class="adminManageAvailableContentOptionBTN">Delete</button>
                                         <button class="adminManageAvailableContentOptionBTN">About</button>
                                     </div>`
-            document.getElementById("adminManageAvailableContentContainer").innerHTML += newsElement
+            document.getElementById("adminManageAvailableContentContainer").innerHTML += oppurtunityElement
         });
     });
 }
 
-function deleteNews(id,title) {
+function deleteOppurtunity(id,title) {
     //delete element
     var popMsgElement = document.getElementById("adminNoticePOPMsg")
-    var newsDB = firebase.firestore().collection("news");
+    var oppurtunityDB = firebase.firestore().collection("oppurtunity");
     var heading = "Delete"
-    var msg = "Delete News<br>'"+unescape(title)+"' ?"
+    var msg = "Delete Oppurtunity<br>'"+unescape(title)+"' ?"
     document.getElementById("confirmPOP").style.display = "inline"
     var confirmBTN = document.getElementById("confirmPOP");
     confirmBTN.onclick = function(){
         document.getElementById("confirmPopLoader").style.display = "block";
         document.getElementById("popFooter").style.display = "none"
-        newsDB.doc(id).delete().then(function() {
+        oppurtunityDB.doc(id).delete().then(function() {
             popMsgElement.innerHTML +="<br><b><i>Deleted Successfully</i></b>";
             loadAvailableContentWithSettings()
             closeErrorPop()
@@ -160,20 +159,19 @@ function deleteNews(id,title) {
     showPopUp(heading,msg);
     
 }
-function editNews(id,text,color,link,date) {
+function editOppurtunity(id,text,lastDate,link) {
     //edit
-    loadDateOnStrip(date)
+    loadDateOnStrip(lastDate)
     document.getElementById("contentTitle").value = unescape(text);
-    document.getElementById("contentBGColor").value = color;
+    document.getElementById("contentDateField").value = lastDate;
     document.getElementById("contentLink").value = link;
     changeContentTitle(unescape(text));
-    changeContentColor(color);
     var saveEditBTN = document.getElementById("submitEditContentBTN")
     saveEditBTN.onclick = function(){
-        saveEditNews(id);
+        saveEditOppurtunity(id);
     }
     saveEditBTN.style.display = "inline";
-    document.getElementById("addNewNewsBTN").style.display = "inline";
+    document.getElementById("addNewOppurtunityBTN").style.display = "inline";
     document.getElementById("submitContentBTN").style.display = "none";
     document.getElementsByClassName("adminManageContentOption")[1].click();
 }
@@ -216,35 +214,34 @@ function submitInProgress(isProcessing) {
 
 //reset form back to normal
 function resetContentForm() {
-    document.getElementById("addNewNewsBTN").style.display = "none";
+    document.getElementById("addNewOppurtunityBTN").style.display = "none";
     document.getElementById("submitEditContentBTN").style.display = "none";
     document.getElementById("submitContentBTN").style.display = "inline";
-    var defaultText = `ACES refers to the Association of Computer Engineering Students from the prestigious School of Engineering, Cochin University of Science and technology (CUSAT).`;
-    var defaultColor = `rgb(11, 207, 4)`;
+    var defaultText = `I don't kknow how long a single line can be, Expecting it to be this long!`;
     changeContentTitle(defaultText);
-    changeContentColor(defaultColor);
+    loadDateOnStrip(null);
     document.getElementById("contentTitle").value = defaultText;
-    document.getElementById("contentBGColor").value = defaultColor;
+    document.getElementById("contentDateField").value = "";
     document.getElementById("contentLink").value = "#";
 }
 function loadAvailableContentWithSettings() {
-    var newsSettingRef = firebase.firestore().collection("settings").doc("newsSettings");
-    newsSettingRef.get().then(function(newsSetting) {
-        if (newsSetting.exists) {
-            var settings = newsSetting.data();
+    var oppurtunitySettingRef = firebase.firestore().collection("settings").doc("oppurtunitySettings");
+    oppurtunitySettingRef.get().then(function(oppurtunitySetting) {
+        if (oppurtunitySetting.exists) {
+            var settings = oppurtunitySetting.data();
             maxValue = settings.maxValue;
             document.getElementById("adminManageContentSettingValue").value = maxValue; //show current max value in settings
-            loadAvailableNews(maxValue)
+            loadAvailableOppurtunity(maxValue)
         } else {
             // doc.data() will be undefined in this case
             console.log("No such document! Running with default value");
-            loadAvailableNews(3)
+            loadAvailableOppurtunity(3)
         }
     })
 }
 function loadMoreAvailableContent() {
     maxValue += 5;
-    loadAvailableNews(maxValue);
+    loadAvailableOppurtunity(maxValue);
 }
 function saveContentSetting(button,type) {
     var loader = document.getElementById("saveSettingLoader")

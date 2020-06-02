@@ -79,6 +79,7 @@
                     <a href="../ManageActivity/" class="adminContentOptionLink">Activity Card</a>
                     <a href="../ManageBlogs/" id="adminInteractedLinkOn" class="adminContentOptionLink">Blog Card</a>
                     <a href="../NewsManager/" class="adminContentOptionLink">NEWS</a>
+                    <a href="../OppurtunityManager/" class="adminContentOptionLink">Oppurtunity</a>
                     <a href="../UserManager" class="adminContentOptionLink">Users</a>
                 </div>
             </div>
@@ -103,9 +104,11 @@
                     <div id="availableBlogLoader" style="text-align: center; display: block;">
                         <div class="lds-ellipsis"><div style="background: rgb(94, 117, 223);"></div><div style="background: rgb(94, 117, 223);"></div><div style="background: rgb(94, 117, 223);"></div><div style="background: rgb(94, 117, 223);"></div></div>
                     </div>
-                    <button onclick="loadMoreAvailableContent()" class="loadMoreBTN">
-                        Load More
-                    </button>
+                    <div class="loadMoreBTNContainer">
+                        <button onclick="loadMoreAvailableContent()" class="loadMoreBTN">
+                            Load More
+                        </button>
+                    </div>
                 </div>
                 <div id="adminManageContentEditAddContainer" class="adminManageContentEditAddContainer">
                     <button id="addNewBlogBTN" style="display: none;" onclick="resetContentForm()" class="addNewContentBTN">+ ADD NEW</button>
@@ -143,6 +146,7 @@
                             <br>
                             <label class="adminManageContentField">Background Color : </label><br>
                             <input id="contentBGColor" onchange="changeContentColor(this.value)" class="adminManageContentInputField" placeholder="color in rgb/hex/gradient" value="rgb(6, 110, 93)"/>
+                            <sub><input style="width: 35px;height: 35px;" onchange="colorPickerChange(this.value)" value="#066E5D" type="color"/></sub>
                         </span>
                         <br>
                         <label class="adminManageContentField">Link : </label><br>

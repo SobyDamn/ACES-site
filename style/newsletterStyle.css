@@ -127,11 +127,11 @@
     display: inline-block;
     background-color: rgb(4, 128, 212);
     overflow: hidden;
-    vertical-align: bottom;
 }
-.oppurtunityText {
+.oppurtunityTextContainerArea {
     width: 85%;
     display: inline-block;
+    padding: 5px;
 }
 .oppurtunityLastDateHeading {
     font-family: openSans-Bold;
@@ -163,18 +163,15 @@
 .oppurtunityTextContainer {
     display: table-cell;
     vertical-align: middle;
-    min-height: 80px;
-    position: relative;
-    padding-bottom: 5px;
-    padding-top: 5px;
-    padding-left: 5px;
-}
-.oppurtunityText {
-    vertical-align: bottom;
+    height: 80px;
 }
 .oppurtunityDeadlineDateContainer {
-    vertical-align: middle;
+    display: table;
+    height: 100%;
+    width: 100%;
 }
-.oppurtunityDeadlineDateContainer p {
-    margin: auto;
+.oppurtunityDeadlineDateContainer span {
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
 }

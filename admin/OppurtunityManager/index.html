@@ -78,16 +78,16 @@
                 <div class="adminContentOptionLinkContainer">
                     <a href="../ManageActivity/" class="adminContentOptionLink">Activity Card</a>
                     <a href="../ManageBlogs/" class="adminContentOptionLink">Blog Card</a>
-                    <a href="../NewsManager/" id="adminInteractedLinkOn" class="adminContentOptionLink">NEWS</a>
-                    <a href="../OppurtunityManager/" class="adminContentOptionLink">Oppurtunity</a>
+                    <a href="../NewsManager/" class="adminContentOptionLink">NEWS</a>
+                    <a href="../OppurtunityManager/" id="adminInteractedLinkOn" class="adminContentOptionLink">Oppurtunity</a>
                     <a href="#" class="adminContentOptionLink">Users</a>
                 </div>
             </div>
             <div class="adminManageContent">
-                <h2 class="adminContentTite">Manage News</h2>
+                <h2 class="adminContentTite">Manage Oppurtunit Cards</h2>
                 <div class="adminManageContentOptionContainer">
                     <button onclick="viewSelectedContentOption('adminManagerAvailableContentArea','adminManageContentEditAddContainer','adminManageContentSetting',0,1,2)" id="adminManageContentOption" class="adminManageContentOption">Activities</button>
-                    <button onclick="viewSelectedContentOption('adminManageContentEditAddContainer','adminManagerAvailableContentArea','adminManageContentSetting',1,0,2)" class="adminManageContentOption">Add/Edit News</button>
+                    <button onclick="viewSelectedContentOption('adminManageContentEditAddContainer','adminManagerAvailableContentArea','adminManageContentSetting',1,0,2)" class="adminManageContentOption">Add/Edit Oppurtunit</button>
                     <button onclick="viewSelectedContentOption('adminManageContentSetting','adminManageContentEditAddContainer','adminManagerAvailableContentArea',2,0,1)" class="adminManageContentOption">Settings</button>
                 </div>
                 <div id="adminManagerAvailableContentArea">
@@ -101,7 +101,7 @@
                             </div>
                         -->
                     </div>
-                    <div id="availableNewsLoader" style="text-align: center; display: block;">
+                    <div id="availableOppurtunityLoader" style="text-align: center; display: block;">
                         <div class="lds-ellipsis"><div style="background: rgb(94, 117, 223);"></div><div style="background: rgb(94, 117, 223);"></div><div style="background: rgb(94, 117, 223);"></div><div style="background: rgb(94, 117, 223);"></div></div>
                     </div>
                     <div class="loadMoreBTNContainer">
@@ -111,28 +111,36 @@
                     </div>
                 </div>
                 <div id="adminManageContentEditAddContainer" class="adminManageContentEditAddContainer">
-                    <button id="addNewNewsBTN" style="display: none;" onclick="resetContentForm()" class="addNewContentBTN">+ ADD NEW</button>
-                    <div class="adminManageContentNewsPreviewBox">
+                    <button id="addNewOppurtunityBTN" style="display: none;" onclick="resetContentForm()" class="addNewContentBTN">+ ADD NEW</button>
+                    <div class="adminManageContentOppurtunityPreviewBox">
                         <h3 class='previewBoxTitle'>Preview</h3>
-                        <div style="border-color: rgb(11, 207, 4);" class="newsBox">
-                            <div class="newsTextContainer">
-                                <span class="newsText">
-                                    ACES refers to the Association of Computer Engineering Students from the prestigious School of Engineering, Cochin University of Science and technology (CUSAT).
-                                </span>
+                        <div class="oppurtunityBox">
+                            <div class="oppurtunityDeadlineContainer">
+                                <div class="oppurtunityDeadlineDateContainer">
+                                    <span>
+                                        <h4 class="oppurtunityLastDateHeading">Last Date</h4>
+                                        <div class="oppurtunityLastDateDay">01</div>
+                                        <div class="oppurtunityLastDateMonth">Dec</div>
+                                        <div class="oppurtunityLastDateYear">2020</div>
+                                    </span>
+                                </div>
                             </div>
-                            <span class="newsPostDate">
-                                12 Mar,2020
-                            </span>
+                            <div class="oppurtunityTextContainerArea">
+                                <div class="oppurtunityTextContainer">
+                                    <span class="oppurtunityText">
+                                        I don't kknow how long a single line can be, Expecting it to be this long!
+                                    </span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <p class="noteForAdmin">Note :- HTML & CSS codes can be used in the text field.</p>
                     <div class="adminManageContentEditFieldContainer">
-                        <label class="adminManageContentField">News Title : </label><br>
-                        <textarea id="contentTitle" onchange="changeContentTitle(this.value)" class="adminManageContentInputField"rows="4" cols="30">ACES refers to the Association of Computer Engineering Students from the prestigious School of Engineering, Cochin University of Science and technology (CUSAT).</textarea>
+                        <label class="adminManageContentField">Oppurtunity Title : </label><br>
+                        <textarea id="contentTitle" onchange="changeContentTitle(this.value)" class="adminManageContentInputField"rows="4" cols="30">I don't kknow how long a single line can be, Expecting it to be this long!</textarea>
                         <br>
-                        <label class="adminManageContentField">Color : </label><br>
-                        <input id="contentBGColor" onchange="changeContentColor(this.value)" class="adminManageContentInputField" placeholder="color in rgb/hex/gradient" value="rgb(11, 207, 4)"/>
-                        <sub><input style="width: 35px;height: 35px;" onchange="colorPickerChange(this.value)" value="#0BCF04" type="color"/></sub>
+                        <label class="adminManageContentField">Last Date : </label><br>
+                        <input id="contentDateField" onchange="changeContentDate(this.value)" class="adminManageContentInputField" type="date"/>
                         <br>
                         <label class="adminManageContentField">Link : </label><br>
                         <input id="contentLink" class="adminManageContentInputField" placeholder="Link to the details" value="#"/>
@@ -156,9 +164,9 @@
                 </div>
                 <div id="adminManageContentSetting" class="adminManageContentSetting">
                     <h2>Setting</h2>
-                    <p class="noteForAdmin">Note :- This will show the selected Number of News Strips on screen(Top x last added)</p>
+                    <p class="noteForAdmin">Note :- This will show the selected Number of Oppurtunity Strips on screen(Top x last added)</p>
                     <label>
-                        No. Of News Strip :
+                        No. Of Oppurtunity Strip :
                     </label>
                     <select id="adminManageContentSettingValue" class="adminManageContentInputField">
                         <option value="3" selected>3</option>
@@ -168,12 +176,9 @@
                         <option value="7">7</option>
                         <option value="8">8</option>
                         <option value="9">9</option>
-                        <option value="7">10</option>
-                        <option value="8">11</option>
-                        <option value="9">12</option>
                       </select>
                     <p class="CenterBTNContainer">
-                        <button id="saveSettingBTN" onclick="saveContentSetting(this,'newsSettings')" class="adminManageContentSaveBTN">
+                        <button id="saveSettingBTN" onclick="saveContentSetting(this,'oppurtunitySettings')" class="adminManageContentSaveBTN">
                             Save Setting
                         </button>
                     </p>

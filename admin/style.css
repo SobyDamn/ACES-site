@@ -227,13 +227,8 @@ button {
     background-color: #d5d8db;
 }
 .loadMoreBTN {
-    position: absolute;
     padding: 8px;
     text-align: center;
-    bottom:0;
-    right: 50%;
-    margin-top: 55px;
-    margin-bottom: 25px;
     font-family: openSans-Bold;
     border: none;
     color: #e3e5e9;
@@ -241,6 +236,11 @@ button {
     border-radius: 5px;
     font-size: 13px;
 
+}
+.loadMoreBTNContainer {
+    text-align: center;
+    margin-top: 95px;
+    margin-bottom: 25px;
 }
 .loadMoreBTN:hover {
     background-color: #090a4d;

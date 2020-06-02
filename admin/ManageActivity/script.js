@@ -43,6 +43,10 @@ function changeContentColor(value) {
         activityBoxDetailsElements[i].style.background = value;
     }
 }
+function colorPickerChange(value) {
+    changeContentColor(value);
+    document.getElementById("contentBGColor").value = value;
+}
 function changeContentTitle(value) {
     //change title
     const activityBoxTitleElements = document.getElementsByClassName("activityBoxTitle")
