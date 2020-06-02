@@ -18,23 +18,23 @@ function loadBlogs(maxLimit) {
     activityDB.get().then(function(querySnapshot) {
         querySnapshot.forEach(function(doc) {
             var blog = doc.data()
-            document.getElementById("blogBoxContainer").innerHTML += blogBoxGenerator(doc.id,i,blog.title,blog.description,blog.link,blog.background,blog.image)
+            document.getElementById("blogBoxContainer").innerHTML += blogBoxGenerator(doc.id,i,blog.title,blog.description,blog.link,blog.background,blog.image,blog.textColor,blog.titleColor)
             i++;
         });
     });
 }
 
-function blogBoxGenerator(id,elementId,title,description,link,background,imageURL) {
+function blogBoxGenerator(id,elementId,title,description,link,background,imageURL,textColor,titleColor) {
     fetchBlogPreviewImage(id,imageURL,elementId);
     var blogBoxElement = `<div class="blogBox">
                             <div class="blogBoxImgContainer">
                                 <img class="blogBoxImg" src="resource/img/aces-default-image-preview-landscape.jpg"/>
                             </div>
                             <div style="background: ${background}" class="blogBoxDetails">
-                                <h3 class="blogBoxTitle">
+                                <h3 style="color: ${titleColor}" class="blogBoxTitle">
                                     ${title}
                                 </h3>
-                                <span class="blogBoxAbout">
+                                <span style="color: ${textColor}" class="blogBoxAbout">
                                     ${description}
                                 </span>
                             </div>

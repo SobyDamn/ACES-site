@@ -18,7 +18,7 @@ function loadActivities(maxLimit) {
     activityDB.get().then(function(querySnapshot) {
         querySnapshot.forEach(function(doc) {
             var activity = doc.data()
-            document.getElementById("activityBoxContainer").innerHTML += activityBoxGenerator(doc.id,i,activity.type,activity.title,activity.description,activity.link,activity.background,activity.image)
+            document.getElementById("activityBoxContainer").innerHTML += activityBoxGenerator(doc.id,i,activity.type,activity.title,activity.description,activity.link,activity.background,activity.image,activity.textColor,activity.titleColor)
             i++;
         });
     });
@@ -27,7 +27,7 @@ function openActivity(url) {
     window.open(url);
 }
 
-function activityBoxGenerator(id,elementId,type,title,description,link,background,imageURL) {
+function activityBoxGenerator(id,elementId,type,title,description,link,background,imageURL,textColor,titleColor) {
     fetchPreviewImage(id,imageURL,elementId);
     if (type == "activityBoxType1") {
         var activityBoxType1 = `<div id="activityBoxType1" onclick="openActivity('${link}')" class="activityBox">
@@ -35,10 +35,10 @@ function activityBoxGenerator(id,elementId,type,title,description,link,backgroun
                                 <img class="activityBoxImage" src="resource/img/aces-default-image-preview-portrait.jpg"/>
                             </div>
                             <div style="background: ${background}" class="activityBoxDetails">
-                                <h3 class="activityBoxTitle">
+                                <h3 style="color: ${titleColor}" class="activityBoxTitle">
                                     ${title}
                                 </h3>
-                                <span class="activityBoxAbout">
+                                <span style="color: ${textColor}" class="activityBoxAbout">
                                     ${description}
                                 </span>
                             </div>
@@ -51,10 +51,10 @@ function activityBoxGenerator(id,elementId,type,title,description,link,backgroun
                                 <img class="activityBoxImage" src="resource/img/aces-default-image-preview-landscape.jpg"/>
                             </div>
                             <div style="background: ${background}" class="activityBoxDetails">
-                                <h3 class="activityBoxTitle">
+                                <h3 style="color: ${titleColor}" class="activityBoxTitle">
                                     ${title}
                                 </h3>
-                                <span class="activityBoxAbout">
+                                <span style="color: ${textColor}" class="activityBoxAbout">
                                     ${description}
                                 </span>
                             </div>

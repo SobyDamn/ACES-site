@@ -144,7 +144,7 @@
                             <img class="activityBoxImage" src="../../resource/img/preview (1).jpg"/>
                         </div>
                     </div>
-                    <p class="noteForAdmin">Note :- HTML & CSS codes can be used in the text field and RGB/HEX/Gradient color can be used in color field.</p>
+                    <p class="noteForAdmin">Note :- HTML & CSS codes can be used in the text field and RGB/HEX/Gradient Color can be used in Background field <i>(without semicolon ';')</i></p>
                     <div class="adminManageContentEditFieldContainer">
                         <p class="CenterBTNContainer">
                             <input style="display: none;" onchange="loadSelectedImage(event)" id="selectContentImage" accept="image/*" type="file"/>
@@ -162,13 +162,17 @@
                         <label class="adminManageContentField">Title : </label><br>
                         <input id="contentTitle" onchange="changeContentTitle(this.value)" class="adminManageContentInputField" value="ACES" placeholder="Activity Title"/>
                         <span id="nonImageContentData">
+                            <sub><input style="width: 35px;height: 35px;" id="contentTitleColor" onchange="titleTextColorPickerChange(this.value)" value="#f3f0f0" type="color"/></sub>
                             <br>
-                            <label class="adminManageContentField">Description : </label><br>
+                            <label class="adminManageContentField">Description : </label>
+                            <sub><input style="width: 35px;height: 35px;" id="contentTextColor" onchange="descriptionTextColorPickerChange(this.value)" value="#f3f0f0" type="color"/></sub>
+                            <br>
                             <textarea id="contentDescription" onchange="changeContentDescription(this.value)" class="adminManageContentInputField"rows="4" cols="30">ACES refers to the Association of Computer Engineering Students from the prestigious School of Engineering, Cochin University of Science and technology (CUSAT).</textarea>
                             <br>
-                            <label class="adminManageContentField">Background Color : </label><br>
+                            <label class="adminManageContentField">Background : </label><br>
                             <input id="contentBGColor" onchange="changeContentColor(this.value)" class="adminManageContentInputField" placeholder="color in rgb/hex/gradient" value="rgb(6, 110, 93)"/>
                             <sub><input style="width: 35px;height: 35px;" onchange="colorPickerChange(this.value)" value="#066E5D" type="color"/></sub>
+                            <br>
                         </span>
                         <br>
                         <label class="adminManageContentField">Link : </label><br>

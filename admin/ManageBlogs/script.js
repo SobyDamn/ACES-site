@@ -47,6 +47,22 @@ function colorPickerChange(value) {
     changeContentColor(value);
     document.getElementById("contentBGColor").value = value;
 }
+
+function titleTextColorPickerChange(value) {
+    //change titl text color
+    const blogBoxTitleElements = document.getElementsByClassName("blogBoxTitle")
+    for (var i= 0;i < blogBoxTitleElements.length;i++) {
+        blogBoxTitleElements[i].style.color = value;
+    }
+}
+function descriptionTextColorPickerChange(value) {
+    //change desc text color
+    const blogBoxDescriptionElements = document.getElementsByClassName("blogBoxAbout")
+    for (var i= 0;i < blogBoxDescriptionElements.length;i++) {
+        blogBoxDescriptionElements[i].style.color = value;
+    }
+}
+
 function changeContentTitle(value) {
     //change title
     const blogBoxTitleElements = document.getElementsByClassName("blogBoxTitle")
@@ -68,6 +84,8 @@ function submitContent() {
     var contentTitle = document.getElementById("contentTitle").value;
     var contentDescription = document.getElementById("contentDescription").value;
     var contentDetailBGColor = document.getElementById("contentBGColor").value;
+    var contentTitleColor = document.getElementById("contentTitleColor").value;
+    var contentDescriptionColor = document.getElementById("contentTextColor").value;
     var contentLink = document.getElementById("contentLink").value;
     var blogDB = firebase.firestore().collection("blog");
     submitInProgress(true)
@@ -85,6 +103,8 @@ function submitContent() {
             background: contentDetailBGColor,
             link: contentLink,
             image: contentImageURL,
+            textColor: contentDescriptionColor,
+            titleColor: contentTitleColor,
             timestamp:firebase.firestore.FieldValue.serverTimestamp(),
         }).then((blogRef)=>{
             uploadBlogImage(blogRef.id)
@@ -101,6 +121,8 @@ function saveEditBlog(id) {
     var contentTitle = document.getElementById("contentTitle").value;
     var contentDescription = document.getElementById("contentDescription").value;
     var contentDetailBGColor = document.getElementById("contentBGColor").value;
+    var contentTitleColor = document.getElementById("contentTitleColor").value;
+    var contentDescriptionColor = document.getElementById("contentTextColor").value;
     var contentLink = document.getElementById("contentLink").value;
     var blog = firebase.firestore().collection("blog").doc(id);
     submitInProgress(true)
@@ -110,6 +132,8 @@ function saveEditBlog(id) {
             description: contentDescription,
             background: contentDetailBGColor,
             link: contentLink,
+            textColor: contentDescriptionColor,
+            titleColor: contentTitleColor,
         }).then(()=>{
             submitInProgress(false);
             document.getElementsByClassName("adminManageContentOption")[0].click();
@@ -130,6 +154,8 @@ function saveEditBlog(id) {
             background: contentDetailBGColor,
             link: contentLink,
             image: contentImageURL,
+            textColor: contentDescriptionColor,
+            titleColor: contentTitleColor,
         }).then(()=>{
             uploadBlogImage(id)
         }).catch((error)=>{
@@ -173,7 +199,7 @@ function loadAvailableBlogs(maxLimit) {
             var title = escape(blog['title'])
             var blogElement = `<div class="adminManageAvailableContent">
                                         <span class="adminManageAvailableContentTitle">${blog.title}</span><br>
-                                        <button onclick="editBlog('${doc.id}','${title}','${description}','${blog.link}','${blog.background}','${blog.image}')" class="adminManageAvailableContentOptionBTN">Edit</button>
+                                        <button onclick="editBlog('${doc.id}','${title}','${description}','${blog.link}','${blog.background}','${blog.image}','${blog.textColor}','${blog.titleColor}')" class="adminManageAvailableContentOptionBTN">Edit</button>
                                         <button onclick="deleteBlog('${doc.id}','${title}','${blog.image}')" class="adminManageAvailableContentOptionBTN">Delete</button>
                                         <button class="adminManageAvailableContentOptionBTN">About</button>
                                     </div>`
@@ -218,12 +244,16 @@ function deleteBlog(id,title,imageURL) {
     showPopUp(heading,msg);
     
 }
-function editBlog(id,title,description,link,bgColor,image) {
+function editBlog(id,title,description,link,bgColor,image,textColor,titleColor) {
     //edit
     document.getElementById("contentTitle").value = unescape(title);
     document.getElementById("contentDescription").value = unescape(description);
     document.getElementById("contentBGColor").value = bgColor;
     document.getElementById("contentLink").value = link;
+    document.getElementById("contentTitleColor").value = titleColor;
+    document.getElementById("contentTextColor").value = textColor;
+    titleTextColorPickerChange(titleColor);
+    descriptionTextColorPickerChange(textColor);
     changeContentDescription(unescape(description));
     changeContentTitle(unescape(title));
     changeContentColor(bgColor);
@@ -296,6 +326,10 @@ function resetContentForm() {
     var defaultDesc = `ACES refers to the Association of Computer Engineering Students from the prestigious School of Engineering, Cochin University of Science and technology (CUSAT).`
     var defaultTitle = `ACES`;
     var defaultBGColor = `rgb(6, 110, 93)`;
+    var defaultTextColor = "#f3f0f0";
+    var defaultTitleColor = "#f3f0f0";
+    titleTextColorPickerChange(defaultTitleColor);
+    descriptionTextColorPickerChange(defaultTextColor);
     changeContentDescription(defaultDesc);
     changeContentTitle(defaultTitle);
     changeContentColor(defaultBGColor);
@@ -303,6 +337,8 @@ function resetContentForm() {
     document.getElementById("contentDescription").value = defaultDesc;
     document.getElementById("contentBGColor").value = defaultBGColor;
     document.getElementById("contentLink").value = "#";
+    document.getElementById("contentTitleColor").value = defaultTitleColor;
+    document.getElementById("contentTextColor").value = defaultTextColor;
     var blogBoxImageElement = document.getElementsByClassName("blogBoxImg");
     blogBoxImageElement[0].src = "../../resource/img/aces-blue-bg-landscape.jpg";
 }

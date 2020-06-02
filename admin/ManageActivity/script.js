@@ -47,6 +47,20 @@ function colorPickerChange(value) {
     changeContentColor(value);
     document.getElementById("contentBGColor").value = value;
 }
+function titleTextColorPickerChange(value) {
+    //change titl text color
+    const activityBoxTitleElements = document.getElementsByClassName("activityBoxTitle")
+    for (var i= 0;i < activityBoxTitleElements.length;i++) {
+        activityBoxTitleElements[i].style.color = value;
+    }
+}
+function descriptionTextColorPickerChange(value) {
+    //change desc text color
+    const activityBoxDescriptionElements = document.getElementsByClassName("activityBoxAbout")
+    for (var i= 0;i < activityBoxDescriptionElements.length;i++) {
+        activityBoxDescriptionElements[i].style.color = value;
+    }
+}
 function changeContentTitle(value) {
     //change title
     const activityBoxTitleElements = document.getElementsByClassName("activityBoxTitle")
@@ -70,7 +84,7 @@ function changeActivityBoxType(value) {
             document.getElementById("activityBoxType3").style.display = "none";
             document.getElementById("activityBoxType1").style.display = "flex";
             document.getElementById("activityBoxType1").style.animation = "fadeIn 0.2s"
-            document.getElementById("nonImageContentData").style.display = "block";
+            document.getElementById("nonImageContentData").style.display = "inline";
             document.getElementById("nonImageContentData").style.animation = "fadeIn 0.4s"
             break;
         case "activityBoxType2":
@@ -78,7 +92,7 @@ function changeActivityBoxType(value) {
             document.getElementById("activityBoxType3").style.display = "none";
             document.getElementById("activityBoxType2").style.display = "flex";
             document.getElementById("activityBoxType2").style.animation = "fadeIn 0.2s"
-            document.getElementById("nonImageContentData").style.display = "block";
+            document.getElementById("nonImageContentData").style.display = "inline";
             document.getElementById("nonImageContentData").style.animation = "fadeIn 0.4s"
             break;
         case "activityBoxType3":
@@ -94,11 +108,12 @@ function submitContent() {
     document.getElementById("contentSubmitErrorHolder").style.display = "none";
     var contentTitle = document.getElementById("contentTitle").value;
     var contentDescription = document.getElementById("contentDescription").value;
+    var contentTitleColor = document.getElementById("contentTitleColor").value;
+    var contentDescriptionColor = document.getElementById("contentTextColor").value;
     var contentDetailBGColor = document.getElementById("contentBGColor").value;
     var contentLink = document.getElementById("contentLink").value;
     var contentBoxType = document.getElementById("contentBoxType").value;
     var activityDB = firebase.firestore().collection("activity");
-    var currDate = new Date()
     submitInProgress(true)
     if (selectedImage == null) {
         document.getElementById("contentSubmitErrorHolder").style.display = "block";
@@ -115,6 +130,8 @@ function submitContent() {
             link: contentLink,
             type: contentBoxType,
             image: contentImageURL,
+            textColor: contentDescriptionColor,
+            titleColor: contentTitleColor,
             timestamp:firebase.firestore.FieldValue.serverTimestamp(),
         }).then((activityRef)=>{
             uploadActivityImage(activityRef.id)
@@ -131,6 +148,8 @@ function saveEditActivity(id) {
     var contentTitle = document.getElementById("contentTitle").value;
     var contentDescription = document.getElementById("contentDescription").value;
     var contentDetailBGColor = document.getElementById("contentBGColor").value;
+    var contentTitleColor = document.getElementById("contentTitleColor").value;
+    var contentDescriptionColor = document.getElementById("contentTextColor").value;
     var contentLink = document.getElementById("contentLink").value;
     var contentBoxType = document.getElementById("contentBoxType").value;
     var activity = firebase.firestore().collection("activity").doc(id);
@@ -142,6 +161,8 @@ function saveEditActivity(id) {
             background: contentDetailBGColor,
             link: contentLink,
             type: contentBoxType,
+            textColor: contentDescriptionColor,
+            titleColor: contentTitleColor,
         }).then(()=>{
             submitInProgress(false);
             document.getElementsByClassName("adminManageContentOption")[0].click();
@@ -163,6 +184,8 @@ function saveEditActivity(id) {
             link: contentLink,
             type: contentBoxType,
             image: contentImageURL,
+            textColor: contentDescriptionColor,
+            titleColor: contentTitleColor,
         }).then(()=>{
             uploadActivityImage(id)
         }).catch((error)=>{
@@ -206,7 +229,7 @@ function loadAvailableActivities(maxLimit) {
             var title = escape(activity['title'])
             var activityElement = `<div class="adminManageAvailableContent">
                                         <span class="adminManageAvailableContentTitle">${activity.title}</span><br>
-                                        <button onclick="editActivity('${doc.id}','${title}','${description}','${activity.link}','${activity.background}','${activity.type}','${activity.image}')" class="adminManageAvailableContentOptionBTN">Edit</button>
+                                        <button onclick="editActivity('${doc.id}','${title}','${description}','${activity.link}','${activity.background}','${activity.type}','${activity.image}','${activity.textColor}','${activity.titleColor}')" class="adminManageAvailableContentOptionBTN">Edit</button>
                                         <button onclick="deleteActivity('${doc.id}','${title}','${activity.image}')" class="adminManageAvailableContentOptionBTN">Delete</button>
                                         <button class="adminManageAvailableContentOptionBTN">About</button>
                                     </div>`
@@ -251,13 +274,17 @@ function deleteActivity(id,title,imageURL) {
     showPopUp(heading,msg);
     
 }
-function editActivity(id,title,description,link,bgColor,activityType,image) {
+function editActivity(id,title,description,link,bgColor,activityType,image,textColor,titleColor) {
     //edit
     document.getElementById("contentTitle").value = unescape(title);
     document.getElementById("contentDescription").value = unescape(description);
     document.getElementById("contentBGColor").value = bgColor;
     document.getElementById("contentLink").value = link;
     document.getElementById("contentBoxType").value = activityType;
+    document.getElementById("contentTitleColor").value = titleColor;
+    document.getElementById("contentTextColor").value = textColor;
+    titleTextColorPickerChange(titleColor);
+    descriptionTextColorPickerChange(textColor);
     changeActivityBoxType(activityType);
     changeContentDescription(unescape(description));
     changeContentTitle(unescape(title));
@@ -332,16 +359,22 @@ function resetContentForm() {
     var defaultTitle = `ACES`;
     var defaultBoxType = `activityBoxType1`;
     var defaultBGColor = `rgb(6, 110, 93)`;
+    var defaultTextColor = "#f3f0f0";
+    var defaultTitleColor = "#f3f0f0";
     changeContentDescription(defaultDesc);
     changeActivityBoxType(defaultBoxType);
     changeContentTitle(defaultTitle);
     changeContentColor(defaultBGColor);
+    titleTextColorPickerChange(defaultTitleColor);
+    descriptionTextColorPickerChange(defaultTextColor);
     changeActivityBoxType("activityBoxType1");
     document.getElementById("contentTitle").value = defaultTitle;
     document.getElementById("contentDescription").value = defaultDesc;
     document.getElementById("contentBGColor").value = defaultBGColor;
     document.getElementById("contentLink").value = "#";
     document.getElementById("contentBoxType").value = "activityBoxType1";
+    document.getElementById("contentTitleColor").value = defaultTitleColor;
+    document.getElementById("contentTextColor").value = defaultTextColor;
     var activityBoxImageElement = document.getElementsByClassName("activityBoxImage");
     activityBoxImageElement[0].src = "../../resource/img/aces-blue-bg-portrait.jpg";
     activityBoxImageElement[1].src = "../../resource/img/aces-blue-bg-landscape.jpg";
