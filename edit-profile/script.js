@@ -140,7 +140,8 @@ function saveProfileDetails(uid) {
                         Linkedin: linkedin,
                         Batch: batch,
                         Email: currUser.email,
-                        UserType: userTypeVal
+                        UserType: userTypeVal,
+                        query: userSearchQueryGenerator(name,email,company),
                     }).then(()=>{
                         if (selectedImage != null) {
                             userProfile.update({
@@ -178,7 +179,8 @@ function saveProfileDetails(uid) {
                         Linkedin: linkedin,
                         Batch: batch,
                         Email: currUser.email,
-                        UserType: userTypeVal
+                        UserType: userTypeVal,
+                        query: userSearchQueryGenerator(name,email,company),
                     }).then(()=>{
                         if (selectedImage != null) {
                             userProfile.update({
@@ -273,3 +275,14 @@ function closeErrorNotice() {
     var modal = document.getElementById("errorNotice");
     modal.style.display = "none";
 }
+function userSearchQueryGenerator(name,email,company) {
+    //will generate array of search query
+    var queryValArray = name.toLowerCase().split(" ");
+    queryValArray.push(email.toLowerCase());
+    var companyQuery = company.toLowerCase().split(" ");
+    for (var i = 0;i <companyQuery.length;i++) {
+        queryValArray.push(companyQuery[i])
+    }
+    return queryValArray;
+}
+

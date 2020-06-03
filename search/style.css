@@ -20,8 +20,8 @@
 }
 #searchPageArea {
     min-height: 100%;
-    border: 2px solid;
-    background-color: rgb(243, 237, 237);
+    overflow: hidden;
+    background-color: rgb(242, 242, 242);
 }
 #searchResultContainer {
     border-radius: 5px;
@@ -31,7 +31,7 @@
     padding-top: 25px;
     padding-bottom: 50px;
 }
-#searchResultHeading {
+.searchResultHeading {
     text-align: center;
     font-family: openSans-SemiBold;
     color: rgb(100, 91, 91);
@@ -68,7 +68,7 @@
     font-family: openSans-Bold;
     border: none;
     color: white;
-    background-color: rgb(80, 54, 231);
+    background-color: rgb(114, 94, 226);
     transition: background-color 0.2s;
 }
 #filterBTN:hover {
@@ -140,4 +140,14 @@
 #loadMoreResultBTN:hover {
     background-color: rgb(39, 19, 151);
     
+}
+#errorInSearchFilter {
+    text-align: center;
+    color: rgb(206, 51, 51);
+    font-family: openSans-Bold;
+    margin-top: 0px;
+    font-size: 13px;
+}
+button {
+    outline: none;
 }
