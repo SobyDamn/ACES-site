@@ -96,6 +96,7 @@ body {
     border: 2px solid #d3e3f08e;
     border-radius: 3px;
     outline-color: #d3e3f08e;
+    transition: border-color 0.2s;
 }
 #searchBar::placeholder {
     color: rgba(255, 255, 255, 0.61);

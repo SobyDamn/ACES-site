@@ -85,9 +85,23 @@ function logout(){
         })
     },500)
 }
-function search() {
-    const searchString = document.getElementById("searchBar").value;
-    window.location = "../search/?q="+searchString;
+function search(value) {
+    const searchStringFiled = document.getElementById("searchBar");
+    const searchString = searchStringFiled.value
+    if (searchString == "") {
+        searchStringFiled.style["border-color"] = "rgb(221, 98, 98)";
+        setTimeout(()=>{
+            searchStringFiled.style["border-color"] = "#d3e3f08e"
+        },2000)
+    }
+    else {
+        if (value == "home") {
+            window.location = "search/?q="+searchString;
+        }
+        else {
+            window.location = "../search/?q="+searchString;
+        }
+    }
 }
 //window.onscroll = function() {stickHeaderOptions()};
 function stickHeaderOptions() {
