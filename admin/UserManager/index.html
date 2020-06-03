@@ -18,10 +18,9 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
         <link rel="stylesheet" href="../../style/loader.css"/>
         <link rel="stylesheet" href="../../style/header_style.css"/>
-        <link rel="stylesheet" href="../../style/general_style.css">
         <link rel="stylesheet" href="../../style/footer.css">
         <link rel="stylesheet" href="../style.css"/>
-        <link rel="stylesheet" href="../../style/newsletterStyle.css">
+        <link rel="stylesheet" href="style.css">
     </head>
     <body onload="loadAvailableContentWithSettings(),loadDateOnStrip(null)">
         <div id="header">
@@ -79,111 +78,142 @@
                     <a href="../ManageActivity/" class="adminContentOptionLink">Activity Card</a>
                     <a href="../ManageBlogs/" class="adminContentOptionLink">Blog Card</a>
                     <a href="../NewsManager/" class="adminContentOptionLink">NEWS</a>
-                    <a href="../OppurtunityManager/" id="adminInteractedLinkOn" class="adminContentOptionLink">Oppurtunity</a>
-                    <a href="../UserManager/" class="adminContentOptionLink">Users</a>
+                    <a href="../OppurtunityManager/" class="adminContentOptionLink">Oppurtunity</a>
+                    <a href="../UserManager/" id="adminInteractedLinkOn" class="adminContentOptionLink">Users</a>
                 </div>
             </div>
             <div class="adminManageContent">
-                <h2 class="adminContentTite">Manage Oppurtunit Cards</h2>
-                <div class="adminManageContentOptionContainer">
-                    <button onclick="viewSelectedContentOption('adminManagerAvailableContentArea','adminManageContentEditAddContainer','adminManageContentSetting',0,1,2)" id="adminManageContentOption" class="adminManageContentOption">Activities</button>
-                    <button onclick="viewSelectedContentOption('adminManageContentEditAddContainer','adminManagerAvailableContentArea','adminManageContentSetting',1,0,2)" class="adminManageContentOption">Add/Edit Oppurtunit</button>
-                    <button onclick="viewSelectedContentOption('adminManageContentSetting','adminManageContentEditAddContainer','adminManagerAvailableContentArea',2,0,1)" class="adminManageContentOption">Settings</button>
-                </div>
-                <div id="adminManagerAvailableContentArea">
-                    <div id="adminManageAvailableContentContainer" class="adminManageAvailableContentContainer">
-                        <!---
-                            <div class="adminManageAvailableContent">
-                                <span class="adminManageAvailableContentTitle">Aristotle | The Great Philosopher</span><br>
-                                <button class="adminManageAvailableContentOptionBTN">Edit</button>
-                                <button class="adminManageAvailableContentOptionBTN">Delete</button>
-                                <button class="adminManageAvailableContentOptionBTN">About</button>
+                <h2 class="adminContentTite">Manage Users</h2>
+                <div id="adminManageUserContentArea">
+                    <div id="adminSearchElementsContainerArea">
+                        <div id="adminSearchElementsContainer">
+                            <div id="adminSearchBarContainer">
+                                <input id="adminSearchBar" placeholder="Search Users"/>
                             </div>
-                        -->
-                    </div>
-                    <div id="availableOppurtunityLoader" style="text-align: center; display: block;">
-                        <div class="lds-ellipsis"><div style="background: rgb(94, 117, 223);"></div><div style="background: rgb(94, 117, 223);"></div><div style="background: rgb(94, 117, 223);"></div><div style="background: rgb(94, 117, 223);"></div></div>
-                    </div>
-                    <div class="loadMoreBTNContainer">
-                        <button onclick="loadMoreAvailableContent()" class="loadMoreBTN">
-                            Load More
-                        </button>
-                    </div>
-                </div>
-                <div id="adminManageContentEditAddContainer" class="adminManageContentEditAddContainer">
-                    <button id="addNewOppurtunityBTN" style="display: none;" onclick="resetContentForm()" class="addNewContentBTN">+ ADD NEW</button>
-                    <div class="adminManageContentOppurtunityPreviewBox">
-                        <h3 class='previewBoxTitle'>Preview</h3>
-                        <div class="oppurtunityBox">
-                            <div class="oppurtunityDeadlineContainer">
-                                <div class="oppurtunityDeadlineDateContainer">
-                                    <span>
-                                        <h4 class="oppurtunityLastDateHeading">Last Date</h4>
-                                        <div class="oppurtunityLastDateDay">01</div>
-                                        <div class="oppurtunityLastDateMonth">Dec</div>
-                                        <div class="oppurtunityLastDateYear">2020</div>
-                                    </span>
-                                </div>
-                            </div>
-                            <div class="oppurtunityTextContainerArea">
-                                <div class="oppurtunityTextContainer">
-                                    <span class="oppurtunityText">
-                                        I don't kknow how long a single line can be, Expecting it to be this long!
-                                    </span>
-                                </div>
+                            <div id="adminSearchBTNContainer">
+                                <button id="adminSearchBTN">Search</button>
                             </div>
                         </div>
-                    </div>
-                    <p class="noteForAdmin">Note :- HTML & CSS codes can be used in the text field.</p>
-                    <div class="adminManageContentEditFieldContainer">
-                        <label class="adminManageContentField">Oppurtunity Title : </label><br>
-                        <textarea id="contentTitle" onchange="changeContentTitle(this.value)" class="adminManageContentInputField"rows="4" cols="30">I don't kknow how long a single line can be, Expecting it to be this long!</textarea>
-                        <br>
-                        <label class="adminManageContentField">Last Date : </label><br>
-                        <input id="contentDateField" onchange="changeContentDate(this.value)" class="adminManageContentInputField" type="date"/>
-                        <br>
-                        <label class="adminManageContentField">Link : </label><br>
-                        <input id="contentLink" class="adminManageContentInputField" placeholder="Link to the details" value="#"/>
-                        <br>
-                        <br>
-                        <span id="contentSubmitErrorHolder"><sub><i class="material-icons"  style="font-size:160%;padding: 5px;">error</i></sub><span id="contentSubmitErrorText">Error!</span></span>
-                        <p id="contentUploadStatus">Upload status</p>
-                        <div id="submitContentLoader" style="text-align: center; display: none;">
-                            <div class="lds-ellipsis"><div style="background: rgb(94, 117, 223);"></div><div style="background: rgb(94, 117, 223);"></div><div style="background: rgb(94, 117, 223);"></div><div style="background: rgb(94, 117, 223);"></div></div>
+                        <div id="searchResultTypeBox">
+                            <label>Type : </label>
+                            <select class="selectorFilter">
+                                <option value="list" selected>List</option>
+                                <option value="table">Table</option>
+                            </select>
                         </div>
-                        <p class="CenterBTNContainer">
-                            <button onclick="submitContent()" id="submitContentBTN" class="adminManageContentSaveBTN">
-                                Add
-                            </button>
-                            <br>
-                            <button style="display: none;" id="submitEditContentBTN" class="adminManageContentSaveBTN">
-                                Save Edit
-                            </button>
-                        </p>
-                    </div>
-                </div>
-                <div id="adminManageContentSetting" class="adminManageContentSetting">
-                    <h2>Setting</h2>
-                    <p class="noteForAdmin">Note :- This will show the selected Number of Oppurtunity Strips on screen(Top x last added)</p>
-                    <label>
-                        No. Of Oppurtunity Strip :
-                    </label>
-                    <select id="adminManageContentSettingValue" class="adminManageContentInputField">
-                        <option value="3" selected>3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
-                        <option value="7">7</option>
-                        <option value="8">8</option>
-                        <option value="9">9</option>
-                      </select>
-                    <p class="CenterBTNContainer">
-                        <button id="saveSettingBTN" onclick="saveContentSetting(this,'oppurtunitySettings')" class="adminManageContentSaveBTN">
-                            Save Setting
-                        </button>
-                    </p>
-                    <div id="saveSettingLoader" style="text-align: center; display: none;">
-                        <div class="lds-ellipsis"><div style="background: rgb(94, 117, 223);"></div><div style="background: rgb(94, 117, 223);"></div><div style="background: rgb(94, 117, 223);"></div><div style="background: rgb(94, 117, 223);"></div></div>
+                        <div id="filterELementContainerArea">
+                            <h2 class="adminContentBoxHeading" style="margin-left: 25px;">Filter</h2>
+                            <div id="filterELementContainer">
+                                <div class="filterTypeBox">
+                                    <h4 class="filterTypeHeading">Name</h4>
+                                    <select id="filterByBranch" class="selectorFilter">
+                                        <option value="" disabled selected hidden>Select Type</option>
+                                        <option value="a2z">A-Z</option>
+                                        <option value="z2a">Z-A</option>
+                                    </select>
+                                </div>
+                                <div class="filterTypeBox">
+                                    <h4 class="filterTypeHeading">Branch</h4>
+                                    <select id="filterByBranch" class="selectorFilter">
+                                        <option value="" disabled selected hidden>Select Branch</option>
+                                        <option value="Computer Science And Engineering">Computer Science And Engineering</option>
+                                        <option value="Civil Engineering">Civil Engineering</option>
+                                        <option value="Electrical And Electronics Engineering">Electrical And Electronics Engineering</option>
+                                        <option value="Safety And Fire Engineering">Safety And Fire Engineering</option>
+                                    </select>
+                                </div>
+                                <div class="filterTypeBox">
+                                    <h4 class="filterTypeHeading">Batch</h4>
+                                    <select onchange="batchFilterType(this.value)" id="filterByBranch" class="selectorFilter">
+                                        <option value="static" selected>Static</option>
+                                        <option value="range">Range</option>
+                                    </select>
+                                    <input id="batchFilterTypeStatic" placeholder="Enter Batch eg.2019" class="filterInputType"/>
+                                    <div id="batchFilterTypeRangeContainer" style="display: none;">
+                                        <input placeholder="Enter Batch range from" class="filterInputType"/> to <input placeholder="Enter Batch range to" class="filterInputType"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="filterBTNContainer">
+                                <button id="adminFilterBTN">Filter</button>
+                            </div>
+                        </div>
+                        <div class="searchResultArea">
+                            <center>
+                                <div id="searchResultContainerTypeList">
+                                    <div class=searchResultBox>
+                                        <div class="searchResultImageHolder">
+                                            <img class="searchResultImage" src="../../resource/img/aces-blue-bg-portrait.jpg"/>
+                                        </div>
+                                        <div class="searchDetailsHolder">
+                                            <a href="../profile/?name=${name}&id=${id}" class="searchResultName">Sritabh Priyadarshi</a>
+                                            <br>
+                                            <span class="searchResultBranch">Computer Science and Engineering</span>
+                                            <br>
+                                            <span class="searchResultBatch">2019</span>
+                                            <button class="adminUserMoreOptionBTN"><i class="material-icons">more_vert</i>
+                                                <div class="moreOption-content">
+                                                    <p>Delete User</p>
+                                                    <br>
+                                                    <p>Make Admin</p>
+                                                    <br>
+                                                    <p>Verify</p>
+                                                </div>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class=searchResultBox>
+                                        <div class="searchResultImageHolder">
+                                            <img class="searchResultImage" src="../../resource/img/aces-blue-bg-portrait.jpg"/>
+                                        </div>
+                                        <div class="searchDetailsHolder">
+                                            <a href="../profile/?name=${name}&id=${id}" class="searchResultName">SobyDamn</a>
+                                            <br>
+                                            <span class="searchResultBranch">Computer Science and Engineering</span>
+                                            <br>
+                                            <span class="searchResultBatch">2019</span>
+                                            <button class="adminUserMoreOptionBTN"><i class="material-icons">more_vert</i>
+                                                <div class="moreOption-content">
+                                                    <p>Delete User</p>
+                                                    <br>
+                                                    <p>Make Admin</p>
+                                                    <br>
+                                                    <p>Verify</p>
+                                                </div>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="searchResultContainerTypeTable">
+                                    <table id="searchResultTypeTable">
+                                        <tr>
+                                          <th>No.</th>
+                                          <th>Name</th>
+                                          <th>Branch</th>
+                                          <th>Batch</th>
+                                          <th>Email</th>
+                                          <th>Number</th>
+                                        </tr>
+                                        <tr>
+                                          <td>1</td>
+                                          <td><a href="#" class="tableProfileLink">Sritabh Priyadarshi</a></td>
+                                          <td>Computer Science and Engineering</td>
+                                          <td>2019</td>
+                                          <td>sobydanny@gmail.com</td>
+                                          <td>9102811239</td>
+                                        </tr>
+                                        <tr>
+                                            <td>2</td>
+                                            <td><a href="#" class="tableProfileLink">SobyDamn</a></td>
+                                            <td>Computer Science and Engineering</td>
+                                            <td>2019</td>
+                                            <td>sobydanny@gmail.com</td>
+                                            <td>9102811239</td>
+                                          </tr>
+                                      </table>
+                                </div>
+                            </center>
+                        </div>
                     </div>
                 </div>
             </div>
