@@ -195,6 +195,8 @@
     font-family: openSans-Bold;
     border-collapse: collapse;
     width: 100%;
+    margin-top: 50px;
+    margin-bottom: 50px;
   }
   #searchResultTypeTable td {
     font-family: openSans-SemiBold;
@@ -203,7 +205,6 @@
     border: 1px solid #ddd;
     padding: 8px;
   }
-  
   #searchResultTypeTable tr:nth-child(even){background-color: #f2f2f2;}
   
   #searchResultTypeTable tr:hover {background-color: rgb(180, 180, 180);}
@@ -215,6 +216,13 @@
     background-color: rgb(16, 23, 124);
     color: white;
   }
+  #searchResultTypeTable {
+    counter-reset: serial-number; /* Set the serial number counter to 0 */
+   }
+   #searchResultTypeTable td:first-child:before {
+    counter-increment: serial-number; /* Increment the serial number counter */
+    content: counter(serial-number); /* Display the counter */
+   }
 .tableProfileLink {
     text-decoration: none;
     color: black;
@@ -228,4 +236,61 @@
 }
 #searchResultTypeBox label {
     font-family: openSans-Bold;
+}
+.userAdminStatus,.userVerifyStatus {
+    background-color: #ccc;
+    margin-left: 4px;
+    padding: 2px;
+    font-family: openSans-Bold;
+    font-size: 10px;
+    position: relative;
+}
+.userAdminStatus-content,.userVerifyStatus-content {
+    display: none;
+    position: absolute;
+    background-color: #f3f0f0;
+    min-width: 130px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    font-family: openSans-Bold;
+    padding: 12px 16px;
+    z-index: 1;
+}
+.userAdminStatus-content h3,.userVerifyStatus-content h3 {
+    margin: 0px;
+    text-align: center;
+}
+.userVerifyStatus:hover .userVerifyStatus-content {
+    display: block;
+}
+.userAdminStatus:hover .userAdminStatus-content {
+    display: block;
+}
+#loadMoreResultBTNContainer {
+    text-align: center;
+}
+#loadMoreResultBTN {
+    border-radius: 4px;
+    padding: 7px;
+    min-width: 90px;
+    font-size: 15px;
+    font-family: openSans-Bold;
+    border: none;
+    color: white;
+    background-color: rgb(80, 54, 231);
+    transition: background-color 0.2s;
+    margin: 50px;
+}
+#loadMoreResultBTN:hover {
+    background-color: rgb(39, 19, 151);
+    
+}
+#errorInSearchFilter {
+    text-align: center;
+    color: rgb(206, 51, 51);
+    font-family: openSans-Bold;
+    margin-top: 0px;
+    font-size: 13px;
+}
+button {
+    outline: none;
 }

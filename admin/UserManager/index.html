@@ -10,6 +10,7 @@
         <script src="../../scripts/firebase-auth.js"></script>
         <script src ="../../scripts/header-manager.js"></script>
         <script src="../../scripts/user-auth.js"></script>
+        <script src="searchEngineAdmin.js"></script>
         <script src="script.js"></script>
         <!---Stylsheets-->
         <link rel="stylesheet" href="../../style/popup_form.css">
@@ -22,7 +23,7 @@
         <link rel="stylesheet" href="../style.css"/>
         <link rel="stylesheet" href="style.css">
     </head>
-    <body onload="loadAvailableContentWithSettings(),loadDateOnStrip(null)">
+    <body onload="loadAdminSearchEngine(),setupFilterDefault()">
         <div id="header">
             <div id="logoContainer" class="headerBox">
                 <img id="site-logo" src="../../resource/img/aces-white.png"/>
@@ -91,12 +92,12 @@
                                 <input id="adminSearchBar" placeholder="Search Users"/>
                             </div>
                             <div id="adminSearchBTNContainer">
-                                <button id="adminSearchBTN">Search</button>
+                                <button onclick="adminSearch()" id="adminSearchBTN">Search</button>
                             </div>
                         </div>
                         <div id="searchResultTypeBox">
                             <label>Type : </label>
-                            <select class="selectorFilter">
+                            <select id="searchResultType" onchange="changeSearchResultType()" class="selectorFilter">
                                 <option value="list" selected>List</option>
                                 <option value="table">Table</option>
                             </select>
@@ -106,7 +107,7 @@
                             <div id="filterELementContainer">
                                 <div class="filterTypeBox">
                                     <h4 class="filterTypeHeading">Name</h4>
-                                    <select id="filterByBranch" class="selectorFilter">
+                                    <select onchange="changeInFilterParams()" id="filterByName" class="selectorFilter">
                                         <option value="" disabled selected hidden>Select Type</option>
                                         <option value="a2z">A-Z</option>
                                         <option value="z2a">Z-A</option>
@@ -114,7 +115,7 @@
                                 </div>
                                 <div class="filterTypeBox">
                                     <h4 class="filterTypeHeading">Branch</h4>
-                                    <select id="filterByBranch" class="selectorFilter">
+                                    <select onchange="changeInFilterParams()" id="filterByBranch" class="selectorFilter">
                                         <option value="" disabled selected hidden>Select Branch</option>
                                         <option value="Computer Science And Engineering">Computer Science And Engineering</option>
                                         <option value="Civil Engineering">Civil Engineering</option>
@@ -124,23 +125,25 @@
                                 </div>
                                 <div class="filterTypeBox">
                                     <h4 class="filterTypeHeading">Batch</h4>
-                                    <select onchange="batchFilterType(this.value)" id="filterByBranch" class="selectorFilter">
+                                    <select onchange="changeInFilterParams(),batchFilterType(this.value)" id="batchFilterType" class="selectorFilter">
                                         <option value="static" selected>Static</option>
                                         <option value="range">Range</option>
                                     </select>
-                                    <input id="batchFilterTypeStatic" placeholder="Enter Batch eg.2019" class="filterInputType"/>
+                                    <input onchange="changeInFilterParams()" id="batchFilterTypeStatic" placeholder="Enter Batch eg.2019" class="filterInputType"/>
                                     <div id="batchFilterTypeRangeContainer" style="display: none;">
-                                        <input placeholder="Enter Batch range from" class="filterInputType"/> to <input placeholder="Enter Batch range to" class="filterInputType"/>
+                                        <input onchange="changeInFilterParams()" placeholder="From" id="batchFilterFrom" class="filterInputType"/> to <input onchange="changeInFilterParams()" placeholder="To" id="batchFilterTo" class="filterInputType"/>
                                     </div>
                                 </div>
                             </div>
                             <div id="filterBTNContainer">
-                                <button id="adminFilterBTN">Filter</button>
+                                <button id="adminFilterBTN" onclick="filterAdminSearch()">Filter</button>
                             </div>
                         </div>
                         <div class="searchResultArea">
+                            <p id="errorInSearchFilter" style="display: none;">Error</p>
+                            <h2 class="adminContentBoxHeading" style="display: none;text-align: center;" id="noResultFound">No Results found</h2>
                             <center>
-                                <div id="searchResultContainerTypeList">
+                                <div style="display: none;" id="searchResultContainerTypeList">
                                     <div class=searchResultBox>
                                         <div class="searchResultImageHolder">
                                             <img class="searchResultImage" src="../../resource/img/aces-blue-bg-portrait.jpg"/>
@@ -151,6 +154,25 @@
                                             <span class="searchResultBranch">Computer Science and Engineering</span>
                                             <br>
                                             <span class="searchResultBatch">2019</span>
+                                            <br>
+                                            <span class="userAdminStatus">
+                                                Admin
+                                                <div class="userAdminStatus-content">
+                                                    <h3>Admin Status</h3>
+                                                    <span>AddedBy:- SobyDamn</span>
+                                                    <br>
+                                                    <span>AddedOn:- 2 May,2020</span>
+                                                </div>
+                                            </span>
+                                            <span class="userVerifyStatus">
+                                                Verified
+                                                <div class="userVerifyStatus-content">
+                                                    <h3>Verify Status</h3>
+                                                    <span>VerifiedBy:- SobyDamn</span>
+                                                    <br>
+                                                    <span>VerifiedOn:- 2 May,2020</span>
+                                                </div>
+                                            </span>
                                             <button class="adminUserMoreOptionBTN"><i class="material-icons">more_vert</i>
                                                 <div class="moreOption-content">
                                                     <p>Delete User</p>
@@ -184,7 +206,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div id="searchResultContainerTypeTable">
+                                <div style="display: none;" id="searchResultContainerTypeTable">
                                     <table id="searchResultTypeTable">
                                         <tr>
                                           <th>No.</th>
@@ -194,23 +216,13 @@
                                           <th>Email</th>
                                           <th>Number</th>
                                         </tr>
-                                        <tr>
-                                          <td>1</td>
-                                          <td><a href="#" class="tableProfileLink">Sritabh Priyadarshi</a></td>
-                                          <td>Computer Science and Engineering</td>
-                                          <td>2019</td>
-                                          <td>sobydanny@gmail.com</td>
-                                          <td>9102811239</td>
-                                        </tr>
-                                        <tr>
-                                            <td>2</td>
-                                            <td><a href="#" class="tableProfileLink">SobyDamn</a></td>
-                                            <td>Computer Science and Engineering</td>
-                                            <td>2019</td>
-                                            <td>sobydanny@gmail.com</td>
-                                            <td>9102811239</td>
-                                          </tr>
                                       </table>
+                                </div>
+                                <div id="loadMoreResultBTNContainer" style="text-align: center;">
+                                    <div id="searchResultloader" style="text-align: center;display: block;">
+                                        <div class="lds-ellipsis"><div style="background: rgb(94, 117, 223);"></div><div style="background: rgb(94, 117, 223);"></div><div style="background: rgb(94, 117, 223);"></div><div style="background: rgb(94, 117, 223);"></div></div>
+                                    </div>
+                                    <button onclick="fetchMoreSearchResult()" style="display: none;" id="loadMoreResultBTN">Load More</button>
                                 </div>
                             </center>
                         </div>

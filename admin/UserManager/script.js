@@ -1,10 +1,136 @@
-function batchFilterType(value) {
-    if (value == "static") {
-        document.getElementById("batchFilterTypeStatic").style.display = "inline";
-        document.getElementById("batchFilterTypeRangeContainer").style.display = "none";
+function fetchMoreSearchResult() {
+    document.getElementById("searchResultloader").style.display = "block";
+    document.getElementById("loadMoreResultBTN").style.display = "none";
+    maxDocLimit = 10;
+    if (queryVal == null) {
+        //Show all users
+        searchQuery(null,filterBranch,batch_FilterType,filterBatch,fromBatch,toBatch,filterName,lastVisibleDoc,maxDocLimit)
     }
     else {
-        document.getElementById("batchFilterTypeStatic").style.display = "none";
-        document.getElementById("batchFilterTypeRangeContainer").style.display = "block";
+        if (queryVal.toLowerCase() == "all") {
+            searchQuery(null,filterBranch,batch_FilterType,filterBatch,fromBatch,toBatch,filterName,lastVisibleDoc,maxDocLimit)
+        }
+        else {
+            //show requested users
+            searchQuery(queryVal,filterBranch,batch_FilterType,filterBatch,fromBatch,toBatch,filterName,lastVisibleDoc,maxDocLimit)
+        }
+    }
+}
+
+function searchResultManager(size) {
+    if (!searchResultShowAny && size == 0) {
+        //show no result found
+        document.getElementById("noResultFound").style.display = "block";
+        document.getElementById("searchResultloader").style.display = "none";
+        document.getElementById("loadMoreResultBTN").style.display = "none";
+    }
+    else {
+        searchResultShowAny = true;
+        if (size == maxDocLimit) {
+            document.getElementById("searchResultloader").style.display = "none";
+            document.getElementById("loadMoreResultBTN").style.display = "inline";
+        }
+        else if(size < maxDocLimit) {
+            document.getElementById("searchResultloader").style.display = "none";
+            document.getElementById("loadMoreResultBTN").style.display = "none";
+        }
+        else {
+            document.getElementById("searchResultloader").style.display = "none";
+            document.getElementById("loadMoreResultBTN").style.display = "none";
+        }
+    }
+}
+function adminSearch(){
+    var query = document.getElementById("adminSearchBar").value;
+    window.location = `?q=${query}`
+}
+function filterAdminSearch(){
+    var queryParams = `?q=${queryVal}`
+    var filterName = document.getElementById("filterByName").value;
+    var filterBranch = document.getElementById("filterByBranch").value;
+    var batchFilterType = document.getElementById("batchFilterType").value;
+    var batchFilter = document.getElementById("batchFilterTypeStatic").value;
+    var batchFilterFrom = document.getElementById("batchFilterFrom").value
+    var batchFilterTo = document.getElementById("batchFilterTo").value
+    var errorElement = document.getElementById("errorInSearchFilter");
+    if (filterName == "" && filterBranch == "" && batchFilter == "" && batchFilterFrom == "" && batchFilterTo == "") {
+        errorElement.style.display = "block";
+        errorElement.innerHTML = "Please Select any field!"
+        return;
+    }
+    else {
+        if (filterName != "") {
+            queryParams += `&nameFilter=${filterName}`
+        }
+        if (filterBranch != "") {
+            queryParams += `&branch=${filterBranch}`
+        }
+        if (batchFilterType == "static") {
+            if (batchFilter != "") {
+                if (verifiyFields(batchFilter)) {
+                    queryParams += `&batchFilterType=${batchFilterType}&batch=${batchFilter}`
+                }
+                else {
+                    return;
+                }
+            }
+        }
+        else if(batchFilterType == "range") {
+            if (batchFilterFrom != "" || batchFilterTo != "") {
+                if (verifiyFields(batchFilterFrom) && verifiyFields(batchFilterTo)) {
+                    queryParams += `&batchFilterType=${batchFilterType}&batchFrom=${batchFilterFrom}&batchTo=${batchFilterTo}`
+                }
+                else {
+                    return;
+                }
+            }
+        }
+    }
+    window.location = queryParams;
+}
+
+function verifiyFields(value) {
+    var errorElement = document.getElementById("errorInSearchFilter");
+    var currYear = new Date().getFullYear()
+    if (value > currYear) {
+        errorElement.style.display = "block";
+        errorElement.innerHTML = "Whoops! Looks like we can't see into the future<br>Please Select valid Batch Value"
+        return false;
+    }
+    else if(value < 1978) {
+        errorElement.style.display = "block";
+        errorElement.innerHTML = "Please Select valid Batch Value"
+        return false;
+    }
+    else {
+        errorElement.style.display = "none";
+        return true;
+    }
+}
+function changeInFilterParams() {
+    var errorElement = document.getElementById("errorInSearchFilter");
+    errorElement.style.display = "none";
+}
+function setupFilterDefault() {
+    if (batch_FilterType != null) {
+        document.getElementById("batchFilterType").value = batch_FilterType;
+    }
+    if (queryVal != null) {
+        document.getElementById("adminSearchBar").value = queryVal;
+    }
+    if (filterName != null) {
+        document.getElementById("filterByName").value = filterName;
+    }
+    if (filterBranch != null) {
+        document.getElementById("filterByBranch").value = filterBranch;
+    }
+    if (filterBatch != null) {
+        document.getElementById("batchFilterTypeStatic").value = filterBatch;
+    }
+    if (fromBatch != null) {
+        document.getElementById("batchFilterFrom").value = fromBatch;
+    }
+    if (toBatch != null) {
+        document.getElementById("batchFilterTo").value = toBatch;
     }
 }
