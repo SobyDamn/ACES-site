@@ -30,7 +30,7 @@ function login() {
           document.getElementById("loginAuthLoader").style.display = "none";
         })
 }
-function registerUser() {
+function registerUser(from) {
     //register user
     document.getElementById("regErrorHolder").style.display="none";
     document.getElementById("registerBTN").style.display = "none";
@@ -44,7 +44,15 @@ function registerUser() {
             //save user's profile
             document.getElementById("registerBTN").style.display = "inline-block";
             document.getElementById("regAuthLoader").style.display = "none";
-            window.location = "../edit-profile"
+            if (from=="home") {
+                window.location = "edit-profile"
+            }
+            else if (from=="secondChild") {
+                window.location = "../edit-profile"
+            }
+            else {
+                window.location = "../../edit-profile"
+            }
           }).catch((err)=>{
             showError(err.message,"regError");
             document.getElementById("registerBTN").style.display = "inline-block";

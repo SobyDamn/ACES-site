@@ -18,7 +18,7 @@ firebase.auth().onAuthStateChanged(function(user) {
       }
       else {
         nameElement.style.display = "inline";
-        nameElement.innerHTML = `<a href="../edit-profile">Complete Your Profile</a>`
+        nameElement.innerHTML = `<a href="edit-profile">Complete Your Profile</a>`
       }
     } 
     else {
