@@ -41,11 +41,22 @@ function searchResultManager(size) {
     }
 }
 function adminSearch(){
-    var query = document.getElementById("adminSearchBar").value;
-    window.location = `?q=${query}`
+    var queryField = document.getElementById("adminSearchBar");
+    if (queryField.value != "") {
+        window.location = `?q=${queryField.value}`
+    }
+    else {
+        queryField.style["border-color"] = "red";
+        setTimeout(()=>{
+            queryField.style["border-color"] = "#ccc";
+        },2000)
+    }
 }
 function filterAdminSearch(){
-    var queryParams = `?q=${queryVal}`
+    var queryParams = `?`
+    if (queryVal != null) {
+        queryParams = `?q=${queryVal}`
+    }
     var filterName = document.getElementById("filterByName").value;
     var filterBranch = document.getElementById("filterByBranch").value;
     var batchFilterType = document.getElementById("batchFilterType").value;

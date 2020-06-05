@@ -69,7 +69,7 @@ function closeRegisterPOP() {
 }
 
 
-function logout(){
+function logout(from){
     document.getElementById("spin_loader").style.display = "block";
     document.getElementById("userSignedIN").style.display = "none";
     //logout user
@@ -77,7 +77,15 @@ function logout(){
         firebase.auth().signOut().then(()=>{
             //logged out
             document.getElementById("spin_loader").style.display = "none";
-            window.location = "../index.html"
+            if (from == "home") {
+                window.location = "index.html"
+            }
+            else if (from == "secondChild") {
+                window.location = "../index.html"
+            }
+            else {
+                window.location = "../../index.html"
+            }
         }).catch((err)=>{
             //errr in logging out
             document.getElementById("spin_loader").style.display = "none";

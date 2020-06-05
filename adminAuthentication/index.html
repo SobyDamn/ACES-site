@@ -1,0 +1,57 @@
+<html>
+    <title id="authTitle">Authenticating!</title>
+    <head>
+        <!--Scripts-->
+        <script src="https://www.gstatic.com/firebasejs/7.14.3/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.14.3/firebase-analytics.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.14.3/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.14.3/firebase-firestore.js"></script>
+        <script src="../scripts/firebase-auth.js"></script>
+        <script src="script.js"></script>
+        <!---Stylsheets-->
+        <link rel="stylesheet" href="../style/loader.css"/>
+        <style>
+            #aboutBoxLogoImageContainer {
+            height: 90px;
+            width: 300px;
+            }
+            #aboutBoxImageLogo {
+                width: 100%;
+                height: 100%;
+                object-fit: fill;
+            }
+            @font-face {
+                font-family: openSans-Bold;
+                src: url(../resource/fonts/opensans_bold.ttf);
+            }
+            h1,h3 {
+                font-family: openSans-Bold;
+            }
+        </style>
+    </head>
+    <body onload="checkAuthentication()">
+        <center>
+            <div id="aboutBoxLogoImageContainer">
+                <img src="../resource/img/aces.png" id="aboutBoxImageLogo"/>
+            </div>
+            <div id="checkingAuth">
+                <h1>Checking Authentication</h1>
+                <div id="authLoader" style="text-align: center;">
+                    <div class="lds-ellipsis"><div style="background: rgb(94, 117, 223);"></div><div style="background: rgb(94, 117, 223);"></div><div style="background: rgb(94, 117, 223);"></div><div style="background: rgb(94, 117, 223);"></div></div>
+                </div>
+            </div>
+            <div id="authSuccess" style="display: none;">
+                <h1>User Verified</h1>
+                <h3>Redirecting to admin panel <br>Or <a href="../admin">CLick Here</a></h3>
+            </div>
+            <div id="authFailed" style="display: none;">
+                <h1>Unauthorise Access</h1>
+                <h3>Permission Denied</h3>
+            </div>
+            <div id="authFailedUnavailable" style="display: none;">
+                <h1>Access not available</h1>
+                <h3>Unable to access the page</h3>
+            </div>
+        </center>
+    </body>
+</html>

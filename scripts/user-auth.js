@@ -1,3 +1,14 @@
+var userAvail = null;
+firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+      // User logged in already or has just logged in.
+      userAvail = user;
+    } 
+    else {
+      // User not logged in or has just logged out.
+      userAvail = null;
+    }
+  });
 function login() {
     //Login user
     document.getElementById("loginErrorHolder").style.display="none";
@@ -55,5 +66,18 @@ function showError(err,type) {
     else if (type=="loginError") {
         document.getElementById("loginErrorHolder").style.display="flex";
         document.getElementById("loginErrorText").innerText = err;
+    }
+}
+function openAdminPanel(from) {
+    if (userAvail !=null) {
+        if (from == "home") {
+            window.location = "adminAuthentication";
+        }
+        else {
+            window.location = "../adminAuthentication";
+        }
+    }
+    else {
+        showLoginForm();
     }
 }

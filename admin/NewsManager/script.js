@@ -71,6 +71,8 @@ function submitContent() {
         text: contentTitle,
         color: contentColor,
         link: contentLink,
+        addedBy:availableUser.displayName,
+        addedOn:nerdDate(new Date()),
         date: nerdDate(currDate),
         timestamp:firebase.firestore.FieldValue.serverTimestamp(),
     }).then((newsRef)=>{
@@ -82,6 +84,7 @@ function submitContent() {
         submitInProgress(false)
         document.getElementById("contentSubmitErrorHolder").style.display = "block";
         document.getElementById("contentSubmitErrorText").innerText = error;
+        showPopUp("Error",error.message);
     })
 }
 
@@ -105,6 +108,7 @@ function saveEditNews(id) {
         submitInProgress(false)
         document.getElementById("contentSubmitErrorHolder").style.display = "block";
         document.getElementById("contentSubmitErrorText").innerText = error;
+        showPopUp("Error",error.message);
     })
 }
 
@@ -128,7 +132,16 @@ function loadAvailableNews(maxLimit) {
                                         <span class="adminManageAvailableContentTitle">${contentTitle}</span><br>
                                         <button onclick="editNews('${doc.id}','${text}','${news.color}','${news.link}','${news.date}')" class="adminManageAvailableContentOptionBTN">Edit</button>
                                         <button onclick="deleteNews('${doc.id}','${escape(contentTitle)}')" class="adminManageAvailableContentOptionBTN">Delete</button>
-                                        <button class="adminManageAvailableContentOptionBTN">About</button>
+                                        <button class="adminManageAvailableContentOptionBTN">
+                                            <span class="adminManageAvailableContentAboutBTN">About
+                                                <div class="adminManageAvailableAboutContent">
+                                                    <h3>About</h3>
+                                                    <span>AddedBy:- ${doc.data()['addedBy']}</span>
+                                                    <br>
+                                                    <span>AddedOn:- ${doc.data()['addedOn']}</span>
+                                                </div>
+                                            </span>
+                                        </button>
                                     </div>`
             document.getElementById("adminManageAvailableContentContainer").innerHTML += newsElement
         });

@@ -35,6 +35,7 @@ function changeSearchResultType() {
     searchBoxElements = "";
     searchTableElements = searchTableElementsHeader;
     lastVisibleDoc = null;
+    document.getElementById("searchResultloader").style.display = "block";
     loadAdminSearchEngine();
 }
 
@@ -72,7 +73,7 @@ function searchQuery(value,fltrBranch,batchFltrType,fltrBatch,fltrBatchRange1,fl
                     // doc.data() is never undefined for query doc snapshots
                     var user = doc.data();
                     var id = doc.id;
-                    searchResultGenerator(id,user.Name,user.Branch,user.Batch,user.Email,user.Contact,user.profileImage)
+                    searchResultGenerator(id,user.Name,user.Branch,user.Batch,user.Email,user.Contact,user.profileImage,user.admin,user.adminBy,user.adminOn,user.adminVerified,user.adminVerifiedBy,user.adminVerifiedOn)
                         .then((element)=>{
                             if (searchResultType == "list") {
                                 //generate list
@@ -105,7 +106,7 @@ function searchQuery(value,fltrBranch,batchFltrType,fltrBatch,fltrBatchRange1,fl
                     // doc.data() is never undefined for query doc snapshots
                     var user = doc.data();
                     var id = doc.id;
-                    searchResultGenerator(id,user.Name,user.Branch,user.Batch,user.Email,user.Contact,user.profileImage)
+                    searchResultGenerator(id,user.Name,user.Branch,user.Batch,user.Email,user.Contact,user.profileImage,user.admin,user.adminBy,user.adminOn,user.adminVerified,user.adminVerifiedBy,user.adminVerifiedOn)
                         .then((element)=>{
                             if (searchResultType == "list") {
                                 //generate list
@@ -127,7 +128,7 @@ function searchQuery(value,fltrBranch,batchFltrType,fltrBatch,fltrBatchRange1,fl
     }
 }
 
-function searchResultGenerator(id,name,branch,batch,email,contact,imageURL) {
+function searchResultGenerator(id,name,branch,batch,email,contact,imageURL,adminStatus,adminBy,adminOn,adminVerifyStatus,adminVerifyBy,adminVerifyOn) {
     var searchResultType = document.getElementById("searchResultType").value;
     if (searchResultType == "list") {
         //generate list view
@@ -147,31 +148,15 @@ function searchResultGenerator(id,name,branch,batch,email,contact,imageURL) {
                                             <br>
                                             <span class="searchResultBatch">${batch}</span>
                                             <br>
-                                            <span class="userAdminStatus">
-                                                Admin
-                                                <div class="userAdminStatus-content">
-                                                    <h3>Admin Status</h3>
-                                                    <span>AddedBy:- SobyDamn</span>
-                                                    <br>
-                                                    <span>AddedOn:- 2 May,2020</span>
-                                                </div>
-                                            </span>
-                                            <span class="userVerifyStatus">
-                                                Verified
-                                                <div class="userVerifyStatus-content">
-                                                    <h3>Verify Status</h3>
-                                                    <span>VerifiedBy:- SobyDamn</span>
-                                                    <br>
-                                                    <span>VerifiedOn:- 2 May,2020</span>
-                                                </div>
-                                            </span>
+                                            ${checkAdminStatus(id,name,email,branch,adminStatus,adminBy,adminOn)[1]}
+                                            ${checkAdminVerifyStatus(id,name,email,branch,adminVerifyStatus,adminVerifyBy,adminVerifyOn)[1]}
                                             <button class="adminUserMoreOptionBTN"><i class="material-icons">more_vert</i>
                                                 <div class="moreOption-content">
-                                                    <p>Delete User</p>
+                                                    <p onclick="deleteUser('${id}','${name}','${email}','${branch}','${imageURL}')">Delete User</p>
                                                     <br>
-                                                    <p>Make Admin</p>
+                                                    ${checkAdminStatus(id,name,email,branch,adminStatus,adminBy,adminOn)[0]}
                                                     <br>
-                                                    <p>Verify</p>
+                                                    ${checkAdminVerifyStatus(id,name,email,branch,adminVerifyStatus,adminVerifyBy,adminVerifyOn)[0]}
                                                 </div>
                                             </button>
                                         </div>
@@ -191,31 +176,15 @@ function searchResultGenerator(id,name,branch,batch,email,contact,imageURL) {
                                             <br>
                                             <span class="searchResultBatch">${batch}</span>
                                             <br>
-                                            <span class="userAdminStatus">
-                                                Admin
-                                                <div class="userAdminStatus-content">
-                                                    <h3>Admin Status</h3>
-                                                    <span>AddedBy:- SobyDamn</span>
-                                                    <br>
-                                                    <span>AddedOn:- 2 May,2020</span>
-                                                </div>
-                                            </span>
-                                            <span class="userVerifyStatus">
-                                                Verified
-                                                <div class="userVerifyStatus-content">
-                                                    <h3>Verify Status</h3>
-                                                    <span>VerifiedBy:- SobyDamn</span>
-                                                    <br>
-                                                    <span>VerifiedOn:- 2 May,2020</span>
-                                                </div>
-                                            </span>
+                                            ${checkAdminStatus(id,name,email,branch,adminStatus,adminBy,adminOn)[1]}
+                                            ${checkAdminVerifyStatus(id,name,email,branch,adminVerifyStatus,adminVerifyBy,adminVerifyOn)[1]}
                                             <button class="adminUserMoreOptionBTN"><i class="material-icons">more_vert</i>
                                                 <div class="moreOption-content">
-                                                    <p>Delete User</p>
+                                                    <p onclick="deleteUser('${id}','${name}','${email}','${branch}','${imageURL}')">Delete User</p>
                                                     <br>
-                                                    <p>Make Admin</p>
+                                                    ${checkAdminStatus(id,name,email,branch,adminStatus,adminBy,adminOn)[0]}
                                                     <br>
-                                                    <p>Verify</p>
+                                                    ${checkAdminVerifyStatus(id,name,email,branch,adminVerifyStatus,adminVerifyBy,adminVerifyOn)[0]}
                                                 </div>
                                             </button>
                                         </div>
@@ -230,15 +199,17 @@ function searchResultGenerator(id,name,branch,batch,email,contact,imageURL) {
         document.getElementById("searchResultContainerTypeList").style.display = "none";
         document.getElementById("searchResultContainerTypeTable").style.display = "block";
         var profileTableElement = new Promise((res,rej)=>{
-            var profileTableRow = `<tr>
+            fetchPrivateData(id).then((pvtContact)=>{
+                var profileTableRow = `<tr>
                                     <td></td>
                                     <td><a href="../../profile/?name=${name}&id=${id}" class="tableProfileLink">${name}</a></td>
                                     <td>${branch}</td>
                                     <td>${batch}</td>
                                     <td>${email}</td>
-                                    <td>${contact}</td>
+                                    <td>${pvtContact}</td>
                                 </tr>`
             res(profileTableRow)
+            })
         })
         return profileTableElement;
     }
@@ -246,6 +217,84 @@ function searchResultGenerator(id,name,branch,batch,email,contact,imageURL) {
 function fetchProfilePreviewImage(id,fileName) {
     var storageRef = firebase.storage().ref();
     return storageRef.child("users/"+id+"/"+fileName).getDownloadURL();
+}
+function fetchPrivateData(uid) {
+    var userPrivateData = firebase.firestore().collection("users-pvt-data").doc(uid);
+    var getPvtData = new Promise((res,rej)=>{
+        userPrivateData.get().then((doc)=>{
+            if (doc.exists) {
+                var userDetails = doc.data();
+                res(userDetails["Contact"])
+            }
+            else {
+                res("Not Available")
+            }
+        }).catch((err)=>{
+            res("Unauthorized")
+        })
+    })
+    return getPvtData;
+}
+function checkAdminStatus(id,name,email,branch,adminStatus,adminBy,adminOn) {
+    if (adminStatus != undefined) {
+        if (adminStatus) {
+            var btnElement = `<p onclick="manageAdminship('${id}','${name}','${email}','${branch}',${adminStatus})">Remove Admin</p>`
+            var statusElement = `<span class="userAdminStatus">
+                                    Admin
+                                    <div class="userAdminStatus-content">
+                                        <h3>Admin Status</h3>
+                                        <span>AddedBy:- ${adminBy}</span>
+                                        <br>
+                                        <span>AddedOn:- ${adminOn}</span>
+                                    </div>
+                                </span>`
+            var elementArray = new Array(btnElement,statusElement);
+            return elementArray;
+        }
+        else {
+            var btnElement = `<p onclick="manageAdminship('${id}','${name}','${email}','${branch}',${adminStatus})">Add Admin</p>`
+            var statusElement = ` `
+            var elementArray = new Array(btnElement,statusElement);
+            return elementArray;
+        }
+    }
+    else {
+        var btnElement = `<p onclick="manageAdminship('${id}','${name}','${email}','${branch}',${adminStatus})">Add Admin</p>`
+        var statusElement = ` `
+        var elementArray = new Array(btnElement,statusElement);
+        return elementArray;
+    }
+}
+function checkAdminVerifyStatus(id,name,email,branch,adminVerifyStatus,adminVerifyBy,adminVerifyOn) {
+    if (adminVerifyStatus != undefined) {
+        if (adminVerifyStatus) {
+            var btnElement = `<p onclick="manageAdminVerificationStatus('${id}','${name}','${email}','${branch}',${adminVerifyStatus})">Remove Verification</p>`
+            var statusElement = `<span class="userVerifyStatus">
+                                    Verified
+                                    <div class="userVerifyStatus-content">
+                                        <h3>Verify Status</h3>
+                                        <span>VerifiedBy:- ${adminVerifyBy}</span>
+                                        <br>
+                                        <span>VerifiedOn:- ${adminVerifyOn}</span>
+                                    </div>
+                                </span>`
+            var elementArray = new Array(btnElement,statusElement);
+            return elementArray;
+        }
+        else {
+            var btnElement = `<p onclick="manageAdminVerificationStatus('${id}','${name}','${email}','${branch}',${adminVerifyStatus})">Verify</p>`
+            var statusElement = ` `
+            var elementArray = new Array(btnElement,statusElement);
+            return elementArray;
+        }
+    }
+    else {
+        var btnElement = `<p onclick="manageAdminVerificationStatus('${id}','${name}','${email}','${branch}',${adminVerifyStatus})">Verify</p>`
+        var statusElement = ` `
+        var elementArray = new Array(btnElement,statusElement);
+        return elementArray;
+    }
+
 }
 function searchQueryRefsGenerator(value,fltrBranch,batchFltrType,fltrBatch,fltrBatchRange1,fltrBatchRange2,filterName) {
     var userRefs = firebase.firestore().collection("users");

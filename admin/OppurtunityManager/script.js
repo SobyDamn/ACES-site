@@ -66,22 +66,33 @@ function submitContent() {
     var lastDate = document.getElementById("contentDateField").value;
     var contentLink = document.getElementById("contentLink").value;
     var oppurtunityDB = firebase.firestore().collection("oppurtunity");
-    submitInProgress(true)
-    oppurtunityDB.add({
-        text: contentTitle,
-        lastDate: lastDate,
-        link: contentLink,
-        timestamp:firebase.firestore.FieldValue.serverTimestamp(),
-    }).then(()=>{
-        submitInProgress(false);
-        document.getElementsByClassName("adminManageContentOption")[0].click();
-        loadAvailableContentWithSettings();
-        resetContentForm();
-    }).catch((error)=>{
+    if (lastDate != "") {
+        submitInProgress(true)
+        oppurtunityDB.add({
+            text: contentTitle,
+            lastDate: lastDate,
+            link: contentLink,
+            addedBy:availableUser.displayName,
+            addedOn:nerdDate2(new Date()),
+            timestamp:firebase.firestore.FieldValue.serverTimestamp(),
+        }).then(()=>{
+            submitInProgress(false);
+            document.getElementsByClassName("adminManageContentOption")[0].click();
+            loadAvailableContentWithSettings();
+            resetContentForm();
+        }).catch((error)=>{
+            submitInProgress(false)
+            document.getElementById("contentSubmitErrorHolder").style.display = "block";
+            document.getElementById("contentSubmitErrorText").innerText = error;
+            showPopUp("Error",error.message);
+        })
+    }
+    else {
         submitInProgress(false)
         document.getElementById("contentSubmitErrorHolder").style.display = "block";
-        document.getElementById("contentSubmitErrorText").innerText = error;
-    })
+        document.getElementById("contentSubmitErrorText").innerText = "Please select valid value in date field!";
+    }
+    
 }
 
 function saveEditOppurtunity(id) {
@@ -104,6 +115,7 @@ function saveEditOppurtunity(id) {
         submitInProgress(false)
         document.getElementById("contentSubmitErrorHolder").style.display = "block";
         document.getElementById("contentSubmitErrorText").innerText = error;
+        showPopUp("Error",error.message);
     })
 }
 
@@ -127,7 +139,16 @@ function loadAvailableOppurtunity(maxLimit) {
                                         <span class="adminManageAvailableContentTitle">${contentTitle}</span><br>
                                         <button onclick="editOppurtunity('${doc.id}','${text}','${oppurtunity.lastDate}','${oppurtunity.link}')" class="adminManageAvailableContentOptionBTN">Edit</button>
                                         <button onclick="deleteOppurtunity('${doc.id}','${escape(contentTitle)}')" class="adminManageAvailableContentOptionBTN">Delete</button>
-                                        <button class="adminManageAvailableContentOptionBTN">About</button>
+                                        <button class="adminManageAvailableContentOptionBTN">
+                                            <span class="adminManageAvailableContentAboutBTN">About
+                                                <div class="adminManageAvailableAboutContent">
+                                                    <h3>About</h3>
+                                                    <span>AddedBy:- ${doc.data()['addedBy']}</span>
+                                                    <br>
+                                                    <span>AddedOn:- ${doc.data()['addedOn']}</span>
+                                                </div>
+                                            </span>
+                                        </button>
                                     </div>`
             document.getElementById("adminManageAvailableContentContainer").innerHTML += oppurtunityElement
         });
@@ -261,4 +282,13 @@ function saveContentSetting(button,type) {
         loader.style.display = "none"
         showPopUp("Error",error.message)
     })
+}
+function nerdDate2(x) {
+    var date = new Date(x)
+    var monthsArray = new Array('Jan', 'Feb', 'Mar', 'April', 'May', 'June', 'July', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec')
+    var day = date.getDate()
+    var month = date.getMonth()
+    var year = date.getFullYear()
+    var outPutDate = `${day} ${monthsArray[month]},${year}`
+    return outPutDate;
 }

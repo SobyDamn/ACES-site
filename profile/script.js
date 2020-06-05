@@ -1,7 +1,7 @@
 const urlParams = new URLSearchParams(window.location.search)
 const qUid = urlParams.get('id')
 const userName = urlParams.get('name')
-var currentUser;
+var currentUser = null;
 
 firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
@@ -73,17 +73,18 @@ function showRequestedProfile(uid) {
     profileRef.get().then((doc)=>{
         if (doc.exists) {
             var userDetails = doc.data();
-            smallProfileCardNameElement.innerText = userDetails["Name"];
+            requestPrivateData(uid);
+            smallProfileCardNameElement.innerHTML = userDetails["Name"];
             smallProfileCardBranchElement.innerText = userDetails["Branch"];
             smallProfileCardBatchElement.innerText = userDetails["Batch"];
             smallProfileCardEmailElement.innerText = userDetails["Email"];
             smallprofileCardLinkedinElelment.innerText = checkDataAvailable(userDetails["Linkedin"]);
-            mainProfileNameElement.innerText = userDetails["Name"];
+            mainProfileNameElement.innerHTML = userDetails["Name"];
             mainProfileUserBranchElement.innerText = userDetails["Branch"];
             mainProfileUserBatchElement.innerText = userDetails["Batch"];
             mainProfileUserEmailElement.innerText = userDetails["Email"];
             mainProfileUserLinkedInElement.innerText = checkDataAvailable(userDetails["Linkedin"]);
-            mainProfileUserPhoneElement.innerText = checkDataAvailable(userDetails["Contact"]);
+            //mainProfileUserPhoneElement.innerText = checkDataAvailable(userDetails["Contact"]);
             mainProfileUserCompanyElement.innerText = checkDataAvailable(userDetails["Company"]);
             mainProfileUserWebsiteElement.innerText = checkDataAvailable(userDetails["Site"]);
             mainProfileUserLocationElement.innerText = checkDataAvailable(userDetails["Location"]);
@@ -153,4 +154,47 @@ function fetchImageForSmallProfileCard(fileName,uid) {
         document.getElementById("smallProfileCardImageLoader").style.display = "none";
         profileCardImageElement.style.display = "block";
     }
+}
+
+function requestPrivateData(uid) {
+    if (currentUser != null) {
+        if (currentUser.uid == uid) {
+            //fetchData
+            fetchPrivateData(uid);
+        }
+        else {
+            var requestedUserRefs = firebase.firestore().collection("users").doc(currentUser.uid);
+            requestedUserRefs.get().then(doc=>{
+                if (doc.exists) {
+                    var reqUserDetails = doc.data();
+                    if (reqUserDetails.admin != undefined) {
+                        if (reqUserDetails.admin) {
+                            fetchPrivateData(uid);
+                            return;
+                        }
+                        
+                    }
+                    if(reqUserDetails.adminVerified != undefined) {
+                        if (reqUserDetails.adminVerified) {
+                            fetchPrivateData(uid);
+                            return;
+                        }
+                    }
+
+                }
+            })
+        }
+    }
+}
+function fetchPrivateData(uid) {
+    var userPrivateData = firebase.firestore().collection("users-pvt-data").doc(uid);
+    document.getElementById("userContactField").style.display = "flex"
+    const mainProfileUserPhoneElement = document.getElementById("mainProfileUserPhone");
+    userPrivateData.get().then((doc)=>{
+        if (doc.exists) {
+            var userDetails = doc.data();
+            mainProfileUserPhoneElement.innerText = checkDataAvailable(userDetails["Contact"]);
+            profilePageStatus("showProfile"); //show profile stop loader
+        }
+    })
 }

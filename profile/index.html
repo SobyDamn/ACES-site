@@ -37,7 +37,7 @@
                         </div>
                         <span id="userName"></span><br>
                         <a href="../profile" id="headerViewProfileLink" class="userAuthBTN">View Profile!</a><br>
-                        <button onclick="logout()" class="userAuthBTN">Logout</button>
+                        <button onclick="logout('secondChild')" class="userAuthBTN">Logout</button>
                     </div>
                     <div id="userSignedOut" style="display: none;">
                         <div id="userImageHolder">
@@ -102,7 +102,7 @@
                             </div>
                         </div>
                         <div id="smallProfileCardDetails">
-                            <h2><span id="smallProfileCardName">Unavailabe</span></h2>
+                            <h2><span id="smallProfileCardName">Unavailabe</span><span id="smallProfileCardVerificationStatus"></span></h2>
                             <p id="smallProfileCardBranch">
                                 Computer Science And Engineering
                             </p>
@@ -188,7 +188,7 @@
                                 Unavailabe
                             </div>
                         </div>
-                        <div class="profileUserDetailContaner">
+                        <div id="userContactField" style="display: none;" class="profileUserDetailContaner">
                             <div class="profileUserDetailFor">
                                 Contact No. :
                             </div>
@@ -210,7 +210,7 @@
         </div>
         <div id="footer">
             <center>
-                <h3><a href="../admin">Admin Login</a></h3>
+                <h3><a onclick="openAdminPanel('secondChild')">Admin Login</a></h3>
                 <span>ACES ©2020</span>
             </center>
         </div>

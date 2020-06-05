@@ -10,6 +10,7 @@
         <script src="../../scripts/firebase-auth.js"></script>
         <script src ="../../scripts/header-manager.js"></script>
         <script src="../../scripts/user-auth.js"></script>
+        <script src="../adminAuth.js"></script>
         <script src="script.js"></script>
         <!---Stylsheets-->
         <link rel="stylesheet" href="../../style/popup_form.css">
@@ -23,7 +24,7 @@
         <link rel="stylesheet" href="../style.css"/>
         <link rel="stylesheet" href="../../style/newsletterStyle.css">
     </head>
-    <body onload="loadAvailableContentWithSettings(),loadDateOnStrip(null)">
+    <body onload="checkAdminAuthentication('secondChild'),loadAvailableContentWithSettings(),loadDateOnStrip(null)">
         <div id="header">
             <div id="logoContainer" class="headerBox">
                 <img id="site-logo" src="../../resource/img/aces-white.png"/>
@@ -38,7 +39,7 @@
                         </div>
                         <span id="userName"></span><br>
                         <a href="../profile" id="headerViewProfileLink" class="userAuthBTN">View Profile!</a><br>
-                        <button onclick="logout()" class="userAuthBTN">Logout</button>
+                        <button onclick="logout('thirdChild')" class="userAuthBTN">Logout</button>
                     </div>
                     <div id="userSignedOut" style="display: none;">
                         <div id="userImageHolder">
@@ -185,7 +186,7 @@
         </div>
         <div id="footer">
             <center>
-                <h3><a href="../index.html">HOME</a></h3>
+                <h3><a href="../../index.html">HOME</a></h3>
                 <span>ACES ©2020</span>
             </center>
         </div>
@@ -193,7 +194,6 @@
         <div id="loginPOP" class="modal_form">
             <!-- Login Modal content -->
             <div class="modal-content">
-                <button onclick="closeLoginPop()" class="transparentBTN" style="position:absolute;top:0;right:0;margin-top: 15px;margin-right: 15px;"><i class="material-icons" style="color:rgba(255, 255, 255, 0.527);margin-top: auto;margin-bottom: auto;">close</i></button>
                 <div class="popHeader">
                     <div style="font-weight: 800;" id="popHeading">
                         <i class="material-icons" style="color:white;margin-top: auto;margin-bottom: auto;padding: 5px; font-size: 400%;">account_circle</i><br>

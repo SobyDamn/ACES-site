@@ -10,6 +10,8 @@
         <script src="../../scripts/firebase-auth.js"></script>
         <script src ="../../scripts/header-manager.js"></script>
         <script src="../../scripts/user-auth.js"></script>
+        <script src="../adminAuth.js"></script>
+        <script src="userManager.js"></script>
         <script src="searchEngineAdmin.js"></script>
         <script src="script.js"></script>
         <!---Stylsheets-->
@@ -23,7 +25,7 @@
         <link rel="stylesheet" href="../style.css"/>
         <link rel="stylesheet" href="style.css">
     </head>
-    <body onload="loadAdminSearchEngine(),setupFilterDefault()">
+    <body onload="checkAdminAuthentication('secondChild'),loadAdminSearchEngine(),setupFilterDefault()">
         <div id="header">
             <div id="logoContainer" class="headerBox">
                 <img id="site-logo" src="../../resource/img/aces-white.png"/>
@@ -38,7 +40,7 @@
                         </div>
                         <span id="userName"></span><br>
                         <a href="../profile" id="headerViewProfileLink" class="userAuthBTN">View Profile!</a><br>
-                        <button onclick="logout()" class="userAuthBTN">Logout</button>
+                        <button onclick="logout('thirdChild')" class="userAuthBTN">Logout</button>
                     </div>
                     <div id="userSignedOut" style="display: none;">
                         <div id="userImageHolder">
@@ -85,6 +87,7 @@
             </div>
             <div class="adminManageContent">
                 <h2 class="adminContentTite">Manage Users</h2>
+                <p class="noteForAdmin">Note :- Search "ALL" to get the list of all users</p>
                 <div id="adminManageUserContentArea">
                     <div id="adminSearchElementsContainerArea">
                         <div id="adminSearchElementsContainer">
@@ -144,67 +147,7 @@
                             <h2 class="adminContentBoxHeading" style="display: none;text-align: center;" id="noResultFound">No Results found</h2>
                             <center>
                                 <div style="display: none;" id="searchResultContainerTypeList">
-                                    <div class=searchResultBox>
-                                        <div class="searchResultImageHolder">
-                                            <img class="searchResultImage" src="../../resource/img/aces-blue-bg-portrait.jpg"/>
-                                        </div>
-                                        <div class="searchDetailsHolder">
-                                            <a href="../profile/?name=${name}&id=${id}" class="searchResultName">Sritabh Priyadarshi</a>
-                                            <br>
-                                            <span class="searchResultBranch">Computer Science and Engineering</span>
-                                            <br>
-                                            <span class="searchResultBatch">2019</span>
-                                            <br>
-                                            <span class="userAdminStatus">
-                                                Admin
-                                                <div class="userAdminStatus-content">
-                                                    <h3>Admin Status</h3>
-                                                    <span>AddedBy:- SobyDamn</span>
-                                                    <br>
-                                                    <span>AddedOn:- 2 May,2020</span>
-                                                </div>
-                                            </span>
-                                            <span class="userVerifyStatus">
-                                                Verified
-                                                <div class="userVerifyStatus-content">
-                                                    <h3>Verify Status</h3>
-                                                    <span>VerifiedBy:- SobyDamn</span>
-                                                    <br>
-                                                    <span>VerifiedOn:- 2 May,2020</span>
-                                                </div>
-                                            </span>
-                                            <button class="adminUserMoreOptionBTN"><i class="material-icons">more_vert</i>
-                                                <div class="moreOption-content">
-                                                    <p>Delete User</p>
-                                                    <br>
-                                                    <p>Make Admin</p>
-                                                    <br>
-                                                    <p>Verify</p>
-                                                </div>
-                                            </button>
-                                        </div>
-                                    </div>
-                                    <div class=searchResultBox>
-                                        <div class="searchResultImageHolder">
-                                            <img class="searchResultImage" src="../../resource/img/aces-blue-bg-portrait.jpg"/>
-                                        </div>
-                                        <div class="searchDetailsHolder">
-                                            <a href="../profile/?name=${name}&id=${id}" class="searchResultName">SobyDamn</a>
-                                            <br>
-                                            <span class="searchResultBranch">Computer Science and Engineering</span>
-                                            <br>
-                                            <span class="searchResultBatch">2019</span>
-                                            <button class="adminUserMoreOptionBTN"><i class="material-icons">more_vert</i>
-                                                <div class="moreOption-content">
-                                                    <p>Delete User</p>
-                                                    <br>
-                                                    <p>Make Admin</p>
-                                                    <br>
-                                                    <p>Verify</p>
-                                                </div>
-                                            </button>
-                                        </div>
-                                    </div>
+                                    <!--Search result list will appear here-->
                                 </div>
                                 <div style="display: none;" id="searchResultContainerTypeTable">
                                     <table id="searchResultTypeTable">
@@ -240,7 +183,6 @@
         <div id="loginPOP" class="modal_form">
             <!-- Login Modal content -->
             <div class="modal-content">
-                <button onclick="closeLoginPop()" class="transparentBTN" style="position:absolute;top:0;right:0;margin-top: 15px;margin-right: 15px;"><i class="material-icons" style="color:rgba(255, 255, 255, 0.527);margin-top: auto;margin-bottom: auto;">close</i></button>
                 <div class="popHeader">
                     <div style="font-weight: 800;" id="popHeading">
                         <i class="material-icons" style="color:white;margin-top: auto;margin-bottom: auto;padding: 5px; font-size: 400%;">account_circle</i><br>

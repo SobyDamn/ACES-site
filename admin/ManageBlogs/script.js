@@ -105,6 +105,8 @@ function submitContent() {
             image: contentImageURL,
             textColor: contentDescriptionColor,
             titleColor: contentTitleColor,
+            addedBy:availableUser.displayName,
+            addedOn:nerdDate(new Date()),
             timestamp:firebase.firestore.FieldValue.serverTimestamp(),
         }).then((blogRef)=>{
             uploadBlogImage(blogRef.id)
@@ -112,6 +114,7 @@ function submitContent() {
             submitInProgress(false)
             document.getElementById("contentSubmitErrorHolder").style.display = "block";
             document.getElementById("contentSubmitErrorText").innerText = error;
+            showPopUp("Error",error.message);
         })
     }
 }
@@ -143,6 +146,7 @@ function saveEditBlog(id) {
             submitInProgress(false)
             document.getElementById("contentSubmitErrorHolder").style.display = "block";
             document.getElementById("contentSubmitErrorText").innerText = error;
+            showPopUp("Error",error.message);
         })
     }
     else {
@@ -162,6 +166,7 @@ function saveEditBlog(id) {
             submitInProgress(false)
             document.getElementById("contentSubmitErrorHolder").style.display = "block";
             document.getElementById("contentSubmitErrorText").innerText = error;
+            showPopUp("Error",error.message);
         })
     }
 }
@@ -201,7 +206,16 @@ function loadAvailableBlogs(maxLimit) {
                                         <span class="adminManageAvailableContentTitle">${blog.title}</span><br>
                                         <button onclick="editBlog('${doc.id}','${title}','${description}','${blog.link}','${blog.background}','${blog.image}','${blog.textColor}','${blog.titleColor}')" class="adminManageAvailableContentOptionBTN">Edit</button>
                                         <button onclick="deleteBlog('${doc.id}','${title}','${blog.image}')" class="adminManageAvailableContentOptionBTN">Delete</button>
-                                        <button class="adminManageAvailableContentOptionBTN">About</button>
+                                        <button class="adminManageAvailableContentOptionBTN">
+                                            <span class="adminManageAvailableContentAboutBTN">About
+                                                <div class="adminManageAvailableAboutContent">
+                                                    <h3>About</h3>
+                                                    <span>AddedBy:- ${doc.data()['addedBy']}</span>
+                                                    <br>
+                                                    <span>AddedOn:- ${doc.data()['addedOn']}</span>
+                                                </div>
+                                            </span>
+                                        </button>
                                     </div>`
             document.getElementById("adminManageAvailableContentContainer").innerHTML += blogElement
         });
@@ -380,4 +394,13 @@ function saveContentSetting(button,type) {
         loader.style.display = "none"
         showPopUp("Error",error.message)
     })
+}
+function nerdDate(x) {
+    var date = new Date(x)
+    var monthsArray = new Array('Jan', 'Feb', 'Mar', 'April', 'May', 'June', 'July', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec')
+    var day = date.getDate()
+    var month = date.getMonth()
+    var year = date.getFullYear()
+    var outPutDate = `${day} ${monthsArray[month]},${year}`
+    return outPutDate;
 }

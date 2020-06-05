@@ -9,6 +9,7 @@
         <script src="https://www.gstatic.com/firebasejs/7.14.3/firebase-storage.js"></script>
         <script src="../scripts/firebase-auth.js"></script>
         <script src ="../scripts/header-manager.js"></script>
+        <script src="../scripts/user-auth.js"></script>
         <script src="script.js"></script>
         <!---Stylsheets-->
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -18,6 +19,7 @@
         <link rel="stylesheet" href="style.css"/>
         <link rel="stylesheet" href="../style/footer.css">
         <link rel="stylesheet" href="../style/popup.css"/>
+        <link rel="stylesheet" href="../style/popup_form.css"/>
     </head>
     <body>
         <div id="header">
@@ -34,7 +36,7 @@
                         </div>
                         <span id="userName"></span><br>
                         <a href="../profile" id="headerViewProfileLink" class="userAuthBTN">View Profile!</a><br>
-                        <button onclick="logout()" class="userAuthBTN">Logout</button>
+                        <button onclick="logout('secondChild')" class="userAuthBTN">Logout</button>
                     </div>
                     <div id="userSignedOut" style="display: none;">
                         <div id="userImageHolder">
@@ -107,6 +109,8 @@
                         <p><span class="label">Location: </span><span class="input"><input id="user_location" placeholder="Your Current Location" required/></span></p>
                         <p><span class="label">Website: </span><span class="input"><input id="user_site" placeholder="www.example.com"/></span></p>
                         <p><span class="label">Linkedin: </span><span class="input"><input id="user_linkedin" placeholder="Linkedin Profile"></span></p>
+                        <span id="selectedImageUploadStatus"></span>
+                        <br>
                         <div id="saveProfileLoader" style="display:none;">
                             <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
                         </div>
@@ -117,10 +121,62 @@
         </center>
         <div id="footer">
             <center>
-                <h3><a href="../admin">Admin Login</a></h3>
+                <h3><a onclick="openAdminPanel('secondChild')">Admin Login</a></h3>
                 <span>ACES ©2020</span>
             </center>
         </div>
+        <!-- The Login Modal -->
+        <div id="loginPOP" class="modal_form">
+            <!-- Login Modal content -->
+            <div class="modal-content">
+                <div class="popHeader">
+                    <div style="font-weight: 800;" id="popHeading">
+                        <i class="material-icons" style="color:white;margin-top: auto;margin-bottom: auto;padding: 5px; font-size: 400%;">account_circle</i><br>
+                        LOG IN
+                    </div>
+                    <span id="loginErrorHolder"><sub><i class="material-icons"  style="font-size:160%;padding: 5px;">error</i></sub><span id="loginErrorText">Error!</span></span>
+                </div>
+                <div class="popContent">
+                    <p class="formInputHolder"><i class="material-icons" style="color:white;margin-top: auto;margin-bottom: auto;padding: 5px;">email</i><input placeholder="Email" type="email" id="login_email" required/></p>
+                    <p class="formInputHolder"><i class="material-icons" style="color:white;margin-top: auto;margin-bottom: auto;padding: 5px;">lock</i><input placeholder="Password" type="password" id="login_password"/></p>
+                    <div style="text-align: right; margin-top: -10px;">
+                        <a style="color:white;" href="forgot-password/">Forgot Password?</a>
+                    </div>
+                    <div class="popFormBTN">
+                        <div id="loginAuthLoader" style="display:none;">
+                            <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+                        </div>
+                        <button class="popBTN" id="loginBTN" onclick="login()">Login</button><br>
+                        <button class="transparentBTN" id="registerFormPOPBTN" onclick = "showRegisterForm()">New Here? Register!</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--Reg Modal-->
+        <div id="registerPOP" class="modal_form">
+            <!--Reg Modal content -->
+            <div class="modal-content">
+                <div class="popHeader">
+                    <div style="font-weight: 800;" id="popHeading">
+                        <i class="material-icons" style="color:white;margin-top: auto;margin-bottom: auto;padding: 5px; font-size: 400%;">account_circle</i><br>
+                        REGISTER
+                    </div>
+                    <span id="regErrorHolder"><sub><i class="material-icons"  style="font-size:160%;padding: 5px;">error</i></sub><span id="regErrorText">Error!</span></span>
+                </div>
+                <div class="popContent">
+                    <p class="formInputHolder"><i class="material-icons" style="color:white;margin-top: auto;margin-bottom: auto;padding: 5px;">email</i><input autocomplete="off" placeholder="Email" type="email" id="register_email"/></p>
+                    <p class="formInputHolder"><i class="material-icons" style="color:white;margin-top: auto;margin-bottom: auto;padding: 5px;">lock</i><input autocomplete="off" placeholder="Passsword" type="password" id="register_password"/></p>
+                    <p class="formInputHolder"><i class="material-icons" style="color:white;margin-top: auto;margin-bottom: auto;padding: 5px;">lock</i><input autocomplete="off" placeholder="Confirm Password" type="password" id="register_cPassword"/></p>
+                </div>
+                <div class="popFormBTN">
+                    <div id="regAuthLoader" style="display:none;">
+                        <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+                    </div>
+                    <button style="margin-bottom: 30px;" class="popBTN" id="registerBTN" onclick="registerUser()">Register</button><br>
+                </div>
+            </div>
+        </div>
+
         <div id="errorNotice" class="modal">
             <!-- Modal content -->
             <div class="modal-content">
@@ -134,6 +190,25 @@
                         Some error message
                     </p>
                     <button style="position:absolute;bottom:0;right:0;margin-bottom: 15px;margin-right: 15px;" class="popBTN" id="closePOP" onclick="closeErrorNotice()">Close</button>
+                </div>
+            </div>
+        </div>
+        <div id="verifyEmailPOP" class="modal">
+            <!-- Modal content -->
+            <div class="modal-content">
+                <div class="popHeader">
+                    <div id="verifyEmailPOPHeading" style="font-weight: 800;word-wrap: break-word;" class="popHeading">
+                        Verification Pending
+                    </div>
+                </div>
+                <div id="verifyEmailPOPMsg" class="popContent">
+                    Verification msg
+                </div>
+                <div id="verifyEmailPOPLoader" style="text-align: center; display: none;">
+                    <div class="lds-ellipsis"><div style="background: rgb(94, 117, 223);"></div><div style="background: rgb(94, 117, 223);"></div><div style="background: rgb(94, 117, 223);"></div><div style="background: rgb(94, 117, 223);"></div></div>
+                </div>
+                <div id = "verifyEmailPOPFooter">
+                    <button style="position:absolute;bottom:0;right:0;margin-bottom: 15px;margin-right: 15px;" class="popBTN" id="confirmVerifyEmailPOP">Verify</button>
                 </div>
             </div>
         </div>

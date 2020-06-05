@@ -2,10 +2,11 @@ var currUser;
 var selectedImage = null;
 //check authentication
 firebase.auth().onAuthStateChanged(function(user) {
+    checkAuthentication(user);
     var nameElement = document.getElementById("userName");
     if (user) {
       // User logged in already or has just logged in.
-      checkCurrentProfile(user);
+        checkCurrentProfile(user);
         document.getElementById("userSignedIN").style.display = "block";
         document.getElementById("userSignedOut").style.display = "none";
         document.getElementById("spin_loader").style.display = "none";
@@ -33,7 +34,6 @@ firebase.auth().onAuthStateChanged(function(user) {
       document.getElementById("showImageInNoImage").style.display = "inline"
       currUser = null;
       nameElement.style.display = "none";
-      window.location = "../index.html"
     }
   });
 
@@ -64,13 +64,10 @@ function checkCurrentProfile(user) {
             userTypeSavedValue(userDetails["UserType"]);
             //show current image
             fetchImage(userDetails["profileImage"],uid);
-            console.log("Document data:", doc.data());
         } else {
             // doc.data() will be undefined in this case
-            console.log("No such document!");
         }
     }).catch(function(error) {
-        console.log("Error getting document:", error);
     });
 }
 function saveProfileData() {
@@ -82,10 +79,10 @@ function saveProfileData() {
         var storageRef = firebase.storage().ref("users/"+uid+"/"+selectedImage.name);
         var uploadImage = storageRef.put(selectedImage);
         uploadImage.on('state_changed',(snapshot) => {
-            document.getElementById("selectImageStatus").innerHTML = Math.floor((snapshot.bytesTransferred/snapshot.totalBytes)*100) + "% Uploaded"
+            document.getElementById("selectedImageUploadStatus").innerHTML = Math.floor((snapshot.bytesTransferred/snapshot.totalBytes)*100) + "% Uploaded"
             if (Math.floor((snapshot.bytesTransferred/snapshot.totalBytes)*100) >= 100) {
                 //uploading completed
-                document.getElementById("selectImageStatus").innerHTML = "Uploaded!"
+                document.getElementById("selectedImageUploadStatus").innerHTML = "Uploaded!"
                 saveProfileDetails(uid);
             }
         });
@@ -133,7 +130,6 @@ function saveProfileDetails(uid) {
                         Name: name,
                         Email: email,
                         Branch: branch,
-                        Contact: phone,
                         Company: company,
                         Location: location,
                         Site: site,
@@ -142,6 +138,8 @@ function saveProfileDetails(uid) {
                         Email: currUser.email,
                         UserType: userTypeVal,
                         query: userSearchQueryGenerator(name,email,company),
+                    }).then(()=>{
+                        updatePrivateData(uid,name,email,phone);
                     }).then(()=>{
                         if (selectedImage != null) {
                             userProfile.update({
@@ -159,7 +157,6 @@ function saveProfileDetails(uid) {
                         //error in saving
                         document.getElementById("saveProfileLoader").style.display = "none";
                         document.getElementById("save_userProfleBTN").style.display = "block";
-                        console.log(err)
                     })
                 })
             } else {
@@ -172,7 +169,6 @@ function saveProfileDetails(uid) {
                         Name: name,
                         Email: email,
                         Branch: branch,
-                        Contact: phone,
                         Company: company,
                         Location: location,
                         Site: site,
@@ -180,8 +176,12 @@ function saveProfileDetails(uid) {
                         Batch: batch,
                         Email: currUser.email,
                         UserType: userTypeVal,
+                        timestamp:firebase.firestore.FieldValue.serverTimestamp(),
                         query: userSearchQueryGenerator(name,email,company),
                     }).then(()=>{
+                        setPrivateData(uid,name,email,phone);
+                    })
+                    .then(()=>{
                         if (selectedImage != null) {
                             userProfile.update({
                                 //guessing profile pic is not compulsory
@@ -199,14 +199,12 @@ function saveProfileDetails(uid) {
                         //error in saving
                         document.getElementById("saveProfileLoader").style.display = "none";
                         document.getElementById("save_userProfleBTN").style.display = "block";
-                        console.log(err)
                     })
                 })
             }
         }).catch(function(error) {
             document.getElementById("saveProfileLoader").style.display = "none";
             document.getElementById("save_userProfleBTN").style.display = "block";
-            console.log(error);
         });
     }).catch((err)=>{
         showErrorNotice("Field Required",err)
@@ -217,7 +215,6 @@ function saveProfileDetails(uid) {
 
 function loadSelectedImage(event) {
     selectedImage = event.target.files[0];
-    console.log(selectedImage.name)
     var showSelectedImage = document.getElementById("showImage")
     showSelectedImage.src = URL.createObjectURL(event.target.files[0]);
 }
@@ -239,7 +236,6 @@ function fetchImage(fileName,uid) {
             profileImageInHeader.src = url;
         }).catch((err)=> {
             // Handle any errors
-            console.log(err)
         });
     }
 }
@@ -286,3 +282,64 @@ function userSearchQueryGenerator(name,email,company) {
     return queryValArray;
 }
 
+function updatePrivateData(id,name,email,contact) {
+    var userPrivateData = firebase.firestore().collection("users-pvt-data").doc(id);
+    userPrivateData.update({
+        Name: name,
+        Email: email,
+        Contact: contact,
+    }).catch(function(error) {
+        document.getElementById("saveProfileLoader").style.display = "none";
+        document.getElementById("save_userProfleBTN").style.display = "block";
+        showErrorNotice("Error",error.message);
+    });
+}
+function setPrivateData(id,name,email,contact) {
+    var userPrivateData = firebase.firestore().collection("users-pvt-data").doc(id);
+    userPrivateData.set({
+        Name: name,
+        Email: email,
+        Contact: contact,
+        timestamp:firebase.firestore.FieldValue.serverTimestamp(),
+    }).catch(function(error) {
+        document.getElementById("saveProfileLoader").style.display = "none";
+        document.getElementById("save_userProfleBTN").style.display = "block";
+        showErrorNotice("Error",error.message);
+    });
+}
+function checkAuthentication(user) {
+    if (user) {
+        if (!user.emailVerified) {
+            showEmailVerificationPOP(user,user.email);
+        }
+        else {
+            return;
+        }
+    }
+    else {
+        showLoginForm();
+    }
+}
+
+function showEmailVerificationPOP(user,email) {
+    var popUp = document.getElementById("verifyEmailPOP");
+    var popHeadingElement = document.getElementById("verifyEmailPOPHeading");
+    var popMessageElement = document.getElementById("verifyEmailPOPMsg");
+    var popLoader = document.getElementById("verifyEmailPOPLoader");
+    var popFooter = document.getElementById("verifyEmailPOPFooter");
+    var verifyBTN = document.getElementById("confirmVerifyEmailPOP");
+    popMessageElement.innerHTML = `Please verify your email<br>'${email}' is not yet verified!`;
+    verifyBTN.onclick = function() {
+        popFooter.style.display = "none";
+        popLoader.style.display = "block";
+        user.sendEmailVerification().then(()=>{
+            popMessageElement.innerHTML = `Verification link has been sent to <b>${email}</b>`;
+            popFooter.style.display = "none";
+            popLoader.style.display = "none";
+        }).catch(error=>{
+            showErrorNotice("Error",error.message)
+            popUp.style.display = "none";
+        })
+    }
+    popUp.style.display = "block";
+}

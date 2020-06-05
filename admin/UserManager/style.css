@@ -25,7 +25,7 @@
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0px;
-    border: 1px solid #ccc;
+    border: 2px solid #ccc;
     border-radius: 4px;
     font-family: openSans-Bold;
     border-right: none;
@@ -40,6 +40,7 @@
     background-color: rgb(74, 77, 212);
     color: white;
     transition: background-color 0.2s;
+    font-size: 15px;
 }
 #adminSearchBTN:hover {
     background-color: rgb(28, 29, 128);
