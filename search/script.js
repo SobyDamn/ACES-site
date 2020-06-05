@@ -11,7 +11,7 @@ var maxDocLimit = 10; //maxm doc load at first time
 function loadSearchEngine() {
     if (queryVal != null) {
         //req query
-        document.getElementById("searchQuery").innerText = queryVal;
+        document.getElementById("searchResultHeading").innerHTML = `Showing result for "<span id="searchQuery">${queryVal}</span>"`;
         document.getElementById("searchBar").value = queryVal;
         if (filterBatch != null) {
             document.getElementById("filterByBatch").value = filterBatch;

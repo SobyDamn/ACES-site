@@ -93,7 +93,7 @@ function logout(from){
         })
     },500)
 }
-function search(value) {
+function search(from) {
     const searchStringFiled = document.getElementById("searchBar");
     const searchString = searchStringFiled.value
     if (searchString == "") {
@@ -103,11 +103,14 @@ function search(value) {
         },2000)
     }
     else {
-        if (value == "home") {
+        if (from == "home") {
             window.location = "search/?q="+searchString;
         }
-        else {
+        else if(from == "secondChild") {
             window.location = "../search/?q="+searchString;
+        }
+        else {
+            window.location = "../../search/?q="+searchString;
         }
     }
 }

@@ -66,11 +66,11 @@
                 </div>
             </div>
             <div id="searchBarConainer" class="headerContainerBox">
-                <p><sup><input value="" placeholder="Search..." id="searchBar"/></sup><button id="searchBTN" onclick="search()" class="transparentBTN"><i class="material-icons" style="font-size: 25px; font-weight: bolder; color: #d3e3f0a4; padding-left: 5px;">search</i></button></p>
+                <p><sup><input value="" placeholder="Search..." id="searchBar"/></sup><button id="searchBTN" onclick="search('secondChild')" class="transparentBTN"><i class="material-icons" style="font-size: 25px; font-weight: bolder; color: #d3e3f0a4; padding-left: 5px;">search</i></button></p>
             </div>
         </div>
         <div id="searchPageArea">
-            <h3 id="searchResultHeading" class="searchResultHeading">Showing result for "<span id="searchQuery">query</span>"</h3>
+            <h3 id="searchResultHeading" class="searchResultHeading"></h3>
             <div id="filterItemContainer">
                 <div class="filterItemHolder">
                     <select onchange="changeFilterParams()" id="filterByBranch" class="selectorFilter">
