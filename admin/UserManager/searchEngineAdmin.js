@@ -57,12 +57,12 @@ function loadAdminSearchEngine() {
     }
 }
 
-function searchQuery(value,fltrBranch,batchFltrType,fltrBatch,fltrBatchRange1,fltrBatchRange2,filterName,lastDoc,limit) {
+function searchQuery(value,fltrBranch,batchFltrType,fltrBatch,fltrBatchRange1,fltrBatchRange2,filterName,lastDoc,maxLimit) {
     var searchResultType = document.getElementById("searchResultType").value;
     var userRefs = searchQueryRefsGenerator(value,fltrBranch,batchFltrType,fltrBatch,fltrBatchRange1,fltrBatchRange2,filterName);
     if (lastDoc == null) {
         //show from beginning
-        userRefs = userRefs.limit(limit)
+        userRefs = userRefs.limit(maxLimit)
         userRefs.get()
             .then(function(querySnapshot) {
                 searchResultManager(querySnapshot.size);
@@ -95,7 +95,7 @@ function searchQuery(value,fltrBranch,batchFltrType,fltrBatch,fltrBatchRange1,fl
     }
     else {
         //continue to next doc
-        userRefs = userRefs.startAfter(lastDoc).limit(limit)
+        userRefs = userRefs.startAfter(lastDoc).limit(maxLimit)
         userRefs.get()
             .then(function(querySnapshot) {
                 searchResultManager(querySnapshot.size);
@@ -150,7 +150,7 @@ function searchResultGenerator(id,name,branch,batch,email,contact,imageURL,admin
                                             <br>
                                             ${checkAdminStatus(id,name,email,branch,adminStatus,adminBy,adminOn)[1]}
                                             ${checkAdminVerifyStatus(id,name,email,branch,adminVerifyStatus,adminVerifyBy,adminVerifyOn)[1]}
-                                            <button class="adminUserMoreOptionBTN"><i class="material-icons">more_vert</i>
+                                            <button onclick="openMoreUserOption(this)" class="adminUserMoreOptionBTN"><i class="material-icons adminUserMoreOptionBTN"">more_vert</i>
                                                 <div class="moreOption-content">
                                                     <p onclick="deleteUser('${id}','${name}','${email}','${branch}','${imageURL}')">Delete User</p>
                                                     <br>
@@ -178,7 +178,7 @@ function searchResultGenerator(id,name,branch,batch,email,contact,imageURL,admin
                                             <br>
                                             ${checkAdminStatus(id,name,email,branch,adminStatus,adminBy,adminOn)[1]}
                                             ${checkAdminVerifyStatus(id,name,email,branch,adminVerifyStatus,adminVerifyBy,adminVerifyOn)[1]}
-                                            <button class="adminUserMoreOptionBTN"><i class="material-icons">more_vert</i>
+                                            <button onclick="openMoreUserOption(this)" class="adminUserMoreOptionBTN"><i class="material-icons adminUserMoreOptionBTN">more_vert</i>
                                                 <div class="moreOption-content">
                                                     <p onclick="deleteUser('${id}','${name}','${email}','${branch}','${imageURL}')">Delete User</p>
                                                     <br>
@@ -218,6 +218,7 @@ function fetchProfilePreviewImage(id,fileName) {
     var storageRef = firebase.storage().ref();
     return storageRef.child("users/"+id+"/"+fileName).getDownloadURL();
 }
+
 function fetchPrivateData(uid) {
     var userPrivateData = firebase.firestore().collection("users-pvt-data").doc(uid);
     var getPvtData = new Promise((res,rej)=>{
@@ -382,4 +383,5 @@ function searchQueryRefsGenerator(value,fltrBranch,batchFltrType,fltrBatch,fltrB
             }
         }
     }
+    
 }

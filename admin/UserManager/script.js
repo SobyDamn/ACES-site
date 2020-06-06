@@ -125,6 +125,7 @@ function changeInFilterParams() {
 function setupFilterDefault() {
     if (batch_FilterType != null) {
         document.getElementById("batchFilterType").value = batch_FilterType;
+        batchFilterType(batch_FilterType)
     }
     if (queryVal != null) {
         document.getElementById("adminSearchBar").value = queryVal;
@@ -145,3 +146,18 @@ function setupFilterDefault() {
         document.getElementById("batchFilterTo").value = toBatch;
     }
 }
+function openMoreUserOption(val) {
+    val.childNodes[2].classList.toggle("show");
+}
+window.onclick = function(event) {
+    if (!event.target.matches('.adminUserMoreOptionBTN')) {
+      var dropdowns = document.getElementsByClassName("moreOption-content");
+      var i;
+      for (i = 0; i < dropdowns.length; i++) {
+        var openDropdown = dropdowns[i];
+        if (openDropdown.classList.contains('show')) {
+          openDropdown.classList.remove('show');
+        }
+      }
+    }
+  }

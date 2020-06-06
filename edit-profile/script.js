@@ -50,12 +50,18 @@ function checkCurrentProfile(user) {
     var batch = document.getElementById("user_batch");
     var db = firebase.firestore();
     var profileRef = db.collection("users").doc(uid);
+    var userPrivateData = firebase.firestore().collection("users-pvt-data").doc(uid);
+    userPrivateData.get().then((doc)=>{
+        if (doc.exists) {
+            var userDetails = doc.data();
+            phone.value = userDetails["Contact"];
+        }
+    })
     profileRef.get().then((doc)=>{
         if (doc.exists) {
             var userDetails = doc.data();
             name.value = userDetails["Name"];
             branch.value = userDetails["Branch"];
-            phone.value = userDetails["Contact"];
             company.value = userDetails["Company"];
             location.value = userDetails["Location"];
             site.value = userDetails["Site"];

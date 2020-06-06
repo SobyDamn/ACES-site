@@ -189,9 +189,10 @@
     background-color: rgb(127, 151, 182);
     text-decoration: underline;
 }
-.adminUserMoreOptionBTN:hover .moreOption-content {
+/*.adminUserMoreOptionBTN:hover .moreOption-content {
     display: block;
-}
+}*/
+.show {display: block;}
 #searchResultTypeTable {
     font-family: openSans-Bold;
     border-collapse: collapse;
