@@ -18,7 +18,7 @@ var searchTableElementsHeader = `<tr>
                             <th>Email</th>
                             <th>Number</th>
                         </tr>`;
-var maxDocLimit = 1; //maxm doc load at first time
+var maxDocLimit = 15; //maxm doc load at first time
 
 function batchFilterType(value) {
     if (value == "static") {

@@ -1,7 +1,7 @@
 function fetchMoreSearchResult() {
     document.getElementById("searchResultloader").style.display = "block";
     document.getElementById("loadMoreResultContainer").style.display = "none";
-    maxDocLimit = 1;
+    maxDocLimit = 10;
     if (queryVal == null) {
         //Show all users
         searchQuery(null,filterBranch,batch_FilterType,filterBatch,fromBatch,toBatch,filterName,lastVisibleDoc,maxDocLimit)
