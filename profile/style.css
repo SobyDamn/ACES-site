@@ -78,7 +78,7 @@ div#smallProfileCardDetails {
     color:rgb(87, 87, 87);
     font-size: 70%;
 }
-div.profileDetailsContacts:hover {
+div.profileDetailsContacts:hover,#profileCardLinkedin:hover {
     color:rgb(19, 18, 18);
 }
 div.profileDetailsContacts {
@@ -150,4 +150,13 @@ h1.mainProfileInfoBoxHeading {
 #editProfileBTN:hover {
     background-color: rgb(64, 55, 128);
     font-size: 72%;
+}
+#profileCardLinkedin,#mainProfileUserLinkedIn,#mainProfileUserWebsite {
+    cursor: pointer;
+    text-decoration: none;
+    color:rgb(87, 87, 87);
+}
+#mainProfileUserLinkedIn:hover,#mainProfileUserWebsite:hover {
+    color:rgb(19, 18, 18);
+    text-decoration: underline;
 }

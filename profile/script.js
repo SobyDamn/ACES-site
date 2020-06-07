@@ -74,19 +74,18 @@ function showRequestedProfile(uid) {
         if (doc.exists) {
             var userDetails = doc.data();
             requestPrivateData(uid);
+            createProfileContactLinks("small",userDetails["Linkedin"],smallprofileCardLinkedinElelment)
+            createProfileContactLinks("big",userDetails["Linkedin"],mainProfileUserLinkedInElement)
+            createProfileContactLinks("big",userDetails["Site"],mainProfileUserWebsiteElement)
             smallProfileCardNameElement.innerHTML = userDetails["Name"];
             smallProfileCardBranchElement.innerText = userDetails["Branch"];
             smallProfileCardBatchElement.innerText = userDetails["Batch"];
             smallProfileCardEmailElement.innerText = userDetails["Email"];
-            smallprofileCardLinkedinElelment.innerText = checkDataAvailable(userDetails["Linkedin"]);
             mainProfileNameElement.innerHTML = userDetails["Name"];
             mainProfileUserBranchElement.innerText = userDetails["Branch"];
             mainProfileUserBatchElement.innerText = userDetails["Batch"];
             mainProfileUserEmailElement.innerText = userDetails["Email"];
-            mainProfileUserLinkedInElement.innerText = checkDataAvailable(userDetails["Linkedin"]);
-            //mainProfileUserPhoneElement.innerText = checkDataAvailable(userDetails["Contact"]);
             mainProfileUserCompanyElement.innerText = checkDataAvailable(userDetails["Company"]);
-            mainProfileUserWebsiteElement.innerText = checkDataAvailable(userDetails["Site"]);
             mainProfileUserLocationElement.innerText = checkDataAvailable(userDetails["Location"]);
             profilePageStatus("showProfile"); //show profile stop loader
             //show current image in smol profile card
@@ -99,7 +98,22 @@ function showRequestedProfile(uid) {
         console.log("Error getting document:", error);
     });
 }
-
+function createProfileContactLinks(type,value,element) {
+    
+    if (value != "") {
+        if (type == "small") {
+            element.innerText = fetchLinkedinUsername(value);
+            element.href = value;
+        }
+        else {
+            element.innerText = value
+            element.href = value;
+        }
+    }
+    else {
+        element.innerText = "Not Avaialble"
+    }
+}
 function checkDataAvailable(data) {
     if (data == "") {
         return "Not Available";
@@ -197,4 +211,23 @@ function fetchPrivateData(uid) {
             profilePageStatus("showProfile"); //show profile stop loader
         }
     })
+}
+function fetchLinkedinUsername(value) {
+    var x = value.split("/")
+    if (x.length <=2) {
+        return "/Visit"
+    }
+    else {
+        var username = x[x.length-1];
+        if (username.length > 8) {
+            username = username.slice(0,8) + "..."
+            return username
+        }
+        else if(username.length < 2) {
+            return "/Visit"
+        }
+        else {
+            return username
+        }
+    }
 }
