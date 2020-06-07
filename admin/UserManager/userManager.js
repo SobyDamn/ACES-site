@@ -228,3 +228,31 @@ function nerdDate(x) {
     var outPutDate = `${day} ${monthsArray[month]},${year}`
     return outPutDate;
 }
+function emailService(btn) {
+    document.getElementById("emailListDetail").style.display = "none";
+    document.getElementById("emailListContainer").style.display = "none"
+    document.getElementById("emailListContainer").style.animation = "fadeOut 0.3s"
+    btn.style.display = "none"
+    document.getElementById("emailListLoader").style.display = "block"
+    const emails = document.getElementsByClassName("userEmailList");
+    var fetchEmails = new Promise((res,rej)=>{
+        var emailList = "";
+        for (var i=0; i <emails.length;i++) {
+            emailList += `${emails[i].innerHTML},`
+        }
+        res(emailList)
+    })
+    fetchEmails.then((emailList)=>{
+        document.getElementById("emailListDetail").style.display = "block";
+        document.getElementById("emailListDetail").innerText = `Total Emails :- ${emails.length}`;
+        document.getElementById("emailListContainer").style.animation = "fadeIn 0.3s"
+        document.getElementById("emailListContainer").style.display = "inline"
+        document.getElementById("emailListContainer").value = emailList
+        var a = document.createElement('a');
+        a.href = `mailto:${emailList}`;
+        a.click();
+        a.remove();
+        btn.style.display = "inline"
+        document.getElementById("emailListLoader").style.display = "none"
+    })
+}

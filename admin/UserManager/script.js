@@ -1,7 +1,7 @@
 function fetchMoreSearchResult() {
     document.getElementById("searchResultloader").style.display = "block";
-    document.getElementById("loadMoreResultBTN").style.display = "none";
-    maxDocLimit = 10;
+    document.getElementById("loadMoreResultContainer").style.display = "none";
+    maxDocLimit = 1;
     if (queryVal == null) {
         //Show all users
         searchQuery(null,filterBranch,batch_FilterType,filterBatch,fromBatch,toBatch,filterName,lastVisibleDoc,maxDocLimit)
@@ -16,27 +16,46 @@ function fetchMoreSearchResult() {
         }
     }
 }
+function fetchAllSearchResult() {
+    document.getElementById("searchResultloader").style.display = "block";
+    document.getElementById("loadMoreResultContainer").style.display = "none";
+    searchTableElements = searchTableElementsHeader;//make table from beginning
+    maxDocLimit = null;
+    if (queryVal == null) {
+        //Show all users
+        searchQuery(null,filterBranch,batch_FilterType,filterBatch,fromBatch,toBatch,filterName,null,maxDocLimit)
+    }
+    else {
+        if (queryVal.toLowerCase() == "all") {
+            searchQuery(null,filterBranch,batch_FilterType,filterBatch,fromBatch,toBatch,filterName,null,maxDocLimit)
+        }
+        else {
+            //show requested users
+            searchQuery(queryVal,filterBranch,batch_FilterType,filterBatch,fromBatch,toBatch,filterName,null,maxDocLimit)
+        }
+    }
+}
 
 function searchResultManager(size) {
     if (!searchResultShowAny && size == 0) {
         //show no result found
         document.getElementById("noResultFound").style.display = "block";
         document.getElementById("searchResultloader").style.display = "none";
-        document.getElementById("loadMoreResultBTN").style.display = "none";
+        document.getElementById("loadMoreResultContainer").style.display = "none";
     }
     else {
         searchResultShowAny = true;
         if (size == maxDocLimit) {
             document.getElementById("searchResultloader").style.display = "none";
-            document.getElementById("loadMoreResultBTN").style.display = "inline";
+            document.getElementById("loadMoreResultContainer").style.display = "inline";
         }
         else if(size < maxDocLimit) {
             document.getElementById("searchResultloader").style.display = "none";
-            document.getElementById("loadMoreResultBTN").style.display = "none";
+            document.getElementById("loadMoreResultContainer").style.display = "none";
         }
         else {
             document.getElementById("searchResultloader").style.display = "none";
-            document.getElementById("loadMoreResultBTN").style.display = "none";
+            document.getElementById("loadMoreResultContainer").style.display = "none";
         }
     }
 }

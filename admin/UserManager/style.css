@@ -61,7 +61,7 @@
     text-align: center;
     margin-top: 20px;
 }
-#adminFilterBTN {
+#adminFilterBTN,#sendEmailBTN {
     border-radius: 4px;
     padding: 7px;
     min-width: 90px;
@@ -72,7 +72,7 @@
     background-color: rgb(114, 94, 226);
     transition: background-color 0.2s;
 }
-#adminFilterBTN:hover {
+#adminFilterBTN:hover,#sendEmailBTN:hover {
     background-color: rgb(39, 19, 151);
 }
 .adminContentBoxHeading,.filterTypeHeading {
@@ -280,7 +280,25 @@
     color: white;
     background-color: rgb(80, 54, 231);
     transition: background-color 0.2s;
-    margin: 50px;
+    margin-top: 50px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+#loadAllResultBTN {
+    border-radius: 4px;
+    padding: 5px;
+    min-width: 90px;
+    font-size: 15px;
+    font-family: openSans-Bold;
+    border: 2px solid rgb(80, 54, 231);
+    color: rgb(75, 75, 75);
+    background-color: transparent;
+    transition: background-color 0.2s;
+    margin-bottom: 50px;
+    cursor: pointer;
+}
+#loadAllResultBTN:hover {
+    background-color: rgb(128, 169, 230);
 }
 #loadMoreResultBTN:hover {
     background-color: rgb(39, 19, 151);

@@ -18,7 +18,7 @@ var searchTableElementsHeader = `<tr>
                             <th>Email</th>
                             <th>Number</th>
                         </tr>`;
-var maxDocLimit = 15; //maxm doc load at first time
+var maxDocLimit = 1; //maxm doc load at first time
 
 function batchFilterType(value) {
     if (value == "static") {
@@ -62,7 +62,9 @@ function searchQuery(value,fltrBranch,batchFltrType,fltrBatch,fltrBatchRange1,fl
     var userRefs = searchQueryRefsGenerator(value,fltrBranch,batchFltrType,fltrBatch,fltrBatchRange1,fltrBatchRange2,filterName);
     if (lastDoc == null) {
         //show from beginning
-        userRefs = userRefs.limit(maxLimit)
+        if (maxLimit != null) {
+            userRefs = userRefs.limit(maxLimit)
+        }
         userRefs.get()
             .then(function(querySnapshot) {
                 searchResultManager(querySnapshot.size);
@@ -205,7 +207,7 @@ function searchResultGenerator(id,name,branch,batch,email,contact,imageURL,admin
                                     <td><a href="../../profile/?name=${name}&id=${id}" class="tableProfileLink">${name}</a></td>
                                     <td>${branch}</td>
                                     <td>${batch}</td>
-                                    <td>${email}</td>
+                                    <td class="userEmailList">${email}</td>
                                     <td>${pvtContact}</td>
                                 </tr>`
             res(profileTableRow)

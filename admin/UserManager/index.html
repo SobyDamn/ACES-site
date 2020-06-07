@@ -130,7 +130,7 @@
                         <div class="searchResultArea">
                             <p id="errorInSearchFilter" style="display: none;">Error</p>
                             <h2 class="adminContentBoxHeading" style="display: none;text-align: center;" id="noResultFound">No Results found</h2>
-                            <center>
+                            <div style="text-align: center;">
                                 <div style="display: none;" id="searchResultContainerTypeList">
                                     <!--Search result list will appear here-->
                                 </div>
@@ -145,14 +145,25 @@
                                           <th>Number</th>
                                         </tr>
                                       </table>
+                                      <div id="emailListLoader" style="text-align: center;display: none;">
+                                        <div class="lds-ellipsis"><div style="background: rgb(94, 117, 223);"></div><div style="background: rgb(94, 117, 223);"></div><div style="background: rgb(94, 117, 223);"></div><div style="background: rgb(94, 117, 223);"></div></div>
+                                      </div>
+                                      <button id="sendEmailBTN" onclick="emailService(this)">Send Email</button>
+                                      <br>
+                                      <p class="noteForAdmin" id="emailListDetail" style="text-align: left;display: none;"></p>
+                                      <textarea id="emailListContainer" style="display: none;" class="adminManageContentInputField"rows="4" cols="30"></textarea>
+                                      <br>
                                 </div>
                                 <div id="loadMoreResultBTNContainer" style="text-align: center;">
                                     <div id="searchResultloader" style="text-align: center;display: block;">
                                         <div class="lds-ellipsis"><div style="background: rgb(94, 117, 223);"></div><div style="background: rgb(94, 117, 223);"></div><div style="background: rgb(94, 117, 223);"></div><div style="background: rgb(94, 117, 223);"></div></div>
                                     </div>
-                                    <button onclick="fetchMoreSearchResult()" style="display: none;" id="loadMoreResultBTN">Load More</button>
+                                    <div id="loadMoreResultContainer" style="display: none;">
+                                        <button onclick="fetchMoreSearchResult()" id="loadMoreResultBTN">Load More</button>
+                                        <button onclick="fetchAllSearchResult()" id="loadAllResultBTN">Load All</button>
+                                    </div>
                                 </div>
-                            </center>
+                            </div>
                         </div>
                     </div>
                 </div>
