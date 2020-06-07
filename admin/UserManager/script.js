@@ -20,7 +20,7 @@ function fetchAllSearchResult() {
     document.getElementById("searchResultloader").style.display = "block";
     document.getElementById("loadMoreResultContainer").style.display = "none";
     searchTableElements = searchTableElementsHeader;//make table from beginning
-    maxDocLimit = null;
+    maxDocLimit = null; //will fetch all result at once
     if (queryVal == null) {
         //Show all users
         searchQuery(null,filterBranch,batch_FilterType,filterBatch,fromBatch,toBatch,filterName,null,maxDocLimit)
