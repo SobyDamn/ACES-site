@@ -18,7 +18,7 @@
   .modal_form {
       display: none; /* Hidden by default */
       position: fixed; /* Stay in place */
-      z-index: 1; /* Sit on top */
+      z-index: 3; /* Sit on top */
       padding-top: 5%;
       padding-bottom: 5%;
       left: 0;
@@ -119,6 +119,9 @@
     margin-bottom: 20px;
     min-height: 20px;
     min-width: 50%;
+    cursor: pointer;
+    background: transparent;
+    border: none;
 }
 .popFormBTN .popBTN:hover {
   /*background-image: linear-gradient(to bottom right, #265cff , #4286f4);*/

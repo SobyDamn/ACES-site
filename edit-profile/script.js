@@ -7,33 +7,15 @@ firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
       // User logged in already or has just logged in.
         checkCurrentProfile(user);
-        document.getElementById("userSignedIN").style.display = "block";
-        document.getElementById("userSignedOut").style.display = "none";
-        document.getElementById("spin_loader").style.display = "none";
         if (user.photoURL) {
             //display photo if exists
-            fetchImage(user.photoURL,user.uid)
+            fetchProfileImage(user.photoURL,user.uid)
         }
         currUser = user
-      if (user.displayName != null) {
-          nameElement.style.display = "inline";
-          nameElement.innerText = "Hi! "+ user.displayName;
-      }
-      else {
-          //use logged out
-        nameElement.style.display = "inline";
-        nameElement.innerHTML = `<a href="edit-profile">Complete Your Profile</a>`
-      }
     } 
     else {
       // User not logged in or has just logged out.
-      document.getElementById("spin_loader").style.display = "none";
-      document.getElementById("userSignedIN").style.display = "none";
-      document.getElementById("userSignedOut").style.display = "block";
-      var profileImageInHeader = document.getElementById("showImageInHeader")
-      document.getElementById("showImageInNoImage").style.display = "inline"
       currUser = null;
-      nameElement.style.display = "none";
     }
   });
 
@@ -67,9 +49,8 @@ function checkCurrentProfile(user) {
             site.value = userDetails["Site"];
             linkedin.value = userDetails["Linkedin"];
             batch.value = userDetails["Batch"];
-            userTypeSavedValue(userDetails["UserType"]);
             //show current image
-            fetchImage(userDetails["profileImage"],uid);
+            fetchProfileImage(userDetails["profileImage"],uid);
         } else {
             // doc.data() will be undefined in this case
         }
@@ -122,7 +103,6 @@ function saveProfileDetails(uid) {
         }
         
     })
-    var userTypeVal = userType();
     var userProfile = firebase.firestore().collection("users").doc(uid);
     checkRequiredField.then(()=>{
         userProfile.get().then((doc)=>{
@@ -142,7 +122,6 @@ function saveProfileDetails(uid) {
                         Linkedin: linkedin,
                         Batch: batch,
                         Email: currUser.email,
-                        UserType: userTypeVal,
                         query: userSearchQueryGenerator(name,email,company),
                     }).then(()=>{
                         updatePrivateData(uid,name,email,phone);
@@ -157,12 +136,12 @@ function saveProfileDetails(uid) {
                             })
                         }
                         document.getElementById("saveProfileLoader").style.display = "none";
-                        document.getElementById("save_userProfleBTN").style.display = "block";
+                        document.getElementById("save_userProfleBTN").style.display = "inline-block";
                         window.location = "../index.html"
                     }).catch((err)=>{
                         //error in saving
                         document.getElementById("saveProfileLoader").style.display = "none";
-                        document.getElementById("save_userProfleBTN").style.display = "block";
+                        document.getElementById("save_userProfleBTN").style.display = "inline-block";
                     })
                 })
             } else {
@@ -181,7 +160,6 @@ function saveProfileDetails(uid) {
                         Linkedin: linkedin,
                         Batch: batch,
                         Email: currUser.email,
-                        UserType: userTypeVal,
                         timestamp:firebase.firestore.FieldValue.serverTimestamp(),
                         query: userSearchQueryGenerator(name,email,company),
                     }).then(()=>{
@@ -199,23 +177,23 @@ function saveProfileDetails(uid) {
                             })
                         }
                         document.getElementById("saveProfileLoader").style.display = "none";
-                        document.getElementById("save_userProfleBTN").style.display = "block";
+                        document.getElementById("save_userProfleBTN").style.display = "inline-block";
                         window.location = "../index.html"
                     }).catch((err)=>{
                         //error in saving
                         document.getElementById("saveProfileLoader").style.display = "none";
-                        document.getElementById("save_userProfleBTN").style.display = "block";
+                        document.getElementById("save_userProfleBTN").style.display = "inline-block";
                     })
                 })
             }
         }).catch(function(error) {
             document.getElementById("saveProfileLoader").style.display = "none";
-            document.getElementById("save_userProfleBTN").style.display = "block";
+            document.getElementById("save_userProfleBTN").style.display = "inline-block";
         });
     }).catch((err)=>{
         showErrorNotice("Field Required",err)
         document.getElementById("saveProfileLoader").style.display = "none";
-        document.getElementById("save_userProfleBTN").style.display = "block";
+        document.getElementById("save_userProfleBTN").style.display = "inline-block";
     })
 }
 
@@ -228,40 +206,20 @@ function selectFile() {
     var selectFileElement = document.getElementById("user_selected_file")
     selectFileElement.click();
 }
-function fetchImage(fileName,uid) {
+function fetchProfileImage(fileName,uid) {
     if (fileName != undefined) {
         //profile picture exists show to user
         var storageRef = firebase.storage().ref();
         var currentProfileImage = document.getElementById("showImage")
-        var profileImageInHeader = document.getElementById("showImageInHeader")
         storageRef.child("users/"+uid+"/"+fileName).getDownloadURL().then((url)=> {
             currentProfileImage.style.display = "inline-block";
-            profileImageInHeader.style.display = "inline-block";
-            document.getElementById("showImageInNoImage").style.display = "none";
             currentProfileImage.src = url;
-            profileImageInHeader.src = url;
         }).catch((err)=> {
             // Handle any errors
         });
     }
 }
 
-function userType() {
-    var userTypeOption = document.getElementsByName("userType");
-    for (var i=0; i<userTypeOption.length;i++) {
-        if(userTypeOption[i].checked) {
-            return userTypeOption[i].value;
-        }
-    }
-}
-function userTypeSavedValue(value) {
-    var userTypeOption = document.getElementsByName("userType");
-    for (var i=0; i<userTypeOption.length;i++) {
-        if(userTypeOption[i].value == value) {
-            userTypeOption[i].checked = true;
-        }
-    }
-}
 function showErrorNotice(title,msg) {
     var modal = document.getElementById("errorNotice");
     document.getElementById("errorNoticeMsg").innerText = msg;
@@ -296,7 +254,7 @@ function updatePrivateData(id,name,email,contact) {
         Contact: contact,
     }).catch(function(error) {
         document.getElementById("saveProfileLoader").style.display = "none";
-        document.getElementById("save_userProfleBTN").style.display = "block";
+        document.getElementById("save_userProfleBTN").style.display = "inline-block";
         showErrorNotice("Error",error.message);
     });
 }
@@ -309,7 +267,7 @@ function setPrivateData(id,name,email,contact) {
         timestamp:firebase.firestore.FieldValue.serverTimestamp(),
     }).catch(function(error) {
         document.getElementById("saveProfileLoader").style.display = "none";
-        document.getElementById("save_userProfleBTN").style.display = "block";
+        document.getElementById("save_userProfleBTN").style.display = "inline-block";
         showErrorNotice("Error",error.message);
     });
 }

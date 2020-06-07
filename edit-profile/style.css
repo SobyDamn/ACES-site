@@ -109,3 +109,19 @@ span button {
 #save_userProfleBTN:hover {
     background-color:  #265cff;
 }
+#profileFormBox {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+#profileFormBox div#formContainer {
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+    align-items: center;
+}
+#profileFormBox div p {
+    text-align: center;
+    margin-right: auto;
+    margin-left: auto;
+}

@@ -1,0 +1,160 @@
+@font-face {
+    font-family: openSans;
+    src: url(../resource/fonts/OpenSans-Regular.ttf);
+  }
+@font-face {
+  font-family: openSans-Bold;
+  src: url(../resource/fonts/opensans_bold.ttf);
+}
+@font-face {
+  font-family: openSans-SemiBold;
+  src: url(../resource/fonts/opensans_semibold.ttf);
+}
+@font-face {
+    font-family: openSans-ExtraBold;
+    src: url(../resource/fonts/opensans_extrabold.ttf);
+}
+body {
+    margin: 0px;
+}
+#header {
+    font-family: openSans-Bold;
+    min-height: 20px;
+    display: flex;
+    flex-direction: column;
+    z-index: 2;
+    background-color: white;
+}
+#topHeader {
+    display: flex;
+    justify-content: space-between;
+}
+#logoHolder {
+    height: 75px;
+    width: 225px;
+}
+#logo {
+    height: 100%;
+    width: 100%;
+}
+#subHeader {
+    display: flex;
+    justify-content: space-between;
+    background-color: white;
+    box-shadow: 0px 8px 5px -6px rgb(97, 96, 96,0.6);
+}
+#headerOptionBoxContainer {
+    width: 50%;
+    margin-top: 25px;
+}
+#headerOptionBoxContainer #headerOptionBox {
+    height: 40px;
+    display: flex;
+    justify-content: space-evenly;
+    overflow: hidden;
+}
+#headerOptionBox a {
+    height: 20px;
+    padding-top: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 5px;
+    text-decoration: none;
+    color: rgb(92, 92, 92);
+    transition: border-bottom 0.2s,color 0.2s;
+}
+#headerOptionBox a:hover {
+    border-bottom: 2px solid rgb(22, 22, 22);
+    color: rgb(22, 22, 22);
+}
+#searchBarHolder {
+    min-height: 20px;
+    margin-top: 25px;
+    padding-top: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    display: flex;
+    font-family: openSans-Bold;
+}
+#searchBarHolder input {
+    border: 2px solid rgb(180, 180, 180);
+    float: left;
+    width: 80%;
+    background: #f1f1f1;
+    margin-bottom: 10px;
+    min-height: 30px;
+    font-family: openSans-Bold;
+    border-radius: 3px;
+    outline: none;
+}
+#searchBarHolder input::placeholder {
+    color: rgb(155, 155, 155);
+}
+#searchBarHolder button {
+    font-family: openSans-Bold;
+    margin-bottom: 10px;
+    min-height: 30px;
+    border: none;
+    background-color: transparent;
+    color: rgba(63, 63, 63, 0.788);
+    cursor: pointer;
+}
+#searchBarHolder button:hover {
+    color: rgb(63, 63, 63);
+}
+#authBox {
+    padding-top: 25px;
+    margin-right: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+#authBox button {
+    cursor: pointer;
+    border: 2px solid #3020c0;
+    background: transparent;
+    font-family: openSans-Bold;
+    font-size: 13px;
+    color: #3020c0;
+    padding: 8px;
+    padding-right: 10px;
+    padding-left: 10px;
+    border-radius: 20px;
+    display: none;
+}
+#authBox button:hover {
+    color: #23188d;
+    border: 2px solid #23188d;
+}
+#headerProfileImageHolder {
+    display:none;
+    width: 60px;
+    height: 60px;
+    text-align: center;
+}
+#headerProfileImageHolder img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    cursor: pointer;
+}
+#authBox div a {
+    display:none;
+    text-decoration: none;
+    color: #6b59d4;
+    font-size: 14px;
+}
+#authBox div a:hover {
+    color: #1d1583;
+    text-decoration: underline;
+}
+button {
+    outline: none;
+}
+.stickyHeader {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 2;
+  }

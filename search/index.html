@@ -14,93 +14,88 @@
         <!---Stylsheets-->
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
         <link rel="stylesheet" href="../style/loader.css"/>
-        <link rel="stylesheet" href="../style/header_style.css"/>
+        <link rel="stylesheet" href="../style/header.css"/>
         <link rel="stylesheet" href="../style/general_style.css">
         <link rel="stylesheet" href="../style/popup_form.css">
         <link rel="stylesheet" href="../style/footer.css">
         <link rel="stylesheet" href="style.css"/>
     </head>
     <body onload="loadSearchEngine()">
-        <div id="header">
-            <div id="logoContainer" class="headerBox">
-                <img id="site-logo" src="../resource/img/aces-white.png"/>
-            </div>
-            <div id="userAuthBox" class="headerBox">
-                <div id="buttonHolder">
-                    <div id="spin_loader"><div class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div></div>
-                    <div id="userSignedIN" style="display: none;">
-                        <div id="userImageHolder">
-                            <i id="showImageInNoImage" class="material-icons" style="color:white;margin-top: auto;margin-bottom: auto; font-size: 450%;">account_circle</i>
-                            <img id="showImageInHeader" style="border-radius: 50%; width: 70px; height: 70px; border: 0px solid white; z-index: -1; display: none;"/>
-                        </div>
-                        <span id="userName"></span><br>
-                        <a href="../profile" id="headerViewProfileLink" class="userAuthBTN">View Profile!</a><br>
-                        <button onclick="logout()" class="userAuthBTN">Logout</button>
+        <div class="bodyWithHeader">
+            <div id="header">
+                <div id="topHeader">
+                    <div id="logoHolder">
+                        <img id="logo" src="../resource/img/aces.png"/>
                     </div>
-                    <div id="userSignedOut" style="display: none;">
-                        <div id="userImageHolder">
-                            <i id="showImageInNoImage" class="material-icons" style="color:white;margin-top: auto;margin-bottom: auto; font-size: 450%;">account_circle</i>
-                            <img src="../resource/img/profile_default.png" id="showImageInHeader" style="border-radius: 50%; width: 70px; height: 70px; border: 0px solid white; z-index: -1;display: none;"/>
+                    <div id="authBox">
+                        <div style="text-align: center;margin-left: auto;margin-right: auto;">
+                            <div id="authLoader"><div class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div></div>
+                            <button id="authBTN" onclick="showLoginForm()">Login or Register</button>
+                            <div id="headerProfileImageHolder">
+                                <img id="showImageInHeader" onclick="viewProfilePage('secondChild')" src="../resource/img/profile_default_old.png" />
+                            </div>
                         </div>
-                        <button onclick="showLoginForm()" class="userAuthBTN">Login or Register</button><br>
+                        <div>
+                            <a id="completeProfileLink" href="../edit-profile/">Complete Profile</a>
+                        </div>
+                    </div>
+                </div>
+                <div id="subHeader">
+                    <div id="headerOptionBoxContainer">
+                        <div id="headerOptionBox">
+                            <a href="../index.html">HOME</a>
+                            <a href="../index.html#activity">ACTIVITY</a>
+                            <a href="../index.html#blogs">BLOGS</a>
+                            <a href="../index.html#newsletter">NEWSLETTER</a>
+                            <a href="../index.html#contact">CONTACT</a>
+                        </div>
+                    </div>
+                    <div id="searchBarHolder">
+                        <input placeholder="Search..." id="searchBar"/><button onclick="search('secondChild')" id="searchBTN"><i class="material-icons" style="font-size: 25px; font-weight: bolder;">search</i></button>
+                    </div>
+                </div>
+            </div>
+            <div id="searchPageArea">
+                <h3 id="searchResultHeading" class="searchResultHeading"></h3>
+                <div id="filterItemContainer">
+                    <div class="filterItemHolder">
+                        <select onchange="changeFilterParams()" id="filterByBranch" class="selectorFilter">
+                            <option value="" disabled selected hidden>Select Branch</option>
+                            <option value="Computer Science And Engineering">Computer Science And Engineering</option>
+                            <option value="Civil Engineering">Civil Engineering</option>
+                            <option value="Electrical And Electronics Engineering">Electrical And Electronics Engineering</option>
+                            <option value="Safety And Fire Engineering">Safety And Fire Engineering</option>
+                        </select>
+                    </div>
+                    <div class="filterItemHolder">
+                        <input onchange="changeFilterParams()" id="filterByBatch" type="number" placeholder="Enter batch eg.2019" class="inputFilter"/>
+                    </div>
+                    <div class="filterItemHolder">
+                        <button onclick="filterSearchResult()" id="filterBTN">Filter</button>
+                    </div>
+                </div>
+                <p id="errorInSearchFilter" style="display: none;">Error</p>
+                <h2 class="searchResultHeading" style="display: none;" id="noResultFound">No Results found</h2>
+                <div style="text-align: center;">
+                    <div id="searchResultContainer">
+                        <!--search result will appear here-->
+                    </div>
+                    <div id="loadMoreResultBTNContainer">
+                        <div id="searchResultloader" style="text-align: center;display: block;">
+                            <div class="lds-ellipsis"><div style="background: rgb(94, 117, 223);"></div><div style="background: rgb(94, 117, 223);"></div><div style="background: rgb(94, 117, 223);"></div><div style="background: rgb(94, 117, 223);"></div></div>
+                        </div>
+                        <button onclick="fetchMoreSearchResult()" style="display: none;" id="loadMoreResultBTN">Load More</button>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="multiBoxContainer">
-            <div id="navContainer" class="headerContainerBox">
-                <div style="display: block;"class="navLinkContainer">
-                    <a href="../index.html" class="headerNavLinks"><p>HOME</p></a>
-                </div>
-                <div class="navLinkContainer">
-                    <a href="../index.html#activity" class="headerNavLinks"><p>ACTIVITY</p></a>
-                </div>
-                <div class="navLinkContainer">
-                    <a href="../index.html#blogs" class="headerNavLinks"><p>BLOGS</p></a>
-                </div>
-                <div class="navLinkContainer">
-                    <a href="../index.html#newsletter" class="headerNavLinks"><p>NEWSLETTER</p></a>
-                </div>
-                <div class="navLinkContainer">
-                    <a href="../index.html#contact" class="headerNavLinks"><p>CONTACT</p></a>
-                </div>
-            </div>
-            <div id="searchBarConainer" class="headerContainerBox">
-                <p><sup><input value="" placeholder="Search..." id="searchBar"/></sup><button id="searchBTN" onclick="search('secondChild')" class="transparentBTN"><i class="material-icons" style="font-size: 25px; font-weight: bolder; color: #d3e3f0a4; padding-left: 5px;">search</i></button></p>
-            </div>
-        </div>
-        <div id="searchPageArea">
-            <h3 id="searchResultHeading" class="searchResultHeading"></h3>
-            <div id="filterItemContainer">
-                <div class="filterItemHolder">
-                    <select onchange="changeFilterParams()" id="filterByBranch" class="selectorFilter">
-                        <option value="" disabled selected hidden>Select Branch</option>
-                        <option value="Computer Science And Engineering">Computer Science And Engineering</option>
-                        <option value="Civil Engineering">Civil Engineering</option>
-                        <option value="Electrical And Electronics Engineering">Electrical And Electronics Engineering</option>
-                        <option value="Safety And Fire Engineering">Safety And Fire Engineering</option>
-                    </select>
-                </div>
-                <div class="filterItemHolder">
-                    <input onchange="changeFilterParams()" id="filterByBatch" type="number" placeholder="Enter batch eg.2019" class="inputFilter"/>
-                </div>
-                <div class="filterItemHolder">
-                    <button onclick="filterSearchResult()" id="filterBTN">Filter</button>
-                </div>
-            </div>
-            <p id="errorInSearchFilter" style="display: none;">Error</p>
-            <h2 class="searchResultHeading" style="display: none;" id="noResultFound">No Results found</h2>
-            <center>
-                <div id="searchResultContainer">
-                    <!--search result will appear here-->
-                </div>
-                <div id="loadMoreResultBTNContainer">
-                    <div id="searchResultloader" style="text-align: center;display: block;">
-                        <div class="lds-ellipsis"><div style="background: rgb(94, 117, 223);"></div><div style="background: rgb(94, 117, 223);"></div><div style="background: rgb(94, 117, 223);"></div><div style="background: rgb(94, 117, 223);"></div></div>
-                    </div>
-                    <button onclick="fetchMoreSearchResult()" style="display: none;" id="loadMoreResultBTN">Load More</button>
-                </div>
-            </center>
+        <div id="footer">
+            <h3>
+                <span id="userAvailableAuthOptions" style="display: none;"><a onclick="viewProfilePage('secondChild')">View Profile </a> &#9679; <a onclick="logout('secondChild')"> Logout </a></span>
+                <span id="userUnavailableAuthOptions"><a onclick="showLoginForm()">Login </a> &#9679; <a onclick="showRegisterForm()"> Register </a></span>
+                <span><a onclick="openAdminPanel('secondChild')">Admin Panel </a></span>
+            </h3>
+            <span>ACES ©2020</span>
         </div>
         <!-- The Login Modal -->
         <div id="loginPOP" class="modal_form">
@@ -154,12 +149,6 @@
                     <button style="margin-bottom: 30px;" class="popBTN" id="registerBTN" onclick="registerUser('secondChild')">Register</button><br>
                 </div>
             </div>
-        </div>
-        <div id="footer">
-            <center>
-                <h3><a onclick="openAdminPanel('secondChild')">Admin Login</a></h3>
-                <span>ACES ©2020</span>
-            </center>
         </div>
     </body>
 </html>

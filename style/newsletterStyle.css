@@ -80,6 +80,7 @@
     position: relative;
     padding-bottom: 5px;
     padding-top: 5px;
+    cursor: pointer;
 }
 .newsBox:hover {
     box-shadow: 2px 2px 4px 2px rgb(187, 172, 172);
@@ -117,6 +118,7 @@
     overflow: hidden;
     box-shadow: 0.1px 0.1px 4px 0.1px rgb(187, 172, 172);
     transition: box-shadow 0.2s;
+    cursor: pointer;
 }
 .oppurtunityBox:hover {
     box-shadow: 2px 2px 4px 2px rgb(187, 172, 172);

@@ -40,41 +40,6 @@ function loadEventBoxesCycle() {
             },400)
         }
     },eventBoxTimeOnScreen)
-    /*if (!userInterruptEventBox) {
-        if (eventBoxIdNum >= totalEventBoxes-1) {
-            //show from beginning
-            setTimeout(()=>{
-                if (!userInterruptEventBox) {
-                    document.getElementById(`eventBox${eventBoxIdNum}`).style.animation = "fadeOut 2s"
-                    setTimeout(()=>{
-                        document.getElementById(`eventBox${eventBoxIdNum}`).style.display = "none";
-                        document.getElementById(`eventBox${0}`).style.display = "flex"
-                        document.getElementById(`eventBox${0}`).style.animation = "fadeIn 1s"
-                        eventBoxIdNum = 0;
-                        document.getElementById("currentNumStatusEvent").innerText = eventBoxIdNum + 1
-                        loadEventBoxesCycle()
-                    },500)
-                }
-            },eventBoxTimeOnScreen)
-    
-        }
-        else {
-            //show next box
-            setTimeout(()=>{
-                if (!userInterruptEventBox) {
-                    document.getElementById(`eventBox${eventBoxIdNum}`).style.animation = "fadeOut 1s"
-                    setTimeout(()=>{
-                        document.getElementById(`eventBox${eventBoxIdNum}`).style.display = "none";
-                        document.getElementById(`eventBox${eventBoxIdNum+1}`).style.display = "flex"
-                        document.getElementById(`eventBox${eventBoxIdNum+1}`).style.animation = "fadeIn 1s"
-                        eventBoxIdNum +=1;
-                        document.getElementById("currentNumStatusEvent").innerText = eventBoxIdNum + 1
-                        loadEventBoxesCycle()
-                    },400)
-                }
-            },eventBoxTimeOnScreen)
-        }
-    }*/
 }
 function nextEventBox() {
     clearTimeout(resumeEventBoxCycle);

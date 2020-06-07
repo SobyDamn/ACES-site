@@ -16,192 +16,175 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
         <link rel="stylesheet" href="../style/loader.css"/>
-        <link rel="stylesheet" href="../style/header_style.css"/>
+        <link rel="stylesheet" href="../style/header.css"/>
         <link rel="stylesheet" href="../style/general_style.css">
         <link rel="stylesheet" href="../style/popup_form.css">
         <link rel="stylesheet" href="../style/footer.css">
         <link rel="stylesheet" href="style.css"/>
     </head>
     <body>
-        <div id="header">
-            <div id="logoContainer" class="headerBox">
-                <img id="site-logo" src="../resource/img/aces-white.png"/>
-            </div>
-            <div id="userAuthBox" class="headerBox">
-                <div id="buttonHolder">
-                    <div id="spin_loader"><div class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div></div>
-                    <div id="userSignedIN" style="display: none;">
-                        <div id="userImageHolder">
-                            <i id="showImageInNoImage" class="material-icons" style="color:white;margin-top: auto;margin-bottom: auto; font-size: 450%;">account_circle</i>
-                            <img id="showImageInHeader" style="border-radius: 50%; width: 70px; height: 70px; border: 0px solid white; z-index: -1; display: none;"/>
-                        </div>
-                        <span id="userName"></span><br>
-                        <a href="../profile" id="headerViewProfileLink" class="userAuthBTN">View Profile!</a><br>
-                        <button onclick="logout('secondChild')" class="userAuthBTN">Logout</button>
+        <div class="bodyWithHeader">
+            <div id="header">
+                <div id="topHeader">
+                    <div id="logoHolder">
+                        <img id="logo" src="../resource/img/aces.png"/>
                     </div>
-                    <div id="userSignedOut" style="display: none;">
-                        <div id="userImageHolder">
-                            <i id="showImageInNoImage" class="material-icons" style="color:white;margin-top: auto;margin-bottom: auto; font-size: 450%;">account_circle</i>
-                            <img src="../resource/img/profile_default.png" id="showImageInHeader" style="border-radius: 50%; width: 70px; height: 70px; border: 0px solid white; z-index: -1;display: none;"/>
+                    <div id="authBox">
+                        <div style="text-align: center;margin-left: auto;margin-right: auto;">
+                            <div id="authLoader"><div class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div></div>
+                            <button id="authBTN" onclick="showLoginForm()">Login or Register</button>
+                            <div id="headerProfileImageHolder">
+                                <img id="showImageInHeader" onclick="viewProfilePage('secondChild')" src="../resource/img/profile_default_old.png" />
+                            </div>
                         </div>
-                        <button onclick="showLoginForm()" class="userAuthBTN">Login or Register</button><br>
+                        <div>
+                            <a id="completeProfileLink" href="../edit-profile/">Complete Profile</a>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
-        <div class="multiBoxContainer">
-            <div id="navContainer" class="headerContainerBox">
-                <div style="display: block;"class="navLinkContainer">
-                    <a href="../index.html" class="headerNavLinks"><p>HOME</p></a>
-                </div>
-                <div class="navLinkContainer">
-                    <a href="../index.html#activity" class="headerNavLinks"><p>ACTIVITY</p></a>
-                </div>
-                <div class="navLinkContainer">
-                    <a href="../index.html#blogs" class="headerNavLinks"><p>BLOGS</p></a>
-                </div>
-                <div class="navLinkContainer">
-                    <a href="../index.html#newsletter" class="headerNavLinks"><p>NEWSLETTER</p></a>
-                </div>
-                <div class="navLinkContainer">
-                    <a href="../index.html#contact" class="headerNavLinks"><p>CONTACT</p></a>
+                <div id="subHeader">
+                    <div id="headerOptionBoxContainer">
+                        <div id="headerOptionBox">
+                            <a href="../index.html">HOME</a>
+                            <a href="../index.html#activity">ACTIVITY</a>
+                            <a href="../index.html#blogs">BLOGS</a>
+                            <a href="../index.html#newsletter">NEWSLETTER</a>
+                            <a href="../index.html#contact">CONTACT</a>
+                        </div>
+                    </div>
+                    <div id="searchBarHolder">
+                        <input placeholder="Search..." id="searchBar"/><button onclick="search('secondChild')" id="searchBTN"><i class="material-icons" style="font-size: 25px; font-weight: bolder;">search</i></button>
+                    </div>
                 </div>
             </div>
-            <div id="searchBarConainer" class="headerContainerBox">
-                <p><sup><input autocomplete="off" placeholder="Search..." id="searchBar"/></sup><button onclick="search('secondChild')" id="searchBTN" class="transparentBTN"><i class="material-icons" style="font-size: 25px; font-weight: bolder; color: #d3e3f0a4; padding-left: 5px;">search</i></button></p>
+            <div id="authUnavailableStatus" style="display:none;text-align: center;">
+                    <h1>Unauthorised!</h1>
+                    <h3>
+                        Login Required!<br>
+                        Please <u>Login</u> to view your profile
+                    </h3>
             </div>
-        </div>
-        <div id="authUnavailableStatus" style="display:none">
-            <center>
-                <h1>Unauthorised!</h1>
-                <h3>
-                    Login Required!<br>
-                    Please <u>Login</u> to view your profile
-                </h3>
-            </center>
-        </div>
-        <div style="display:none" id="profileNotAvailable">
-            <center>
+            <div style="display:none;text-align: center;" id="profileNotAvailable">
                 <h1>Not Found!</h1>
                 <h3>
                     Requested Profile is not available
                 </h3>
-            </center>
-        </div>
-        <div id="profileLoader" style="height: 50%;text-align: center; padding-top: 15%;">
-            <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
-        </div>
-        <div id="displayProfileDetail" style="display: none;">
-            <div id="profileBox">
-                <div id="smallProfileCardHolder" class="profileBoxDiv">
-                    <div id="smallProfileCard">
-                        <div id="smallProfileCardImageHolder">
-                            <img style="display: none;" id="profileCardImage" src="../resource/img/profile_default.png"/>
-                            <div id="smallProfileCardImageLoader" style="text-align: center;vertical-align: bottom;padding-top: 15%;">
-                                <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+            </div>
+            <div id="profileLoader" style="height: 50%;text-align: center; padding-top: 15%;">
+                <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+            </div>
+            <div id="displayProfileDetail" style="display: none;">
+                <div id="profileBox">
+                    <div id="smallProfileCardHolder" class="profileBoxDiv">
+                        <div id="smallProfileCard">
+                            <div id="smallProfileCardImageHolder">
+                                <img style="display: none;" id="profileCardImage" src="../resource/img/profile_default.png"/>
+                                <div id="smallProfileCardImageLoader" style="text-align: center;vertical-align: bottom;padding-top: 15%;">
+                                    <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+                                </div>
                             </div>
-                        </div>
-                        <div id="smallProfileCardDetails">
-                            <h2><span id="smallProfileCardName">Unavailabe</span><span id="smallProfileCardVerificationStatus"></span></h2>
-                            <p id="smallProfileCardBranch">
-                                Computer Science And Engineering
-                            </p>
-                            <p id="smallProfileCardBatch">
-                                2019
-                            </p>
-                        </div>
-                        <div id="smallProfileCardContactBox">
-                            <div class="profileDetailsContacts">
-                                <i class="material-icons" style="vertical-align:middle;font-size:20px;">mail</i>
-                                <span id="profileCardEmail">
-                                    Unavailabe
-                                </span>
+                            <div id="smallProfileCardDetails">
+                                <h2><span id="smallProfileCardName">Unavailabe</span><span id="smallProfileCardVerificationStatus"></span></h2>
+                                <p id="smallProfileCardBranch">
+                                    Computer Science And Engineering
+                                </p>
+                                <p id="smallProfileCardBatch">
+                                    2019
+                                </p>
                             </div>
-                            <div class="profileDetailsContacts">
-                                <span style="vertical-align: middle;">
-                                    <i class="fa fa-linkedin" style="font-size:20px"></i> 
-                                    <span id="profileCardLinkedin" style="vertical-align:top;">
+                            <div id="smallProfileCardContactBox">
+                                <div class="profileDetailsContacts">
+                                    <i class="material-icons" style="vertical-align:middle;font-size:20px;">mail</i>
+                                    <span id="profileCardEmail">
                                         Unavailabe
                                     </span>
-                                </span>
+                                </div>
+                                <div class="profileDetailsContacts">
+                                    <span style="vertical-align: middle;">
+                                        <i class="fa fa-linkedin" style="font-size:20px"></i> 
+                                        <span id="profileCardLinkedin" style="vertical-align:top;">
+                                            Unavailabe
+                                        </span>
+                                    </span>
+                                </div>
                             </div>
+                        </div>
+                        <div id="editProfileBTNHolder">
+                            <button id="editProfileBTN" onclick="editmyProfile()"><i class="material-icons" style="vertical-align:middle; font-size: 15px;">edit</i> Edit Profile</button>
                         </div>
                     </div>
-                    <div id="editProfileBTNHolder">
-                        <button id="editProfileBTN" onclick="editmyProfile()"><i class="material-icons" style="vertical-align:middle; font-size: 15px;">edit</i> Edit Profile</button>
-                    </div>
-                </div>
-                <div id="mainProfileHolder" class="profileBoxDiv">
-                    <div id="profileNameHeadingBox">
-                        <h1><span id="profileName">Unavailabe</span></h1>
-                    </div>
-                    <div id="profileUserDetailsBox">
-                        <h1 class="mainProfileInfoBoxHeading">DETAILS</h1>
-                        <div class="profileUserDetailContaner">
-                            <div class="profileUserDetailFor">
-                                Branch :
+                    <div id="mainProfileHolder" class="profileBoxDiv">
+                        <div id="profileNameHeadingBox">
+                            <h1><span id="profileName">Unavailabe</span></h1>
+                        </div>
+                        <div id="profileUserDetailsBox">
+                            <h1 class="mainProfileInfoBoxHeading">DETAILS</h1>
+                            <div class="profileUserDetailContaner">
+                                <div class="profileUserDetailFor">
+                                    Branch :
+                                </div>
+                                <div id="mainProfileUserBranch">
+                                    Unavailabe
+                                </div>
                             </div>
-                            <div id="mainProfileUserBranch">
-                                Unavailabe
+                            <div class="profileUserDetailContaner">
+                                <div class="profileUserDetailFor">
+                                    Batch :
+                                </div>
+                                <div id="mainProfileUserBatch">
+                                    Unavailabe
+                                </div>
+                            </div>
+                            <div class="profileUserDetailContaner">
+                                <div class="profileUserDetailFor">
+                                    Company :
+                                </div>
+                                <div id="mainProfileUserCompany">
+                                    Unavailabe
+                                </div>
+                            </div>
+                            <div class="profileUserDetailContaner">
+                                <div class="profileUserDetailFor">
+                                    Website :
+                                </div>
+                                <div id="mainProfileUserWebsite">
+                                    Unavailabe
+                                </div>
                             </div>
                         </div>
-                        <div class="profileUserDetailContaner">
-                            <div class="profileUserDetailFor">
-                                Batch :
+                        <div id="profileUserContactDetailsBox">
+                            <h1 class="mainProfileInfoBoxHeading">CONTACTS</h1>
+                            <div class="profileUserDetailContaner">
+                                <div class="profileUserDetailFor">
+                                    Linkedin :
+                                </div>
+                                <div id="mainProfileUserLinkedIn">
+                                    Unavailabe
+                                </div>
                             </div>
-                            <div id="mainProfileUserBatch">
-                                Unavailabe
+                            <div class="profileUserDetailContaner">
+                                <div class="profileUserDetailFor">
+                                    Email :
+                                </div>
+                                <div id="mainProfileUserEmail">
+                                    Unavailabe
+                                </div>
                             </div>
-                        </div>
-                        <div class="profileUserDetailContaner">
-                            <div class="profileUserDetailFor">
-                                Company :
+                            <div id="userContactField" style="display: none;" class="profileUserDetailContaner">
+                                <div class="profileUserDetailFor">
+                                    Contact No. :
+                                </div>
+                                <div id="mainProfileUserPhone">
+                                    Unavailabe
+                                </div>
                             </div>
-                            <div id="mainProfileUserCompany">
-                                Unavailabe
-                            </div>
-                        </div>
-                        <div class="profileUserDetailContaner">
-                            <div class="profileUserDetailFor">
-                                Website :
-                            </div>
-                            <div id="mainProfileUserWebsite">
-                                Unavailabe
-                            </div>
-                        </div>
-                    </div>
-                    <div id="profileUserContactDetailsBox">
-                        <h1 class="mainProfileInfoBoxHeading">CONTACTS</h1>
-                        <div class="profileUserDetailContaner">
-                            <div class="profileUserDetailFor">
-                                Linkedin :
-                            </div>
-                            <div id="mainProfileUserLinkedIn">
-                                Unavailabe
-                            </div>
-                        </div>
-                        <div class="profileUserDetailContaner">
-                            <div class="profileUserDetailFor">
-                                Email :
-                            </div>
-                            <div id="mainProfileUserEmail">
-                                Unavailabe
-                            </div>
-                        </div>
-                        <div id="userContactField" style="display: none;" class="profileUserDetailContaner">
-                            <div class="profileUserDetailFor">
-                                Contact No. :
-                            </div>
-                            <div id="mainProfileUserPhone">
-                                Unavailabe
-                            </div>
-                        </div>
-                        <div class="profileUserDetailContaner">
-                            <div class="profileUserDetailFor">
-                                Location :
-                            </div>
-                            <div id="mainProfileUserLocation">
-                                Unavailabe
+                            <div class="profileUserDetailContaner">
+                                <div class="profileUserDetailFor">
+                                    Location :
+                                </div>
+                                <div id="mainProfileUserLocation">
+                                    Unavailabe
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -209,10 +192,12 @@
             </div>
         </div>
         <div id="footer">
-            <center>
-                <h3><a onclick="openAdminPanel('secondChild')">Admin Login</a></h3>
-                <span>ACES ©2020</span>
-            </center>
+            <h3>
+                <span id="userAvailableAuthOptions" style="display: none;"><a onclick="viewProfilePage('secondChild')">View Profile </a> &#9679; <a onclick="logout('secondChild')"> Logout </a></span>
+                <span id="userUnavailableAuthOptions"><a onclick="showLoginForm()">Login </a> &#9679; <a onclick="showRegisterForm()"> Register </a></span>
+                <span><a onclick="openAdminPanel('secondChild')">Admin Panel </a></span>
+            </h3>
+            <span>ACES ©2020</span>
         </div>
         <!-- The Login Modal -->
         <div id="loginPOP" class="modal_form">

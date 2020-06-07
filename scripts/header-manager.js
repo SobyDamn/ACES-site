@@ -1,33 +1,29 @@
-/*contains display and handler for header(anything in upper blue part)*/
+/*contains display and handler for header including auth options in footer*/
+var stickyHeaderEnabled = false;
 
 //check user authentication and display status
 firebase.auth().onAuthStateChanged(function(user) {
-    var nameElement = document.getElementById("userName");
     if (user) {
       // User logged in already or has just logged in.
-        document.getElementById("userSignedIN").style.display = "block";
-        document.getElementById("userSignedOut").style.display = "none";
-        document.getElementById("spin_loader").style.display = "none";
+        document.getElementById("authLoader").style.display = "none";
+        document.getElementById("authBTN").style.display = "none";
+        document.getElementById("userAvailableAuthOptions").style.display = "block";
+        document.getElementById("userUnavailableAuthOptions").style.display = "none";
         if (user.photoURL) {
             //display photo if exists
             fetchImage(user.photoURL,user.uid)
         }
-      if (user.displayName != null) {
-          nameElement.style.display = "inline";
-          nameElement.innerText = "Hi! "+ user.displayName;
-      }
-      else {
-        nameElement.style.display = "inline";
-        nameElement.innerHTML = `<a href="edit-profile">Complete Your Profile</a>`
+      if (user.displayName == null) {
+        document.getElementById("completeProfileLink").style.display = "inline"
       }
     } 
     else {
       // User not logged in or has just logged out.
-      document.getElementById("showImageInNoImage").style.display = "inline"
-      document.getElementById("spin_loader").style.display = "none";
-      document.getElementById("userSignedIN").style.display = "none";
-      document.getElementById("userSignedOut").style.display = "block";
-      nameElement.style.display = "none";
+      document.getElementById("userAvailableAuthOptions").style.display = "none";
+      document.getElementById("userUnavailableAuthOptions").style.display = "block";
+      document.getElementById("authLoader").style.display = "none";
+      document.getElementById("authBTN").style.display = "block";
+      document.getElementById("headerProfileImageHolder").style.display = "none";
     }
   });
 function fetchImage(fileName,uid) {
@@ -36,9 +32,9 @@ function fetchImage(fileName,uid) {
         var storageRef = firebase.storage().ref();
         var currentProfileImage = document.getElementById("showImageInHeader")
         storageRef.child("users/"+uid+"/"+fileName).getDownloadURL().then((url)=> {
-            currentProfileImage.style.display = "inline-block";
+            currentProfileImage.style.display = "block";
             currentProfileImage.src = url;
-            document.getElementById("showImageInNoImage").style.display = "none";
+            document.getElementById("headerProfileImageHolder").style.display = "block";
         }).catch((err)=> {
             // Handle any errors
             console.log(err)
@@ -70,13 +66,12 @@ function closeRegisterPOP() {
 
 
 function logout(from){
-    document.getElementById("spin_loader").style.display = "block";
-    document.getElementById("userSignedIN").style.display = "none";
+    document.getElementById("authLoader").style.display = "block";
     //logout user
     setTimeout(()=>{
         firebase.auth().signOut().then(()=>{
             //logged out
-            document.getElementById("spin_loader").style.display = "none";
+            document.getElementById("authLoader").style.display = "none";
             if (from == "home") {
                 window.location = "index.html"
             }
@@ -88,8 +83,6 @@ function logout(from){
             }
         }).catch((err)=>{
             //errr in logging out
-            document.getElementById("spin_loader").style.display = "none";
-            document.getElementById("userSignedIN").style.display = "block";
         })
     },500)
 }
@@ -114,9 +107,11 @@ function search(from) {
         }
     }
 }
-//window.onscroll = function() {stickHeaderOptions()};
+if (stickyHeaderEnabled) {
+    window.onscroll = function() {stickHeaderOptions()};
+}
 function stickHeaderOptions() {
-    var header = document.getElementsByClassName("multiBoxContainer")[0];
+    var header = document.getElementById("subHeader");
     var sticky = header.offsetTop;
     if (window.pageYOffset > sticky) {
         header.classList.add("stickyHeader");
@@ -124,4 +119,14 @@ function stickHeaderOptions() {
         header.classList.remove("stickyHeader");
     }
 }
-
+function viewProfilePage(from) {
+    if (from == 'home') {
+        window.location = "profile";
+    }
+    else if(from == "secondChild") {
+        window.location = "../profile"
+    }
+    else {
+        window.location = "../../profile"
+    }
+}

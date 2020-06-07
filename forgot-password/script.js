@@ -10,7 +10,6 @@ firebase.auth().onAuthStateChanged(function(user) {
     }
     else {
       // User not logged in or has just logged out.
-      
     }
   });
 
@@ -23,7 +22,7 @@ function resetPassword() {
     var email = document.getElementById("reset_email").value
     if (email == "") {
         document.getElementById("forgotPassLoader").style.display = "none";
-        document.getElementById("forgot_passwordBTN").style.display = "block";
+        document.getElementById("forgot_passwordBTN").style.display = "inline-block";
         document.getElementById("successReset").style.display = "none";
         document.getElementById("passResetErrorHolder").style.display = "block";
         document.getElementById("passResetErrorText").innerText = "Please enter the registered email!"
@@ -32,14 +31,14 @@ function resetPassword() {
         firebase.auth().sendPasswordResetEmail(email).then(() => {
             //success
             document.getElementById("forgotPassLoader").style.display = "none";
-            document.getElementById("forgot_passwordBTN").style.display = "block";
+            document.getElementById("forgot_passwordBTN").style.display = "inline-block";
             document.getElementById("passResetErrorHolder").style.display = "none";
             document.getElementById("successReset").style.display = "block";
             document.getElementById("successResetEmail").innerText = email;
           }).catch((error)=>{
               //error
               document.getElementById("forgotPassLoader").style.display = "none";
-              document.getElementById("forgot_passwordBTN").style.display = "block";
+              document.getElementById("forgot_passwordBTN").style.display = "inline-block";
               document.getElementById("successReset").style.display = "none";
               document.getElementById("passResetErrorHolder").style.display = "block";
               document.getElementById("passResetErrorText").innerText = error.message

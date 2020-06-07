@@ -14,9 +14,13 @@
     font-family: Merriweather-regular;
     src: url(../resource/fonts/Merriweather-Regular.ttf);
 }
+body {
+    display: block;
+}
 .adminContentManager {
     min-height: 100%;
     display: flex;
+    margin-bottom: -25px;
 }
 .adminContentOption {
     width: 20%;

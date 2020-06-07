@@ -18,7 +18,7 @@ src: url(../resource/fonts/opensans_semibold.ttf);
 .modal {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
+    z-index: 3; /* Sit on top */
     padding-top: 200px; /* Location of the box */
     padding-bottom: 50px; /* Location of the box */
     left: 0;
