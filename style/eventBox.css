@@ -49,14 +49,15 @@ div.eventBox {
     background-color: rgb(143, 84, 84);
 }
 .eventTitle {
-    font-size: 190%;
+    font-size: 35px;
     margin-top: -2px;
     font-family: openSans-Bold;
-    color: rgb(231, 212, 212);
+    color: rgb(255, 255, 255);
 }
 .eventDetails {
-    font-family: openSans-SemiBold;
-    color: rgb(238, 238, 238);
+    font-size: 17px;
+    font-family: openSans;
+    color: rgb(255, 254, 254);
     word-wrap: break-word;
     overflow: auto;
     height: 70%;

@@ -10,10 +10,7 @@
   font-family: openSans-SemiBold;
   src: url(../resource/fonts/opensans_semibold.ttf);
 }
-@font-face {
-    font-family: openSans-ExtraBold;
-    src: url(../resource/fonts/opensans_extrabold.ttf);
-}
+
 body {
     margin: 0px;
 }
@@ -30,8 +27,9 @@ body {
     justify-content: space-between;
 }
 #logoHolder {
-    height: 75px;
-    width: 225px;
+    margin-top: 10px;
+    height: 65px;
+    width: 215px;
 }
 #logo {
     height: 100%;
@@ -86,6 +84,7 @@ body {
     font-family: openSans-Bold;
     border-radius: 3px;
     outline: none;
+    padding: 5px;
 }
 #searchBarHolder input::placeholder {
     color: rgb(155, 155, 155);
