@@ -33,6 +33,7 @@
     color: #726868;
 }
 .blogBox {
+    cursor: pointer;
     width: 365px;
     height: 240px;
     margin: 25px;

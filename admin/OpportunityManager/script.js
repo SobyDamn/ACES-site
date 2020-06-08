@@ -30,16 +30,16 @@ function viewSelectedContentOption(view,hide1,hide2,selectedELement,nonSelectedE
 }
 
 function changeContentDate(value) {
-    document.getElementsByClassName("oppurtunityLastDateDay")[0].innerHTML = nerdDate(value)[0];
-    document.getElementsByClassName("oppurtunityLastDateMonth")[0].innerHTML = nerdDate(value)[1];
-    document.getElementsByClassName("oppurtunityLastDateYear")[0].innerHTML = nerdDate(value)[2];
+    document.getElementsByClassName("opportunityLastDateDay")[0].innerHTML = nerdDate(value)[0];
+    document.getElementsByClassName("opportunityLastDateMonth")[0].innerHTML = nerdDate(value)[1];
+    document.getElementsByClassName("opportunityLastDateYear")[0].innerHTML = nerdDate(value)[2];
 }
 
 function changeContentTitle(value) {
     //change title
-    const oppurtunityTextElements = document.getElementsByClassName("oppurtunityText")
-    for (var i= 0;i < oppurtunityTextElements.length;i++) {
-        oppurtunityTextElements[i].innerHTML = value;
+    const opportunityTextElements = document.getElementsByClassName("opportunityText")
+    for (var i= 0;i < opportunityTextElements.length;i++) {
+        opportunityTextElements[i].innerHTML = value;
     }
 }
 function nerdDate(x) {
@@ -65,10 +65,10 @@ function submitContent() {
     var contentTitle = document.getElementById("contentTitle").value;
     var lastDate = document.getElementById("contentDateField").value;
     var contentLink = document.getElementById("contentLink").value;
-    var oppurtunityDB = firebase.firestore().collection("oppurtunity");
+    var opportunityDB = firebase.firestore().collection("opportunity");
     if (lastDate != "") {
         submitInProgress(true)
-        oppurtunityDB.add({
+        opportunityDB.add({
             text: contentTitle,
             lastDate: lastDate,
             link: contentLink,
@@ -95,14 +95,14 @@ function submitContent() {
     
 }
 
-function saveEditOppurtunity(id) {
+function saveEditOpportunity(id) {
     document.getElementById("contentSubmitErrorHolder").style.display = "none";
     var contentTitle = document.getElementById("contentTitle").value;
     var lastDate = document.getElementById("contentDateField").value;
     var contentLink = document.getElementById("contentLink").value;
-    var oppurtunity = firebase.firestore().collection("oppurtunity").doc(id);
+    var opportunity = firebase.firestore().collection("opportunity").doc(id);
     submitInProgress(true)
-    oppurtunity.update({
+    opportunity.update({
         text: contentTitle,
         lastDate: lastDate,
         link: contentLink,
@@ -119,26 +119,26 @@ function saveEditOppurtunity(id) {
     })
 }
 
-function loadAvailableOppurtunity(maxLimit) {
+function loadAvailableOpportunity(maxLimit) {
     document.getElementById("adminManageAvailableContentContainer").innerHTML = " "
-    document.getElementById("availableOppurtunityLoader").style.display = "block";
-    var oppurtunityDB = firebase.firestore().collection("oppurtunity").orderBy("timestamp", "desc").limit(maxLimit);
-    oppurtunityDB.get().then(function(querySnapshot) {
-        document.getElementById("availableOppurtunityLoader").style.display = "none";
+    document.getElementById("availableOpportunityLoader").style.display = "block";
+    var opportunityDB = firebase.firestore().collection("opportunity").orderBy("timestamp", "desc").limit(maxLimit);
+    opportunityDB.get().then(function(querySnapshot) {
+        document.getElementById("availableOpportunityLoader").style.display = "none";
         querySnapshot.forEach(function(doc) {
-            var oppurtunity = doc.data()
-            var text = escape(oppurtunity['text'])
+            var opportunity = doc.data()
+            var text = escape(opportunity['text'])
             var contentTitle = "title";
-            if (oppurtunity.text.length > 100) {
-                contentTitle = oppurtunity.text.slice(0,60) + "...";
+            if (opportunity.text.length > 100) {
+                contentTitle = opportunity.text.slice(0,60) + "...";
             }
             else {
-                contentTitle = oppurtunity.text;
+                contentTitle = opportunity.text;
             }
-            var oppurtunityElement = `<div class="adminManageAvailableContent">
+            var opportunityElement = `<div class="adminManageAvailableContent">
                                         <span class="adminManageAvailableContentTitle">${contentTitle}</span><br>
-                                        <button onclick="editOppurtunity('${doc.id}','${text}','${oppurtunity.lastDate}','${oppurtunity.link}')" class="adminManageAvailableContentOptionBTN">Edit</button>
-                                        <button onclick="deleteOppurtunity('${doc.id}','${escape(contentTitle)}')" class="adminManageAvailableContentOptionBTN">Delete</button>
+                                        <button onclick="editOpportunity('${doc.id}','${text}','${opportunity.lastDate}','${opportunity.link}')" class="adminManageAvailableContentOptionBTN">Edit</button>
+                                        <button onclick="deleteOpportunity('${doc.id}','${escape(contentTitle)}')" class="adminManageAvailableContentOptionBTN">Delete</button>
                                         <button class="adminManageAvailableContentOptionBTN">
                                             <span class="adminManageAvailableContentAboutBTN">About
                                                 <div class="adminManageAvailableAboutContent">
@@ -150,23 +150,23 @@ function loadAvailableOppurtunity(maxLimit) {
                                             </span>
                                         </button>
                                     </div>`
-            document.getElementById("adminManageAvailableContentContainer").innerHTML += oppurtunityElement
+            document.getElementById("adminManageAvailableContentContainer").innerHTML += opportunityElement
         });
     });
 }
 
-function deleteOppurtunity(id,title) {
+function deleteOpportunity(id,title) {
     //delete element
     var popMsgElement = document.getElementById("adminNoticePOPMsg")
-    var oppurtunityDB = firebase.firestore().collection("oppurtunity");
+    var opportunityDB = firebase.firestore().collection("opportunity");
     var heading = "Delete"
-    var msg = "Delete Oppurtunity<br>'"+unescape(title)+"' ?"
+    var msg = "Delete Opportunity<br>'"+unescape(title)+"' ?"
     document.getElementById("confirmPOP").style.display = "inline"
     var confirmBTN = document.getElementById("confirmPOP");
     confirmBTN.onclick = function(){
         document.getElementById("confirmPopLoader").style.display = "block";
         document.getElementById("popFooter").style.display = "none"
-        oppurtunityDB.doc(id).delete().then(function() {
+        opportunityDB.doc(id).delete().then(function() {
             popMsgElement.innerHTML +="<br><b><i>Deleted Successfully</i></b>";
             loadAvailableContentWithSettings()
             closeErrorPop()
@@ -180,7 +180,7 @@ function deleteOppurtunity(id,title) {
     showPopUp(heading,msg);
     
 }
-function editOppurtunity(id,text,lastDate,link) {
+function editOpportunity(id,text,lastDate,link) {
     //edit
     loadDateOnStrip(lastDate)
     document.getElementById("contentTitle").value = unescape(text);
@@ -189,10 +189,10 @@ function editOppurtunity(id,text,lastDate,link) {
     changeContentTitle(unescape(text));
     var saveEditBTN = document.getElementById("submitEditContentBTN")
     saveEditBTN.onclick = function(){
-        saveEditOppurtunity(id);
+        saveEditOpportunity(id);
     }
     saveEditBTN.style.display = "inline";
-    document.getElementById("addNewOppurtunityBTN").style.display = "inline";
+    document.getElementById("addNewOpportunityBTN").style.display = "inline";
     document.getElementById("submitContentBTN").style.display = "none";
     document.getElementsByClassName("adminManageContentOption")[1].click();
 }
@@ -235,10 +235,10 @@ function submitInProgress(isProcessing) {
 
 //reset form back to normal
 function resetContentForm() {
-    document.getElementById("addNewOppurtunityBTN").style.display = "none";
+    document.getElementById("addNewOpportunityBTN").style.display = "none";
     document.getElementById("submitEditContentBTN").style.display = "none";
     document.getElementById("submitContentBTN").style.display = "inline";
-    var defaultText = `I don't kknow how long a single line can be, Expecting it to be this long!`;
+    var defaultText = `I don't know how long a single line can be, Expecting it to be this long!`;
     changeContentTitle(defaultText);
     loadDateOnStrip(null);
     document.getElementById("contentTitle").value = defaultText;
@@ -246,23 +246,23 @@ function resetContentForm() {
     document.getElementById("contentLink").value = "#";
 }
 function loadAvailableContentWithSettings() {
-    var oppurtunitySettingRef = firebase.firestore().collection("settings").doc("oppurtunitySettings");
-    oppurtunitySettingRef.get().then(function(oppurtunitySetting) {
-        if (oppurtunitySetting.exists) {
-            var settings = oppurtunitySetting.data();
+    var opportunitySettingRef = firebase.firestore().collection("settings").doc("opportunitySettings");
+    opportunitySettingRef.get().then(function(opportunitySetting) {
+        if (opportunitySetting.exists) {
+            var settings = opportunitySetting.data();
             maxValue = settings.maxValue;
             document.getElementById("adminManageContentSettingValue").value = maxValue; //show current max value in settings
-            loadAvailableOppurtunity(maxValue)
+            loadAvailableOpportunity(maxValue)
         } else {
             // doc.data() will be undefined in this case
             console.log("No such document! Running with default value");
-            loadAvailableOppurtunity(3)
+            loadAvailableOpportunity(3)
         }
     })
 }
 function loadMoreAvailableContent() {
     maxValue += 5;
-    loadAvailableOppurtunity(maxValue);
+    loadAvailableOpportunity(maxValue);
 }
 function saveContentSetting(button,type) {
     var loader = document.getElementById("saveSettingLoader")

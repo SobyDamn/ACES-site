@@ -1,6 +1,6 @@
 function loadNewsletterWithSettings() {
     var newsSettingsRef = firebase.firestore().collection("settings").doc("newsSettings");
-    var oppurtunitySettingsRef = firebase.firestore().collection("settings").doc("oppurtunitySettings");
+    var opportunitySettingsRef = firebase.firestore().collection("settings").doc("opportunitySettings");
     newsSettingsRef.get().then(function(newsSetting) {
         if (newsSetting.exists) {
             var settings = newsSetting.data();
@@ -11,14 +11,14 @@ function loadNewsletterWithSettings() {
             loadNews(3)
         }
     });
-    oppurtunitySettingsRef.get().then(function(oppurtunitySetting) {
-        if (oppurtunitySetting.exists) {
-            var settings = oppurtunitySetting.data();
-            loadOppurtunity(settings.maxValue)
+    opportunitySettingsRef.get().then(function(opportunitySetting) {
+        if (opportunitySetting.exists) {
+            var settings = opportunitySetting.data();
+            loadOpportunity(settings.maxValue)
         } else {
             // doc.data() will be undefined in this case
             console.log("No Setting document! Running with default value");
-            loadOppurtunity(3)
+            loadOpportunity(3)
         }
     })
 }
@@ -49,39 +49,39 @@ function newsStripGenerator(text,color,date,link) {
                     </div>`
     return newsBox;
 }
-function loadOppurtunity(maxLimit) {
-    document.getElementById("oppurtunityBoxContainer").innerHTML = ``;
-    var newsDB = firebase.firestore().collection("oppurtunity").orderBy("timestamp", "desc").limit(maxLimit);
+function loadOpportunity(maxLimit) {
+    document.getElementById("opportunityBoxContainer").innerHTML = ``;
+    var newsDB = firebase.firestore().collection("opportunity").orderBy("timestamp", "desc").limit(maxLimit);
     var i = 0;
     newsDB.get().then(function(querySnapshot) {
         querySnapshot.forEach(function(doc) {
-            var oppurtunity = doc.data()
-            document.getElementById("oppurtunityBoxContainer").innerHTML += oppurtunityBoxGenerator(oppurtunity.text,oppurtunity.lastDate,oppurtunity.link)
+            var opportunity = doc.data()
+            document.getElementById("opportunityBoxContainer").innerHTML += opportunityBoxGenerator(opportunity.text,opportunity.lastDate,opportunity.link)
             i++;
         });
     });
 }
-function oppurtunityBoxGenerator(text,lastDate,link) {
-    var oppurtunityBox = `<div onclick="openNewsletter('${link}')" class="oppurtunityBox">
-                            <div class="oppurtunityDeadlineContainer">
-                                <div class="oppurtunityDeadlineDateContainer">
+function opportunityBoxGenerator(text,lastDate,link) {
+    var opportunityBox = `<div onclick="openNewsletter('${link}')" class="opportunityBox">
+                            <div class="opportunityDeadlineContainer">
+                                <div class="opportunityDeadlineDateContainer">
                                     <span>
-                                        <h4 class="oppurtunityLastDateHeading">Last Date</h4>
-                                        <div class="oppurtunityLastDateDay">${nerdDate(lastDate)[0]}</div>
-                                        <div class="oppurtunityLastDateMonth">${nerdDate(lastDate)[1]}</div>
-                                        <div class="oppurtunityLastDateYear">${nerdDate(lastDate)[2]}</div>
+                                        <h4 class="opportunityLastDateHeading">Last Date</h4>
+                                        <div class="opportunityLastDateDay">${nerdDate(lastDate)[0]}</div>
+                                        <div class="opportunityLastDateMonth">${nerdDate(lastDate)[1]}</div>
+                                        <div class="opportunityLastDateYear">${nerdDate(lastDate)[2]}</div>
                                     </span>
                                 </div>
                             </div>
-                            <div class="oppurtunityTextContainerArea">
-                                <div class="oppurtunityTextContainer">
-                                    <span class="oppurtunityText">
+                            <div class="opportunityTextContainerArea">
+                                <div class="opportunityTextContainer">
+                                    <span class="opportunityText">
                                         ${text}
                                     </span>
                                 </div>
                             </div>
                         </div>`
-    return oppurtunityBox;
+    return opportunityBox;
 }
 
 function nerdDate(x) {

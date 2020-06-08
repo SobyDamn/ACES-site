@@ -65,15 +65,15 @@
                     <a href="../ManageActivity/" class="adminContentOptionLink">Activity Card</a>
                     <a href="../ManageBlogs/" class="adminContentOptionLink">Blog Card</a>
                     <a href="../NewsManager/" class="adminContentOptionLink">NEWS</a>
-                    <a href="../OppurtunityManager/" id="adminInteractedLinkOn" class="adminContentOptionLink">Oppurtunity</a>
+                    <a href="../OpportunityManager/" id="adminInteractedLinkOn" class="adminContentOptionLink">Opportunity</a>
                     <a href="../UserManager/" class="adminContentOptionLink">Users</a>
                 </div>
             </div>
             <div class="adminManageContent">
-                <h2 class="adminContentTite">Manage Oppurtunit Cards</h2>
+                <h2 class="adminContentTite">Manage Opportunit Cards</h2>
                 <div class="adminManageContentOptionContainer">
                     <button onclick="viewSelectedContentOption('adminManagerAvailableContentArea','adminManageContentEditAddContainer','adminManageContentSetting',0,1,2)" id="adminManageContentOption" class="adminManageContentOption">Activities</button>
-                    <button onclick="viewSelectedContentOption('adminManageContentEditAddContainer','adminManagerAvailableContentArea','adminManageContentSetting',1,0,2)" class="adminManageContentOption">Add/Edit Oppurtunit</button>
+                    <button onclick="viewSelectedContentOption('adminManageContentEditAddContainer','adminManagerAvailableContentArea','adminManageContentSetting',1,0,2)" class="adminManageContentOption">Add/Edit Opportunit</button>
                     <button onclick="viewSelectedContentOption('adminManageContentSetting','adminManageContentEditAddContainer','adminManagerAvailableContentArea',2,0,1)" class="adminManageContentOption">Settings</button>
                 </div>
                 <div id="adminManagerAvailableContentArea">
@@ -87,7 +87,7 @@
                             </div>
                         -->
                     </div>
-                    <div id="availableOppurtunityLoader" style="text-align: center; display: block;">
+                    <div id="availableOpportunityLoader" style="text-align: center; display: block;">
                         <div class="lds-ellipsis"><div style="background: rgb(94, 117, 223);"></div><div style="background: rgb(94, 117, 223);"></div><div style="background: rgb(94, 117, 223);"></div><div style="background: rgb(94, 117, 223);"></div></div>
                     </div>
                     <div class="loadMoreBTNContainer">
@@ -97,24 +97,24 @@
                     </div>
                 </div>
                 <div id="adminManageContentEditAddContainer" class="adminManageContentEditAddContainer">
-                    <button id="addNewOppurtunityBTN" style="display: none;" onclick="resetContentForm()" class="addNewContentBTN">+ ADD NEW</button>
-                    <div class="adminManageContentOppurtunityPreviewBox">
+                    <button id="addNewOpportunityBTN" style="display: none;" onclick="resetContentForm()" class="addNewContentBTN">+ ADD NEW</button>
+                    <div class="adminManageContentOpportunityPreviewBox">
                         <h3 class='previewBoxTitle'>Preview</h3>
-                        <div class="oppurtunityBox">
-                            <div class="oppurtunityDeadlineContainer">
-                                <div class="oppurtunityDeadlineDateContainer">
+                        <div class="opportunityBox">
+                            <div class="opportunityDeadlineContainer">
+                                <div class="opportunityDeadlineDateContainer">
                                     <span>
-                                        <h4 class="oppurtunityLastDateHeading">Last Date</h4>
-                                        <div class="oppurtunityLastDateDay">01</div>
-                                        <div class="oppurtunityLastDateMonth">Dec</div>
-                                        <div class="oppurtunityLastDateYear">2020</div>
+                                        <h4 class="opportunityLastDateHeading">Last Date</h4>
+                                        <div class="opportunityLastDateDay">01</div>
+                                        <div class="opportunityLastDateMonth">Dec</div>
+                                        <div class="opportunityLastDateYear">2020</div>
                                     </span>
                                 </div>
                             </div>
-                            <div class="oppurtunityTextContainerArea">
-                                <div class="oppurtunityTextContainer">
-                                    <span class="oppurtunityText">
-                                        I don't kknow how long a single line can be, Expecting it to be this long!
+                            <div class="opportunityTextContainerArea">
+                                <div class="opportunityTextContainer">
+                                    <span class="opportunityText">
+                                        I don't know how long a single line can be, Expecting it to be this long!
                                     </span>
                                 </div>
                             </div>
@@ -122,8 +122,8 @@
                     </div>
                     <p class="noteForAdmin">Note :- HTML & CSS codes can be used in the text field.</p>
                     <div class="adminManageContentEditFieldContainer">
-                        <label class="adminManageContentField">Oppurtunity Title : </label><br>
-                        <textarea id="contentTitle" onchange="changeContentTitle(this.value)" class="adminManageContentInputField"rows="4" cols="30">I don't kknow how long a single line can be, Expecting it to be this long!</textarea>
+                        <label class="adminManageContentField">Opportunity Title : </label><br>
+                        <textarea id="contentTitle" onchange="changeContentTitle(this.value)" class="adminManageContentInputField"rows="4" cols="30">I don't know how long a single line can be, Expecting it to be this long!</textarea>
                         <br>
                         <label class="adminManageContentField">Last Date : </label><br>
                         <input id="contentDateField" onchange="changeContentDate(this.value)" class="adminManageContentInputField" type="date"/>
@@ -150,9 +150,9 @@
                 </div>
                 <div id="adminManageContentSetting" class="adminManageContentSetting">
                     <h2>Setting</h2>
-                    <p class="noteForAdmin">Note :- This will show the selected Number of Oppurtunity Strips on screen(Top x last added)</p>
+                    <p class="noteForAdmin">Note :- This will show the selected Number of Opportunity Strips on screen(Top x last added)</p>
                     <label>
-                        No. Of Oppurtunity Strip :
+                        No. Of Opportunity Strip :
                     </label>
                     <select id="adminManageContentSettingValue" class="adminManageContentInputField">
                         <option value="3" selected>3</option>
@@ -164,7 +164,7 @@
                         <option value="9">9</option>
                       </select>
                     <p class="CenterBTNContainer">
-                        <button id="saveSettingBTN" onclick="saveContentSetting(this,'oppurtunitySettings')" class="adminManageContentSaveBTN">
+                        <button id="saveSettingBTN" onclick="saveContentSetting(this,'opportunitySettings')" class="adminManageContentSaveBTN">
                             Save Setting
                         </button>
                     </p>

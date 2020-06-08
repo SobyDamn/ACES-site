@@ -26,7 +26,7 @@ function loadBlogs(maxLimit) {
 
 function blogBoxGenerator(id,elementId,title,description,link,background,imageURL,textColor,titleColor) {
     fetchBlogPreviewImage(id,imageURL,elementId);
-    var blogBoxElement = `<div class="blogBox">
+    var blogBoxElement = `<div onclick="openBlogs('${link}')" class="blogBox">
                             <div class="blogBoxImgContainer">
                                 <img class="blogBoxImg" src="resource/img/aces-default-image-preview-landscape.jpg"/>
                             </div>
@@ -38,7 +38,7 @@ function blogBoxGenerator(id,elementId,title,description,link,background,imageUR
                                     ${description}
                                 </span>
                             </div>
-                            <a class="blogBoxVisitLink" href="${link}">Read More</a>
+                            <a class="blogBoxVisitLink" style="display:none" href="${link}">Read More</a>
                         </div>`
     return blogBoxElement;
 }
@@ -52,4 +52,7 @@ function fetchBlogPreviewImage(id,fileName,elementId) {
         // Handle any errors
         console.log(error)
     });
+}
+function openBlogs(url) {
+    window.open(url);
 }

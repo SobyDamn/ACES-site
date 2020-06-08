@@ -45,9 +45,10 @@
     width: 55%;
     padding: 10px;
 }
-#oppurtunityBoxContainerArea {
+#opportunityBoxContainerArea {
     display: inline-block;
     width: 45%;
+    padding: 10px;
 }
 #newsStripsContainer {
     overflow: auto;
@@ -90,7 +91,7 @@
     vertical-align: middle;
     height: 70px;
 }
-.newsText,.oppurtunityText {
+.newsText,.opportunityText {
     font-family: openSans-Bold;
 }
 .newsPostDate {
@@ -104,14 +105,14 @@
     text-shadow: .5px 0.5px 2px #f3ecec;
 }
 
-/*Oppurtunity box styling*/
-#oppurtunityBoxContainer {
+/*Opportunity box styling*/
+#opportunityBoxContainer {
     min-height: 400px;
 }
-.oppurtunityBox {
+.opportunityBox {
     min-height: 80px;
     border-radius: 5px;
-    margin: 10px;
+    /*margin: 10px;*/
     margin-bottom: 15px;
     display: flex;
     background-color: white;
@@ -120,22 +121,22 @@
     transition: box-shadow 0.2s;
     cursor: pointer;
 }
-.oppurtunityBox:hover {
+.opportunityBox:hover {
     box-shadow: 2px 2px 4px 2px rgb(187, 172, 172);
 }
-.oppurtunityDeadlineContainer {
+.opportunityDeadlineContainer {
     width: 15%;
     min-width: 85px;
     display: inline-block;
     background-color: rgb(4, 128, 212);
     overflow: hidden;
 }
-.oppurtunityTextContainerArea {
+.opportunityTextContainerArea {
     width: 85%;
     display: inline-block;
     padding: 5px;
 }
-.oppurtunityLastDateHeading {
+.opportunityLastDateHeading {
     font-family: openSans-Bold;
     text-align: center;
     font-size: 11px;
@@ -144,35 +145,35 @@
     margin-bottom: 0px;
     color: rgb(240, 240, 240);
 }
-.oppurtunityLastDateDay,.oppurtunityLastDateMonth,.oppurtunityLastDateYear {
+.opportunityLastDateDay,.opportunityLastDateMonth,.opportunityLastDateYear {
     text-align: center;
     color: rgb(252, 245, 245);
 }
-.oppurtunityLastDateDay {
+.opportunityLastDateDay {
     font-size: 35px;
     font-family: openSans-Bold;
     margin-top: -10px;
 }
-.oppurtunityLastDateMonth {
+.opportunityLastDateMonth {
     font-family: openSans-SemiBold;
     margin-top: -10px;
     font-size: 15px;
 }
-.oppurtunityLastDateYear {
+.opportunityLastDateYear {
     font-family: openSans;
     font-size: 12px;
 }
-.oppurtunityTextContainer {
+.opportunityTextContainer {
     display: table-cell;
     vertical-align: middle;
     height: 80px;
 }
-.oppurtunityDeadlineDateContainer {
+.opportunityDeadlineDateContainer {
     display: table;
     height: 100%;
     width: 100%;
 }
-.oppurtunityDeadlineDateContainer span {
+.opportunityDeadlineDateContainer span {
     display: table-cell;
     text-align: center;
     vertical-align: middle;
