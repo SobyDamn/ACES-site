@@ -34,7 +34,7 @@
     margin: 25px;
     padding-bottom: 20px;
     border-bottom: 7px solid #3c0a99;
-    color: #726868;
+    color: #3c0a99;
 }
 .blogBox {
     cursor: pointer;
@@ -46,12 +46,13 @@
     display: flex;
     flex-direction: column;
     position: relative;
-    transition: width 0.5s,height 0.5s;
+    transition: width 0.5s,height 0.5s,box-shadow 0.2s;
+    box-shadow: 2px 2px 5px 2px rgb(73, 73, 73,0.2);
 }
 .blogBox:hover {
     width: 375px;
     height: 250px;
-    box-shadow: 2px 2px 5px 2px rgb(173, 168, 168);
+    box-shadow: 2px 2px 15px 2px rgb(73, 73, 73,0.5);
 }
 .blogBoxImgContainer {
     height: 45%;
