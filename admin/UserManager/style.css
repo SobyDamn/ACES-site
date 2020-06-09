@@ -90,6 +90,7 @@
     border-radius: 4px;
     font-family: openSans-Bold;
     border-right: none;
+    background-color: white;
 }
 .filterInputType {
     padding: 4px 8px;
