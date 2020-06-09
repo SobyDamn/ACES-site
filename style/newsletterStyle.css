@@ -28,7 +28,7 @@
 .newsletterBoxTitle {
     font-family: Merriweather-regular;
     padding-bottom: 20px;
-    border-bottom: 1px solid #d3cccc;
+    border-bottom: 1px solid #b6b0b0;
     color: #3b3434;
 }
 #newsletterContainer {
@@ -37,7 +37,7 @@
     max-height: 600px;
     margin: 25px;
     border-radius: 5px;
-    background-color: rgb(238, 231, 231);
+    background-color: rgb(128, 128, 128,0.4);
 }
 #newsBoxContainer {
     border-right: 1px solid rgb(184, 180, 180);

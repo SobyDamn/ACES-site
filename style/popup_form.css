@@ -140,3 +140,8 @@
     display: none;
     color: rgb(238, 173, 173);
 }
+.transparentBTN {
+  background: none;
+  border: none;
+  outline: none;
+}

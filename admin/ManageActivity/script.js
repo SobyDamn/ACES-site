@@ -43,7 +43,7 @@ function changeContentColor(value) {
         activityBoxDetailsElements[i].style.background = value;
     }
 }
-function colorPickerChange(value) {
+function colorPickerContentChange(value) {
     changeContentColor(value);
     document.getElementById("contentBGColor").value = value;
 }
@@ -297,12 +297,13 @@ function editActivity(id,title,description,link,bgColor,activityType,image,textC
     document.getElementById("contentBoxType").value = activityType;
     document.getElementById("contentTitleColor").value = titleColor;
     document.getElementById("contentTextColor").value = textColor;
+    document.getElementById("contentBackgroundColorPicker").value = bgColor;
     titleTextColorPickerChange(titleColor);
     descriptionTextColorPickerChange(textColor);
     changeActivityBoxType(activityType);
     changeContentDescription(unescape(description));
     changeContentTitle(unescape(title));
-    changeContentColor(bgColor);
+    colorPickerContentChange(bgColor);
     fetchPreviewImage(id,image);
     var saveEditBTN = document.getElementById("submitEditContentBTN")
     saveEditBTN.onclick = function(){
@@ -372,19 +373,19 @@ function resetContentForm() {
     var defaultDesc = `ACES refers to the Association of Computer Engineering Students from the prestigious School of Engineering, Cochin University of Science and technology (CUSAT).`
     var defaultTitle = `ACES`;
     var defaultBoxType = `activityBoxType1`;
-    var defaultBGColor = `rgb(6, 110, 93)`;
+    var defaultBGColor = `#066e5d`;
     var defaultTextColor = "#f3f0f0";
     var defaultTitleColor = "#f3f0f0";
     changeContentDescription(defaultDesc);
     changeActivityBoxType(defaultBoxType);
     changeContentTitle(defaultTitle);
-    changeContentColor(defaultBGColor);
+    colorPickerContentChange(defaultBGColor);
     titleTextColorPickerChange(defaultTitleColor);
     descriptionTextColorPickerChange(defaultTextColor);
     changeActivityBoxType("activityBoxType1");
     document.getElementById("contentTitle").value = defaultTitle;
     document.getElementById("contentDescription").value = defaultDesc;
-    document.getElementById("contentBGColor").value = defaultBGColor;
+    document.getElementById("contentBackgroundColorPicker").value = defaultBGColor;
     document.getElementById("contentLink").value = "#";
     document.getElementById("contentBoxType").value = "activityBoxType1";
     document.getElementById("contentTitleColor").value = defaultTitleColor;

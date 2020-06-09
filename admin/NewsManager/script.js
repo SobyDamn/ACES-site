@@ -37,9 +37,8 @@ function changeContentColor(value) {
         newsBoxElements[i].style['border-color'] = value;
     }
 }
-function colorPickerChange(value) {
+function colorPickerContentChange(value) {
     changeContentColor(value);
-    document.getElementById("contentBGColor").value = value;
 }
 function changeContentTitle(value) {
     //change title
@@ -62,7 +61,7 @@ function nerdDate(x) {
 function submitContent() {
     document.getElementById("contentSubmitErrorHolder").style.display = "none";
     var contentTitle = document.getElementById("contentTitle").value;
-    var contentColor = document.getElementById("contentBGColor").value;
+    var contentColor = document.getElementById("contentBackgroundColorPicker").value;
     var contentLink = document.getElementById("contentLink").value;
     var currDate = new Date();
     var newsDB = firebase.firestore().collection("news");
@@ -91,7 +90,7 @@ function submitContent() {
 function saveEditNews(id) {
     document.getElementById("contentSubmitErrorHolder").style.display = "none";
     var contentTitle = document.getElementById("contentTitle").value;
-    var contentColor = document.getElementById("contentBGColor").value;
+    var contentColor = document.getElementById("contentBackgroundColorPicker").value;
     var contentLink = document.getElementById("contentLink").value;
     var news = firebase.firestore().collection("news").doc(id);
     submitInProgress(true)
@@ -177,10 +176,10 @@ function editNews(id,text,color,link,date) {
     //edit
     loadDateOnStrip(date)
     document.getElementById("contentTitle").value = unescape(text);
-    document.getElementById("contentBGColor").value = color;
+    document.getElementById("contentBackgroundColorPicker").value = color;
     document.getElementById("contentLink").value = link;
     changeContentTitle(unescape(text));
-    changeContentColor(color);
+    colorPickerContentChange(color);
     var saveEditBTN = document.getElementById("submitEditContentBTN")
     saveEditBTN.onclick = function(){
         saveEditNews(id);
@@ -233,11 +232,11 @@ function resetContentForm() {
     document.getElementById("submitEditContentBTN").style.display = "none";
     document.getElementById("submitContentBTN").style.display = "inline";
     var defaultText = `ACES refers to the Association of Computer Engineering Students from the prestigious School of Engineering, Cochin University of Science and technology (CUSAT).`;
-    var defaultColor = `rgb(11, 207, 4)`;
+    var defaultColor = `#0bcf04`;
     changeContentTitle(defaultText);
-    changeContentColor(defaultColor);
+    colorPickerContentChange(defaultColor);
     document.getElementById("contentTitle").value = defaultText;
-    document.getElementById("contentBGColor").value = defaultColor;
+    document.getElementById("contentBackgroundColorPicker").value = defaultColor;
     document.getElementById("contentLink").value = "#";
 }
 function loadAvailableContentWithSettings() {

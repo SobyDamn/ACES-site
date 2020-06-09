@@ -43,7 +43,7 @@ function changeContentColor(value) {
         blogBoxDetailsElements[i].style.background = value;
     }
 }
-function colorPickerChange(value) {
+function colorPickerContentChange(value) {
     changeContentColor(value);
     document.getElementById("contentBGColor").value = value;
 }
@@ -266,11 +266,12 @@ function editBlog(id,title,description,link,bgColor,image,textColor,titleColor) 
     document.getElementById("contentLink").value = link;
     document.getElementById("contentTitleColor").value = titleColor;
     document.getElementById("contentTextColor").value = textColor;
+    document.getElementById("contentBackgroundColorPicker").value = bgColor;
     titleTextColorPickerChange(titleColor);
     descriptionTextColorPickerChange(textColor);
     changeContentDescription(unescape(description));
     changeContentTitle(unescape(title));
-    changeContentColor(bgColor);
+    colorPickerContentChange(bgColor);
     fetchPreviewImage(id,image);
     var saveEditBTN = document.getElementById("submitEditContentBTN")
     saveEditBTN.onclick = function(){
@@ -339,17 +340,19 @@ function resetContentForm() {
     document.getElementById("submitContentBTN").style.display = "inline";
     var defaultDesc = `ACES refers to the Association of Computer Engineering Students from the prestigious School of Engineering, Cochin University of Science and technology (CUSAT).`
     var defaultTitle = `ACES`;
-    var defaultBGColor = `rgb(6, 110, 93)`;
+    var defaultBGColor = `#066e5d`;
     var defaultTextColor = "#f3f0f0";
     var defaultTitleColor = "#f3f0f0";
     titleTextColorPickerChange(defaultTitleColor);
     descriptionTextColorPickerChange(defaultTextColor);
     changeContentDescription(defaultDesc);
     changeContentTitle(defaultTitle);
-    changeContentColor(defaultBGColor);
+    //changeContentColor(defaultBGColor);
+    colorPickerContentChange(defaultBGColor);
     document.getElementById("contentTitle").value = defaultTitle;
     document.getElementById("contentDescription").value = defaultDesc;
-    document.getElementById("contentBGColor").value = defaultBGColor;
+    //document.getElementById("contentBGColor").value = defaultBGColor;
+    document.getElementById("contentBackgroundColorPicker").value = defaultBGColor;
     document.getElementById("contentLink").value = "#";
     document.getElementById("contentTitleColor").value = defaultTitleColor;
     document.getElementById("contentTextColor").value = defaultTextColor;

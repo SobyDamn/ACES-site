@@ -38,12 +38,11 @@ body {
 #subHeader {
     display: flex;
     justify-content: space-between;
-    background-color: white;
     box-shadow: 0px 8px 5px -6px rgb(97, 96, 96,0.6);
 }
 #headerOptionBoxContainer {
     width: 50%;
-    margin-top: 25px;
+    margin-top: 05px;
 }
 #headerOptionBoxContainer #headerOptionBox {
     height: 40px;
@@ -67,7 +66,7 @@ body {
 }
 #searchBarHolder {
     min-height: 20px;
-    margin-top: 25px;
+    margin-top: 05px;
     padding-top: 5px;
     padding-left: 10px;
     padding-right: 10px;

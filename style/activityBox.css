@@ -29,7 +29,9 @@
     display: flex;
     flex-wrap: wrap;
     min-height: 200px;
-    margin-bottom: 25px;
+    margin-right: 25px;
+    margin-left: 25px;
+    border-radius: 5px;
 }
 .activityBox {
     cursor: pointer;
