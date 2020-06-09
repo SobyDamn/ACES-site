@@ -27,12 +27,13 @@
     margin-left: 25px;
     border-radius: 5px;
     margin-bottom: 25px;
+    background-color: rgba(60, 10, 153, 0.1);
 }
 #blogBoxAreaTitle {
     font-family: openSans-Bold;
     margin: 25px;
     padding-bottom: 20px;
-    border-bottom: 1px solid #d3cccc;
+    border-bottom: 7px solid #3c0a99;
     color: #726868;
 }
 .blogBox {

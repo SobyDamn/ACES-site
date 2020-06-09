@@ -68,11 +68,11 @@ function registerUser(from) {
 }
 function showError(err,type) {
     if (type=="regError") {
-        document.getElementById("regErrorHolder").style.display="flex";
+        document.getElementById("regErrorHolder").style.display="block";
         document.getElementById("regErrorText").innerText = err;
     }
     else if (type=="loginError") {
-        document.getElementById("loginErrorHolder").style.display="flex";
+        document.getElementById("loginErrorHolder").style.display="block";
         document.getElementById("loginErrorText").innerText = err;
     }
 }

@@ -33,9 +33,8 @@
     /* Modal Content */
     .modal_form .modal-content {
       position: relative;
-      background-color: #dddddd;
-      background-image: linear-gradient(to top right, #4e4376 , #2b5876);
-      color:white;
+      background-color: white;
+      color: rgba(61, 61, 61, 0.836);
       margin: auto;
       padding: 0;
       width: 75%;
@@ -81,19 +80,26 @@
     color: rgba(51, 47, 47, 0.918)
   }
   .modal_form .modal-content .popContent input {
-      background-color: transparent;
-      border: none;
-      border-bottom: 2px solid white;
+      border: 2px rgba(143, 143, 143, 0.6) solid;
+      background-color: rgb(143, 143, 143,0.15);
       min-height: 35px;
       margin-bottom: 15px;
+      border-radius: 5px;
       outline: none;
-      color: azure;
+      color: rgba(61, 61, 61);
       font-size: 15px;
       width: 100%;
+      padding: 5px;
   }
 .formInputHolder {
     width: 100%;
     display: flex;
+}
+.modal-content button i {
+  color: rgba(61, 61, 61, 0.5);
+}
+.formInputHolder i {
+  color: rgba(61, 61, 61, 0.692);
 }
 .popFormBTN {
     text-align: center;
@@ -103,19 +109,27 @@
     margin-top: 30px;
     margin-bottom: 10px;
     min-height: 40px;
-    min-width: 50%;
-    border-radius: 25px;
+    min-width: 100%;
+    border-radius: 5px;
     border: none;
     font-size: 100%;
-    background-color:  #4286f4;
-    /*background-image: linear-gradient(to top right, #265cff , #4286f4);*/
+    background-color:  #215dbee8;
     color: white;
     font-family: openSans-SemiBold;
     outline: none;
 }
+.popContent a {
+  text-decoration: none;
+  font-family: openSans-SemiBold;
+  color: rgba(51, 47, 47, 0.918);
+}
+#registerBTN {
+  min-width: 50%;
+  margin-bottom: 30px;
+}
 #registerFormPOPBTN {
-    color: white;
-    font-family: openSans-SemiBold;
+    color: rgba(61, 61, 61, 0.836);
+    font-family: openSans-Bold;
     margin-bottom: 20px;
     min-height: 20px;
     min-width: 50%;
@@ -125,11 +139,12 @@
 }
 .popFormBTN .popBTN:hover {
   /*background-image: linear-gradient(to bottom right, #265cff , #4286f4);*/
-  background-color:  #1163e7;
+  background-color:  #215dbe;
     
 }
- ::placeholder {
-      color: rgba(255, 255, 255, 0.459);
+.modal_form .modal-content .popContent input::placeholder {
+  color: rgba(61, 61, 61,0.6);
+  font-family: openSans-Bold;
   }
 
 #loginErrorHolder,#regErrorHolder {
@@ -138,7 +153,9 @@
     font-family: openSans;
     position: relative;
     display: none;
-    color: rgb(238, 173, 173);
+    color: rgb(221, 92, 92);
+    text-align: center;
+
 }
 .transparentBTN {
   background: none;

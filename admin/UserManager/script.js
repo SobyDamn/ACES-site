@@ -121,10 +121,10 @@ function filterAdminSearch(){
 
 function verifiyFields(value) {
     var errorElement = document.getElementById("errorInSearchFilter");
-    var currYear = new Date().getFullYear()
+    var currYear = new Date().getFullYear() + 10;
     if (value > currYear) {
         errorElement.style.display = "block";
-        errorElement.innerHTML = "Whoops! Looks like we can't see into the future<br>Please Select valid Batch Value"
+        errorElement.innerHTML = "Please Select valid Batch Value"
         return false;
     }
     else if(value < 1978) {

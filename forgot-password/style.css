@@ -10,6 +10,9 @@
   font-family: openSans-SemiBold;
   src: url(../resource/fonts/opensans_semibold.ttf);
 }
+body {
+    background-color: rgb(187, 187, 187,0.7);
+}
 #forgotPasswordForm {
     font-family: openSans-Bold;
     border-radius: 5px;
@@ -17,55 +20,62 @@
     margin: 25px;
     padding: 25px;
     min-height: 500px;
-    background-image: linear-gradient(to top right, #4e4376 , #2b5876);
-    color: rgba(255, 255, 255, 0.836);
-}
-::placeholder {
-    color: rgba(255, 255, 255, 0.459);
+    background-color: white;
+    color: rgba(61, 61, 61, 0.836);
 }
 #forgotPasswordFormFields {
     margin-top: 40px;
     margin-bottom: 40px;
+}
+#imageHolder i {
+    color: rgba(61, 61, 61, 0.836);
 }
 #forgot_passwordBTN {
     display: inline-block;
     margin-top: 30px;
     margin-bottom: 50px;
     min-height: 40px;
-    min-width: 30%;
-    border-radius: 25px;
+    min-width: 50%;
+    border-radius: 5px;
     border: none;
     font-size: 100%;
-    background-color:  #4286f4;
+    background-color:  #215dbee8;
     color: white;
     font-family: openSans-SemiBold;
     outline: none;
 }
 #forgot_passwordBTN:hover {
-    background-color:  #1163e7;
+    background-color:  #215dbe;
 }
 
 input#reset_email {
-    background-color: transparent;
+    background-color: rgb(143, 143, 143,0.2);
     border: none;
     outline: none;
-    color: azure;
+    color: rgba(61, 61, 61);
+    font-family: openSans-Bold;
     font-size: 15px;
-    border-bottom: 2px white solid;
+    border: 2px rgb(143, 143, 143,0.6) solid;
+    border-radius: 5px;
     width: 50%;
     margin-top: 80px;
+    padding: 8px;
+}
+input#reset_email::placeholder {
+    color: rgba(61, 61, 61,0.6);
+    font-family: openSans-Bold;
 }
 #passResetErrorHolder {
     font-size: 90%;
     font-weight: 900;
     font-family: openSans;
     position: relative;
-    color: rgb(238, 173, 173);
+    color: rgb(221, 92, 92);
     display: none;
 }
 #successReset {
-    font-family: Arial, Helvetica, sans-serif;
-    color: white;
+    font-family: openSans-Bold;
+    color: rgb(69, 155, 20);
     margin-top: 10px;
     display:none;
 }

@@ -52,10 +52,12 @@ function showLoginForm() {
 }
 
 function closeLoginPop() {
+    document.getElementById("loginErrorHolder").style.display="none";
     document.getElementById("loginPOP").style.display = "none";
 }
 function showRegisterForm() {
     closeLoginPop();
+    document.getElementById("regErrorHolder").style.display="none";
     var modal = document.getElementById("registerPOP");
     modal.style.display = "block";
 }

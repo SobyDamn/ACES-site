@@ -99,7 +99,6 @@ function showRequestedProfile(uid) {
     });
 }
 function createProfileContactLinks(type,value,element) {
-    
     if (value != "") {
         if (type == "small") {
             element.innerText = fetchLinkedinUsername(value);
@@ -111,7 +110,12 @@ function createProfileContactLinks(type,value,element) {
         }
     }
     else {
-        element.innerText = "Not Avaialble"
+        if (type == "small") {
+            element.innerText = "----"
+        }
+        else {
+            element.innerText = "Not Avaialble"
+        }
     }
 }
 function checkDataAvailable(data) {
