@@ -69,6 +69,7 @@ function closeRegisterPOP() {
 
 function logout(from){
     document.getElementById("authLoader").style.display = "block";
+    document.getElementById("headerProfileImageHolder").style.display = "none";
     //logout user
     setTimeout(()=>{
         firebase.auth().signOut().then(()=>{
@@ -85,6 +86,7 @@ function logout(from){
             }
         }).catch((err)=>{
             //errr in logging out
+            document.getElementById("headerProfileImageHolder").style.display = "block";
         })
     },500)
 }

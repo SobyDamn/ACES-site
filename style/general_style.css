@@ -15,3 +15,6 @@ input:-webkit-autofill {
 body {
     min-height: 100%;
 }
+body {
+    background-color: rgba(130, 152, 186,0.2);
+}

@@ -21,9 +21,7 @@
 #searchPageArea {
     overflow: hidden;
 }
-body {
-    background-color: rgb(187, 187, 187,0.7);
-}
+
 #searchResultContainer {
     border-radius: 5px;
     display: inline-block;

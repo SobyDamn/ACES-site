@@ -14,6 +14,13 @@
     font-family: Merriweather-regular;
     src: url(../resource/fonts/Merriweather-Regular.ttf);
 }
+#blogs {
+    margin: 20px;
+    margin-top: 20px;
+    background-color: #f9f9f9;
+    border-radius: 4px;
+    padding-bottom: 30px;
+}
 #blogBoxArea {
     margin-bottom: 50px;
     min-height: 200px;
@@ -27,13 +34,12 @@
     margin-left: 25px;
     border-radius: 5px;
     margin-bottom: 25px;
-    background-color: rgba(60, 10, 153, 0.1);
 }
 #blogBoxAreaTitle {
     font-family: openSans-Bold;
     margin: 25px;
     padding-bottom: 20px;
-    border-bottom: 7px solid #3c0a99;
+    border-bottom: 5px solid #3c0a99;
     color: #3c0a99;
 }
 .blogBox {
@@ -103,6 +109,7 @@
     font-size: 17px;
     border-radius: 5px;
     color: rgb(113, 113, 216);
+    background-color: #f9f9f952;
 }
 #blogViewMorePageLink:hover {
     background-color: #e7d5d5;

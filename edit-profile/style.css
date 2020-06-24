@@ -10,9 +10,6 @@
   font-family: openSans-SemiBold;
   src: url(../resource/fonts/opensans_semibold.ttf);
 }
-body {
-    background-color: rgb(187, 187, 187,0.7);
-}
 #profileForm {
     font-family: openSans-Bold;
     border-radius: 5px;

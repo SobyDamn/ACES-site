@@ -23,11 +23,16 @@ body {
     background-color: white;
 }
 #topHeader {
-    display: flex;
+    display: inline-flex;
     justify-content: space-between;
+    min-height: 90px;
 }
 #logoHolder {
-    margin-top: 10px;
+    /*margin-top: 25px;
+    margin-left: 10px;*/
+    margin-left: 10px;
+    margin-top: auto;
+    margin-bottom: auto;
     height: 65px;
     width: 215px;
 }
@@ -36,6 +41,7 @@ body {
     width: 100%;
 }
 #subHeader {
+    background-color: #6886c5;
     display: flex;
     justify-content: space-between;
     box-shadow: 0px 8px 5px -6px rgb(97, 96, 96,0.6);
@@ -57,7 +63,7 @@ body {
     padding-right: 10px;
     padding-bottom: 5px;
     text-decoration: none;
-    color: rgb(92, 92, 92);
+    color: rgb(255, 255, 255);
     transition: border-bottom 0.2s,color 0.2s;
 }
 #headerOptionBox a:hover {
@@ -70,11 +76,11 @@ body {
     padding-top: 5px;
     padding-left: 10px;
     padding-right: 10px;
-    display: flex;
+    display: inline-flex;
     font-family: openSans-Bold;
 }
 #searchBarHolder input {
-    border: 2px solid rgb(180, 180, 180);
+    border: 0px solid rgb(11, 22, 182);
     float: left;
     width: 80%;
     background: #f1f1f1;
@@ -84,6 +90,8 @@ body {
     border-radius: 3px;
     outline: none;
     padding: 5px;
+    border-bottom-right-radius: 0px;
+    border-top-right-radius: 0px;
 }
 #searchBarHolder input::placeholder {
     color: rgb(155, 155, 155);
@@ -92,16 +100,21 @@ body {
     font-family: openSans-Bold;
     margin-bottom: 10px;
     min-height: 30px;
-    border: none;
-    background-color: transparent;
-    color: rgba(63, 63, 63, 0.788);
+    border: 0;
+    border-bottom-left-radius: 0px;
+    border-top-left-radius: 0px;
+    border-radius: 3px;
+    border-left: none;
+    background-color: rgb(83, 89, 179);
+    color: rgb(255, 255, 255);
     cursor: pointer;
 }
 #searchBarHolder button:hover {
-    color: rgb(63, 63, 63);
+    color: rgb(190, 190, 190);
 }
 #authBox {
-    padding-top: 25px;
+    /*padding-top: 25px;
+    margin-right: 20px;*/
     margin-right: 20px;
     display: flex;
     flex-direction: column;
