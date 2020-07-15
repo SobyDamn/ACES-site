@@ -13,15 +13,17 @@
         <script src ="scripts/header-manager.js"></script>
         <script src ="scripts/eventBox.js"></script>
         <script src ="scripts/activityBox.js"></script>
-        <script src ="scripts/blogBox.js"></script>
+        <!--script src ="scripts/blogBox.js"></script-->
         <script src ="scripts/newsletter.js"></script>
         <script src="scripts/smoothScroll.js"></script>
+        <script src="scripts/fetchBlogs.js"></script>
         <!---Stylsheets-->
         <link rel="stylesheet" href="style/popup_form.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="style/activityBox.css">
-        <link rel="stylesheet" href="style/blogBox.css">
+        <!--link rel="stylesheet" href="style/blogBox.css"-->
+        <link rel="stylesheet" href="style/blogsStyleBox.css">
         <link rel="stylesheet" href="style/eventBox.css">
         <link rel="stylesheet" href="style/newsletterStyle.css">
         <link rel="stylesheet" href="style/loader.css">
@@ -30,7 +32,7 @@
         <link rel="stylesheet" href="style/header.css">
         <link rel="stylesheet" href="style/general_style.css">
     </head>
-    <body onload="loadEventBoxes(),loadActivitiesWithSettings(),loadBlogsWithSettings(),loadNewsletterWithSettings()">
+    <body onload="loadEventBoxes(),loadActivitiesWithSettings(),fetchBlogs(),loadNewsletterWithSettings()">
         <div id="header">
             <div id="topHeader">
                 <div id="logoHolder">
@@ -136,12 +138,57 @@
                 </div>
             </div>
         </div>
-        <div id="blogs">
+        <!---div id="blogs">
             <h1 id="blogBoxAreaTitle">BLOGS</h1>
             <div id="blogBoxContainer">
                 <!---Blog Box will appear here-->
-                <div style="text-align: center; width: 2000px;">
+                <!--div style="text-align: center; width: 2000px;">
                     <div class="lds-ellipsis"><div style="background: rgb(94, 117, 223);"></div><div style="background: rgb(94, 117, 223);"></div><div style="background: rgb(94, 117, 223);"></div><div style="background: rgb(94, 117, 223);"></div></div>
+                </div>
+            </div>
+            <a id="blogViewMorePageLink" href="https://medium.com/writeabyte">VIEW MORE</a>
+        </div-->
+        <div id="blogs">
+            <h1 id="blogBoxAreaTitle">BLOGS</h1>
+            <div id="blogBoxContainer">
+                <div id="blogCardLoader" style="text-align: center; width: 2000px;">
+                    <div class="lds-ellipsis"><div style="background: rgb(94, 117, 223);"></div><div style="background: rgb(94, 117, 223);"></div><div style="background: rgb(94, 117, 223);"></div><div style="background: rgb(94, 117, 223);"></div></div>
+                </div>
+                <div id="bigBlogBoxContainer">
+                    <!---div id="bigBlogCard">
+                        <div id="bigBlogCardImageHolder">
+                            <img src="resource/img/pdp.jpg" id="bigBlogCardImage"/>
+                        </div>
+                        <div id="bigBlogCardDetail">
+                            <h3>ACES dshkkssjdfkjadSjh eth...</h3>
+                            <p id="bigBlogCardTextDetails">
+                                Felix Arvid Ulf Kjellberg, better known as PewDiePie, is a Swedish YouTuber, comedian, and philanthropist, known primarily for his Let's Play videos and comedic formatted shows. After registering his eponymous YouTube channel in 2010, Kjellberg primarily posted Let's Play videos of horror and action video games
+                            </p>
+                            <div id="bigBlogCardAuthorDetails">
+                                By SobyDamn<br>
+                                26 July,2020
+                            </div>
+                            <a id="bigBlogLink">Read More</a>
+                        </div>
+                    </div--->
+                </div>
+                <div id="smallBlogBoxCOntainer">
+                    <div id="smallBlogBoxHolder">
+                        <!---div class="blogBox">
+                            <div class="blogBoxImgContainer">
+                                <img class="blogBoxImg" src="resource/img/StephenHawking.jpg"/>
+                            </div>
+                            <div  class="blogBoxDetails">
+                                <h3 class="blogBoxTitle">
+                                    ACES dshkkssjdfkjadSjh ethebohe
+                                </h3>
+                                <span class="blogBoxAbout">
+                                    ACES refers to the Association of Computer Engineering Students from the prestigious School of Engineering, Cochin University of Science and technology...
+                                </span>
+                            </div>
+                            <a class="blogBoxVisitLink">Read More</a>
+                        </div--->
+                    </div>
                 </div>
             </div>
             <a id="blogViewMorePageLink" href="https://medium.com/writeabyte">VIEW MORE</a>
