@@ -1,6 +1,7 @@
 /*contains display and handler for header including auth options in footer*/
 var stickyHeaderEnabled = false;
-
+var navMenuVisible = false;
+var navArrowRotdeg = 180;
 //check user authentication and display status
 firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
@@ -32,7 +33,7 @@ function fetchImage(fileName,uid) {
         var storageRef = firebase.storage().ref();
         var currentProfileImage = document.getElementById("showImageInHeader")
         storageRef.child("users/"+uid+"/"+fileName).getDownloadURL().then((url)=> {
-            currentProfileImage.style.display = "block";
+            currentProfileImage.style.display = "flex";
             currentProfileImage.src = url;
             document.getElementById("headerProfileImageHolder").style.display = "block";
         }).catch((err)=> {
@@ -133,4 +134,28 @@ function viewProfilePage(from) {
     else {
         window.location = "../../profile"
     }
+}
+
+function showMoreNavOptions(btn) {
+    btn.style.transform = `rotate(${navArrowRotdeg}deg)`;
+    navArrowRotdeg += 180;
+    let navOptions = document.getElementById("nav-options");
+    if (!navMenuVisible) {
+        navOptions.style.display = "flex";
+        navMenuVisible = true;
+    }
+    else {
+        navOptions.style.display = "none";
+        navMenuVisible = false;
+    }
+    window.onclick = function(event) {
+        if (!event.path[1].matches('#headerOptionDropdownBTN')) {
+          if (navMenuVisible) {
+            navOptions.style.display = "none";
+            btn.style.transform = `rotate(${navArrowRotdeg}deg)`;
+            navArrowRotdeg += 180;
+            navMenuVisible = false;
+          }
+        }
+      }
 }
