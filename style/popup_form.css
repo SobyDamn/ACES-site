@@ -162,3 +162,9 @@
   border: none;
   outline: none;
 }
+@media only screen and (max-width:950px) {
+  .modal_form .modal-content {
+    width: 500px;
+    width: 90%;
+  }
+}
