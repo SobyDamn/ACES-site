@@ -39,7 +39,6 @@
     font-family: openSans-SemiBold;
     color: rgb(99, 87, 87);
     font-size: 18px;
-    max-height: 300px;
 }
 #contact h1 {
     text-align: left;
@@ -67,4 +66,7 @@
 }
 #socialLinkContainer {
     min-height: 100px;
+}
+@media only screen and (max-width:950px) {
+
 }
