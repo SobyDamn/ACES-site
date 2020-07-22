@@ -178,3 +178,62 @@
     text-align: center;
     vertical-align: middle;
 }
+@media only screen and (max-width:1300px) {
+    /*
+    PC view
+    */
+}
+@media only screen and (max-width:950px) {
+    /*
+    Mobile view
+    */
+    #newsletterContainer {
+        flex-wrap: wrap;
+        max-height: 100%;
+        margin: 5px;
+    }
+    #newsBoxContainer {
+        border: none;
+        width: 100%;
+        margin: 0;
+    }
+    #newsletterTitle {
+        margin:10px;
+        font-size: 28px;
+        border-bottom: 5px solid;
+        padding-bottom: 20px;
+        margin-top: 20px;
+    }
+    #newsStripsContainer {
+        max-height: 650px;
+    }
+    #opportunityBoxContainerArea {
+        width: 100%;
+    }
+    #opportunityBoxContainer {
+        min-height: 50px;
+        max-height: 650px;
+    }
+    .newsBox {
+        font-size: 90%;
+    }
+    .newsPostDate {
+        margin-bottom: 4px;
+    }
+    .opportunityBox {
+        font-size: 90%;
+    }
+    .opportunityLastDateDay {
+        font-size: 25px;
+        margin-top: -7px;
+    }
+    .opportunityLastDateMonth {
+        font-family: openSans-SemiBold;
+        margin-top: -10px;
+        font-size: 15px;
+    }
+    .opportunityLastDateYear {
+        font-family: openSans;
+        font-size: 12px;
+    }
+}
