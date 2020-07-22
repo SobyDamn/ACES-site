@@ -204,9 +204,6 @@ button {
         height: 65px;
         width: 215px;
     }
-    #headerOptionDropdownBTN {
-        display: none;
-    }
 }
 
 @media only screen and (max-width:950px) {
