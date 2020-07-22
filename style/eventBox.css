@@ -126,3 +126,72 @@ div.eventBox {
         opacity:0.2;
     }
 }
+@media only screen and (max-width:950px) {
+    #eventBoxContainer {
+        width: 100%;
+        height: 450px;
+        opacity: 1;
+    }
+    div.eventBox {
+        display: none;
+        flex-wrap: wrap;
+        justify-content: center;
+        width: 100%;
+        height: 450px;
+        box-shadow: 1px 1px 5px 2px rgb(141, 133, 133);
+    }
+    .eventBox div.eventImageBox {
+        width: 100%;
+        height: 100%;
+    }
+    .eventImageBox {
+        height: 100%;
+        background-color: rgb(172, 214, 221);
+    }
+    .aboutEventBox {
+        height: 30%;
+        width: 95%;
+        text-align: center;
+        padding: 10px;
+        background-color: rgba(0, 0, 0, 0.25) !important;
+        opacity: 1;
+        align-self: flex-end;
+        z-index: 1;
+        position: absolute;
+        align-items: baseline;
+        margin-bottom: 0px;
+        box-shadow: 0px 0px 10px 0px rgb(0,0,0,0.25);
+    }
+    .eventTitle {
+        font-size: 25px;
+        margin-top: -2px;
+        font-family: openSans-Bold;
+        color: rgb(255, 255, 255);
+        margin: 0;
+    }
+    .eventDetails {
+        font-size: 15px;
+        font-family: openSans;
+        color: rgb(255, 254, 254);
+        word-wrap: break-word;
+        overflow: auto;
+        height: 80%;
+        padding-bottom: 5px;
+        margin-top: 0;
+    }
+    .eventNavBTN {
+        border: none;
+        height: 35px;
+        width:35px;
+        background-color: rgb(119, 119, 252);
+        border-radius: 50%;
+        font-family: openSans-Bold;
+        color: rgb(238, 234, 234);
+        vertical-align: bottom;
+        outline: none;
+        margin-left: 10px;
+        margin-right: 10px;
+        margin-top: 20px;
+        box-shadow: 1px 1px 5px 1px rgb(141, 133, 133,0.5);
+    }
+}
