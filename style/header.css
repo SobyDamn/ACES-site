@@ -170,7 +170,7 @@ button {
     position: fixed;
     top: 0;
     width: 100%;
-    z-index: 2;
+    z-index: 5;
   }
 #headerOptionDropdownBTN {
     background: transparent;
@@ -218,7 +218,7 @@ button {
         padding: 10px 16px;
         margin-top: 35px;
         position: absolute;
-        z-index: 5;
+        z-index: 7;
         background-color: #6886c5;
     }
     #headerOptionDropdownBTN {
