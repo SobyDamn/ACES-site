@@ -15,6 +15,7 @@
     text-align: center;
     background-color: rgba(219, 219, 219, 0);
     padding: 0px;
+    position: relative;
 }
 #eventBoxContainer {
     width: 100%;
@@ -77,12 +78,19 @@ div.eventBox {
   }
 .eventNavBTNContainer {
     padding-top: 10px;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    align-self: center;
+    z-index: 2;
+    margin-bottom: 10px;
 }
 .eventNavBTN {
     border: none;
     height: 35px;
     width:35px;
-    background-color: rgb(119, 119, 252);
+    background-color: rgb(119, 119, 252,0);
     border-radius: 50%;
     font-family: openSans-Bold;
     color: rgb(238, 234, 234);
@@ -90,11 +98,12 @@ div.eventBox {
     outline: none;
     margin-left: 10px;
     margin-right: 10px;
-    box-shadow: 1px 1px 5px 1px rgb(141, 133, 133,0.5);
+    opacity: 0.4;
 }
 .eventNavBTN:hover {
-    background-color: rgb(48, 48, 201);
-    box-shadow: 1px 1px 5px 1px rgb(141, 133, 133);
+    background-color: rgba(255, 255, 255, 0.116);
+    opacity: 1;
+    box-shadow: 1px 1px 5px 1px rgb(141, 133, 133,0.5);
 }
 .eventCountDetail {
     vertical-align: middle;
@@ -149,18 +158,18 @@ div.eventBox {
         background-color: rgb(172, 214, 221);
     }
     .aboutEventBox {
-        height: 30%;
+        height: 40%;
         width: 95%;
         text-align: center;
         padding: 10px;
-        background-color: rgba(0, 0, 0, 0.25) !important;
+        background-color: rgba(0, 0, 0, 0.28) !important;
         opacity: 1;
         align-self: flex-end;
-        z-index: 1;
+        z-index: 3;
         position: absolute;
         align-items: baseline;
         margin-bottom: 0px;
-        box-shadow: 0px 0px 10px 0px rgb(0,0,0,0.25);
+        box-shadow: 0px 0px 10px 0px rgb(0,0,0,0.28);
     }
     .eventTitle {
         font-size: 25px;
@@ -179,19 +188,28 @@ div.eventBox {
         padding-bottom: 5px;
         margin-top: 0;
     }
+    .eventNavBTNContainer {
+        padding-top: 10px;
+        position: absolute;
+        display: flex;
+        justify-content: space-between;
+        bottom: 0;
+        top: 0;
+        align-self: center;
+        z-index: 2;
+        margin-bottom: 10px;
+    }
     .eventNavBTN {
-        border: none;
-        height: 35px;
-        width:35px;
-        background-color: rgb(119, 119, 252);
-        border-radius: 50%;
-        font-family: openSans-Bold;
-        color: rgb(238, 234, 234);
-        vertical-align: bottom;
-        outline: none;
-        margin-left: 10px;
-        margin-right: 10px;
-        margin-top: 20px;
-        box-shadow: 1px 1px 5px 1px rgb(141, 133, 133,0.5);
+        opacity: 0.6;
+    }
+    .eventNavBTN:hover {
+        background-color: rgb(255, 255, 255,0);
+        box-shadow: none;
+        opacity: 0.6;
+    }
+    .eventNavBTN:active {
+        background-color: rgb(255, 255, 255,0);
+        box-shadow: none;
+        opacity: 1;
     }
 }

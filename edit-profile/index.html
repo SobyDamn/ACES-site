@@ -1,6 +1,9 @@
 <html>
     <title>Edit Profile</title>
     <head>
+        <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="HandheldFriendly" content="true">
         <!--Scripts-->
         <script src="https://www.gstatic.com/firebasejs/7.14.3/firebase-app.js"></script>
         <script src="https://www.gstatic.com/firebasejs/7.14.3/firebase-analytics.js"></script>
@@ -45,10 +48,13 @@
                     <div id="headerOptionBoxContainer">
                         <div id="headerOptionBox">
                             <a href="../index.html">HOME</a>
-                            <a href="../index.html#activity">ACTIVITY</a>
-                            <a href="../index.html#blogs">BLOGS</a>
-                            <a href="../index.html#newsletter">NEWSLETTER</a>
-                            <a href="../index.html#contact">CONTACT</a>
+                            <button id="headerOptionDropdownBTN" onclick="showMoreNavOptions(this)"><i class="material-icons">arrow_drop_down</i></button>
+                            <span id="nav-options">
+                                <a href="../index.html#activity">ACTIVITY</a>
+                                <a href="../index.html#blogs">BLOGS</a>
+                                <a href="../index.html#newsletter">NEWSLETTER</a>
+                                <a href="../index.html#contact">CONTACT</a>
+                            </span>
                         </div>
                     </div>
                     <div id="searchBarHolder">

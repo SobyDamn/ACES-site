@@ -38,6 +38,7 @@
 #filterItemContainer {
     text-align: center;
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
 }
 .filterItemHolder {
@@ -80,7 +81,6 @@
     height: 90px;
     display: flex;
     justify-content: center;
-    
     width: 450px;
     padding-top: 10px;
     background-color: white;
@@ -149,4 +149,62 @@
 }
 button {
     outline: none;
+}
+@media only screen and (max-width:950px) {
+    #filterItemContainer {
+        text-align: center;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    #searchResultContainer {
+        border-radius: 5px;
+        display: inline-block;
+        background-color: white;
+        padding-top: 25px;
+        padding-bottom: 50px;
+        width: 90%;
+        margin: 0;
+        margin-right: 10px;
+        margin-left: 10px;
+        max-width: 500px;
+    }
+    .searchResultBox {
+        min-height: 70px;
+        max-height: 120px;
+        display: flex;
+        justify-content: center;
+        width: 80%;
+        padding-top: 10px;
+        background-color: white;
+        margin-right: 10%;
+        margin-left: 10%;
+        max-width: 400px;
+        border-bottom: 1px solid #ddd;
+    }
+    .searchResultImage {
+        height: 75px;
+        width: 75px;
+        object-fit: cover;
+        border-radius: 50%;
+    }
+    .searchResultName {
+        text-decoration: none;
+        margin-top: 4px;
+        margin-bottom: 4px;
+        font-family: openSans-Bold;
+        font-size: 17px;
+        color: rgb(13, 13, 185);
+    }
+    .searchResultBranch {
+        margin-top: 1px;
+        font-family: openSans-SemiBold;
+        font-size: 14px;
+        color: rgb(77, 72, 72);
+    }
+    .searchResultBatch {
+        font-family: openSans-SemiBold;
+        font-size: 14px;
+        color: rgb(77, 72, 72);
+    }
 }

@@ -16,7 +16,7 @@ function fetchBlogs() {
             }
             else if(i <=maximumCards) {
                 //generate small cards
-                generateSmallBlogCard(post.url,shortenTitle(post.title),post.thumbnail,shortenText(post.description,220))
+                generateSmallBlogCard(post.link,shortenTitle(post.title),post.thumbnail,shortenText(post.description,220))
             }
         }
         })

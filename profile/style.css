@@ -97,7 +97,7 @@ div.profileDetailsContacts {
 /*Main Profile*/
 #profileName {
     padding-left: 20px;
-    font-size: 115%;
+    font-size: 100%;
     font-family: openSans-Bold;
     color: rgb(32, 32, 32);
 }
@@ -126,7 +126,6 @@ h1.mainProfileInfoBoxHeading {
 }
 .profileUserDetailContaner:hover {
     color: rgb(22, 22, 22);
-    box-shadow: 1px 1px 10px 2px rgb(196, 196, 196);
     font-size: 105%;
 }
 /*edit profile button*/
@@ -159,4 +158,60 @@ h1.mainProfileInfoBoxHeading {
 #mainProfileUserLinkedIn:hover,#mainProfileUserWebsite:hover {
     color:rgb(19, 18, 18);
     text-decoration: underline;
+}
+@media only screen and (max-width:800px) {
+    #profileBox {
+        min-height: 500px;
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .profileBoxDiv {
+        display: inline-block;
+    }
+    #smallProfileCardHolder {
+        width: 100%;
+    }
+    #mainProfileHolder {
+        width: 100%;
+        padding-left: 5px;
+    }
+    #profileName {
+        font-size: 25px;
+        text-align: center;
+        display: none;
+    }
+    h1.mainProfileInfoBoxHeading {
+        padding-top: 20px;
+        font-family: Bitter-Bold;
+        font-size: 100%;
+        background-color: rgb(223, 219, 219);
+        margin-top: auto;
+        margin-bottom: auto;
+        padding: 10px;
+        padding-left: 20px;
+        color: rgb(95, 92, 92);
+        margin-top: 3px;
+        margin-bottom: 3px;
+    }
+    .profileUserDetailContaner {
+        font-family: openSans-SemiBold;
+        font-size: 90%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 25px;
+        border-bottom: 0.5px solid #d1c7c7;
+        color: rgb(63, 57, 57);
+        transition: color 0.2s,box-shadow 0.2s,font-size 0.2s;
+    }
+    .profileUserDetailFor {
+        /*display: none;*/
+        font-size: large;
+        color: black;
+    }
+    .profileUserDetailContaner:hover {
+        color: rgb(0, 0, 0);
+        box-shadow: none;
+        font-size: 100%;
+    }
 }

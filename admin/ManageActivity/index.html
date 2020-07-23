@@ -46,10 +46,13 @@
                 <div id="headerOptionBoxContainer">
                     <div id="headerOptionBox">
                         <a href="../../index.html">HOME</a>
-                        <a href="../../index.html#activity">ACTIVITY</a>
-                        <a href="../../index.html#blogs">BLOGS</a>
-                        <a href="../../index.html#newsletter">NEWSLETTER</a>
-                        <a href="../../index.html#contact">CONTACT</a>
+                        <button id="headerOptionDropdownBTN" onclick="showMoreNavOptions(this)"><i class="material-icons">arrow_drop_down</i></button>
+                        <span id="nav-options">
+                            <a href="../../index.html#activity">ACTIVITY</a>
+                            <a href="../../index.html#blogs">BLOGS</a>
+                            <a href="../../index.html#newsletter">NEWSLETTER</a>
+                            <a href="../../index.html#contact">CONTACT</a>
+                        </span>
                     </div>
                 </div>
                 <div id="searchBarHolder">
@@ -62,7 +65,6 @@
                 <h2 class="adminManagerTite">Manage</h2>
                 <div class="adminContentOptionLinkContainer">
                     <a href="../ManageActivity/" id="adminInteractedLinkOn" class="adminContentOptionLink">Activity Card</a>
-                    <a href="../ManageBlogs/" class="adminContentOptionLink">Blog Card</a>
                     <a href="../NewsManager/" class="adminContentOptionLink">NEWS</a>
                     <a href="../OpportunityManager/" class="adminContentOptionLink">Opportunity</a>
                     <a href="../UserManager" class="adminContentOptionLink">Users</a>

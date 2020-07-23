@@ -82,3 +82,48 @@ input#reset_email::placeholder {
 button {
     cursor: pointer;
 }
+@media only screen and (max-width:850px) {
+    input#reset_email {
+        width: 70%;
+    }
+}
+@media only screen and (max-width:450px) {
+    #forgotPasswordForm {
+        font-family: openSans-Bold;
+        border-radius: 5px;
+        width: 100%;
+        margin: 15px;
+        padding: 25px;
+        min-height: 500px;
+        background-color: white;
+        color: rgba(61, 61, 61, 0.836);
+    }
+    input#reset_email {
+        background-color: rgb(143, 143, 143,0.2);
+        border: none;
+        outline: none;
+        color: rgba(61, 61, 61);
+        font-family: openSans-Bold;
+        font-size: 15px;
+        border: 2px rgb(143, 143, 143,0.6) solid;
+        border-radius: 5px;
+        width: 90%;
+        margin-top: 80px;
+        padding: 8px;
+    }
+    #forgot_passwordBTN {
+        display: inline-block;
+        margin-top: 30px;
+        margin-bottom: 50px;
+        min-height: 40px;
+        width: 30%;
+        border-radius: 5px;
+        border: none;
+        font-size: 14px;
+        background-color:  #215dbee8;
+        color: white;
+        font-family: openSans-SemiBold;
+        outline: none;
+        word-wrap: none;
+    }
+}

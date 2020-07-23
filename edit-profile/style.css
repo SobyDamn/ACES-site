@@ -133,3 +133,45 @@ span button {
     margin-right: auto;
     margin-left: auto;
 }
+@media only screen and (max-width:650px) {
+    #profileFormBox div p {
+        text-align: center;
+        margin-right: auto;
+        margin-left: auto;
+    }
+    #profileForm {
+        width: 100%;
+        margin: 15px;
+    }
+    #profileForm p {
+        flex-wrap: wrap;
+    }
+    #profileForm p {
+        font-family: openSans;
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        color: rgba(61, 61, 61, 0.836);
+        margin:15px;
+    }
+    #profileForm p span {
+        display: inline-block;
+        padding: 20px;
+        font-size: 100%;
+    }
+    #profileForm p span.label {
+        min-width:20%;
+        font-family: openSans-Bold;
+    }
+    #profileForm p span.label {
+        min-width:20%;
+        margin-top: auto;
+        margin-bottom: auto;
+        padding-top: 0px;
+        padding-bottom: 0px;
+        text-align: left;
+    }
+    #profileForm h1 {
+        font-size: 20px;
+    }
+}
