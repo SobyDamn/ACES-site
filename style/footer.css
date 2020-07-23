@@ -48,3 +48,28 @@ body {
 #footer h3 a:hover {
     text-decoration: underline;
 }
+@media only screen and (max-width:750px) {
+    #footer h3{
+        padding: 0px;
+        color: #dddddd;
+        font-family: openSans-SemiBold;
+        font-size: 15px;
+        margin: 0;
+    }
+    #footer span {
+        font-family: openSans-SemiBold;
+        color:white;
+        display: block;
+        padding: 5px;
+        font-size: 10px;
+    }
+    #footer h3 a {
+        text-decoration: none;
+        color: #dddddd;
+        cursor: pointer;
+    }
+    #footer h3 span {
+        margin: 0;
+        padding: 0;
+    }
+}
