@@ -43,14 +43,14 @@
 }
 .activityBox {
     cursor: pointer;
-    width: 365px;
-    height: 240px;
+    width: 255px;
+    height: 340px;
     margin: 25px;
     border-radius: 2px;
-    overflow: hidden;
     display: flex;
     transition: width 0.5s,height 0.5s,box-shadow 0.2s;
     box-shadow: 2px 2px 5px 2px rgb(73, 73, 73,0.2);
+    overflow: hidden;
 }
 .activityBox:hover {
     box-shadow: 2px 2px 10px 2px rgb(73, 73, 73,0.5);
@@ -69,25 +69,41 @@
     padding: 5px;
     background-color: rgb(72, 74, 78);
     width: 55%;
-    color: #f3f0f0;
+    color: #000000;
     word-wrap: break-word;
-    display: inline-block;
+    display: flex;
+    flex-direction: column;
 }
 .activityBoxTitle {
-    font-family: openSans-Bold;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     margin-top: 0px;
     margin-bottom: 5px;
     font-size: 20px;
-    padding-bottom: 2px;
-    padding-top: 2px;
+    padding: 5px;
+    text-align: center;
 }
 .activityBoxAbout {
-    font-family: openSans;
-    font-size: 14px;
-    padding-bottom: 20px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 16px;
+    margin: 10px;
+    margin-top: 0;
     font-weight: 500;
     text-align: left;
+    display: block;
+    overflow: auto;
+    height: 100%;
 }
+.activityBoxAbout::-webkit-scrollbar {
+    width: 2px;
+  }
+  
+  /* Track */
+.activityBoxAbout::-webkit-scrollbar-track {
+    background: transparent; 
+  }
+.activityBoxAbout::-webkit-scrollbar-thumb {
+    background: rgb(116, 116, 116); 
+  }
 #activityBoxType2 {
     flex-direction: column;
 }
@@ -98,14 +114,14 @@
  #activityBoxType2 .activityBoxDetails {
     height: 55%;
     width: 100%;
-    background-color: rgb(21, 110, 43);
+    background-color: rgb(255, 255, 255);
  }
  @media only screen and (max-width:1300px) {
      /*
      PC view
      */
  }
- @media only screen and (max-width:950px) {
+ @media only screen and (max-width:660px) {
      /*
      Mobile view
      */
@@ -115,9 +131,9 @@
      }
      #activityBoxAreaTitle {
          margin:10px;
-         font-size: 28px;
-         border-bottom: 5px solid;
-         padding-bottom: 20px;
+         font-size: 25px;
+         border-bottom: 3px solid;
+         padding-bottom: 17px;
      }
      #activityBoxContainer {
          margin-left: 5px;
@@ -125,7 +141,8 @@
          justify-content: center;
      }
      .activityBox {
-        margin-left: 5px;
-        margin-right: 5px;
+        margin-left: 10px;
+        margin-right: 10px;
+        width: 300px;
      }
  }

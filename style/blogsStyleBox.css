@@ -70,6 +70,8 @@
 #bigBlogCardDetail {
     height: 55%;
     position: relative;
+    display: flex;
+    flex-direction: column;
 }
 #bigBlogCardDetail h3 {
     text-align: center;
@@ -82,6 +84,8 @@
 }
 #bigBlogCardTextDetails {
     word-wrap: break-word;
+    overflow: auto;
+    height: 70%;
     margin: 0px;
     padding: 10px;
     color: rgb(88, 84, 84);
@@ -197,9 +201,9 @@
     }
     #blogBoxAreaTitle {
         margin:10px;
-        font-size: 28px;
-        border-bottom: 5px solid;
-        padding-bottom: 20px;
+         font-size: 25px;
+         border-bottom: 3px solid;
+         padding-bottom: 17px;
     }
     #bigBlogBoxContainer {
         height: 620px;

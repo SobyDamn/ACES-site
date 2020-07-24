@@ -1,6 +1,6 @@
 var userViewedEventBox = false //In case user interacted with box make a pause allow him to read through for a while
 var eventBoxIdNum = 0;
-var eventBoxTimeOnScreen = 6000;
+var eventBoxTimeOnScreen = 9000;
 var userInterruptEventBox = false; //user viewing event by navigation buttons
 var eventBoxInterruptionTime = 3000; //extra time when interrupted before continuing to next box
 var resumeEventBoxCycle;

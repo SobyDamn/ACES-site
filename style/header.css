@@ -19,7 +19,7 @@ body {
     min-height: 20px;
     display: flex;
     flex-direction: column;
-    z-index: 2;
+    z-index: 6;
     background-color: white;
 }
 #topHeader {
@@ -69,8 +69,8 @@ body {
     position: relative;
 }
 #headerOptionBox a:hover {
-    border-bottom: 2px solid rgb(22, 22, 22);
-    color: rgb(22, 22, 22);
+    border-bottom: 2px solid rgb(206, 206, 206);
+    color: rgb(206, 206, 206);
 }
 #searchBarHolder {
     min-height: 20px;
@@ -170,7 +170,7 @@ button {
     position: fixed;
     top: 0;
     width: 100%;
-    z-index: 5;
+    z-index: 6;
   }
 #headerOptionDropdownBTN {
     background: transparent;
@@ -249,5 +249,13 @@ button {
         padding-left: 8px;
         border-radius: 10px;
         display: none;
+    }
+    #headerOptionBox a:hover {
+        border-bottom: none;
+        color: white;
+    }
+    #headerOptionBox a:active {
+        border-bottom: 2px solid rgb(206, 206, 206);
+        color: rgb(206, 206, 206);
     }
 }

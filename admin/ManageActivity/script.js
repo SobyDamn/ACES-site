@@ -372,22 +372,22 @@ function resetContentForm() {
     document.getElementById("submitContentBTN").style.display = "inline";
     var defaultDesc = `ACES refers to the Association of Computer Engineering Students from the prestigious School of Engineering, Cochin University of Science and technology (CUSAT).`
     var defaultTitle = `ACES`;
-    var defaultBoxType = `activityBoxType1`;
-    var defaultBGColor = `#066e5d`;
-    var defaultTextColor = "#f3f0f0";
-    var defaultTitleColor = "#f3f0f0";
+    var defaultBoxType = `activityBoxType2`;
+    var defaultBGColor = `#ffffff`;
+    var defaultTextColor = "#000000";
+    var defaultTitleColor = "#000000";
     changeContentDescription(defaultDesc);
     changeActivityBoxType(defaultBoxType);
     changeContentTitle(defaultTitle);
     colorPickerContentChange(defaultBGColor);
     titleTextColorPickerChange(defaultTitleColor);
     descriptionTextColorPickerChange(defaultTextColor);
-    changeActivityBoxType("activityBoxType1");
+    changeActivityBoxType("activityBoxType2");
     document.getElementById("contentTitle").value = defaultTitle;
     document.getElementById("contentDescription").value = defaultDesc;
     document.getElementById("contentBackgroundColorPicker").value = defaultBGColor;
     document.getElementById("contentLink").value = "#";
-    document.getElementById("contentBoxType").value = "activityBoxType1";
+    document.getElementById("contentBoxType").value = "activityBoxType2";
     document.getElementById("contentTitleColor").value = defaultTitleColor;
     document.getElementById("contentTextColor").value = defaultTextColor;
     var activityBoxImageElement = document.getElementsByClassName("activityBoxImage");

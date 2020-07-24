@@ -101,11 +101,11 @@
                     <button id="addNewActivityBTN" style="display: none;" onclick="resetContentForm()" class="addNewContentBTN">+ ADD NEW</button>
                     <div class="adminManageContentPreviewBox">
                         <h3 class='previewBoxTitle'>Preview</h3>
-                        <div id="activityBoxType1" onclick="openActivity('#openActivity')" class="activityBox">
+                        <div id="activityBoxType1" style="display: none;" onclick="openActivity('#openActivity')" class="activityBox">
                             <div class="activityBoxImageContainer">
                                 <img class="activityBoxImage" src="../../resource/img/aces-blue-bg-portrait.jpg"/>
                             </div>
-                            <div style="background: rgb(6, 110, 93);" class="activityBoxDetails">
+                            <div style="background: rgb(255,255,255);" class="activityBoxDetails">
                                 <h3 class="activityBoxTitle">
                                     ACES
                                 </h3>
@@ -114,11 +114,11 @@
                                 </span>
                             </div>
                         </div>
-                        <div id="activityBoxType2" style="display: none;" onclick="openActivity('#openActivity')" class="activityBox">
+                        <div id="activityBoxType2" onclick="openActivity('#openActivity')" class="activityBox">
                             <div class="activityBoxImageContainer">
                                 <img class="activityBoxImage" src="../../resource/img/aces-blue-bg-landscape.jpg"/>
                             </div>
-                            <div style="background: rgb(6, 110, 93);" class="activityBoxDetails">
+                            <div style="background: rgb(255, 255, 255);" class="activityBoxDetails">
                                 <h3 class="activityBoxTitle">
                                     ACES
                                 </h3>
@@ -141,24 +141,24 @@
                         </p>
                         <label class="adminManageContentField">Type : </label><br>
                         <select id="contentBoxType" onchange="changeActivityBoxType(this.value)" class="adminManageContentInputField" name="activityCardTyoe">
-                            <option value="activityBoxType1" selected>Type 1</option>
-                            <option value="activityBoxType2">Type 2</option>
+                            <option value="activityBoxType1">Type 1</option>
+                            <option value="activityBoxType2" selected>Type 2</option>
                             <option value="activityBoxType3">Image</option>
                           </select>
                         <br>
                         <label class="adminManageContentField">Title : </label><br>
                         <input id="contentTitle" onchange="changeContentTitle(this.value)" class="adminManageContentInputField" value="ACES" placeholder="Activity Title"/>
                         <span id="nonImageContentData">
-                            <sub><input style="width: 35px;height: 35px;" id="contentTitleColor" onchange="titleTextColorPickerChange(this.value)" value="#f3f0f0" type="color"/></sub>
+                            <sub><input style="width: 35px;height: 35px;" id="contentTitleColor" onchange="titleTextColorPickerChange(this.value)" value="#000000" type="color"/></sub>
                             <br>
                             <label class="adminManageContentField">Description : </label>
-                            <sub><input style="width: 35px;height: 35px;" id="contentTextColor" onchange="descriptionTextColorPickerChange(this.value)" value="#f3f0f0" type="color"/></sub>
+                            <sub><input style="width: 35px;height: 35px;" id="contentTextColor" onchange="descriptionTextColorPickerChange(this.value)" value="#000000" type="color"/></sub>
                             <br>
                             <textarea id="contentDescription" onchange="changeContentDescription(this.value)" class="adminManageContentInputField"rows="4" cols="30">ACES refers to the Association of Computer Engineering Students from the prestigious School of Engineering, Cochin University of Science and technology (CUSAT).</textarea>
                             <br>
                             <label class="adminManageContentField">Background : </label><br>
-                            <input id="contentBGColor" onchange="changeContentColor(this.value)" class="adminManageContentInputField" placeholder="color in rgb/hex/gradient" value="rgb(6, 110, 93)"/>
-                            <sub><input style="width: 35px;height: 35px;" id="contentBackgroundColorPicker" onchange="colorPickerContentChange(this.value)" value="#066E5D" type="color"/></sub>
+                            <input id="contentBGColor" onchange="changeContentColor(this.value)" class="adminManageContentInputField" placeholder="color in rgb/hex/gradient" value="rgb(255,255,255)"/>
+                            <sub><input style="width: 35px;height: 35px;" id="contentBackgroundColorPicker" onchange="colorPickerContentChange(this.value)" value="#ffffff" type="color"/></sub>
                             <br>
                         </span>
                         <br>
