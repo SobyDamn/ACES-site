@@ -21,6 +21,9 @@
 #displayProfileDetail,#profileLoader,#profileNotAvailable,#authUnavailableStatus {
     min-height: 90%;
 }
+body {
+    min-height: 100%;
+}
 #profileBox {
     min-height: 500px;
     display: flex;
@@ -183,7 +186,7 @@ h1.mainProfileInfoBoxHeading {
     h1.mainProfileInfoBoxHeading {
         padding-top: 20px;
         font-family: Bitter-Bold;
-        font-size: 100%;
+        font-size: 85%;
         background-color: rgb(223, 219, 219);
         margin-top: auto;
         margin-bottom: auto;
@@ -195,7 +198,7 @@ h1.mainProfileInfoBoxHeading {
     }
     .profileUserDetailContaner {
         font-family: openSans-SemiBold;
-        font-size: 90%;
+        font-size: 80%;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
@@ -206,12 +209,16 @@ h1.mainProfileInfoBoxHeading {
     }
     .profileUserDetailFor {
         /*display: none;*/
-        font-size: large;
+        font-size: 15px;
         color: black;
     }
     .profileUserDetailContaner:hover {
         color: rgb(0, 0, 0);
         box-shadow: none;
         font-size: 100%;
+    }
+    #smallProfileCard {
+        width: 100%;
+        margin: 0;
     }
 }
