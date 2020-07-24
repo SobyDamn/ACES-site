@@ -11,9 +11,13 @@
   src: url(../resource/fonts/opensans_semibold.ttf);
 }
 @font-face {
-    font-family: Merriweather-regular;
-    src: url(../resource/fonts/Merriweather-Regular.ttf);
-}
+    font-family: Gill Sans;
+    src: url(../resource/fonts/Gill\ Sans\ MT\ Book.ttf);
+  }
+  @font-face {
+    font-family: Gill Sans-Bold;
+    src: url(../resource/fonts/Gill\ Sans\ MT\ Bold.ttf);
+  }  
 #activity {
     margin: 20px;
     margin-top: 20px;
@@ -75,7 +79,7 @@
     flex-direction: column;
 }
 .activityBoxTitle {
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-family: Gill Sans-Bold;
     margin-top: 0px;
     margin-bottom: 5px;
     font-size: 20px;
@@ -83,7 +87,7 @@
     text-align: center;
 }
 .activityBoxAbout {
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-family: Gill Sans;
     font-size: 16px;
     margin: 10px;
     margin-top: 0;
@@ -143,6 +147,11 @@
      .activityBox {
         margin-left: 10px;
         margin-right: 10px;
-        width: 300px;
      }
+     .activityBox:active {
+         box-shadow: 2px 2px 10px 2px rgb(73, 73, 73,0.5);
+     }
+     .activityBox:hover {
+        box-shadow: 2px 2px 5px 2px rgb(73, 73, 73,0.2);
+    }
  }
