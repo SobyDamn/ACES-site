@@ -103,5 +103,7 @@ function nerdDate(x) {
 }
 
 function openNewsletter(url) {
-    window.open(url);
+    if (url != "#" && url != "") {
+        window.open(url);
+    }
 }

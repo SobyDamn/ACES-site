@@ -24,7 +24,9 @@ function loadActivities(maxLimit) {
     });
 }
 function openActivity(url) {
-    window.open(url);
+    if (url != "#" && url != "") {
+        window.open(url);
+    }
 }
 
 function activityBoxGenerator(id,elementId,type,title,description,link,background,imageURL,textColor,titleColor) {
