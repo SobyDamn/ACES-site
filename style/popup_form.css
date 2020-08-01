@@ -18,7 +18,7 @@
   .modal_form {
       display: none; /* Hidden by default */
       position: fixed; /* Stay in place */
-      z-index: 3; /* Sit on top */
+      z-index: 9; /* Sit on top */
       padding-top: 5%;
       padding-bottom: 5%;
       left: 0;
