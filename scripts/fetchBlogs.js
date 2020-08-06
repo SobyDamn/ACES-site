@@ -1,5 +1,5 @@
 var blogUrl = `https://medium.com/feed/writeabyte`
-var maximumCards = 4; // maximum number of small card to be generated
+var maximumCards = 2; // max extra cards with default one big card
 function fetchBlogs() {
     fetch(`https://api.rss2json.com/v1/api.json?rss_url=${blogUrl}`)
     .then((res) => res.json())
@@ -16,7 +16,8 @@ function fetchBlogs() {
             }
             else if(i <=maximumCards) {
                 //generate small cards
-                generateSmallBlogCard(post.link,shortenTitle(post.title),post.thumbnail,shortenText(post.description,220))
+                generateBigBlogCard(post.link,shortenTitle(post.title),shortenText(post.description,360),post.author,nerdDateFull(post.pubDate),post.thumbnail);
+                //generateSmallBlogCard(post.link,shortenTitle(post.title),post.thumbnail,shortenText(post.description,220))
             }
         }
         })
@@ -63,7 +64,7 @@ function generateBigBlogCard(url,title,text,author,date,image) {
                             <a id="bigBlogLink" href="${url}">Read More</a>
                         </div>
                     </div>`
-    cardHolder.innerHTML = card;
+    cardHolder.innerHTML += card;
 }
 function generateSmallBlogCard (url,title,image,text) {
     var cardHolder = document.getElementById("smallBlogBoxHolder");

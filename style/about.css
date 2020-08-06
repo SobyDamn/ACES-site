@@ -23,6 +23,10 @@
     color:rgb(58, 53, 53);
     border-bottom: 1px solid rgb(233, 214, 214);
     padding: 25px;
+    font-size: 40px;
+}
+#aboutBoxContainer>h1 {
+    font-size: 60px;
 }
 #aboutBoxLogoImageContainer {
     height: 90px;

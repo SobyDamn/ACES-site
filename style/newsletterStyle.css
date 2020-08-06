@@ -37,7 +37,7 @@
     max-height: 600px;
     margin: 25px;
     border-radius: 5px;
-    background-color: rgb(48, 48, 48,0.1);
+    background-color: rgb(48, 48, 48,0);
 }
 #newsBoxContainer {
     border-right: 1px solid rgb(184, 180, 180);
@@ -67,7 +67,7 @@
     background: rgb(194, 181, 181); 
   }
 .newsBox {
-    border-left: 12px solid rgb(11, 207, 4);
+    border-left: 12px solid #6886c5 !important;
     min-height: 70px;
     overflow: hidden;
     border-radius: 5px;
