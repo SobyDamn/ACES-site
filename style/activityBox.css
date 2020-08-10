@@ -13,8 +13,8 @@
     font-family: openSans-Bold;
     margin: 25px;
     padding-bottom: 20px;
-    border-bottom: 5px solid #6886c5;
-    color: #6886c5;
+    border-bottom: 5px solid #258eac;
+    color: #258eac;
 }
 #activityBoxContainer {
     display: flex;

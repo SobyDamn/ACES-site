@@ -24,7 +24,7 @@ body {
     margin-top: 25px;
     min-height: 100px;
     background-color: rgb(52, 54, 49);
-    background-image: linear-gradient(to top right, rgb(99, 99, 99) 50%, rgb(107, 107, 107) 50%);
+    background-image: linear-gradient(to top right, #227e97 50%, #1e758d 50%);
     overflow: hidden;
     text-align: center;
     width: 100%;
