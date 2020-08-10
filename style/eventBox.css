@@ -35,7 +35,9 @@ div.eventBox {
     width: 55%;
     text-align: left;
     padding: 10px;
-    background-color: rgb(255, 255, 255);
+    background-color: #6886c5 !important;
+    //background-image: url(../resource/img/abstract-background-1024x273.jpg);
+    background-size: cover;
     color: black !important;
 }
 .eventTitle {
@@ -110,7 +112,7 @@ div.eventBox {
 /*Animations*/
 @keyframes fadeIn {
     0% {
-        opacity:0.2;
+        opacity:0.5;
     } 
     100% {
         opacity:1;
