@@ -20,21 +20,65 @@ body {
     justify-content: space-between;
 }
 #footer {
+    font-family: TitilliumWeb-SemiBold;
     margin-top: 25px;
-    min-height: 50px;
+    min-height: 100px;
     background-color: rgb(52, 54, 49);
+    background-image: linear-gradient(to top right, rgb(99, 99, 99) 50%, rgb(107, 107, 107) 50%);
     overflow: hidden;
     text-align: center;
     width: 100%;
+    color: rgba(255, 255, 255);
 }
+#contact h1 {
+    text-align: left;
+    border: none;
+}
+#contact {
+    min-height: 200px;
+}
+#contact>h2{
+    font-family: TitilliumWeb-SemiBold;;
+    text-align: center;
+}
+#contact>span>i{
+    font-size: 18px;
+    margin-right: 5px;
+    font-weight: 100;
+    vertical-align: middle;
+}
+#contact span {
+    color: rgba(255, 255, 255, 0.9) !important;
+    margin-bottom: 30px;
+    font-size: 110% !important;
+}
+.contactDetails {
+    font-family: TitilliumWeb;
+    color: rgba(255, 255, 255);
+    font-size: 110%;
+    padding: 25px;
+}
+.socialLinks {
+    margin: 15px;
+    text-decoration: none;
+    font-size: 25px;
+    color: rgba(255, 255, 255);
+    transition: font-size 0.2s;
+}
+.socialLinks:hover {
+    color: rgb(98, 123, 204);
+}
+#socialLinkContainer {
+    min-height: 10px;
+    margin-bottom: 40px;
+}
+
 #footer h3{
     padding: 15px;
-    color: #dddddd;
-    font-family: openSans-SemiBold;
+    color: white;
     font-size: 17px;
 }
 #footer span {
-    font-family: openSans-SemiBold;
     color:white;
     display: block;
     padding: 5px;
@@ -42,8 +86,11 @@ body {
 }
 #footer h3 a {
     text-decoration: none;
-    color: #dddddd;
+    color: rgb(255, 255, 255);
     cursor: pointer;
+    font-size: 100%;
+    font-family: TitilliumWeb;
+    letter-spacing: 0.5px;
 }
 #footer h3 a:hover {
     text-decoration: underline;
@@ -51,13 +98,10 @@ body {
 @media only screen and (max-width:750px) {
     #footer h3{
         padding: 0px;
-        color: #dddddd;
-        font-family: openSans-SemiBold;
         font-size: 15px;
         margin: 0;
     }
     #footer span {
-        font-family: openSans-SemiBold;
         color:white;
         display: block;
         padding: 5px;
@@ -65,8 +109,9 @@ body {
     }
     #footer h3 a {
         text-decoration: none;
-        color: #dddddd;
+        color: white;
         cursor: pointer;
+        font-size: 100%;
     }
     #footer h3 span {
         margin: 0;

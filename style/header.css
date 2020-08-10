@@ -67,10 +67,10 @@ body {
     color: rgb(255, 255, 255);
     transition: border-bottom 0.2s,color 0.2s;
     position: relative;
+    cursor: pointer;
 }
 #headerOptionBox a:hover {
-    border-bottom: 2px solid rgb(206, 206, 206);
-    color: rgb(206, 206, 206);
+    border-bottom: 2px solid rgb(255, 255, 255);
 }
 #searchBarHolder {
     min-height: 20px;
@@ -107,7 +107,7 @@ body {
     border-top-left-radius: 0px;
     border-radius: 3px;
     border-left: none;
-    background-color: #8079c0;
+    background-color: #837bcc;
     color: rgb(255, 255, 255);
     cursor: pointer;
 }
