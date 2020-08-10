@@ -374,7 +374,7 @@ function resetContentForm() {
     var defaultTitle = `ACES`;
     var defaultBoxType = `activityBoxType2`;
     var defaultBGColor = `#ffffff`;
-    var defaultTextColor = "#000000";
+    var defaultTextColor = "#2b2b2b";
     var defaultTitleColor = "#000000";
     changeContentDescription(defaultDesc);
     changeActivityBoxType(defaultBoxType);

@@ -8,8 +8,7 @@ firebase.auth().onAuthStateChanged(function(user) {
       // User logged in already or has just logged in.
         document.getElementById("authLoader").style.display = "none";
         document.getElementById("authBTN").style.display = "none";
-        document.getElementById("userAvailableAuthOptions").style.display = "block";
-        document.getElementById("userUnavailableAuthOptions").style.display = "none";
+        document.getElementById("logoutBTNFromheader").style.display = "block";
         if (user.photoURL) {
             //display photo if exists
             fetchImage(user.photoURL,user.uid)
@@ -20,8 +19,7 @@ firebase.auth().onAuthStateChanged(function(user) {
     } 
     else {
       // User not logged in or has just logged out.
-      document.getElementById("userAvailableAuthOptions").style.display = "none";
-      document.getElementById("userUnavailableAuthOptions").style.display = "block";
+      document.getElementById("logoutBTNFromheader").style.display = "none";
       document.getElementById("authLoader").style.display = "none";
       document.getElementById("authBTN").style.display = "block";
       document.getElementById("headerProfileImageHolder").style.display = "none";

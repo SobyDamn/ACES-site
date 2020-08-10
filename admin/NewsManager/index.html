@@ -13,6 +13,7 @@
         <script src="../adminAuth.js"></script>
         <script src="script.js"></script>
         <!---Stylsheets-->
+        <link rel="stylesheet" href="../../style/font.css">
         <link rel="stylesheet" href="../../style/popup_form.css">
         <link rel="stylesheet" href="../../style/popup.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -52,6 +53,7 @@
                             <a href="../../index.html#blogs">BLOGS</a>
                             <a href="../../index.html#newsletter">NEWSLETTER</a>
                             <a href="../../index.html#contact">CONTACT</a>
+                            <a id="logoutBTNFromheader" onclick="logout('thirdChild')">LOGOUT</a>
                         </span>
                     </div>
                 </div>
@@ -171,9 +173,21 @@
             </div>
         </div>
         <div id="footer">
+            <div id="contact">
+                <h2>Contacts</h2>
+                <p class="contactDetails">Cochin University Road<br>
+                    Ernakulam, Kerala 682022, IN
+                </p>
+                <span><i class="material-icons">mail_outline</i>aces.cusat.ac.in@gmail.com</span>
+                <center>
+                    <div id="socialLinkContainer">
+                        <a href="#" class="socialLinks"><i class="fa fa-instagram"></i></a>
+                        <a href="https://www.linkedin.com/organization-guest/company/association-of-computer-engineering-students-cusat" class="socialLinks"><i class="fa fa-linkedin-square"></i></a>
+                        <a href="https://www.facebook.com/aces.cusat.ac.in/" class="socialLinks"><i class="fa fa-facebook-square"></i></a>
+                    </div>
+                </center>
+            </div>
             <h3>
-                <span id="userAvailableAuthOptions" style="display: none;"><a onclick="viewProfilePage('thirdChild')">View Profile </a> &#9679; <a onclick="logout('thirdChild')"> Logout </a></span>
-                <span id="userUnavailableAuthOptions"><a onclick="showLoginForm()">Login </a></span>
                 <span><a href="../../index.html">HOME </a></span>
             </h3>
             <span>ACES ©2020</span>

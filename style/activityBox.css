@@ -1,23 +1,3 @@
-@font-face {
-    font-family: openSans;
-    src: url(../resource/fonts/OpenSans-Regular.ttf);
-  }
-@font-face {
-  font-family: openSans-Bold;
-  src: url(../resource/fonts/opensans_bold.ttf);
-}
-@font-face {
-  font-family: openSans-SemiBold;
-  src: url(../resource/fonts/opensans_semibold.ttf);
-}
-@font-face {
-    font-family: Gill Sans;
-    src: url(../resource/fonts/Gill\ Sans\ MT\ Book.ttf);
-  }
-  @font-face {
-    font-family: Gill Sans-Bold;
-    src: url(../resource/fonts/Gill\ Sans\ MT\ Bold.ttf);
-  }  
 #activity {
     margin: 20px;
     margin-top: 20px;
@@ -79,7 +59,7 @@
     flex-direction: column;
 }
 .activityBoxTitle {
-    font-family: Gill Sans-Bold;
+    font-family: TitilliumWeb-Bold;
     margin-top: 0px;
     margin-bottom: 5px;
     font-size: 20px;
@@ -87,7 +67,7 @@
     text-align: center;
 }
 .activityBoxAbout {
-    font-family: Gill Sans;
+    font-family: TitilliumWeb;
     font-size: 16px;
     margin: 10px;
     margin-top: 0;
@@ -96,9 +76,11 @@
     display: block;
     overflow: auto;
     height: 100%;
+    color: #2b2b2b;
+    line-height: 22px;
 }
 .activityBoxAbout::-webkit-scrollbar {
-    width: 2px;
+    width: 1px;
   }
   
   /* Track */
@@ -106,7 +88,7 @@
     background: transparent; 
   }
 .activityBoxAbout::-webkit-scrollbar-thumb {
-    background: rgb(116, 116, 116); 
+    background: rgba(116, 116, 116, 0.329); 
   }
 #activityBoxType2 {
     flex-direction: column;

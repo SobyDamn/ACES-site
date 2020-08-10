@@ -65,6 +65,7 @@
                             <a href="#blogs">BLOGS</a>
                             <a href="#newsletter">NEWSLETTER</a>
                             <a href="#contact">CONTACT</a>
+                            <a id="logoutBTNFromheader" onclick="logout('home')">LOGOUT</a>
                         </span>
                     </div>
                 </div>
@@ -150,7 +151,7 @@
                     <div class="lds-ellipsis"><div style="background: rgb(94, 117, 223);"></div><div style="background: rgb(94, 117, 223);"></div><div style="background: rgb(94, 117, 223);"></div><div style="background: rgb(94, 117, 223);"></div></div>
                 </div>
                 <div id="bigBlogBoxContainer">
-                    <!---div id="bigBlogCard">
+                    <!--div id="bigBlogCard">
                         <div id="bigBlogCardImageHolder">
                             <img src="resource/img/pdp.jpg" id="bigBlogCardImage"/>
                         </div>
@@ -165,11 +166,11 @@
                             </div>
                             <a id="bigBlogLink">Read More</a>
                         </div>
-                    </div--->
+                    <div-->
                 </div>
-                <div id="smallBlogBoxCOntainer">
+                <!---div id="smallBlogBoxCOntainer">
                     <div id="smallBlogBoxHolder">
-                        <!---div class="blogBox">
+                        <div class="blogBox">
                             <div class="blogBoxImgContainer">
                                 <img class="blogBoxImg" src="resource/img/StephenHawking.jpg"/>
                             </div>
@@ -182,9 +183,9 @@
                                 </span>
                             </div>
                             <a class="blogBoxVisitLink">Read More</a>
-                        </div--->
+                        </div>
                     </div>
-                </div>
+                </div--->
             </div>
             <p style="text-align: center;"><a id="blogViewMorePageLink" href="https://medium.com/writeabyte">VIEW MORE</a></p>
         </div>
@@ -223,11 +224,19 @@
                     <span>
                         ACES refers to the Association of Computer Engineering Students from the prestigious School of Engineering, Cochin University of Science and technology (CUSAT). 
                         <br><br>Association of Computer Engineering Students, School of Engineering, CUSAT was found with a vision to across the boundaries of textbooks and explore a whole new world of technologies thus evolving as a complete engineer. It has strength of over 400 young aspirants. ACES organizes various programs such as seminars, webinars, alumni meet, online projects, CUSAT site maintenance, placement training with tech fest being one of its most successful endeavors.
+                        <br><br>
+                        Aces organised the annual techfest of Division Of Computer Engineering named "INSPIRE" during the year 2006-2008.ACES has also contributed very well in organising the annual techfest of CUSAT "XPLENDOR" . Beside this Aces is one of the most active community of students in school of engineering,CUSAT. ACES published its first technical magazine named "AUDEMUS" in 2006,which contained lots of technical stuff and due to popularity of the magazine it was begin to published every year and in 2010 it got a new avatar named "R3BOOT".
                     </span>
                 </div>
             </div>
+        </div>
+        <div id="footer">
             <div id="contact">
-                <h1>Contact</h1>
+                <h2>Contacts</h2>
+                <p class="contactDetails">Cochin University Road<br>
+                    Ernakulam, Kerala 682022, IN
+                </p>
+                <span><i class="material-icons">mail_outline</i>aces.cusat.ac.in@gmail.com</span>
                 <center>
                     <div id="socialLinkContainer">
                         <a href="#" class="socialLinks"><i class="fa fa-instagram"></i></a>
@@ -235,14 +244,8 @@
                         <a href="https://www.facebook.com/aces.cusat.ac.in/" class="socialLinks"><i class="fa fa-facebook-square"></i></a>
                     </div>
                 </center>
-                <p class="contactDetails">Cochin University Road<br>
-                    Ernakulam, Kerala 682022, IN</p>
             </div>
-        </div>
-        <div id="footer">
             <h3>
-                <span id="userAvailableAuthOptions" style="display: none;"><a onclick="viewProfilePage('home')">View Profile </a> &#9679; <a onclick="logout('home')"> Logout </a></span>
-                <span id="userUnavailableAuthOptions"><a onclick="showLoginForm()">Login </a> &#9679; <a onclick="showRegisterForm()"> Register </a></span>
                 <span><a onclick="openAdminPanel('home')">Admin Panel </a></span>
             </h3>
             <span>ACES ©2020</span>

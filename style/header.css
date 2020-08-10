@@ -41,7 +41,7 @@ body {
     width: 100%;
 }
 #subHeader {
-    background-color: #6886c5;
+    background-color: #4f41ca;
     display: flex;
     justify-content: space-between;
     box-shadow: 0px 8px 5px -6px rgb(97, 96, 96,0.6);
@@ -67,10 +67,10 @@ body {
     color: rgb(255, 255, 255);
     transition: border-bottom 0.2s,color 0.2s;
     position: relative;
+    cursor: pointer;
 }
 #headerOptionBox a:hover {
-    border-bottom: 2px solid rgb(206, 206, 206);
-    color: rgb(206, 206, 206);
+    border-bottom: 2px solid rgb(255, 255, 255);
 }
 #searchBarHolder {
     min-height: 20px;
@@ -107,7 +107,7 @@ body {
     border-top-left-radius: 0px;
     border-radius: 3px;
     border-left: none;
-    background-color: rgb(83, 89, 179);
+    background-color: #837bcc;
     color: rgb(255, 255, 255);
     cursor: pointer;
 }
@@ -124,11 +124,11 @@ body {
 }
 #authBox button {
     cursor: pointer;
-    border: 2px solid #3020c0;
+    border: 2px solid #4f41ca;
     background: transparent;
     font-family: openSans-Bold;
     font-size: 80%;
-    color: #3020c0;
+    color: #4f41ca;
     padding: 8px;
     padding-right: 10px;
     padding-left: 10px;
@@ -219,7 +219,7 @@ button {
         margin-top: 35px;
         position: absolute;
         z-index: 7;
-        background-color: #6886c5;
+        background-color: #4f41ca;
     }
     #headerOptionDropdownBTN {
         display: inline;
