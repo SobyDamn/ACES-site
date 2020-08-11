@@ -3,28 +3,31 @@ var stickyHeaderEnabled = false;
 var navMenuVisible = false;
 var navArrowRotdeg = 180;
 //check user authentication and display status
-firebase.auth().onAuthStateChanged(function(user) {
-    if (user) {
-      // User logged in already or has just logged in.
-        document.getElementById("authLoader").style.display = "none";
-        document.getElementById("authBTN").style.display = "none";
-        document.getElementById("logoutBTNFromheader").style.display = "block";
-        if (user.photoURL) {
-            //display photo if exists
-            fetchImage(user.photoURL,user.uid)
+function loadUsersAuthOptions() {
+    firebase.auth().onAuthStateChanged(function(user) {
+        if (user) {
+          // User logged in already or has just logged in.
+            document.getElementById("authLoader").style.display = "none";
+            document.getElementById("authBTN").style.display = "none";
+            document.getElementById("logoutBTNFromheader").style.display = "block";
+            if (user.photoURL) {
+                //display photo if exists
+                fetchImage(user.photoURL,user.uid)
+            }
+          if (user.displayName == null) {
+            document.getElementById("completeProfileLink").style.display = "inline"
+          }
+        } 
+        else {
+          // User not logged in or has just logged out.
+          document.getElementById("logoutBTNFromheader").style.display = "none";
+          document.getElementById("authLoader").style.display = "none";
+          document.getElementById("authBTN").style.display = "block";
+          document.getElementById("headerProfileImageHolder").style.display = "none";
         }
-      if (user.displayName == null) {
-        document.getElementById("completeProfileLink").style.display = "inline"
-      }
-    } 
-    else {
-      // User not logged in or has just logged out.
-      document.getElementById("logoutBTNFromheader").style.display = "none";
-      document.getElementById("authLoader").style.display = "none";
-      document.getElementById("authBTN").style.display = "block";
-      document.getElementById("headerProfileImageHolder").style.display = "none";
-    }
-  });
+      });
+}
+loadUsersAuthOptions();
 function fetchImage(fileName,uid) {
     if (fileName != undefined) {
         //profile picture exists show to user
