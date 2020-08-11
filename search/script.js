@@ -139,9 +139,11 @@ function searchResultManager(size) {
         document.getElementById("noResultFound").style.display = "block";
         document.getElementById("searchResultloader").style.display = "none";
         document.getElementById("loadMoreResultBTN").style.display = "none";
+        document.getElementById("searchResultContainer").style.display = "none";
     }
     else {
         searchResultShowAny = true;
+        document.getElementById("searchResultContainer").style.display = "inline-block";
         if (size == maxDocLimit) {
             document.getElementById("searchResultloader").style.display = "none";
             document.getElementById("loadMoreResultBTN").style.display = "block";

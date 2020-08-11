@@ -52,7 +52,7 @@
 }
 #newsStripsContainer {
     overflow: auto;
-    min-height: 200;
+    min-height: 200px;
     max-height: 400px;
 }
 #newsStripsContainer::-webkit-scrollbar {
@@ -69,7 +69,7 @@
 .newsBox {
     border-left: 12px solid #6886c5 !important;
     min-height: 70px;
-    overflow: hidden;
+    overflow:hidden;
     border-radius: 5px;
     background-color: white;
     padding-right: 15px;
@@ -107,10 +107,23 @@
 
 /*Opportunity box styling*/
 #opportunityBoxContainer {
-    min-height: 400px;
+    min-height: 200px;
+    max-height: 400px;
+    overflow: auto;
 }
+#opportunityBoxContainer::-webkit-scrollbar {
+    width: 2px;
+  }
+  
+  /* Track */
+#opportunityBoxContainer::-webkit-scrollbar-track {
+    background: transparent; 
+  }
+#opportunityBoxContainer::-webkit-scrollbar-thumb {
+    background: rgb(194, 181, 181); 
+  }
 .opportunityBox {
-    min-height: 80px;
+    min-height:fit-content;
     border-radius: 5px;
     /*margin: 10px;*/
     margin-bottom: 15px;
@@ -177,6 +190,7 @@
     display: table-cell;
     text-align: center;
     vertical-align: middle;
+    
 }
 @media only screen and (max-width:1300px) {
     /*

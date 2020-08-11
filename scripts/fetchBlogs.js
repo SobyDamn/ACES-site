@@ -95,5 +95,6 @@ function nerdDateFull(x) {
 
 }
 function openBlogs(url) {
-    window.open(url);
+    return
+    //window.open(url);
 }

@@ -1,5 +1,6 @@
 #aboutBoxContainer {
     min-height: 200px;
+    cursor: default;
 }
 #aboutBoxContainer h1 {
     text-align: center;

@@ -8,6 +8,7 @@
     width: 100%;
     height: 350px;
     opacity: 1;
+    cursor: default;
 }
 div.eventBox {
     display: none;

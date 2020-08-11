@@ -206,7 +206,7 @@ button {
     }
 }
 
-@media only screen and (max-width:950px) {
+@media only screen and (max-width:1070px) {
     #headerOptionBox #nav-options {
         min-height: 200px;
         display: none;

@@ -162,9 +162,13 @@ button {
         flex-wrap: wrap;
         justify-content: center;
     }
+    #searchPageArea {
+        overflow: hidden;
+        min-height: 500px;
+    }
     #searchResultContainer {
         border-radius: 5px;
-        display: inline-block;
+        display: none;
         background-color: white;
         padding-top: 25px;
         padding-bottom: 50px;

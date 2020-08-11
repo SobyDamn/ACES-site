@@ -17,7 +17,7 @@ function loadNewsletterWithSettings() {
             loadOpportunity(settings.maxValue)
         } else {
             // doc.data() will be undefined in this case
-            console.log("No Setting document! Running with default value");
+            console.log("No Setting document!, Running with default value");
             loadOpportunity(3)
         }
     })
