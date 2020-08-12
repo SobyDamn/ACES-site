@@ -204,6 +204,9 @@
     #newsletterContainer {
         flex-wrap: wrap;
         max-height: 100%;
+        height:auto;
+        float: left;
+        border: 2px solid red;
         margin: 5px;
     }
     #newsBoxContainer {
