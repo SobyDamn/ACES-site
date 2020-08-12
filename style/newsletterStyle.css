@@ -34,7 +34,7 @@
 #newsletterContainer {
     display: flex;
     min-height: 500px;
-    max-height: 600px;
+    max-height: fit-content;
     margin: 25px;
     border-radius: 5px;
     background-color: rgb(48, 48, 48,0);
@@ -203,10 +203,8 @@
     */
     #newsletterContainer {
         flex-wrap: wrap;
-        max-height: 100%;
-        height:auto;
         float: left;
-        border: 2px solid red;
+        border: 2px solid yellow;
         margin: 5px;
     }
     #newsBoxContainer {
