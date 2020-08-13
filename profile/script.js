@@ -100,6 +100,7 @@ function showRequestedProfile(uid) {
         }
     }).catch(function(error) {
         console.log("Error getting document:", error);
+        profilePageStatus("error")
     });
 }
 function createProfileContactLinks(type,value,element) {
@@ -132,25 +133,44 @@ function checkDataAvailable(data) {
 }
 
 function profilePageStatus(profile) {
+    var profileUnauthorized = `<h1>Unauthorised!</h1>
+                                <h3>
+                                    Login Required!<br>
+                                    Please <u>Login</u> to view your profile
+                                </h3>`
+    var profileUnavailable = `<h1>Not Found!</h1>
+                            <h3>
+                                Requested Profile is not available
+                            </h3>`
+    var profileFetchError = `h1>Error!</h1>
+                            <h3>
+                                Something went wrong!<br>Please reload the page and if it continues try after sometimes.
+                            </h3>`
+    const statusContainer = document.getElementById("profileNotAvailable");
     if (profile == "unavailable") {
         //profile not found page
         document.getElementById("profileLoader").style.display = "none";
-        document.getElementById("authUnavailableStatus").style.display = "none";
         document.getElementById("displayProfileDetail").style.display = "none";
-        document.getElementById("profileNotAvailable").style.display = "block";
+        statusContainer.style.display = "block";
+        statusContainer.innerHTML = profileUnavailable;
     }
     else if (profile=="authUnavailablle") {
         //self profile needs login
         document.getElementById("profileLoader").style.display = "none";
-        document.getElementById("profileNotAvailable").style.display = "none";
         document.getElementById("displayProfileDetail").style.display = "none";
-        document.getElementById("authUnavailableStatus").style.display = "block";
+        statusContainer.style.display = "block";
+        statusContainer.innerHTML = profileUnauthorized;
+    }
+    else if(profile=="error"){
+        document.getElementById("profileLoader").style.display = "none";
+        document.getElementById("displayProfileDetail").style.display = "none";
+        statusContainer.style.display = "block";
+        statusContainer.innerHTML = profileFetchError;
     }
     else {
         //show requested profile
         document.getElementById("profileLoader").style.display = "none";
-        document.getElementById("profileNotAvailable").style.display = "none";
-        document.getElementById("authUnavailableStatus").style.display = "none";
+        statusContainer.style.display = "none";
         document.getElementById("displayProfileDetail").style.display = "block";
     }
 }
