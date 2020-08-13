@@ -3,24 +3,28 @@ const qUid = urlParams.get('id')
 const userName = urlParams.get('name')
 var currentUser = null;
 
-firebase.auth().onAuthStateChanged(function(user) {
-    if (user) {
-      // User logged in already or has just logged in.
-      currentUser = user;
-      showProfile()
-    } 
-    else {
-      // User not logged in or has just logged out.
-      currentUser = null;
-      if (qUid == null) {
-          profilePageStatus("authUnavailablle")
-          showLoginForm()
-      }
-      else {
-        showProfile()
-      }
-    }
-  });
+document.addEventListener("DOMContentLoaded", function(event) { 
+    //if content loaded show the authentication status
+    firebase.auth().onAuthStateChanged(function(user) {
+        if (user) {
+          // User logged in already or has just logged in.
+          currentUser = user;
+          showProfile()
+        } 
+        else {
+          // User not logged in or has just logged out.
+          currentUser = null;
+          if (qUid == null) {
+              profilePageStatus("authUnavailablle")
+              showLoginForm()
+          }
+          else {
+            showProfile()
+          }
+        }
+    });
+
+  })
 
 function showProfile() {
     if (qUid != null) {
