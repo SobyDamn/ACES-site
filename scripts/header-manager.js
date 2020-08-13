@@ -27,7 +27,11 @@ function loadUsersAuthOptions() {
         }
       });
 }
-loadUsersAuthOptions();
+
+document.addEventListener("DOMContentLoaded", function(event) { 
+    //if content loaded show the authentication status
+    loadUsersAuthOptions();
+  })
 function fetchImage(fileName,uid) {
     if (fileName != undefined) {
         //profile picture exists show to user

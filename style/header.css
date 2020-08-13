@@ -57,6 +57,9 @@ body {
     overflow: hidden;
     padding-left: 20px;
 }
+#logoutBTNFromheader {
+    display: none;
+}
 #headerOptionBox  a {
     height: 20px;
     padding-top: 10px;
