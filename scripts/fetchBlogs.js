@@ -15,7 +15,7 @@ function fetchBlogs() {
                 generateBigBlogCard(post.link,shortenTitle(post.title),shortenText(post.description,360),post.author,nerdDateFull(post.pubDate),post.thumbnail);
             }
             else if(i <=maximumCards) {
-                //generate small cards
+                //Generating big blog cards
                 generateBigBlogCard(post.link,shortenTitle(post.title),shortenText(post.description,360),post.author,nerdDateFull(post.pubDate),post.thumbnail);
                 //generateSmallBlogCard(post.link,shortenTitle(post.title),post.thumbnail,shortenText(post.description,220))
             }
@@ -48,20 +48,22 @@ function shortenText(text,maxLength) {
 }
 function generateBigBlogCard(url,title,text,author,date,image) {
     const cardHolder = document.getElementById("bigBlogBoxContainer");
-    const card = `<div onclick="openBlogs('${url}')" id="bigBlogCard">
-                        <div id="bigBlogCardImageHolder">
-                            <img src="${image}" id="bigBlogCardImage"/>
+    const card = `<div onclick="openBlogs('${url}')" class="bigBlogCard">
+                        <div class="bigBlogCardImageHolder">
+                            <img src="${image}" class="bigBlogCardImage"/>
                         </div>
-                        <div id="bigBlogCardDetail">
+                        <div class="bigBlogCardDetail">
                             <h3>${title}</h3>
-                            <p id="bigBlogCardTextDetails">
+                            <p class="bigBlogCardTextDetails">
                                 ${text}...
                             </p>
-                            <div id="bigBlogCardAuthorDetails">
-                                By ${author}<br>
-                                ${date}
+                            <div class="bigBlogBoxFooter">
+                                <div class="bigBlogCardAuthorDetails">
+                                    By ${author}<br>
+                                    ${date}
+                                </div>
+                                <a class="bigBlogLink" href="${url}">Read More</a>
                             </div>
-                            <a id="bigBlogLink" href="${url}">Read More</a>
                         </div>
                     </div>`
     cardHolder.innerHTML += card;
